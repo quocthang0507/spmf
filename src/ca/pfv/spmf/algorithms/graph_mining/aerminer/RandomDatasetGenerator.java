@@ -1,4 +1,5 @@
 package ca.pfv.spmf.algorithms.graph_mining.aerminer;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -9,25 +10,27 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 /* This file is copyright (c) 2020 by Ganghuan He
-* 
-* This file is part of the SPMF DATA MINING SOFTWARE
-* (http://www.philippe-fournier-viger.com/spmf).
-* 
-* SPMF is free software: you can redistribute it and/or modify it under the
-* terms of the GNU General Public License as published by the Free Software
-* Foundation, either version 3 of the License, or (at your option) any later
-* version.
-* 
-* SPMF is distributed in the hope that it will be useful, but WITHOUT ANY
-* WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
-* A PARTICULAR PURPOSE. See the GNU General Public License for more details.
-* You should have received a copy of the GNU General Public License along with
-* SPMF. If not, see <http://www.gnu.org/licenses/>.
-*/
+ *
+ * This file is part of the SPMF DATA MINING SOFTWARE
+ * (http://www.philippe-fournier-viger.com/spmf).
+ *
+ * SPMF is free software: you can redistribute it and/or modify it under the
+ * terms of the GNU General Public License as published by the Free Software
+ * Foundation, either version 3 of the License, or (at your option) any later
+ * version.
+ *
+ * SPMF is distributed in the hope that it will be useful, but WITHOUT ANY
+ * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
+ * A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+ * You should have received a copy of the GNU General Public License along with
+ * SPMF. If not, see <http://www.gnu.org/licenses/>.
+ */
+
 /**
  * A random dataset generator
- * @see AERMiner
+ *
  * @author Ganghuan He 2020
+ * @see AERMiner
  */
 public class RandomDatasetGenerator {
     private static int noTimestamps = 0;
@@ -36,7 +39,7 @@ public class RandomDatasetGenerator {
     private static int noAttribute = 0;
 
 
-    private static String rootPath = ParametersSettingAERMiner.projectPath+"/dataset/synthetic/";
+    private static String rootPath = ParametersSettingAERMiner.projectPath + "/dataset/synthetic/";
     private static String attrMapFileName = "/attrMap.txt";
     private static String edgesFileName = "/edges.txt";
     private static String attributesFileName = "/attributes.txt";
@@ -47,7 +50,6 @@ public class RandomDatasetGenerator {
 
     private static String letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     private static String numbers = "0123456789";
-
 
 
     public static void main(String[] args) throws IOException {
@@ -73,6 +75,7 @@ public class RandomDatasetGenerator {
         }
         bw.close();
     }
+
     private static void generateEdges() throws IOException {
         BufferedWriter bw = new BufferedWriter(new FileWriter(edgesFilePath));
         for (int t = 0; t < noTimestamps; t++) {
@@ -106,7 +109,7 @@ public class RandomDatasetGenerator {
             for (int v = 0; v < noVertex; v++) {
                 sb.append(v);
                 for (int a = 0; a < noAttribute; a++) {
-                    sb.append(" ").append(gaussianNumber(0,1));
+                    sb.append(" ").append(gaussianNumber(0, 1));
                 }
                 sb.append("\n");
             }
@@ -117,7 +120,7 @@ public class RandomDatasetGenerator {
 
     private static int gaussianNumber(double mean, double stdV) {
         int num = (int) Math.floor(mean + stdV * new Random().nextGaussian());
-        return num >= 0? num: -num;
+        return num >= 0 ? num : -num;
     }
 
     private static void generateDirectoryAndFiles() throws IOException {

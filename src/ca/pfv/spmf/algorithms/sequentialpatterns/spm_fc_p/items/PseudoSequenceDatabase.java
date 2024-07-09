@@ -10,23 +10,23 @@ import java.util.Set;
  * explained in the paper of PrefixSpan Algorithm. By means of this class, we
  * convert a usual sequence in a pseudosequence, where we can point out the
  * different projection points that we have in every database projection.
- *
+ * <p>
  * This class is inspired in SPMF PrefixSpan implementation.
- *
+ * <p>
  * Copyright Antonio Gomariz Peñalver 2013
- *
+ * <p>
  * This file is part of the SPMF DATA MINING SOFTWARE
  * (http://www.philippe-fournier-viger.com/spmf).
- *
+ * <p>
  * SPMF is free software: you can redistribute it and/or modify it under the
  * terms of the GNU General Public License as published by the Free Software
  * Foundation, either version 3 of the License, or (at your option) any later
  * version.
- *
+ * <p>
  * SPMF is distributed in the hope that it will be useful, but WITHOUT ANY
  * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
  * A PARTICULAR PURPOSE. See the GNU General Public License for more details.
- *
+ * <p>
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  *
@@ -41,6 +41,7 @@ public class PseudoSequenceDatabase {
 
     /**
      * Get the list of pseudosequences from this database
+     *
      * @return the list of pseudosequences
      */
     public List<PseudoSequence> getPseudoSequences() {
@@ -49,6 +50,7 @@ public class PseudoSequenceDatabase {
 
     /**
      * It returns a string representation of this pseudo sequence database
+     *
      * @return the string representation
      */
     @Override
@@ -65,6 +67,7 @@ public class PseudoSequenceDatabase {
 
     /**
      * It returns the number of pseudosequences that the database has
+     *
      * @return the number of pseudosequences
      */
     public int size() {
@@ -73,6 +76,7 @@ public class PseudoSequenceDatabase {
 
     /**
      * It returns the sequence IDs of pseudosequences in this database
+     *
      * @return a Set of sequence IDs.
      */
     public Set<Integer> getSequenceIDs() {
@@ -85,6 +89,7 @@ public class PseudoSequenceDatabase {
 
     /**
      * It adds a sequence to the database
+     *
      * @param newSequence the sequence to be added
      */
     public void addSequence(PseudoSequence newSequence) {

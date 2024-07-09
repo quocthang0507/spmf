@@ -6,53 +6,60 @@ import java.util.List;
 /**
  * This is an implementation of the Node structure used by the IHUP tree structure in
  * AlgoSimba algorithm.
- * 
+ *
+ * @author Prashant Barhate, modified by Alex Peng
  * @see AlgoFUIMTF
  * @see IHUPTreeMod
- * @author Prashant Barhate, modified by Alex Peng
- * 
  */
 
 public class Node {
-	/** the id of an item */
-	int itemID = -1;
+    /**
+     * the id of an item
+     */
+    int itemID = -1;
 
-	/** a pointer to a parent node */
-	Node parent = null;
-	
-	/** the child nodes of that node **/
-	List<Node> childs = new ArrayList<Node>();
+    /**
+     * a pointer to a parent node
+     */
+    Node parent = null;
 
-	/** link to the next node with the same item id (for the header table) */
-	Node nodeLink = null; 
+    /**
+     * the child nodes of that node
+     **/
+    List<Node> childs = new ArrayList<Node>();
 
-	/**
-	 * Default constructor
-	 */
-	public Node() {
-	}
+    /**
+     * link to the next node with the same item id (for the header table)
+     */
+    Node nodeLink = null;
 
-	/**
-	 * method to get child node 
-	 * Return the immediate child of this node having a given ID(item itself). 
-	 * If there is no such child, return null;
-	 */
-	Node getChildWithID(int name) {
-		// for each child node
-		for (Node child : childs) {
-			// if the ID(item itself) is the one that we are looking for
-			if (child.itemID == name) {
-				// return that node
-				return child;
-			}
-		}
-		// if not found, return null
-		return null;
-	}
+    /**
+     * Default constructor
+     */
+    public Node() {
+    }
 
-	@Override
-	public String toString() {
-		return "(i=" + "itemID + )";
-	}
+    /**
+     * method to get child node
+     * Return the immediate child of this node having a given ID(item itself).
+     * If there is no such child, return null;
+     */
+    Node getChildWithID(int name) {
+        // for each child node
+        for (Node child : childs) {
+            // if the ID(item itself) is the one that we are looking for
+            if (child.itemID == name) {
+                // return that node
+                return child;
+            }
+        }
+        // if not found, return null
+        return null;
+    }
+
+    @Override
+    public String toString() {
+        return "(i=" + "itemID + )";
+    }
 
 }

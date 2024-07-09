@@ -25,70 +25,71 @@ censes/>.
 */
 
 /**
- * This class describes the FCHM algorithm parameters. 
+ * This class describes the FCHM algorithm parameters.
  * It is designed to be used by the graphical and command line interface.
- * 
- * @see AlgoFCHM_all_confidence
+ *
  * @author Philippe Fournier-Viger
+ * @see AlgoFCHM_all_confidence
  */
 public class DescriptionAlgoFCHM_allconfidence extends DescriptionOfAlgorithm {
 
-	/**
-	 * Default constructor
-	 */
-	public DescriptionAlgoFCHM_allconfidence(){
-	}
+    /**
+     * Default constructor
+     */
+    public DescriptionAlgoFCHM_allconfidence() {
+    }
 
-	@Override
-	public String getName() {
-		return "FCHM_allconfidence";
-	}
+    @Override
+    public String getName() {
+        return "FCHM_allconfidence";
+    }
 
-	@Override
-	public String getAlgorithmCategory() {
-		return "HIGH-UTILITY PATTERN MINING";
-	}
+    @Override
+    public String getAlgorithmCategory() {
+        return "HIGH-UTILITY PATTERN MINING";
+    }
 
-	@Override
-	public String getURLOfDocumentation() {
-		return "http://www.philippe-fournier-viger.com/spmf/FCHMallconfidence.php";
-	}
+    @Override
+    public String getURLOfDocumentation() {
+        return "http://www.philippe-fournier-viger.com/spmf/FCHMallconfidence.php";
+    }
 
-	@Override
-	public void runAlgorithm(String[] parameters, String inputFile, String outputFile) throws IOException {
-		int minutil = getParamAsInteger(parameters[0]);
-		double minallConfidence = getParamAsDouble(parameters[1]);
-		// Applying the algorithm
-		AlgoFCHM_all_confidence algo = new AlgoFCHM_all_confidence();
-		algo.runAlgorithm(inputFile, outputFile, minutil, minallConfidence);
-		algo.printStats();
-	}
+    @Override
+    public void runAlgorithm(String[] parameters, String inputFile, String outputFile) throws IOException {
+        int minutil = getParamAsInteger(parameters[0]);
+        double minallConfidence = getParamAsDouble(parameters[1]);
+        // Applying the algorithm
+        AlgoFCHM_all_confidence algo = new AlgoFCHM_all_confidence();
+        algo.runAlgorithm(inputFile, outputFile, minutil, minallConfidence);
+        algo.printStats();
+    }
 
-	@Override
-	public DescriptionOfParameter[] getParametersDescription() {
-        
-		DescriptionOfParameter[] parameters = new DescriptionOfParameter[2];
-		parameters[0] = new DescriptionOfParameter("Minimum utility", "(e.g. 30)", Integer.class, false);
-		parameters[1] = new DescriptionOfParameter("Minimum allconfidence", "(e.g. 0.8)", Double.class, false);
-		return parameters;
-	}
+    @Override
+    public DescriptionOfParameter[] getParametersDescription() {
 
-	@Override
-	public String getImplementationAuthorNames() {
-		return "Philippe Fournier-Viger";
-	}
+        DescriptionOfParameter[] parameters = new DescriptionOfParameter[2];
+        parameters[0] = new DescriptionOfParameter("Minimum utility", "(e.g. 30)", Integer.class, false);
+        parameters[1] = new DescriptionOfParameter("Minimum allconfidence", "(e.g. 0.8)", Double.class, false);
+        return parameters;
+    }
 
-	@Override
-	public String[] getInputFileTypes() {
-		return new String[]{"Database of instances","Transaction database", "Transaction database with utility values"};
-	}
+    @Override
+    public String getImplementationAuthorNames() {
+        return "Philippe Fournier-Viger";
+    }
 
-	@Override
-	public String[] getOutputFileTypes() {
-		return new String[]{"Patterns", "Correlated patterns", "High-utility patterns","High-utility itemsets","Correlated High-utility itemsets"};
-	}
-	@Override
-	public AlgorithmType getAlgorithmType() {
-		return AlgorithmType.DATA_MINING;
-	}
+    @Override
+    public String[] getInputFileTypes() {
+        return new String[]{"Database of instances", "Transaction database", "Transaction database with utility values"};
+    }
+
+    @Override
+    public String[] getOutputFileTypes() {
+        return new String[]{"Patterns", "Correlated patterns", "High-utility patterns", "High-utility itemsets", "Correlated High-utility itemsets"};
+    }
+
+    @Override
+    public AlgorithmType getAlgorithmType() {
+        return AlgorithmType.DATA_MINING;
+    }
 }

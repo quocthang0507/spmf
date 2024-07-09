@@ -40,177 +40,177 @@ import ca.pfv.spmf.gui.workflow_editor.WorkflowEditorWindow;
  */
 
 public class Welcome extends JFrame {
-	public static final long serialVersionUID = 1L;
-	private JButton buttonDatasetTools;
-	private JButton buttonRunAlgorithm;
-	private JButton buttonPlugins;
-	private JButton buttonRunManyAlgorithms;
-	private JButton buttonDocumentation;
-//	private JButton buttonPreferences;
-	private JButton buttonAboutSPMF;
-	private JLabel labelWhatWouldYouLike;
-	private JLabel labelLogo;
-	private JPanel panelMain;
+    public static final long serialVersionUID = 1L;
+    private JButton buttonDatasetTools;
+    private JButton buttonRunAlgorithm;
+    private JButton buttonPlugins;
+    private JButton buttonRunManyAlgorithms;
+    private JButton buttonDocumentation;
+    //	private JButton buttonPreferences;
+    private JButton buttonAboutSPMF;
+    private JLabel labelWhatWouldYouLike;
+    private JLabel labelLogo;
+    private JPanel panelMain;
 
-	public Welcome() {
-		setTitle("SPMF v." + Main.SPMF_VERSION + " - Welcome");
-		setSize(900, 175);
-		setLocationRelativeTo(null);
-		setResizable(false);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		initComponents();
-		setVisible(true);
-	}
+    public Welcome() {
+        setTitle("SPMF v." + Main.SPMF_VERSION + " - Welcome");
+        setSize(900, 175);
+        setLocationRelativeTo(null);
+        setResizable(false);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        initComponents();
+        setVisible(true);
+    }
 
-	private void initComponents() {
-	    JFrame frame = this;
-	    frame.setTitle("SPMF v." + Main.SPMF_VERSION + " - Welcome");
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(Welcome::new);
+    }
+
+    private void initComponents() {
+        JFrame frame = this;
+        frame.setTitle("SPMF v." + Main.SPMF_VERSION + " - Welcome");
 //	    frame.setSize(900, 175);
-	    frame.setLocationRelativeTo(null);
+        frame.setLocationRelativeTo(null);
 //	    frame.setResizable(false);
-	    frame.setLayout(new BorderLayout()); // Set the layout manager to BorderLayout
+        frame.setLayout(new BorderLayout()); // Set the layout manager to BorderLayout
 
-	    // Initialize buttons and labels
-	    buttonDatasetTools = new JButton("Prepare data (dataset tools)");
-	    buttonRunAlgorithm = new JButton("Run a data algorithm");
-	    buttonPlugins = new JButton("Add/Remove plugins");
-	    buttonRunManyAlgorithms = new JButton("Run many data mining algorithm(s)");
-	    buttonDocumentation = new JButton("Online documentation");
-	    buttonAboutSPMF = new JButton("About SPMF");
-	    labelWhatWouldYouLike = new JLabel("What would you like to do?", SwingConstants.CENTER);
-	    labelLogo = new JLabel(new ImageIcon(Welcome.class.getResource("spmf.png")));
+        // Initialize buttons and labels
+        buttonDatasetTools = new JButton("Prepare data (dataset tools)");
+        buttonRunAlgorithm = new JButton("Run a data algorithm");
+        buttonPlugins = new JButton("Add/Remove plugins");
+        buttonRunManyAlgorithms = new JButton("Run many data mining algorithm(s)");
+        buttonDocumentation = new JButton("Online documentation");
+        buttonAboutSPMF = new JButton("About SPMF");
+        labelWhatWouldYouLike = new JLabel("What would you like to do?", SwingConstants.CENTER);
+        labelLogo = new JLabel(new ImageIcon(Welcome.class.getResource("spmf.png")));
 
-	    // Set icons for buttons
-	    buttonDocumentation.setIcon(new ImageIcon(Welcome.class.getResource("/ca/pfv/spmf/gui/icons/Information24.gif")));
-	    buttonAboutSPMF.setIcon(new ImageIcon(Welcome.class.getResource("/ca/pfv/spmf/gui/icons/About24.gif")));
+        // Set icons for buttons
+        buttonDocumentation.setIcon(new ImageIcon(Welcome.class.getResource("/ca/pfv/spmf/gui/icons/Information24.gif")));
+        buttonAboutSPMF.setIcon(new ImageIcon(Welcome.class.getResource("/ca/pfv/spmf/gui/icons/About24.gif")));
 //
-	    // North panel with labelLogo and labelWhatWouldYouLike
-	    JPanel northPanel = new JPanel(new BorderLayout());
-	    northPanel.add(labelLogo, BorderLayout.NORTH);
-	    northPanel.add(labelWhatWouldYouLike, BorderLayout.SOUTH);
+        // North panel with labelLogo and labelWhatWouldYouLike
+        JPanel northPanel = new JPanel(new BorderLayout());
+        northPanel.add(labelLogo, BorderLayout.NORTH);
+        northPanel.add(labelWhatWouldYouLike, BorderLayout.SOUTH);
 
-	    // South panel with buttons aligned vertically
-	    JPanel southPanel = new JPanel(new GridLayout(3, 1));
-	    southPanel.add(buttonDatasetTools);
-	    southPanel.add(buttonRunAlgorithm);
-	    southPanel.add(buttonRunManyAlgorithms);
+        // South panel with buttons aligned vertically
+        JPanel southPanel = new JPanel(new GridLayout(3, 1));
+        southPanel.add(buttonDatasetTools);
+        southPanel.add(buttonRunAlgorithm);
+        southPanel.add(buttonRunManyAlgorithms);
 
-	    // East panel with buttons aligned vertically
-	    JPanel eastPanel = new JPanel(new GridLayout(3, 1));
-	    eastPanel.add(buttonDocumentation);
-	    eastPanel.add(buttonPlugins);
+        // East panel with buttons aligned vertically
+        JPanel eastPanel = new JPanel(new GridLayout(3, 1));
+        eastPanel.add(buttonDocumentation);
+        eastPanel.add(buttonPlugins);
 
-	    // Adding panels to the main panel
-	    panelMain = new JPanel(new BorderLayout()); // Panel using BorderLayout
-	    panelMain.add(northPanel, BorderLayout.NORTH);
-	    panelMain.add(southPanel, BorderLayout.CENTER);
-	    panelMain.add(eastPanel, BorderLayout.EAST);
-
-
-	    panelMain.validate();
-	    setupButtonEvents(frame);
-	    frame.setContentPane(panelMain);
-	    frame.pack();
-	    frame.setVisible(true);
-	    frame.setDefaultCloseOperation(Welcome.EXIT_ON_CLOSE);
-	}
+        // Adding panels to the main panel
+        panelMain = new JPanel(new BorderLayout()); // Panel using BorderLayout
+        panelMain.add(northPanel, BorderLayout.NORTH);
+        panelMain.add(southPanel, BorderLayout.CENTER);
+        panelMain.add(eastPanel, BorderLayout.EAST);
 
 
-	/** Setup the button events for a frame
-	 * 
-	 * @param frame the frame
-	 */
-	private void setupButtonEvents(JFrame frame) {
-		buttonDocumentation.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent evt) {
-				actionDocumentation(evt);
-			}
-		});
-		
-		buttonAboutSPMF.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent evt) {
-				actionAboutSPMF(evt);
-			}
-		}); 
-		
-		buttonDatasetTools.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent evt) {
-				try {
-					actionDatasetTools(evt);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-		
-		buttonRunAlgorithm.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent evt) {
-				try {
-					actionRunAlgorithm(evt);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+        panelMain.validate();
+        setupButtonEvents(frame);
+        frame.setContentPane(panelMain);
+        frame.pack();
+        frame.setVisible(true);
+        frame.setDefaultCloseOperation(Welcome.EXIT_ON_CLOSE);
+    }
 
-		buttonPlugins.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent evt) {
-				actionPlugins(evt);
-			}
-		});
-		
-		buttonRunManyAlgorithms.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
+    /**
+     * Setup the button events for a frame
+     *
+     * @param frame the frame
+     */
+    private void setupButtonEvents(JFrame frame) {
+        buttonDocumentation.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                actionDocumentation(evt);
+            }
+        });
+
+        buttonAboutSPMF.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                actionAboutSPMF(evt);
+            }
+        });
+
+        buttonDatasetTools.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                try {
+                    actionDatasetTools(evt);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        buttonRunAlgorithm.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                try {
+                    actionRunAlgorithm(evt);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        buttonPlugins.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                actionPlugins(evt);
+            }
+        });
+
+        buttonRunManyAlgorithms.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
 //				MainWindow mainWindowTools;
-				try {
-					@SuppressWarnings("unused")
-					WorkflowEditorWindow drawFrame = new WorkflowEditorWindow(false);
-				} catch (Exception e1) {
-					e1.printStackTrace();
-				}
-			}
-		});
-	}
+                try {
+                    @SuppressWarnings("unused")
+                    WorkflowEditorWindow drawFrame = new WorkflowEditorWindow(false);
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                }
+            }
+        });
+    }
 
-	private void actionDatasetTools(ActionEvent evt) throws Exception {
-		MainWindow mainWindowTools = new MainWindow(true, false, false);
-		mainWindowTools.setDefaultCloseOperation(Welcome.HIDE_ON_CLOSE);
-		mainWindowTools.setVisible(true);
-	}
+    private void actionDatasetTools(ActionEvent evt) throws Exception {
+        MainWindow mainWindowTools = new MainWindow(true, false, false);
+        mainWindowTools.setDefaultCloseOperation(Welcome.HIDE_ON_CLOSE);
+        mainWindowTools.setVisible(true);
+    }
 
-	private void actionRunAlgorithm(ActionEvent evt) throws Exception {
-		MainWindow window = new MainWindow(false, true, false);
-		window.setDefaultCloseOperation(Welcome.HIDE_ON_CLOSE);
-		window.setVisible(true);
-	}
+    private void actionRunAlgorithm(ActionEvent evt) throws Exception {
+        MainWindow window = new MainWindow(false, true, false);
+        window.setDefaultCloseOperation(Welcome.HIDE_ON_CLOSE);
+        window.setVisible(true);
+    }
 
-	private void actionPlugins(ActionEvent evt) {
-		PluginWindow mainplugin = new PluginWindow(this);
-		mainplugin.setDefaultCloseOperation(Welcome.HIDE_ON_CLOSE);
-	}
+    private void actionPlugins(ActionEvent evt) {
+        PluginWindow mainplugin = new PluginWindow(this);
+        mainplugin.setDefaultCloseOperation(Welcome.HIDE_ON_CLOSE);
+    }
 
-	private void actionDocumentation(ActionEvent evt) {
+    private void actionDocumentation(ActionEvent evt) {
 
-		String url = "http://www.philippe-fournier-viger.com/spmf/index.php?link=documentation.php";
-		try {
-			java.awt.Desktop.getDesktop().browse(java.net.URI.create(url));
-		} catch (java.io.IOException e) {
-			System.out.println(e.getMessage());
-		}
-	}
+        String url = "http://www.philippe-fournier-viger.com/spmf/index.php?link=documentation.php";
+        try {
+            java.awt.Desktop.getDesktop().browse(java.net.URI.create(url));
+        } catch (java.io.IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 
-	private void actionAboutSPMF(ActionEvent evt) {
-		AboutWindow about;
-		try {
-			about = new AboutWindow(this);
-			about.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	public static void main(String[] args) {
-		SwingUtilities.invokeLater(Welcome::new);
-	}
+    private void actionAboutSPMF(ActionEvent evt) {
+        AboutWindow about;
+        try {
+            about = new AboutWindow(this);
+            about.setVisible(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

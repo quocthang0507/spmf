@@ -20,28 +20,29 @@ import java.util.concurrent.Callable;
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
+
 /**
  * This is implementation of the DFS code right path extension.
  * Right path extension is executed in parallel by multiple instances of this class.
- *  <br/><br/>
- *
+ * <br/><br/>
+ * <p>
  * The cgspan algorithm is described in : <br/>
  * <br/>
  * <p>
  * cgSpan: Closed Graph-Based Substructure Pattern Mining, by Zevin Shaul, Sheikh Naaz
  * IEEE BigData 2021 7th Special Session on Intelligent Data Mining
  * <p>
- *
+ * <p>
  * <br/>
- *
+ * <p>
  * The CGspan algorithm finds all the closed subgraphs and their support in a
  * graph provided by the user.
  * <br/><br/>
- *
+ * <p>
  * This implementation saves the result to a file
  *
- * @see ProjectedCompact
  * @author Shaul Zevin
+ * @see ProjectedCompact
  */
 public class RightPathExtender implements Callable<Integer> {
     // number of projections that could be extended with extended edge
@@ -117,12 +118,11 @@ public class RightPathExtender implements Callable<Integer> {
         }
 
         // merge local extensions with global
-        synchronized(extensions) {
-            for (ExtendedEdge extendedEdge: extensionsLocal.keySet()) {
+        synchronized (extensions) {
+            for (ExtendedEdge extendedEdge : extensionsLocal.keySet()) {
                 if (!extensions.containsKey(extendedEdge)) {
                     extensions.put(extendedEdge, extensionsLocal.get(extendedEdge));
-                }
-                else {
+                } else {
                     extensions.get(extendedEdge).addProjection(extensionsLocal.get(extendedEdge));
                 }
             }
@@ -130,11 +130,10 @@ public class RightPathExtender implements Callable<Integer> {
 
         // merge local extensions count with global
         synchronized (extensionPDFSCounter) {
-            for (ExtendedEdge extendedEdge: extensionPDFSCounterLocal.keySet()) {
+            for (ExtendedEdge extendedEdge : extensionPDFSCounterLocal.keySet()) {
                 if (!extensionPDFSCounter.containsKey(extendedEdge)) {
                     extensionPDFSCounter.put(extendedEdge, extensionPDFSCounterLocal.get(extendedEdge));
-                }
-                else {
+                } else {
                     extensionPDFSCounter.put(extendedEdge, extensionPDFSCounter.get(extendedEdge) + extensionPDFSCounterLocal.get(extendedEdge));
                 }
             }

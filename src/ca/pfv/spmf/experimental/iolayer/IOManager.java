@@ -6,58 +6,56 @@ import java.util.Map;
 
 public class IOManager {
 
-	private static IOManager instance = new IOManager();
+    private static IOManager instance = new IOManager();
+    final boolean DEBUG_MODE = true;
+    Map<Object, IOContext> mapObjectToIOContext = new HashMap<Object, IOContext>();
 
-	Map<Object, IOContext> mapObjectToIOContext = new HashMap<Object, IOContext>();
+    private IOManager() {
 
-	final boolean DEBUG_MODE = true;
+    }
 
-	private IOManager() {
+    public static IOManager getInstance() {
+        return instance;
+    }
 
-	}
+    public AbstractSPMFReader getNewReader(Object o, String inputPath) throws IOException {
+        IOContext context = getOrCreateContext(o);
 
-	public static IOManager getInstance() {
-		return instance;
-	}
+        printDebugLine("===== IOManager: Get reader for context === " + o);
 
-	public AbstractSPMFReader getNewReader(Object o, String inputPath) throws IOException {
-		IOContext context = getOrCreateContext(o);
+        return new SPMFTextFileReader(context, inputPath);
+    }
 
-		printDebugLine("===== IOManager: Get reader for context === " + o);
+    public AbstractSPMFWriter getNewWriter(Object o, String outputPath) throws IOException {
+        IOContext context = getOrCreateContext(o);
 
-		return new SPMFTextFileReader(context, inputPath);
-	}
+        printDebugLine("===== IOManager: Get writer for context === " + o);
 
-	public AbstractSPMFWriter getNewWriter(Object o, String outputPath) throws IOException {
-		IOContext context = getOrCreateContext(o);
+        return new SPMFTextFileWriter(context, outputPath);
+    }
 
-		printDebugLine("===== IOManager: Get writer for context === " + o);
+    public void releaseResources(Object o) {
+        mapObjectToIOContext.remove(o);
 
-		return new SPMFTextFileWriter(context, outputPath);
-	}
+        printDebugLine("===== IOManager: Release context === " + o);
+    }
 
-	public void releaseResources(Object o) {
-		mapObjectToIOContext.remove(o);
+    private IOContext getOrCreateContext(Object o) {
+        IOContext context = mapObjectToIOContext.get(o);
+        if (context == null) {
+            context = new IOContext();
+            mapObjectToIOContext.put(o, context);
 
-		printDebugLine("===== IOManager: Release context === " + o);
-	}
+            printDebugLine("===== IOManager: Create context === " + o);
+        }
+        return context;
+    }
 
-	private IOContext getOrCreateContext(Object o) {
-		IOContext context = mapObjectToIOContext.get(o);
-		if (context == null) {
-			context = new IOContext();
-			mapObjectToIOContext.put(o, context);
+    private void printDebugLine(String debugLine) {
+        if (DEBUG_MODE) {
+            System.out.println(debugLine);
+        }
+    }
 
-			printDebugLine("===== IOManager: Create context === " + o);
-		}
-		return context;
-	}
-
-	private void printDebugLine(String debugLine) {
-		if (DEBUG_MODE) {
-			System.out.println(debugLine);
-		}
-	}
-	
 
 }

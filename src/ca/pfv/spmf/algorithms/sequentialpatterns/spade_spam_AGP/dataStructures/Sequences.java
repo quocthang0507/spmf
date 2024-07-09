@@ -6,31 +6,32 @@ import java.util.List;
 
 import ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP.dataStructures.patterns.Pattern;
 
-/** Inspired in SPMF
- * This class implements a list of frequent sequence lists (or frequent 
+/**
+ * Inspired in SPMF
+ * This class implements a list of frequent sequence lists (or frequent
  * pattern lists) that it is organized by levels.
  * That level contains all of sequences that have a concrete number of items.
  * Therefore, we allocate 1-sequences in level 1, 2-sequences in level 2,
  * and so forth...
- * 
+ * <p>
  * Copyright Antonio Gomariz Peñalver 2013
- * 
+ * <p>
  * This file is part of the SPMF DATA MINING SOFTWARE
  * (http://www.philippe-fournier-viger.com/spmf).
- *
+ * <p>
  * SPMF is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- *
+ * <p>
  * SPMF is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- *
+ * <p>
  * You should have received a copy of the GNU General Public License
  * along with SPMF.  If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  * @author agomariz
  */
 public class Sequences {
@@ -59,9 +60,10 @@ public class Sequences {
         }
         return r.toString();
     }
-    
+
     /**
      * Get patterns as string
+     *
      * @param outputSequenceIdentifiers if true, the sequential identifiers will be shown
      * @return a string
      */
@@ -116,15 +118,15 @@ public class Sequences {
     }
 
     public void clear() {
-        for(List<Pattern> nivel:levels){
+        for (List<Pattern> nivel : levels) {
             nivel.clear();
         }
         levels.clear();
-        levels=null;
+        levels = null;
     }
 
     public void addSequences(List<Pattern> list) {
-        for(Pattern p:list){
+        for (Pattern p : list) {
             addSequence(p, p.size());
         }
     }

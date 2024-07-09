@@ -39,8 +39,8 @@ import java.util.*;
  * The handler detects early termination failure by searching the terminating DFS code in the trie.
  * <br/>
  *
- * @see AlgoCGSPANAbstract
  * @author Shaul Zevin
+ * @see AlgoCGSPANAbstract
  */
 public abstract class EarlyTerminationFailureHandlerAbstract implements IEarlyTerminationFailureHandler {
     /**
@@ -85,7 +85,7 @@ public abstract class EarlyTerminationFailureHandlerAbstract implements IEarlyTe
             return;
         }
 
-       if (analyzeCase5(dfsCode, projected)) {
+        if (analyzeCase5(dfsCode, projected)) {
             return;
         }
     }
@@ -442,6 +442,16 @@ public abstract class EarlyTerminationFailureHandlerAbstract implements IEarlyTe
         return dfsCodes;
     }
 
+    /**
+     * @param extendedEdges DFS code edges
+     * @return true if DFS code found in the trie, false otherwise
+     */
+    @Override
+    public boolean detect(List<ExtendedEdge> extendedEdges) {
+        boolean detected = trie.search(extendedEdges);
+        return detected;
+    }
+
     protected class ElbVlbKey {
         private int elb;
         private int vlb;
@@ -528,16 +538,6 @@ public abstract class EarlyTerminationFailureHandlerAbstract implements IEarlyTe
         public int hashCode() {
             return Objects.hash(vertex, elb, vlb);
         }
-    }
-
-    /**
-     * @param extendedEdges DFS code edges
-     * @return true if DFS code found in the trie, false otherwise
-     */
-    @Override
-    public boolean detect(List<ExtendedEdge> extendedEdges) {
-        boolean detected = trie.search(extendedEdges);
-        return detected;
     }
 
     /**

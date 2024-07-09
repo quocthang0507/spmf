@@ -5,9 +5,7 @@ import ca.pfv.spmf.algorithms.sequentialpatterns.clospan_AGP.items.creators.Item
 import ca.pfv.spmf.algorithms.sequentialpatterns.clospan_AGP.items.patterns.PatternCreator;
 
 
-
 /**
- *
  * @author antonio
  */
 public class RemoveStatics {

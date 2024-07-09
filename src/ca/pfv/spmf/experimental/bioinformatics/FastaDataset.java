@@ -11,33 +11,37 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
 /* Copyright (c) 2008-2024 Philippe Fournier-Viger
-* 
-* This file is part of the SPMF DATA MINING SOFTWARE
-* (http://www.philippe-fournier-viger.com/spmf).
-* 
-* SPMF is free software: you can redistribute it and/or modify it under the
-* terms of the GNU General Public License as published by the Free Software
-* Foundation, either version 3 of the License, or (at your option) any later
-* version.
-* 
-* SPMF is distributed in the hope that it will be useful, but WITHOUT ANY
-* WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
-* A PARTICULAR PURPOSE. See the GNU General Public License for more details.
-* 
-* You should have received a copy of the GNU General Public License along with
-* SPMF. If not, see <http://www.gnu.org/licenses/>.
-*/
+ *
+ * This file is part of the SPMF DATA MINING SOFTWARE
+ * (http://www.philippe-fournier-viger.com/spmf).
+ *
+ * SPMF is free software: you can redistribute it and/or modify it under the
+ * terms of the GNU General Public License as published by the Free Software
+ * Foundation, either version 3 of the License, or (at your option) any later
+ * version.
+ *
+ * SPMF is distributed in the hope that it will be useful, but WITHOUT ANY
+ * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
+ * A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along with
+ * SPMF. If not, see <http://www.gnu.org/licenses/>.
+ */
+
 /**
  * Implementation of a Fasta dataset with method for reading FASTA files.
-* 
+ *
  * @author Philipe-Fournier-Viger
  **/
 public class FastaDataset {
-	/** The different sequences of the dataset */
-    private List<FastaSequenceEntry> sequences = new ArrayList<>();
-    
-    /** regular expression patterns for matching valid sequence symbols */
+    /**
+     * regular expression patterns for matching valid sequence symbols
+     */
     Pattern validSequencePattern = Pattern.compile("[A-Za-z*]*");
+    /**
+     * The different sequences of the dataset
+     */
+    private List<FastaSequenceEntry> sequences = new ArrayList<>();
 
     /**
      * Constructor
@@ -47,6 +51,7 @@ public class FastaDataset {
 
     /**
      * Method for reading a file in memory
+     *
      * @param filePath the file path
      * @return the list of sequences that has been read until now
      * @throws IOException if error reading the file
@@ -74,7 +79,7 @@ public class FastaDataset {
                     header = line.substring(1).split("\\s+")[0]; // Get the first word of the header
                 } else if (!validSequencePattern.matcher(line).matches()) {
                     throw new IllegalArgumentException("Invalid sequence characters detected");
-                }else {
+                } else {
                     sequenceBuilder.append(line.replace("*", "")); // Remove asterisks as you read each line
                 }
             }
@@ -84,7 +89,7 @@ public class FastaDataset {
         }
         return sequences;
     }
-    
+
 
     /**
      * Compute the average, minimum and maximum sequence lengths, and the frequency of each letter and display it in the console
@@ -123,6 +128,7 @@ public class FastaDataset {
 
     /**
      * Get the sequence entries from this datset
+     *
      * @return the sequence entries
      */
     public List<FastaSequenceEntry> getSequenceEntries() {

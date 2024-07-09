@@ -15,9 +15,9 @@ import ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP.idLists.creators
 import ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP.idLists.creators.IdListCreator_StandardMap;
 
 /**
- * Example of how to use the algorithm SPADE, saving the results in the 
+ * Example of how to use the algorithm SPADE, saving the results in the
  * main  memory
- * 
+ *
  * @author agomariz
  */
 public class MainTestSPADE_AGP_Parallelized_EntryList_saveToMemory {
@@ -33,28 +33,28 @@ public class MainTestSPADE_AGP_Parallelized_EntryList_saveToMemory {
         boolean verbose = false;
 
         AbstractionCreator abstractionCreator = AbstractionCreator_Qualitative.getInstance();
-        boolean dfs=true;
-        
+        boolean dfs = true;
+
         // if you set the following parameter to true, the sequence ids of the sequences where
         // each pattern appears will be shown in the result
-        boolean outputSequenceIdentifiers = false; 
-        
-        IdListCreator idListCreator =IdListCreator_StandardMap.getInstance();
-                
+        boolean outputSequenceIdentifiers = false;
+
+        IdListCreator idListCreator = IdListCreator_StandardMap.getInstance();
+
         CandidateGenerator candidateGenerator = CandidateGenerator_Qualitative.getInstance();
-        
+
         SequenceDatabase sequenceDatabase = new SequenceDatabase(abstractionCreator, idListCreator);
 
         sequenceDatabase.loadFile(fileToPath("contextPrefixSpan.txt"), support);
-        
+
         System.out.println(sequenceDatabase.toString());
 
-        AlgoSPADE algorithm = new AlgoSPADE(support,dfs,abstractionCreator);
-        
-        algorithm.runAlgorithmParallelized(sequenceDatabase, candidateGenerator,keepPatterns,verbose,null,outputSequenceIdentifiers);
-        System.out.println("Minimum support (relative) = "+support);
-        System.out.println(algorithm.getNumberOfFrequentPatterns()+ " frequent patterns.");
-        
+        AlgoSPADE algorithm = new AlgoSPADE(support, dfs, abstractionCreator);
+
+        algorithm.runAlgorithmParallelized(sequenceDatabase, candidateGenerator, keepPatterns, verbose, null, outputSequenceIdentifiers);
+        System.out.println("Minimum support (relative) = " + support);
+        System.out.println(algorithm.getNumberOfFrequentPatterns() + " frequent patterns.");
+
         System.out.println(algorithm.printStatistics());
     }
 

@@ -23,14 +23,13 @@ import java.util.List;
  * This callback restricts the iterator to output projections with edges specified by the filter.
  * If filter edge at position i is not null, all output projections must have that edge at position i.
  *
- * @see IProjectedIteratorCallback
  * @author Shaul Zevin
+ * @see IProjectedIteratorCallback
  */
 public class FilterCallback implements IProjectedIteratorCallback {
     private List<EdgeEnumeration> filter;
 
     /**
-     *
      * @param filter list of edges to be filtered by, may include nulls
      */
     public FilterCallback(List<EdgeEnumeration> filter) {
@@ -39,7 +38,7 @@ public class FilterCallback implements IProjectedIteratorCallback {
 
     @Override
     public boolean beforeAdvance(List<ProjectedEdge> projectedEdges, ProjectedEdge nextProjectedEdge) {
-        int index = projectedEdges == null? 0: projectedEdges.size();
+        int index = projectedEdges == null ? 0 : projectedEdges.size();
         if (filter.get(index) == null) {
             return true;
         }
@@ -49,7 +48,7 @@ public class FilterCallback implements IProjectedIteratorCallback {
 
     @Override
     public boolean afterAdvance(List<ProjectedEdge> projectedEdges, ProjectedEdge nextProjectedEdge) {
-        int index = projectedEdges == null? 0: projectedEdges.size();
+        int index = projectedEdges == null ? 0 : projectedEdges.size();
         if (filter.get(index) == null) {
             return true;
         }

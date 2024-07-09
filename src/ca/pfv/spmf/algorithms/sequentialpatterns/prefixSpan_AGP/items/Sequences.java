@@ -11,21 +11,21 @@ import ca.pfv.spmf.algorithms.sequentialpatterns.prefixSpan_AGP.items.patterns.P
  * frequent pattern lists) that it is organized by levels. That level contains
  * all of sequences that have a concrete number of items. Therefore, we allocate
  * 1-sequences in level 1, 2-sequences in level 2, and so forth...
- *
+ * <p>
  * Copyright Antonio Gomariz Peñalver 2013
- *
+ * <p>
  * This file is part of the SPMF DATA MINING SOFTWARE
  * (http://www.philippe-fournier-viger.com/spmf).
- *
+ * <p>
  * SPMF is free software: you can redistribute it and/or modify it under the
  * terms of the GNU General Public License as published by the Free Software
  * Foundation, either version 3 of the License, or (at your option) any later
  * version.
- *
+ * <p>
  * SPMF is distributed in the hope that it will be useful, but WITHOUT ANY
  * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
  * A PARTICULAR PURPOSE. See the GNU General Public License for more details.
- *
+ * <p>
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  *
@@ -33,9 +33,9 @@ import ca.pfv.spmf.algorithms.sequentialpatterns.prefixSpan_AGP.items.patterns.P
  */
 public class Sequences {
 
+    private final String string;
     public List<List<Pattern>> levels = new ArrayList<List<Pattern>>();
     public int numberOfFrequentSequences = 0;
-    private final String string;
 
     public Sequences(String name) {
         this.string = name;
@@ -65,7 +65,8 @@ public class Sequences {
 
     /**
      * Get a string representation of these sequential patterns
-     * @param outputSequenceIdentifiers  if true, sequences ids containing each pattern will be shown
+     *
+     * @param outputSequenceIdentifiers if true, sequences ids containing each pattern will be shown
      * @return a string
      */
     public String toStringToFile(boolean outputSequenceIdentifiers) {

@@ -1,4 +1,3 @@
-
 package ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_l.items;
 
 import java.util.ArrayList;
@@ -7,31 +6,32 @@ import java.util.List;
 
 import ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_l.items.patterns.Pattern;
 
-/** Inspired in SPMF
- * This class implements a list of frequent sequence lists (or frequent 
+/**
+ * Inspired in SPMF
+ * This class implements a list of frequent sequence lists (or frequent
  * pattern lists) that it is organized by levels.
  * That level contains all of sequences that have a concrete number of items.
  * Therefore, we allocate 1-sequences in level 1, 2-sequences in level 2,
  * and so forth...
- * 
+ * <p>
  * Copyright Antonio Gomariz Peñalver 2013
- * 
+ * <p>
  * This file is part of the SPMF DATA MINING SOFTWARE
  * (http://www.philippe-fournier-viger.com/spmf).
- *
+ * <p>
  * SPMF is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- *
+ * <p>
  * SPMF is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- *
+ * <p>
  * You should have received a copy of the GNU General Public License
  * along with SPMF.  If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  * @author agomariz
  */
 public class Sequences {
@@ -64,6 +64,7 @@ public class Sequences {
 
     /**
      * Method that give us in a string the content of all Sequences structure
+     *
      * @return the string
      */
     @Override
@@ -81,10 +82,11 @@ public class Sequences {
         }
         return sb.toString();
     }
-    
+
     /**
      * Method that give us in a string the content of all Sequences structure in
      * a SPMF format
+     *
      * @param outputSequenceIdentifiers if true, sequence identifiers will be output
      * @return the string
      */
@@ -103,7 +105,8 @@ public class Sequences {
 
     /**
      * Method that adds a sequence in a given level
-     * @param sequence a sequence to add
+     *
+     * @param sequence   a sequence to add
      * @param levelIndex the level where the sequence must be
      */
     public void addSequence(Pattern sequence, int levelIndex) {
@@ -118,18 +121,20 @@ public class Sequences {
 
     /**
      * Method that adds a sequence set in a given level
-     * @param sequences a sequence list to add
+     *
+     * @param sequences  a sequence list to add
      * @param levelIndex the level where the sequence must be
      */
-    public void addSequences(List<Pattern> sequences, int levelIndex){
-        for(Pattern pattern:sequences)
+    public void addSequences(List<Pattern> sequences, int levelIndex) {
+        for (Pattern pattern : sequences)
             addSequence(pattern, levelIndex);
     }
 
     /**
      * Get the frequent sequences that appear in a particular level
+     *
      * @param index the frequent sequences of that level
-     * @return  the list of pattern of this level
+     * @return the list of pattern of this level
      */
     public List<Pattern> getLevel(int index) {
         return levels.get(index);
@@ -137,18 +142,20 @@ public class Sequences {
 
     /**
      * It gives us the total number of levels. Notice that we discount the level 0
+     *
      * @return the number of levels.
      */
     public int getLevelCount() {
-        return levels.size()-1;
+        return levels.size() - 1;
     }
 
     /**
      * It obtains a list of pattern lists, being each pattern list the frequent sequences with a concrete length
      * For example, at position 1, it is the list of patterns of size 1.
-     *              at position 2, it is the list of patterns of size 2
-     *              ...
-     *              etc.
+     * at position 2, it is the list of patterns of size 2
+     * ...
+     * etc.
+     *
      * @return the list of pattern lists.
      */
     public List<List<Pattern>> getLevels() {
@@ -157,7 +164,8 @@ public class Sequences {
 
     /**
      * It returns the total number of sequences
-     * @return  the total number of sequences
+     *
+     * @return the total number of sequences
      */
     public int size() {
         return numberOfFrequentSequences;
@@ -174,23 +182,24 @@ public class Sequences {
 
     /**
      * It completely deletes a concrete level of sequences
-     * @param i 
+     *
+     * @param i
      */
     public void delete(int i) {
-        numberOfFrequentSequences-=levels.get(i).size();
+        numberOfFrequentSequences -= levels.get(i).size();
         levels.get(i).clear();
-        
+
     }
 
     /**
      * It clears the structure
      */
     public void clear() {
-        for(List<Pattern> level:levels){
+        for (List<Pattern> level : levels) {
             level.clear();
         }
         levels.clear();
-        levels=null;
-        numberOfFrequentSequences=0;
+        levels = null;
+        numberOfFrequentSequences = 0;
     }
 }

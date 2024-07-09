@@ -1,7 +1,6 @@
 package ca.pfv.spmf.algorithms.frequentpatterns.srpfpm;
 
 
-
 import ca.pfv.spmf.tools.MemoryLogger;
 
 import java.io.*;
@@ -26,43 +25,36 @@ import java.util.*;
  */
 public class AlgoSRPFPM {
 
+    //Hashmap to store the productive periodic frequent patterns
+    //key = item; value = list of information: coverset, periods, min period, max period, avg period, stdv in periods
+    public final Map<List<Integer>, List<Double>> PPFPs = new HashMap<>();
+    public final Map<List<Integer>, List<Double>> SRPFPs = new HashMap<>();
+    //Hashmap to store unique items and their coversets in database
+    //key = length-1 item; value = coverset
+    final Map<Integer, Set<Integer>> mapCoverset = new HashMap<>();
+    // This variable is used to determine the size of buffers to store itemsets.
+    // A value of 50 is enough because it allows up to 2^50 patterns!
+    final int BUFFERS_SIZE = 2000;
+    // parameters
+    public int minSupportRelative;// the relative minimum support
+    public double minAverage;
+    public double maxAverage;
+
+    //Hashmap to store frequent items and their supports in database
+    //this is needed in productivity check of periodic frequent patterns
+    //key = length-1 item; value = support
+    // public final Map<List<Integer>, Double> FPs = new HashMap<List<Integer>, Double>();
+    public double minPeriod;
+    public double maxPeriod;
+    // The  patterns that are found
+    // (if the user wants to keep them into memory)
+    protected Itemsets patterns = null;
+    BufferedWriter writer = null; // object to write the output file
     // for statistics
     private long startTimestamp; // start time of the latest execution
     private long endTime; // end time of the latest execution
     private int transactionCount = 0; // transaction count in the database
     private int itemsetCount; // number of freq. itemsets found
-
-    //Hashmap to store unique items and their coversets in database
-    //key = length-1 item; value = coverset
-    final Map<Integer, Set<Integer>> mapCoverset = new HashMap<>();
-    //Hashmap to store the productive periodic frequent patterns
-    //key = item; value = list of information: coverset, periods, min period, max period, avg period, stdv in periods
-    public final Map<List<Integer>, List<Double>> PPFPs = new HashMap<>();
-
-    public final Map<List<Integer>, List<Double>> SRPFPs = new HashMap<>();
-
-    //Hashmap to store frequent items and their supports in database
-    //this is needed in productivity check of periodic frequent patterns
-    //key = length-1 item; value = support
-   // public final Map<List<Integer>, Double> FPs = new HashMap<List<Integer>, Double>();
-
-    // parameters
-    public int minSupportRelative;// the relative minimum support
-    public double minAverage;
-    public double maxAverage;
-    public double minPeriod;
-    public double maxPeriod;
-
-    BufferedWriter writer = null; // object to write the output file
-
-    // The  patterns that are found
-    // (if the user wants to keep them into memory)
-    protected Itemsets patterns = null;
-
-    // This variable is used to determine the size of buffers to store itemsets.
-    // A value of 50 is enough because it allows up to 2^50 patterns!
-    final int BUFFERS_SIZE = 2000;
-
     // buffer for storing the current itemset that is mined when performing mining
     // the idea is to always reuse the same buffer to reduce memory usage.
     private int[] itemsetBuffer = null;
@@ -94,14 +86,14 @@ public class AlgoSRPFPM {
     /**
      * Method to run the FPGRowth algorithm.
      *
-     * @param input       the path to an input file containing a transaction database.
-     * @param output      the output file path for saving the result (if null, the result
-     *                    will be returned by the method instead of being saved).
-     * @param minsupp     the minimum support threshold.
+     * @param input      the path to an input file containing a transaction database.
+     * @param output     the output file path for saving the result (if null, the result
+     *                   will be returned by the method instead of being saved).
+     * @param minsupp    the minimum support threshold.
      * @param minAverage =  the minimum user desired average period
      * @param maxAverage = the maximum user desired average period
-     * @param minPeriod = the minimum user desired period
-     * @param maxPeriod = the maximum user desired period
+     * @param minPeriod  = the minimum user desired period
+     * @param maxPeriod  = the maximum user desired period
      * @return the result if no output file path is provided.
      * @throws IOException exception if error reading or writing files
      */
@@ -502,7 +494,6 @@ public class AlgoSRPFPM {
             Set<Integer> itemForSubset = new HashSet<>();
 
 
-
             //for each item in the itemsetLength
             for (int i = 0; i < itemsetLength; i++) {
                 if (i == 0) {
@@ -594,28 +585,28 @@ public class AlgoSRPFPM {
                             double supportFirstPart;
                             double supportSecondPart;
 
-                                Set<Integer> itemCov = new HashSet<>();
-                                for (int i = 0; i < firstPart.size(); i++) {
-                                    if (i == 0) {
-                                        itemCov.addAll(mapCoverset.get(firstPart.get(i)));
-                                    }
-                                    itemCov.retainAll(mapCoverset.get(firstPart.get(i)));
+                            Set<Integer> itemCov = new HashSet<>();
+                            for (int i = 0; i < firstPart.size(); i++) {
+                                if (i == 0) {
+                                    itemCov.addAll(mapCoverset.get(firstPart.get(i)));
                                 }
-                                supportFirstPart = Math.round(itemCov.size() / (transactionCount * 1.0) * 10000) / 10000.0;
+                                itemCov.retainAll(mapCoverset.get(firstPart.get(i)));
+                            }
+                            supportFirstPart = Math.round(itemCov.size() / (transactionCount * 1.0) * 10000) / 10000.0;
 
 
                              /*
                             Get the support of the the second selected subset
                              */
 
-                                Set<Integer> itemCov2 = new HashSet<>();
-                                for (int i = 0; i < secondPart.size(); i++) {
-                                    if (i == 0) {
-                                        itemCov2.addAll(mapCoverset.get(secondPart.get(i)));
-                                    }
-                                    itemCov2.retainAll(mapCoverset.get(secondPart.get(i)));
+                            Set<Integer> itemCov2 = new HashSet<>();
+                            for (int i = 0; i < secondPart.size(); i++) {
+                                if (i == 0) {
+                                    itemCov2.addAll(mapCoverset.get(secondPart.get(i)));
                                 }
-                                supportSecondPart = Math.round(itemCov2.size() / (transactionCount * 1.0) * 10000) / 10000.0;
+                                itemCov2.retainAll(mapCoverset.get(secondPart.get(i)));
+                            }
+                            supportSecondPart = Math.round(itemCov2.size() / (transactionCount * 1.0) * 10000) / 10000.0;
 
 
                             //Productivity test.
@@ -676,14 +667,14 @@ public class AlgoSRPFPM {
                         double supportFirstPart;
 
 
-                            Set<Integer> itemCov = new HashSet<>();
-                            for (int i = 0; i < firstPart.size(); i++) {
-                                if (i == 0) {
-                                    itemCov.addAll(mapCoverset.get(firstPart.get(i)));
-                                }
-                                itemCov.retainAll(mapCoverset.get(firstPart.get(i)));
+                        Set<Integer> itemCov = new HashSet<>();
+                        for (int i = 0; i < firstPart.size(); i++) {
+                            if (i == 0) {
+                                itemCov.addAll(mapCoverset.get(firstPart.get(i)));
                             }
-                            supportFirstPart = Math.round(itemCov.size() / (transactionCount * 1.0) * 10000) / 10000.0;
+                            itemCov.retainAll(mapCoverset.get(firstPart.get(i)));
+                        }
+                        supportFirstPart = Math.round(itemCov.size() / (transactionCount * 1.0) * 10000) / 10000.0;
 
 
                         if (Math.round(support / (transactionCount * 1.0) * 10000) / 10000.0 == supportFirstPart) {
@@ -696,28 +687,28 @@ public class AlgoSRPFPM {
                     if (Redundant > 0) {
                         //Itemset is redundant, hence no need to check if it is periodic or not
                     } else {
-                    List<Integer> itemCovList = new ArrayList<>(itemCoverset);
-                    Collections.sort(itemCovList);
+                        List<Integer> itemCovList = new ArrayList<>(itemCoverset);
+                        Collections.sort(itemCovList);
 
-                    //get set of periods from coverset of itemset
-                    List<Integer> periodList = getPeriods(itemCovList, transactionCount);
-                    //get minimum and maximum periods from set of periods
-                    int minPer = Collections.min(periodList);
-                    int maxPer = Collections.max(periodList);
+                        //get set of periods from coverset of itemset
+                        List<Integer> periodList = getPeriods(itemCovList, transactionCount);
+                        //get minimum and maximum periods from set of periods
+                        int minPer = Collections.min(periodList);
+                        int maxPer = Collections.max(periodList);
 
-                    //get mean and standard deviation in periods among set of periods
-                    double meanPeriod = Math.round(mean(periodList) * 10000) / 10000.0;
-                   // double stdDevPeriod = Math.round(StandardDev(periodList) * 10000) / 10000.0;
+                        //get mean and standard deviation in periods among set of periods
+                        double meanPeriod = Math.round(mean(periodList) * 10000) / 10000.0;
+                        // double stdDevPeriod = Math.round(StandardDev(periodList) * 10000) / 10000.0;
 
 
-                    //check if the periodicity of the itemset is within the user specified thresholds
-                    if ((minAverage <= meanPeriod && meanPeriod <= maxAverage) && (minPer >= minPeriod) && (maxPer <= maxPeriod)) {
-                        //itemset is periodic
+                        //check if the periodicity of the itemset is within the user specified thresholds
+                        if ((minAverage <= meanPeriod && meanPeriod <= maxAverage) && (minPer >= minPeriod) && (maxPer <= maxPeriod)) {
+                            //itemset is periodic
 
-                        // increase the number of periodic frequent itemsets found for statistics purpose
-                        itemsetCount++;
+                            // increase the number of periodic frequent itemsets found for statistics purpose
+                            itemsetCount++;
 
-                        //add details of pfp to a list
+                            //add details of pfp to a list
 //                        List<Double> details = new ArrayList<>();
 //                        details.add(Math.round(support / (1.0 * transactionCount) * 10000) / 10000.0);
 //                        details.add((double) minPer);
@@ -728,34 +719,34 @@ public class AlgoSRPFPM {
 //                        //add itemset to PPFPs
 //                        PPFPs.put(SavedItem, details);
 
-                        //begin writing itemset to text file with its details
+                            //begin writing itemset to text file with its details
 //                      // append the prefix
-                		for (int i = 0; i < SavedItem.size(); i++) {
-                			buffer.append(SavedItem.get(i));
-                			buffer.append(' ');
-                		}
+                            for (int i = 0; i < SavedItem.size(); i++) {
+                                buffer.append(SavedItem.get(i));
+                                buffer.append(' ');
+                            }
 //                        buffer.append(SavedItem);
-                        buffer.append("#SUP: ");
-                        buffer.append(support);
+                            buffer.append("#SUP: ");
+                            buffer.append(support);
 //                         buffer.append(" Coverset ");
 //                         buffer.append(itemCoverset);
 //                         buffer.append("  periods ");
 //                         buffer.append(periodList);
-                        buffer.append(" #MAXPER: ");
-                        buffer.append(maxPer);
-                        buffer.append(" #MINPER: ");
-                        buffer.append(minPer);
-                        buffer.append(" #AVGPER: ");
-                        buffer.append(meanPeriod);
-                        buffer.append(" ");
-                        //buffer.append(StandardDev(periodList));
+                            buffer.append(" #MAXPER: ");
+                            buffer.append(maxPer);
+                            buffer.append(" #MINPER: ");
+                            buffer.append(minPer);
+                            buffer.append(" #AVGPER: ");
+                            buffer.append(meanPeriod);
+                            buffer.append(" ");
+                            //buffer.append(StandardDev(periodList));
 
-                        // write to file and create a new line
-                        writer.write(buffer.toString());
-                        writer.newLine();
+                            // write to file and create a new line
+                            writer.write(buffer.toString());
+                            writer.newLine();
+                        }
+
                     }
-
-                }
                 }
 
               /*
@@ -800,14 +791,14 @@ public class AlgoSRPFPM {
                             List<Integer> firstPart = new ArrayList<>(first);
                             double supportFirstPart;
 
-                                supportFirstPart = Math.round(mapCoverset.get(firstPart.get(0)).size() / (transactionCount * 1.0) * 10000) / 10000.0;
+                            supportFirstPart = Math.round(mapCoverset.get(firstPart.get(0)).size() / (transactionCount * 1.0) * 10000) / 10000.0;
 
 
                             //Get the support of the second selected subset from FPs
                             List<Integer> secondPart = new ArrayList<>(second);
                             double supportSecondPart;
 
-                                supportSecondPart = Math.round(mapCoverset.get(secondPart.get(0)).size() / (transactionCount * 1.0) * 10000) / 10000.0;
+                            supportSecondPart = Math.round(mapCoverset.get(secondPart.get(0)).size() / (transactionCount * 1.0) * 10000) / 10000.0;
 
 
                             //Check productivity of the main itemset
@@ -867,14 +858,14 @@ public class AlgoSRPFPM {
                         double supportFirstPart;
 
 
-                            Set<Integer> itemCov = new HashSet<>();
-                            for (int i = 0; i < firstPart.size(); i++) {
-                                if (i == 0) {
-                                    itemCov.addAll(mapCoverset.get(firstPart.get(i)));
-                                }
-                                itemCov.retainAll(mapCoverset.get(firstPart.get(i)));
+                        Set<Integer> itemCov = new HashSet<>();
+                        for (int i = 0; i < firstPart.size(); i++) {
+                            if (i == 0) {
+                                itemCov.addAll(mapCoverset.get(firstPart.get(i)));
                             }
-                            supportFirstPart = Math.round(itemCov.size() / (transactionCount * 1.0) * 10000) / 10000.0;
+                            itemCov.retainAll(mapCoverset.get(firstPart.get(i)));
+                        }
+                        supportFirstPart = Math.round(itemCov.size() / (transactionCount * 1.0) * 10000) / 10000.0;
 
 
                         if (Math.round(support / (transactionCount * 1.0) * 10000) / 10000.0 == supportFirstPart) {
@@ -889,31 +880,30 @@ public class AlgoSRPFPM {
                     } else {
 
 
-                    //get set of periods from coverset of itemset
-                    List<Integer> itemCovList = new ArrayList<>(itemCoverset);
-                    Collections.sort(itemCovList);
+                        //get set of periods from coverset of itemset
+                        List<Integer> itemCovList = new ArrayList<>(itemCoverset);
+                        Collections.sort(itemCovList);
 
-                    //get set of periods from coverset
-                    List<Integer> periodList = getPeriods(itemCovList, transactionCount);
+                        //get set of periods from coverset
+                        List<Integer> periodList = getPeriods(itemCovList, transactionCount);
 
-                    //get minimum and maximum periods from set of periods
-                    int minPer = Collections.min(periodList);
-                    int maxPer = Collections.max(periodList);
+                        //get minimum and maximum periods from set of periods
+                        int minPer = Collections.min(periodList);
+                        int maxPer = Collections.max(periodList);
 
-                    //get mean and standard deviation in periods among set of periods
-                    double meanPeriod = Math.round(mean(periodList) * 10000) / 10000.0;
-                   // double stdDevPeriod = Math.round(StandardDev(periodList) * 10000) / 10000.0;
+                        //get mean and standard deviation in periods among set of periods
+                        double meanPeriod = Math.round(mean(periodList) * 10000) / 10000.0;
+                        // double stdDevPeriod = Math.round(StandardDev(periodList) * 10000) / 10000.0;
 
 
+                        //check if the periodicity of the itemset is within the user specified thresholds
+                        if ((minAverage <= meanPeriod && meanPeriod <= maxAverage) && (minPer >= minPeriod) && (maxPer <= maxPeriod)) {
+                            //itemset is periodic
 
-                    //check if the periodicity of the itemset is within the user specified thresholds
-                    if ((minAverage <= meanPeriod && meanPeriod <= maxAverage) && (minPer >= minPeriod) && (maxPer <= maxPeriod)) {
-                        //itemset is periodic
+                            // increase the number of periodic frequent itemsets found for statistics purpose
+                            itemsetCount++;
 
-                        // increase the number of periodic frequent itemsets found for statistics purpose
-                        itemsetCount++;
-
-                        //add details of pfp to a list
+                            //add details of pfp to a list
 //                        List<Double> details = new ArrayList<>();
 //                        details.add(Math.round(support / (1.0 * transactionCount) * 10000) / 10000.0);
 //                        details.add((double) minPer);
@@ -925,33 +915,33 @@ public class AlgoSRPFPM {
 //                        //add itemset to PPFPs
 //                        SRPFPs.put(SavedItem, details);
 
-                        //begin writing itemset to text file with its details
+                            //begin writing itemset to text file with its details
 //                      // append the prefix
-                		for (int i = 0; i < SavedItem.size(); i++) {
-                			buffer.append(SavedItem.get(i));
-                			buffer.append(' ');
-                		}
+                            for (int i = 0; i < SavedItem.size(); i++) {
+                                buffer.append(SavedItem.get(i));
+                                buffer.append(' ');
+                            }
 //                        buffer.append(SavedItem);
-                        buffer.append("#SUP: ");
-                        buffer.append(support);
+                            buffer.append("#SUP: ");
+                            buffer.append(support);
 //                         buffer.append(" Coverset ");
 //                         buffer.append(itemCoverset);
 //                         buffer.append("  periods ");
 //                         buffer.append(periodList);
-                        buffer.append(" #MAXPER: ");
-                        buffer.append(maxPer);
-                        buffer.append(" #MINPER: ");
-                        buffer.append(minPer);
-                        buffer.append(" #AVGPER: ");
-                        buffer.append(meanPeriod);
-                        buffer.append(" ");
-                        //buffer.append(StandardDev(periodList));
-                        // write to file and create a new line
-                        writer.write(buffer.toString());
-                        writer.newLine();
-                    }
+                            buffer.append(" #MAXPER: ");
+                            buffer.append(maxPer);
+                            buffer.append(" #MINPER: ");
+                            buffer.append(minPer);
+                            buffer.append(" #AVGPER: ");
+                            buffer.append(meanPeriod);
+                            buffer.append(" ");
+                            //buffer.append(StandardDev(periodList));
+                            // write to file and create a new line
+                            writer.write(buffer.toString());
+                            writer.newLine();
+                        }
 
-                }
+                    }
                 }
 
             } else if (itemForSubset.size() < 2 && support != transactionCount) {  //if support == transactionCount, and its length-1, it is not productive
@@ -995,10 +985,10 @@ public class AlgoSRPFPM {
 
                     //begin writing itemset to text file with its details
 //                  // append the prefix
-            		for (int i = 0; i < SavedItem.size(); i++) {
-            			buffer.append(SavedItem.get(i));
-            			buffer.append(' ');
-            		}
+                    for (int i = 0; i < SavedItem.size(); i++) {
+                        buffer.append(SavedItem.get(i));
+                        buffer.append(' ');
+                    }
 //                    buffer.append(SavedItem);
                     buffer.append("#SUP: ");
                     buffer.append(support);

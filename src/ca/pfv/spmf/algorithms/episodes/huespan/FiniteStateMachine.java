@@ -15,113 +15,120 @@ import java.util.List;
  *
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  * Copyright Peng Yang, Philippe Fournier-Viger, 2019
  */
+
 /**
  * A finite state machine as used by HUE-SPAN
- * 
+ *
  * @author Peng Yang
  * @see AlgoHUESpan
  */
 public class FiniteStateMachine {
 
-	/** finite state automata to match an episode */
-	List<int[]> fsa;
+    /**
+     * finite state automata to match an episode
+     */
+    List<int[]> fsa;
 
-	/** a position */
-	int pos = 0;
+    /**
+     * a position
+     */
+    int pos = 0;
 
-	/** the utility */
-	int utility = 0;
+    /**
+     * the utility
+     */
+    int utility = 0;
 
-	/**
-	 * Constructor
-	 */
-	FiniteStateMachine() {
-	}
+    /**
+     * Constructor
+     */
+    FiniteStateMachine() {
+    }
 
-	/**
-	 * constructor
-	 * 
-	 * @param episode                an episode
-	 * @param utilityOfFirstEventSet utility of the first event set
-	 */
-	FiniteStateMachine(List<int[]> episode, int utilityOfFirstEventSet) {
-		this.fsa = episode;
-		this.utility += utilityOfFirstEventSet;
-		transit(); // pass the start point
-	}
+    /**
+     * constructor
+     *
+     * @param episode                an episode
+     * @param utilityOfFirstEventSet utility of the first event set
+     */
+    FiniteStateMachine(List<int[]> episode, int utilityOfFirstEventSet) {
+        this.fsa = episode;
+        this.utility += utilityOfFirstEventSet;
+        transit(); // pass the start point
+    }
 
-	/**
-	 * The current event to be match
-	 * 
-	 * @return the current event
-	 */
-	public int[] waiting4Events() {
-		return this.fsa.get(pos);
-	}
+    /**
+     * The current event to be match
+     *
+     * @return the current event
+     */
+    public int[] waiting4Events() {
+        return this.fsa.get(pos);
+    }
 
-	/**
-	 * Go to the next event to be matched
-	 */
-	public void transit() {
-		this.pos++;
-	}
+    /**
+     * Go to the next event to be matched
+     */
+    public void transit() {
+        this.pos++;
+    }
 
-	/**
-	 * Check if there are no more events to be matched
-	 * 
-	 * @return true, if no more, else, false
-	 */
-	public boolean isEnd() {
-		return this.pos == this.fsa.size();
-	}
+    /**
+     * Check if there are no more events to be matched
+     *
+     * @return true, if no more, else, false
+     */
+    public boolean isEnd() {
+        return this.pos == this.fsa.size();
+    }
 
-	/**
-	 * Check if the same as another finite state machine
-	 * 
-	 * @param fsa another finite state machine
-	 * @return true or false
-	 */
-	public boolean isSame(FiniteStateMachine fsa) {
-		return this.pos == fsa.pos;
-	}
+    /**
+     * Check if the same as another finite state machine
+     *
+     * @param fsa another finite state machine
+     * @return true or false
+     */
+    public boolean isSame(FiniteStateMachine fsa) {
+        return this.pos == fsa.pos;
+    }
 
-	/**
-	 * Get the utility
-	 * 
-	 * @return the utility
-	 */
-	public int getUtility() {
-		return this.utility;
-	}
+    /**
+     * Get the utility
+     *
+     * @return the utility
+     */
+    public int getUtility() {
+        return this.utility;
+    }
 
-	/**
-	 * Scan the eventset and compare with this finite state machine
-	 * 
-	 * @param pairs a list of pairs
-	 * @return true if it matches, else false.
-	 */
-	public boolean scan(List<int[]> pairs) {
-		int utilityOfitemset = 0;
-		int index = 0;
+    /**
+     * Scan the eventset and compare with this finite state machine
+     *
+     * @param pairs a list of pairs
+     * @return true if it matches, else false.
+     */
+    public boolean scan(List<int[]> pairs) {
+        int utilityOfitemset = 0;
+        int index = 0;
 //        System.out.println(pos+"  锛�  "+this.FSA.size());
-		int length = this.fsa.get(pos).length;
-		for (int j = 0; j < pairs.size(); j++) {
-			int item = pairs.get(j)[0];
-			if (item == this.fsa.get(pos)[index]) {
-				index++;
-				utilityOfitemset += pairs.get(j)[1];
-			}
+        int length = this.fsa.get(pos).length;
+        for (int j = 0; j < pairs.size(); j++) {
+            int item = pairs.get(j)[0];
+            if (item == this.fsa.get(pos)[index]) {
+                index++;
+                utilityOfitemset += pairs.get(j)[1];
+            }
 
-			if (index == length) {
-				this.utility += utilityOfitemset;
-				break;
-			}
-		}
+            if (index == length) {
+                this.utility += utilityOfitemset;
+                break;
+            }
+        }
 
-		return index == length;
-	}
+        return index == length;
+    }
 
 }

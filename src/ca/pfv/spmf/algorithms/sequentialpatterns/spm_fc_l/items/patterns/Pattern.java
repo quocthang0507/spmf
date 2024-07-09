@@ -13,35 +13,35 @@ import ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_l.items.abstractions.Ite
 /**
  * Implementation of pattern structure. We define it as a list of pairs <abstraction, item>.
  * Besides, a bitSet appearingIn denotes the sequences where the pattern appears.
- * 
+ * <p>
  * Copyright Antonio Gomariz Peñalver 2013
- * 
+ * <p>
  * This file is part of the SPMF DATA MINING SOFTWARE
  * (http://www.philippe-fournier-viger.com/spmf).
- *
+ * <p>
  * SPMF is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- *
+ * <p>
  * SPMF is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- *
+ * <p>
  * You should have received a copy of the GNU General Public License
  * along with SPMF.  If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  * @author agomariz
  */
 public class Pattern implements Comparable<Pattern> {
-	// length discrete vality
-	public double total_length_constraint_sup = 0;
-	public double total_discrete_constraint_sup = 0;
-	public double total_vality_constraint_sup = 0;
-	public double total_three_constraint_integration_sup = 0;
-	
-	// alpha beta gramma;
+    // length discrete vality
+    public double total_length_constraint_sup = 0;
+    public double total_discrete_constraint_sup = 0;
+    public double total_vality_constraint_sup = 0;
+    public double total_three_constraint_integration_sup = 0;
+
+    // alpha beta gramma;
     /**
      * List of elements of a patterns. Concretely it is a list of pairs <abstraction, item>
      */
@@ -62,6 +62,7 @@ public class Pattern implements Comparable<Pattern> {
 
     /**
      * Constructor that creates a pattern with the given element list
+     *
      * @param elements element list
      */
     public Pattern(List<ItemAbstractionPair> elements) {
@@ -71,7 +72,8 @@ public class Pattern implements Comparable<Pattern> {
 
     /**
      * Constructor that creates a pattern with the only element passed as a parameter
-     * @param pair 
+     *
+     * @param pair
      */
     public Pattern(ItemAbstractionPair pair) {
         this.elements = new ArrayList<ItemAbstractionPair>();
@@ -81,6 +83,7 @@ public class Pattern implements Comparable<Pattern> {
 
     /**
      * Get the string representation of this itemset
+     *
      * @return the string representation
      */
     @Override
@@ -91,7 +94,7 @@ public class Pattern implements Comparable<Pattern> {
             result.append(elements.get(i).toString());
         }
         result.append("\t[");
-        for(int i = sequenceIdsList.nextSetBit(0); i >= 0; i = sequenceIdsList.nextSetBit(i+1)){
+        for (int i = sequenceIdsList.nextSetBit(0); i >= 0; i = sequenceIdsList.nextSetBit(i + 1)) {
             result.append(i).append(", ");
         }
         result.deleteCharAt(result.length() - 1);
@@ -99,51 +102,52 @@ public class Pattern implements Comparable<Pattern> {
         result.append("]");
         return result.toString();
     }
-    
+
     /**
      * Get a string representation of this itemset. Adjusted to SPMF format.
+     *
      * @param outputSequenceIdentifiers if true, sequence identifiers will be output
      * @return the string representation
      */
     public String toStringToFile(boolean outputSequenceIdentifiers) {
         StringBuilder result = new StringBuilder();
         for (int i = 0; i < elements.size(); i++) {
-            if(i==elements.size()-1){
-                if(i!=0)
+            if (i == elements.size() - 1) {
+                if (i != 0)
                     result.append(elements.get(i).toStringToFile());
                 else
                     result.append(elements.get(i).getItem());
                 result.append(" -1");
-            }
-            else if(i==0){
+            } else if (i == 0) {
                 result.append(elements.get(i).getItem());
-            }else{
+            } else {
                 result.append(elements.get(i).toStringToFile());
             }
-            
+
         }
 //        result.append(" #SUP: ");
-        result.append(" #LENGTH: "+total_length_constraint_sup);
+        result.append(" #LENGTH: " + total_length_constraint_sup);
         result.append(" ");
-        result.append("#DISCRETE: "+total_discrete_constraint_sup);
+        result.append("#DISCRETE: " + total_discrete_constraint_sup);
         result.append(" ");
-        result.append("#VALIDITY: "+total_vality_constraint_sup);
+        result.append("#VALIDITY: " + total_vality_constraint_sup);
         result.append(" ");
-        result.append("#INTEGRATION: "+total_three_constraint_integration_sup);
+        result.append("#INTEGRATION: " + total_three_constraint_integration_sup);
         //result.append(appearingIn.cardinality());
         // if the user wants the sequence IDs, we will show them
-        if(outputSequenceIdentifiers) {
-        	result.append(" #SID: ");
-        	for (int i = appearingIn.nextSetBit(0); i >= 0; i = appearingIn.nextSetBit(i+1)) {
-        		result.append(i);
-        		result.append(" ");
-        	}
+        if (outputSequenceIdentifiers) {
+            result.append(" #SID: ");
+            for (int i = appearingIn.nextSetBit(0); i >= 0; i = appearingIn.nextSetBit(i + 1)) {
+                result.append(i);
+                result.append(" ");
+            }
         }
         return result.toString();
     }
 
     /**
      * Method that clones a pattern
+     *
      * @return the clone of the pattern
      */
     public Pattern clonePattern() {
@@ -154,6 +158,7 @@ public class Pattern implements Comparable<Pattern> {
 
     /**
      * It gets the components of the patterns in a list of pairs
+     *
      * @return the list of pairs
      */
     public List<ItemAbstractionPair> getElements() {
@@ -161,7 +166,17 @@ public class Pattern implements Comparable<Pattern> {
     }
 
     /**
+     * Setter for the pattern components
+     *
+     * @param elements a list of elements
+     */
+    public void setElements(List<ItemAbstractionPair> elements) {
+        this.elements = elements;
+    }
+
+    /**
      * It gets the ith component from the pattern
+     *
      * @param i ith index of the element to return
      * @return the element (ItemAbstractionPair)
      */
@@ -171,6 +186,7 @@ public class Pattern implements Comparable<Pattern> {
 
     /**
      * It returns the last but one element of the pattern
+     *
      * @return the last but one element
      */
     public ItemAbstractionPair getLastButOneElement() {
@@ -182,6 +198,7 @@ public class Pattern implements Comparable<Pattern> {
 
     /**
      * It returns the last element of the pattern
+     *
      * @return the last element
      */
     public ItemAbstractionPair getLastElement() {
@@ -193,7 +210,8 @@ public class Pattern implements Comparable<Pattern> {
 
     /**
      * It returns the first n elements of the pattern
-     * @param n an integer n 
+     *
+     * @param n an integer n
      * @return the first n elements
      */
     public List<ItemAbstractionPair> getNElements(int n) {
@@ -204,15 +222,8 @@ public class Pattern implements Comparable<Pattern> {
     }
 
     /**
-     * Setter for the pattern components
-     * @param elements a list of elements
-     */
-    public void setElements(List<ItemAbstractionPair> elements) {
-        this.elements = elements;
-    }
-
-    /**
      * Add a pair in the last position of the pattern
+     *
      * @param pair the pair
      */
     public void add(ItemAbstractionPair pair) {
@@ -221,6 +232,7 @@ public class Pattern implements Comparable<Pattern> {
 
     /**
      * return the pattern size
+     *
      * @return the size of the pattern
      */
     public int size() {
@@ -229,6 +241,7 @@ public class Pattern implements Comparable<Pattern> {
 
     /**
      * Compare this pattern to another pattern
+     *
      * @param arg the other pattern
      * @return 0 if equal, -1 if smaller, otherwise 1
      */
@@ -258,6 +271,7 @@ public class Pattern implements Comparable<Pattern> {
 
     /**
      * Check if this pattern is equal to another.
+     *
      * @param arg another pattern
      * @return true if equal, otherwise false.
      */
@@ -280,8 +294,9 @@ public class Pattern implements Comparable<Pattern> {
     }
 
     /**
-     * It answer to the question of if the current pattern is a prefix of the 
+     * It answer to the question of if the current pattern is a prefix of the
      * given pattern
+     *
      * @param p pattern where we want to check if our current pattern is a prefix
      * @return true if is a positive answer, false otherwise
      */
@@ -298,6 +313,7 @@ public class Pattern implements Comparable<Pattern> {
 
     /**
      * Return the set of sequence IDs where the pattern appears
+     *
      * @return the set as a bitset
      */
     public BitSet getAppearingIn() {
@@ -315,7 +331,8 @@ public class Pattern implements Comparable<Pattern> {
 
     /**
      * Add a sequence ID in the sequence Id set
-     * @param sequenceId  the sequence id
+     *
+     * @param sequenceId the sequence id
      */
     public void addAppearance(Integer sequenceId) {
         appearingIn.set(sequenceId);
@@ -323,6 +340,7 @@ public class Pattern implements Comparable<Pattern> {
 
     /**
      * It returns the support of a pattern
+     *
      * @return the support
      */
     public double getSupport() {

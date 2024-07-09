@@ -18,87 +18,93 @@ package ca.pfv.spmf.gui.texteditor;
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
-import java.awt.event.ActionEvent;
 
-import javax.swing.AbstractAction;
-import javax.swing.KeyStroke;
+import javax.swing.*;
 import javax.swing.text.Document;
 import javax.swing.text.JTextComponent;
 import javax.swing.undo.CannotRedoException;
 import javax.swing.undo.UndoManager;
+import java.awt.event.ActionEvent;
 
 /**
  * Class to add the undo functionality to a JTextArea It is inspired by public
  * domain code.
- * 
+ *
  * @author Philippe Fournier-Viger
  */
 public class UndoTool {
-	/** Redo */
-	private static final String REDO_KEY = "redo";
-	/** Undo */
-	private static final String UNDO_KEY = "undo";
+    /**
+     * Redo
+     */
+    private static final String REDO_KEY = "redo";
+    /**
+     * Undo
+     */
+    private static final String UNDO_KEY = "undo";
+    /**
+     * Undo manager
+     */
+    UndoManager manager;
+    /**
+     * keystroke for undo
+     */
+    private KeyStroke undo = KeyStroke.getKeyStroke("control Z");
+    /**
+     * keystore for redo
+     */
+    private KeyStroke redo = KeyStroke.getKeyStroke("control Y");
 
-	/** keystroke for undo */
-	private KeyStroke undo = KeyStroke.getKeyStroke("control Z");
-	/** keystore for redo */
-	private KeyStroke redo = KeyStroke.getKeyStroke("control Y");
+    /**
+     * @param component
+     */
+    @SuppressWarnings("serial")
+    public UndoTool(JTextComponent component) {
+        manager = new UndoManager();
+        manager.setLimit(100);
 
-	/** Undo manager */
-	UndoManager manager;
+        Document document = component.getDocument();
+        document.addUndoableEditListener(event -> manager.addEdit(event.getEdit()));
 
-	/**
-	 * 
-	 * @param component
-	 */
-	@SuppressWarnings("serial")
-	public UndoTool(JTextComponent component) {
-		manager = new UndoManager();
-		manager.setLimit(100);
+        // Add the redo key mapping
+        component.getActionMap().put(REDO_KEY, new AbstractAction(REDO_KEY) {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                redo();
+            }
+        });
+        component.getInputMap().put(redo, REDO_KEY);
 
-		Document document = component.getDocument();
-		document.addUndoableEditListener(event -> manager.addEdit(event.getEdit()));
+        // Add the redo action key mapping
+        component.getActionMap().put(UNDO_KEY, new AbstractAction(UNDO_KEY) {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                undo();
+            }
+        });
+        component.getInputMap().put(undo, UNDO_KEY);
+    }
 
-		// Add the redo key mapping
-		component.getActionMap().put(REDO_KEY, new AbstractAction(REDO_KEY) {
-			@Override
-			public void actionPerformed(ActionEvent evt) {
-				redo();
-			}
-		});
-		component.getInputMap().put(redo, REDO_KEY);
+    /**
+     * Redo
+     */
+    void redo() {
+        try {
+            if (manager.canRedo()) {
+                manager.redo();
+            }
+        } catch (CannotRedoException ignore) {
+        }
+    }
 
-		// Add the redo action key mapping
-		component.getActionMap().put(UNDO_KEY, new AbstractAction(UNDO_KEY) {
-			@Override
-			public void actionPerformed(ActionEvent evt) {
-				undo();
-			}
-		});
-		component.getInputMap().put(undo, UNDO_KEY);
-	}
-
-	/**
-	 * Redo
-	 */
-	void redo() {
-		try {
-			if (manager.canRedo()) {
-				manager.redo();
-			}
-		} catch (CannotRedoException ignore) {
-		}
-	}
-
-	/**
-	 * Undo
-	 */
-	void undo() {
-		try {
-			if (manager.canUndo()) {
-				manager.undo();
-			}
-		} catch (CannotRedoException ignore) {
-		}
-	}
+    /**
+     * Undo
+     */
+    void undo() {
+        try {
+            if (manager.canUndo()) {
+                manager.undo();
+            }
+        } catch (CannotRedoException ignore) {
+        }
+    }
 }

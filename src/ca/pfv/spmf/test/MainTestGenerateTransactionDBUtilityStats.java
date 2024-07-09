@@ -9,24 +9,24 @@ import ca.pfv.spmf.tools.dataset_stats.TransactionDBUtilityStats;
 /**
  * Example of how to use the tool to calculate statistics about a
  * transaction database containing utility information
- * 
+ *
  * @author Philippe Fournier-Viger, 2010
  */
 public class MainTestGenerateTransactionDBUtilityStats {
 
 
-	public static void main(String [] arg) throws IOException{
-		
-		// input file path
-		String inputFile = fileToPath("DB_Utility.txt");
-		
-		// Run the algorithm
-		TransactionDBUtilityStats transDBStats = new TransactionDBUtilityStats(); 
-		transDBStats.runAlgorithm(inputFile);
-	}
+    public static void main(String[] arg) throws IOException {
 
-	public static String fileToPath(String filename) throws UnsupportedEncodingException{
-		URL url = MainTestGenerateTransactionDatabaseStats.class.getResource(filename);
-		 return java.net.URLDecoder.decode(url.getPath(),"UTF-8");
-	}
+        // input file path
+        String inputFile = fileToPath("DB_Utility.txt");
+
+        // Run the algorithm
+        TransactionDBUtilityStats transDBStats = new TransactionDBUtilityStats();
+        transDBStats.runAlgorithm(inputFile);
+    }
+
+    public static String fileToPath(String filename) throws UnsupportedEncodingException {
+        URL url = MainTestGenerateTransactionDatabaseStats.class.getResource(filename);
+        return java.net.URLDecoder.decode(url.getPath(), "UTF-8");
+    }
 }

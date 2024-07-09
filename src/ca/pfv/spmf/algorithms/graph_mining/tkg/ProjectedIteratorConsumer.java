@@ -20,27 +20,28 @@ import java.util.concurrent.LinkedBlockingDeque;
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
+
 /**
  * This is the consumer side of consumer/producer implementation of the iterator over all DFS code projections into the graphs database
- *  <br/><br/>
- *
+ * <br/><br/>
+ * <p>
  * The cgspan algorithm is described in : <br/>
  * <br/>
  * <p>
  * cgSpan: Closed Graph-Based Substructure Pattern Mining, by Zevin Shaul, Sheikh Naaz
  * IEEE BigData 2021 7th Special Session on Intelligent Data Mining
  * <p>
- *
+ * <p>
  * <br/>
- *
+ * <p>
  * The CGspan algorithm finds all the closed subgraphs and their support in a
  * graph provided by the user.
  * <br/><br/>
- *
+ * <p>
  * This implementation saves the result to a file
  *
- * @see ProjectedCompact
  * @author Shaul Zevin
+ * @see ProjectedCompact
  */
 public class ProjectedIteratorConsumer implements Iterator<PDFSCompact> {
     // projections compact memory representation
@@ -76,8 +77,8 @@ public class ProjectedIteratorConsumer implements Iterator<PDFSCompact> {
         this.numProducers = numProducers;
         pdfsQueue = new LinkedBlockingDeque<PDFSCompact>(queueSize);
         firstEdges = new ArrayList<ProjectedEdge>();
-        for (Map<Integer, Set<ProjectedEdge>> vertexEdges: projected.getProjected().get(0).values()) {
-            for (Set<ProjectedEdge> edges: vertexEdges.values()) {
+        for (Map<Integer, Set<ProjectedEdge>> vertexEdges : projected.getProjected().get(0).values()) {
+            for (Set<ProjectedEdge> edges : vertexEdges.values()) {
                 firstEdges.addAll(edges);
             }
         }
@@ -91,13 +92,13 @@ public class ProjectedIteratorConsumer implements Iterator<PDFSCompact> {
         this.numProducers = numProducers;
         pdfsQueue = new LinkedBlockingDeque<PDFSCompact>(queueSize);
         firstEdges = new ArrayList<ProjectedEdge>();
-        for (Integer vertexEdgesGid: projected.getProjected().get(0).keySet()) {
+        for (Integer vertexEdgesGid : projected.getProjected().get(0).keySet()) {
             if (vertexEdgesGid != gid) {
                 continue;
             }
 
             Map<Integer, Set<ProjectedEdge>> vertexEdges = projected.getProjected().get(0).get(vertexEdgesGid);
-            for (Set<ProjectedEdge> edges: vertexEdges.values()) {
+            for (Set<ProjectedEdge> edges : vertexEdges.values()) {
                 firstEdges.addAll(edges);
             }
         }
@@ -112,8 +113,8 @@ public class ProjectedIteratorConsumer implements Iterator<PDFSCompact> {
         this.callbacks = callbacks;
         pdfsQueue = new LinkedBlockingDeque<PDFSCompact>(queueSize);
         firstEdges = new ArrayList<ProjectedEdge>();
-        for (Map<Integer, Set<ProjectedEdge>> vertexEdges: projected.getProjected().get(0).values()) {
-            for (Set<ProjectedEdge> edges: vertexEdges.values()) {
+        for (Map<Integer, Set<ProjectedEdge>> vertexEdges : projected.getProjected().get(0).values()) {
+            for (Set<ProjectedEdge> edges : vertexEdges.values()) {
                 firstEdges.addAll(edges);
             }
         }
@@ -128,13 +129,13 @@ public class ProjectedIteratorConsumer implements Iterator<PDFSCompact> {
         this.callbacks = callbacks;
         pdfsQueue = new LinkedBlockingDeque<PDFSCompact>(queueSize);
         firstEdges = new ArrayList<ProjectedEdge>();
-        for (Integer vertexEdgesGid: projected.getProjected().get(0).keySet()) {
+        for (Integer vertexEdgesGid : projected.getProjected().get(0).keySet()) {
             if (vertexEdgesGid != gid) {
                 continue;
             }
 
             Map<Integer, Set<ProjectedEdge>> vertexEdges = projected.getProjected().get(0).get(vertexEdgesGid);
-            for (Set<ProjectedEdge> edges: vertexEdges.values()) {
+            for (Set<ProjectedEdge> edges : vertexEdges.values()) {
                 firstEdges.addAll(edges);
             }
         }
@@ -246,11 +247,11 @@ public class ProjectedIteratorConsumer implements Iterator<PDFSCompact> {
         }
     }
 
-    public class Control {
-        public volatile boolean runFlag = true;
-    }
-
     public ProjectedCompact getProjected() {
         return projected;
+    }
+
+    public class Control {
+        public volatile boolean runFlag = true;
     }
 }

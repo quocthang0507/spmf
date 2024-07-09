@@ -31,106 +31,109 @@ import ca.pfv.spmf.test.MainTestApriori_saveToFile;
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
+
 /**
  * A class that represents a node that is an input file, which will be drawn on the DrawPanel of the workflow editor
  * This class stores information about the input file such as its path.
- * 
+ *
  * @author Philippe Fournier-Viger
  * @see WorkflowEditorWindow
  */
 class NodeFileInput extends Node {
-	
-	/** The input file name */
-	public String inputFile = null; 
 
-	/** Constructor
-	 * 
-	 * @param label the name of the node
-	 * @param x     the X position
-	 * @param y     the Y position
-	 */
-	public NodeFileInput(String label, int x, int y) {
-		super(label, x, y);
-	}
+    /**
+     * The input file name
+     */
+    public String inputFile = null;
 
-	/**
-	 * Method to paint this node on a Panel
-	 * 
-	 * @param g          the Graphics object on which the node should be drawn
-	 * @param isSelected whether the node is selected or not
-	 */
-	void paintNode(Graphics g, boolean isSelected) {
-		if (rectangle == null) {
-			recalculateRectangle(g);
-		}
+    /**
+     * Constructor
+     *
+     * @param label the name of the node
+     * @param x     the X position
+     * @param y     the Y position
+     */
+    public NodeFileInput(String label, int x, int y) {
+        super(label, x, y);
+    }
 
-		// Set the color based on selection
-		Graphics2D g2 = (Graphics2D) g;
-		g.setColor(Color.ORANGE);
-		if(isSelected) {
-			float thickness = 3;
-			g2.setStroke(new BasicStroke(thickness));
-		}else {
-			float thickness = 1;
-			g2.setStroke(new BasicStroke(thickness));
-		}
-		g.fillRect(rectangle.x, rectangle.y, rectangle.width, rectangle.height);
-		
-		g.setColor(Color.BLACK);
-		// Draw the rounded rectangle
-		g.drawRect(rectangle.x, rectangle.y, rectangle.width, rectangle.height);
+    /**
+     * Method to paint this node on a Panel
+     *
+     * @param g          the Graphics object on which the node should be drawn
+     * @param isSelected whether the node is selected or not
+     */
+    void paintNode(Graphics g, boolean isSelected) {
+        if (rectangle == null) {
+            recalculateRectangle(g);
+        }
+
+        // Set the color based on selection
+        Graphics2D g2 = (Graphics2D) g;
+        g.setColor(Color.ORANGE);
+        if (isSelected) {
+            float thickness = 3;
+            g2.setStroke(new BasicStroke(thickness));
+        } else {
+            float thickness = 1;
+            g2.setStroke(new BasicStroke(thickness));
+        }
+        g.fillRect(rectangle.x, rectangle.y, rectangle.width, rectangle.height);
+
+        g.setColor(Color.BLACK);
+        // Draw the rounded rectangle
+        g.drawRect(rectangle.x, rectangle.y, rectangle.width, rectangle.height);
 
 
-		// Draw the text, aligned to the center of the rectangle
-		g.drawString(name, x - textWidth / 2, y + textHeight / 4);
-	}
+        // Draw the text, aligned to the center of the rectangle
+        g.drawString(name, x - textWidth / 2, y + textHeight / 4);
+    }
 
-	/**
-	 * 
-	 * @param parent 
-	 * @return true if some update is made
-	 */
-	public void askUserToChooseFile(JFrame parent) {
-		try {
-			// Determine the path and preference based on input or output
-			String previousPath = PreferencesManager.getInstance().getInputFilePath();
-			File path = null;
-			if (previousPath == null) {
-				URL main = MainTestApriori_saveToFile.class.getResource("MainTestApriori_saveToFile.class");
-				if ("file".equalsIgnoreCase(main.getProtocol())) {
-					path = new File(main.getPath());
-				}
-			} else {
-				path = new File(previousPath);
-			}
+    /**
+     * @param parent
+     * @return true if some update is made
+     */
+    public void askUserToChooseFile(JFrame parent) {
+        try {
+            // Determine the path and preference based on input or output
+            String previousPath = PreferencesManager.getInstance().getInputFilePath();
+            File path = null;
+            if (previousPath == null) {
+                URL main = MainTestApriori_saveToFile.class.getResource("MainTestApriori_saveToFile.class");
+                if ("file".equalsIgnoreCase(main.getProtocol())) {
+                    path = new File(main.getPath());
+                }
+            } else {
+                path = new File(previousPath);
+            }
 
-			// Create a file chooser
-			final JFileChooser fc = path != null ? new JFileChooser(path.getAbsolutePath()) : new JFileChooser();
+            // Create a file chooser
+            final JFileChooser fc = path != null ? new JFileChooser(path.getAbsolutePath()) : new JFileChooser();
 
-			// Show dialog based on input or output
-			int returnVal = fc.showOpenDialog(parent);
- 
-			// Process the result of the file chooser
-			if (returnVal == JFileChooser.APPROVE_OPTION) {
-				File file = fc.getSelectedFile();
-				//*************************************
-				String fileName = file.getName();
-				name = fileName;
-				inputFile = file.getPath();
-				rectangle = null;
-				//*************************************
-				PreferencesManager.getInstance().setInputFilePath(file.getParent());
-			}
-		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null,
-					"An error occurred while opening the file dialog. ERROR MESSAGE = " + e.toString(), "Error",
-					JOptionPane.ERROR_MESSAGE);
-		}
-	}
+            // Show dialog based on input or output
+            int returnVal = fc.showOpenDialog(parent);
 
-	@Override
-	public String getType() {
-		return "Input";
-	}
+            // Process the result of the file chooser
+            if (returnVal == JFileChooser.APPROVE_OPTION) {
+                File file = fc.getSelectedFile();
+                //*************************************
+                String fileName = file.getName();
+                name = fileName;
+                inputFile = file.getPath();
+                rectangle = null;
+                //*************************************
+                PreferencesManager.getInstance().setInputFilePath(file.getParent());
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,
+                    "An error occurred while opening the file dialog. ERROR MESSAGE = " + e.toString(), "Error",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    @Override
+    public String getType() {
+        return "Input";
+    }
 
 }

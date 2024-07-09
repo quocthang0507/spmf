@@ -21,24 +21,26 @@ import java.net.URL;
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
+
 /**
  * Example of how to use the Product Transaction Database viewer
- *  algorithm from the source code. This time of data is used by algorithms such as VME.
+ * algorithm from the source code. This time of data is used by algorithms such as VME.
+ *
  * @author Philippe Fournier-Viger (Copyright 2024)
  */
 public class MainTestProductTransactionViewer {
 
-	public static void main(String [] arg) throws IOException{
+    public static void main(String[] arg) throws IOException {
 
-		String input = fileToPath("contextVME.txt");
+        String input = fileToPath("contextVME.txt");
 
-		// Applying the viewer
-		ProductTransactionDatabaseViewer viewer = new ProductTransactionDatabaseViewer(false, input);
-	}
-	
-	public static String fileToPath(String filename) throws UnsupportedEncodingException{
+        // Applying the viewer
+        ProductTransactionDatabaseViewer viewer = new ProductTransactionDatabaseViewer(false, input);
+    }
+
+    public static String fileToPath(String filename) throws UnsupportedEncodingException {
 //		System.out.println("filename : " + filename);
-		URL url = MainTestProductTransactionViewer.class.getResource(filename);
-		 return java.net.URLDecoder.decode(url.getPath(),"UTF-8");
-	}
+        URL url = MainTestProductTransactionViewer.class.getResource(filename);
+        return java.net.URLDecoder.decode(url.getPath(), "UTF-8");
+    }
 }

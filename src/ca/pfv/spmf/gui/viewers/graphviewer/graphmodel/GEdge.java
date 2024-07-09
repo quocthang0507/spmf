@@ -20,100 +20,110 @@ import ca.pfv.spmf.gui.viewers.graphviewer.GraphViewerPanel;
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
+
 /**
  * This class represents an edge as used by the GraphViewerPanel
- * 
+ *
  * @author Philippe Fournier-Viger
  * @see GraphViewerPanel
  */
 public class GEdge extends GraphElement {
-	/** A node */
-	private final GNode fromNode;
-	/** Another node */
-	private final GNode toNode;
-	/** If this edge is directed */
-	private final boolean directed;
+    /**
+     * Size of an arrow head
+     */
+    private static int ARROW_HEAD_SIZE = 4;
+    /**
+     * Edge thickness
+     */
+    private static int EDGE_THICKNESS = 1;
+    /**
+     * A node
+     */
+    private final GNode fromNode;
+    /**
+     * Another node
+     */
+    private final GNode toNode;
+    /**
+     * If this edge is directed
+     */
+    private final boolean directed;
 
-	/** Size of an arrow head */
-	private  static int ARROW_HEAD_SIZE = 4;
-	
-	/** Edge thickness */
-	private  static int EDGE_THICKNESS = 1;
+    /**
+     * Constructor
+     *
+     * @param fromNode node
+     * @param toNode   second node
+     * @param name     name of the edge if any
+     * @param directed true if directed, otherwise false
+     */
+    public GEdge(final GNode fromNode, final GNode toNode, final String name, final boolean directed) {
+        super(name);
+        this.fromNode = fromNode;
+        this.toNode = toNode;
+        this.directed = directed;
+    }
 
-	/**
-	 * Constructor
-	 * 
-	 * @param fromNode node
-	 * @param toNode   second node
-	 * @param name     name of the edge if any
-	 * @param directed true if directed, otherwise false
-	 */
-	public GEdge(final GNode fromNode, final GNode toNode, final String name, final boolean directed) {
-		super(name);
-		this.fromNode = fromNode;
-		this.toNode = toNode;
-		this.directed = directed;
-	}
-	
-	/**
-	 * Constructor
-	 * 
-	 * @param fromNode node
-	 * @param toNode   second node
-	 * @param name     name of the edge if any
-	 * @param id       id of the edge if any
-	 * @param directed true if directed, otherwise false
-	 */
-	public GEdge(final GNode fromNode, final GNode toNode, final String name, String id, final boolean directed) {
-		super(name, id);
-		this.fromNode = fromNode;
-		this.toNode = toNode;
-		this.directed = directed;
-	}
+    /**
+     * Constructor
+     *
+     * @param fromNode node
+     * @param toNode   second node
+     * @param name     name of the edge if any
+     * @param id       id of the edge if any
+     * @param directed true if directed, otherwise false
+     */
+    public GEdge(final GNode fromNode, final GNode toNode, final String name, String id, final boolean directed) {
+        super(name, id);
+        this.fromNode = fromNode;
+        this.toNode = toNode;
+        this.directed = directed;
+    }
 
-	/**
-	 * Get the "from" node
-	 * 
-	 * @return the from node
-	 */
-	public GNode getFromNode() {
-		return fromNode;
-	}
+    /**
+     * Change the edge thickness
+     *
+     * @param newThickness the new thickness, a positive integer
+     */
+    public static void changeThickness(int newThickness) {
+        EDGE_THICKNESS = newThickness;
+        ARROW_HEAD_SIZE = newThickness * 3;
+    }
 
-	/**
-	 * Get the "to" node
-	 * 
-	 * @return the node
-	 */
-	public GNode getToNode() {
-		return toNode;
-	}
+    public static int getArrowHeadSize() {
+        return ARROW_HEAD_SIZE;
+    }
 
-	/**
-	 * Check if this edge is directed
-	 * 
-	 * @return true if directed, otherwise false
-	 */
-	public boolean isDirected() {
-		return directed;
-	}
+    public static int getEdgeThickness() {
+        return EDGE_THICKNESS;
+    }
 
-	/** 
-	 * Change the edge thickness
-	 * @param newThickness the new thickness, a positive integer
-	 */
-	public static void changeThickness(int newThickness) {
-		EDGE_THICKNESS = newThickness;
-		ARROW_HEAD_SIZE = newThickness * 3;
-	}
+    /**
+     * Get the "from" node
+     *
+     * @return the from node
+     */
+    public GNode getFromNode() {
+        return fromNode;
+    }
 
-	public static int getArrowHeadSize() {
-		return ARROW_HEAD_SIZE;
-	}
+    /**
+     * Get the "to" node
+     *
+     * @return the node
+     */
+    public GNode getToNode() {
+        return toNode;
+    }
 
-	public static int getEdgeThickness() {
-		return EDGE_THICKNESS;
-	}
+    /**
+     * Check if this edge is directed
+     *
+     * @return true if directed, otherwise false
+     */
+    public boolean isDirected() {
+        return directed;
+    }
 
 //	public boolean contains(int x, int y) {
 //

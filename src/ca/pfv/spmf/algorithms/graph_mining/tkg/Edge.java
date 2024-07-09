@@ -1,74 +1,84 @@
 package ca.pfv.spmf.algorithms.graph_mining.tkg;
 
 /* This file is copyright (c) 2018 by Chao Cheng
-* 
-* This file is part of the SPMF DATA MINING SOFTWARE
-* (http://www.philippe-fournier-viger.com/spmf).
-* 
-* SPMF is free software: you can redistribute it and/or modify it under the
-* terms of the GNU General Public License as published by the Free Software
-* Foundation, either version 3 of the License, or (at your option) any later
-* version.
-* 
-* SPMF is distributed in the hope that it will be useful, but WITHOUT ANY
-* WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
-* A PARTICULAR PURPOSE. See the GNU General Public License for more details.
-* You should have received a copy of the GNU General Public License along with
-* SPMF. If not, see <http://www.gnu.org/licenses/>.
-*/
+ *
+ * This file is part of the SPMF DATA MINING SOFTWARE
+ * (http://www.philippe-fournier-viger.com/spmf).
+ *
+ * SPMF is free software: you can redistribute it and/or modify it under the
+ * terms of the GNU General Public License as published by the Free Software
+ * Foundation, either version 3 of the License, or (at your option) any later
+ * version.
+ *
+ * SPMF is distributed in the hope that it will be useful, but WITHOUT ANY
+ * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
+ * A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+ * You should have received a copy of the GNU General Public License along with
+ * SPMF. If not, see <http://www.gnu.org/licenses/>.
+ */
+
 /**
  * This is an implementation of an edge, used by the GSPAN algorithm
- *  <br/><br/>
- *  
+ * <br/><br/>
+ * <p>
  * The gspan algorithm is described  in :
  * <br/><br/>
- *  
- * gSpan: Graph-Based Substructure Pattern Mining, by X. Yan and J. Han. 
+ * <p>
+ * gSpan: Graph-Based Substructure Pattern Mining, by X. Yan and J. Han.
  * Proc. 2002 of Int. Conf. on Data Mining (ICDM'02
- * 
+ * <p>
  * <br/><br/>
- *  
+ * <p>
  * The Gspan algorithm finds all the frequents subgraphs and their support in a
  * graph provided by the user.
  * <br/><br/>
- *  
+ * <p>
  * This implementation saves the result to a file
- * 
- * @see AlgoGSPAN
+ *
  * @author Chao Cheng
+ * @see AlgoGSPAN
  */
 public class Edge {
-	
-	/** vertex id */
+
+    /**
+     * vertex id
+     */
     public int v1;
-    
-	/** vertex id */
+
+    /**
+     * vertex id
+     */
     public int v2;
-    
-    /** edge label */
+
+    /**
+     * edge label
+     */
     private int edgeLabel;
-    
-    /** the hashcode */
+
+    /**
+     * the hashcode
+     */
     private int hashcode;
 
     /**
      * Constructor
-     * @param v1 vertex id
-     * @param v2 vertex id
+     *
+     * @param v1     vertex id
+     * @param v2     vertex id
      * @param eLabel edge label
      */
     public Edge(int v1, int v2, int eLabel) {
         this.v1 = v1;
         this.v2 = v2;
         this.edgeLabel = eLabel;
-        
+
         this.hashcode = (v1 + 1) * 100 + (v2 + 1) * 10 + edgeLabel;
     }
 
     /**
      * Given a vertex id in this edge, this method returns the id of the
      * other vertex connected by this edge.
-     * 
+     *
      * @param v one of the two vertices appearing in this edge
      * @return the other vertex
      */
@@ -76,7 +86,9 @@ public class Edge {
         return v == v1 ? v2 : v1;
     }
 
-    /** Get the edge label */
+    /**
+     * Get the edge label
+     */
     public int getEdgeLabel() {
         return edgeLabel;
     }

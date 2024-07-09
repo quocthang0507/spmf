@@ -7,23 +7,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * This class contains a set of useful static functions for subsequence matching, used in ProSecCo. 
- * 
+ * This class contains a set of useful static functions for subsequence matching, used in ProSecCo.
+ * <p>
  * Copyright (c) 2008-2019 Sacha Servan-Schreiber
- * 
+ * <p>
  * This file is part of the SPMF DATA MINING SOFTWARE
  * (http://www.philippe-fournier-viger.com/spmf).
- *
+ * <p>
  * SPMF is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- *
+ * <p>
  * SPMF is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- *
+ * <p>
  * You should have received a copy of the GNU General Public License
  * along with SPMF.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -31,157 +31,156 @@ import java.util.List;
 public class Utils {
 
 
-	private static boolean isSubsetOf(List<Integer> itemsetA, List<Integer> itemsetB) {
+    private static boolean isSubsetOf(List<Integer> itemsetA, List<Integer> itemsetB) {
 
-		boolean found = false;
+        boolean found = false;
 
-		for(int tokenA : itemsetA){
-			for(int tokenB : itemsetB){
+        for (int tokenA : itemsetA) {
+            for (int tokenB : itemsetB) {
 
-				// if itemsetB contains tokenA
-				if(tokenA == tokenB) {
-					found = true;
-					break;
-				} 
-			}
+                // if itemsetB contains tokenA
+                if (tokenA == tokenB) {
+                    found = true;
+                    break;
+                }
+            }
 
-			if (!found) {
-				return false;
-			}
+            if (!found) {
+                return false;
+            }
 
-			found = false;
-		}
+            found = false;
+        }
 
-		return false;
-	}
+        return false;
+    }
 
-	public static boolean isSubsequenceOf(int[] sequenceA, int[] sequenceB) {
+    public static boolean isSubsequenceOf(int[] sequenceA, int[] sequenceB) {
 
-		List<Integer> itemsetA = new ArrayList<Integer>();
-		List<Integer> itemsetB = new ArrayList<Integer>();
+        List<Integer> itemsetA = new ArrayList<Integer>();
+        List<Integer> itemsetB = new ArrayList<Integer>();
 
-		int idxItemsetB = 0;
+        int idxItemsetB = 0;
 
-		for(int tokenA : sequenceA){
+        for (int tokenA : sequenceA) {
 
-			boolean isSubset = false;
+            boolean isSubset = false;
 
-			// if it is an item
-			if (tokenA >= 0) {
-				itemsetA.add(tokenA);
+            // if it is an item
+            if (tokenA >= 0) {
+                itemsetA.add(tokenA);
 
-			} else if(tokenA == -1){
+            } else if (tokenA == -1) {
 
-				int i;
+                int i;
 
-				// if it is an itemset separator
-				for(i = idxItemsetB; i < sequenceB.length; i++){
+                // if it is an itemset separator
+                for (i = idxItemsetB; i < sequenceB.length; i++) {
 
-					if(sequenceB[i] == -1) {
+                    if (sequenceB[i] == -1) {
 
-						if (isSubsetOf(itemsetA, itemsetB)) {
-							idxItemsetB = i+1;
-							isSubset = true;
-							break;
-						} 
+                        if (isSubsetOf(itemsetA, itemsetB)) {
+                            idxItemsetB = i + 1;
+                            isSubset = true;
+                            break;
+                        }
 
-						itemsetB.clear();
-					} 
-					else 
-						itemsetB.add(sequenceB[i]);
-				}
+                        itemsetB.clear();
+                    } else
+                        itemsetB.add(sequenceB[i]);
+                }
 
-				if (!isSubset)
-					return false;
+                if (!isSubset)
+                    return false;
 
-				itemsetA.clear();
+                itemsetA.clear();
 
-			} else if(tokenA == -2){
-				break;
-			}
-		}
+            } else if (tokenA == -2) {
+                break;
+            }
+        }
 
-		return true;
-	}
+        return true;
+    }
 
-	public static boolean isSubsequenceOf(SequentialPattern sequenceA, int[] sequenceB, boolean multiItem) {
+    public static boolean isSubsequenceOf(SequentialPattern sequenceA, int[] sequenceB, boolean multiItem) {
 
-		if (!multiItem) {
-			return isSubsequenceOfSingleItems(sequenceA, sequenceB);
-		}
+        if (!multiItem) {
+            return isSubsequenceOfSingleItems(sequenceA, sequenceB);
+        }
 
-		int idxItemsetB = 0;
-		boolean subset = false;
+        int idxItemsetB = 0;
+        boolean subset = false;
 
-		for (Itemset itA : sequenceA.getItemsets()) {	
-			subset = false;
-			Itemset itB = new Itemset();
+        for (Itemset itA : sequenceA.getItemsets()) {
+            subset = false;
+            Itemset itB = new Itemset();
 
-			// if it is an itemset separator
-			for(int i = idxItemsetB; i < sequenceB.length; i++){
+            // if it is an itemset separator
+            for (int i = idxItemsetB; i < sequenceB.length; i++) {
 
-				if(sequenceB[i] == -1) {
-					if (itB.containsAll(itA)) {
-						subset = true;
-						idxItemsetB = i;						
-					} else {
-						itB = new Itemset();
-					}
+                if (sequenceB[i] == -1) {
+                    if (itB.containsAll(itA)) {
+                        subset = true;
+                        idxItemsetB = i;
+                    } else {
+                        itB = new Itemset();
+                    }
 
-				} else {
-					itB.addItem(sequenceB[i]);
-				}
-
-
-				if (sequenceB[i+1] == -2)
-					break;
+                } else {
+                    itB.addItem(sequenceB[i]);
+                }
 
 
-			}
-
-			if (!subset) {	
-				return false;
-			}
-		}
-
-		return true;
-	}
-
-	public static boolean isSubsequenceOfSingleItems(SequentialPattern sequenceA, int[] sequenceB) {
+                if (sequenceB[i + 1] == -2)
+                    break;
 
 
-		int idxItemsetB = 0;
-		boolean subset = false;
+            }
+
+            if (!subset) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public static boolean isSubsequenceOfSingleItems(SequentialPattern sequenceA, int[] sequenceB) {
 
 
-		for (Itemset itA : sequenceA.getItemsets()) {	
-			subset = false;
+        int idxItemsetB = 0;
+        boolean subset = false;
 
-			// if it is an itemset separator
-			for(int i = idxItemsetB; i < sequenceB.length; i++){
 
-				if(sequenceB[i] == -1) {
-					continue;
-				}
+        for (Itemset itA : sequenceA.getItemsets()) {
+            subset = false;
 
-				if (itA.getItems().get(0) == sequenceB[i]) {
-					subset = true;
-					idxItemsetB = i+1;
-					break;
+            // if it is an itemset separator
+            for (int i = idxItemsetB; i < sequenceB.length; i++) {
 
-				} 
+                if (sequenceB[i] == -1) {
+                    continue;
+                }
 
-				if (sequenceB[idxItemsetB] == -2)
-					break;
+                if (itA.getItems().get(0) == sequenceB[i]) {
+                    subset = true;
+                    idxItemsetB = i + 1;
+                    break;
 
-			}
+                }
 
-			if (!subset) {	
-				return false;
-			}
-		}
+                if (sequenceB[idxItemsetB] == -2)
+                    break;
 
-		return true;
-	}
+            }
+
+            if (!subset) {
+                return false;
+            }
+        }
+
+        return true;
+    }
 
 }

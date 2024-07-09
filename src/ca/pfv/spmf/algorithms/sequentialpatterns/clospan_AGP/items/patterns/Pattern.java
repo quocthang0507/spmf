@@ -10,28 +10,28 @@ import ca.pfv.spmf.algorithms.sequentialpatterns.clospan_AGP.items.creators.Abst
 /**
  * Implementation of pattern structure. We define it as a list of pairs <abstraction, item>.
  * Besides, a bitSet appearingIn denotes the sequences where the pattern appears.
- * 
+ * <p>
  * Copyright Antonio Gomariz Peñalver 2013
- * 
+ * <p>
  * This file is part of the SPMF DATA MINING SOFTWARE
  * (http://www.philippe-fournier-viger.com/spmf).
- *
+ * <p>
  * SPMF is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- *
+ * <p>
  * SPMF is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- *
+ * <p>
  * You should have received a copy of the GNU General Public License
  * along with SPMF.  If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  * @author agomariz
  */
-public class Pattern implements Comparable<Pattern>{
+public class Pattern implements Comparable<Pattern> {
 
     /**
      * List of pairs <abstraction, item> that define the pattern
@@ -46,11 +46,11 @@ public class Pattern implements Comparable<Pattern>{
      * Appearance frequency of this concrete pattern
      */
     private int support;
-    
+
     /**
      * Addition of all the different sequence identifiers
      */
-    private int sumIdSequences=-1;
+    private int sumIdSequences = -1;
 
     /**
      * Standard constructor
@@ -58,33 +58,36 @@ public class Pattern implements Comparable<Pattern>{
     public Pattern() {
         this.elements = new ArrayList<ItemAbstractionPair>();
         //this.appearingIn = new ArrayList<Integer>();
-        this.appearingIn=new BitSet();
+        this.appearingIn = new BitSet();
     }
 
     /**
      * New pattern from a list of pairs <abstraction, item>
-     * @param elements 
+     *
+     * @param elements
      */
     public Pattern(List<ItemAbstractionPair> elements) {
         this.elements = elements;
         //this.appearingIn = new ArrayList<Integer>();
-        this.appearingIn=new BitSet();
+        this.appearingIn = new BitSet();
     }
 
     /**
      * New pattern from a single pair <abstraction, item>
-     * @param pair 
+     *
+     * @param pair
      */
     public Pattern(ItemAbstractionPair pair) {
         this.elements = new ArrayList<ItemAbstractionPair>();
         this.elements.add(pair);
         //this.appearingIn = new ArrayList<Integer>();
-        this.appearingIn=new BitSet();
+        this.appearingIn = new BitSet();
     }
 
 
     /**
      * Get the string representation of this pattern
+     *
      * @return the string representation
      */
     @Override
@@ -99,44 +102,45 @@ public class Pattern implements Comparable<Pattern>{
         result.append("]");
         return result.toString();
     }
-    
+
     /**
      * Get the string representation of this itemset in SPMF format.
+     *
      * @param outputSequenceIdentifiers if true sequence id will be shown for this pattern
      * @return the string representation
      */
     public String toStringToFile(boolean outputSequenceIdentifiers) {
         StringBuilder result = new StringBuilder();
         for (int i = 0; i < elements.size(); i++) {
-            if(i==elements.size()-1){
-                if(i!=0)
+            if (i == elements.size() - 1) {
+                if (i != 0)
                     result.append(elements.get(i).toStringToFile());
                 else
                     result.append(elements.get(i).getItem());
                 result.append(" -1");
-            }
-            else if(i==0){
+            } else if (i == 0) {
                 result.append(elements.get(i).getItem());
-            }else{
+            } else {
                 result.append(elements.get(i).toStringToFile());
             }
-            
+
         }
         result.append(" #SUP: ");
         result.append(getSupport());
         // if the user wants the sequence IDs, we will show them
-        if(outputSequenceIdentifiers) {
-        	result.append(" #SID: ");
-        	for (int i = appearingIn.nextSetBit(0); i >= 0; i = appearingIn.nextSetBit(i+1)) {
-        		result.append(i - 1); // BUG FIX: PHILIPPE 2017 - we must decrease ids by 1
-        		result.append(" ");
-        	}
+        if (outputSequenceIdentifiers) {
+            result.append(" #SID: ");
+            for (int i = appearingIn.nextSetBit(0); i >= 0; i = appearingIn.nextSetBit(i + 1)) {
+                result.append(i - 1); // BUG FIX: PHILIPPE 2017 - we must decrease ids by 1
+                result.append(" ");
+            }
         }
         return result.toString();
     }
 
     /**
      * It clones a pattern
+     *
      * @return the clone
      */
     public Pattern clonePatron() {
@@ -148,6 +152,7 @@ public class Pattern implements Comparable<Pattern>{
 
     /**
      * It obtains the elements of the pattern
+     *
      * @return the list of elements
      */
     public List<ItemAbstractionPair> getElements() {
@@ -155,7 +160,17 @@ public class Pattern implements Comparable<Pattern>{
     }
 
     /**
+     * Setter method to set the elements of the pattern
+     *
+     * @param elements
+     */
+    public void setElements(List<ItemAbstractionPair> elements) {
+        this.elements = elements;
+    }
+
+    /**
      * It obtains the Ith element of the pattern
+     *
      * @param i the position
      * @return the ith element
      */
@@ -165,7 +180,8 @@ public class Pattern implements Comparable<Pattern>{
 
     /**
      * It obtains the last element of the pattern
-     * @return  the last element
+     *
+     * @return the last element
      */
     public ItemAbstractionPair getLastElement() {
         if (size() > 0) {
@@ -175,16 +191,9 @@ public class Pattern implements Comparable<Pattern>{
     }
 
     /**
-     * Setter method to set the elements of the pattern
-     * @param elements 
-     */
-    public void setElements(List<ItemAbstractionPair> elements) {
-        this.elements = elements;
-    }
-
-    /**
-     * It adds an item with its abstraction in the pattern. The new pair is 
+     * It adds an item with its abstraction in the pattern. The new pair is
      * added in the last position of the pattern.
+     *
      * @param pair the pair to be added
      */
     public void add(ItemAbstractionPair pair) {
@@ -193,7 +202,8 @@ public class Pattern implements Comparable<Pattern>{
 
     /**
      * It returns the number of items contained in the pattern
-     * @return  the number of items
+     *
+     * @return the number of items
      */
     public int size() {
         return elements.size();
@@ -201,6 +211,7 @@ public class Pattern implements Comparable<Pattern>{
 
     /**
      * Check if this pattern is equal to another according to the lexicographic order.
+     *
      * @param o the other pattern
      * @return 0 if equal, -1 if smaller, 1 otherwise
      */
@@ -250,6 +261,7 @@ public class Pattern implements Comparable<Pattern>{
 
     /**
      * It returns the list of sequence IDs where the pattern appears.
+     *
      * @return the list of sequence ids as a bitset
      */
     /*public List<Integer> getAppearingIn() {
@@ -258,38 +270,40 @@ public class Pattern implements Comparable<Pattern>{
     public BitSet getAppearingIn() {
         return appearingIn;
     }
-    
-    
+
+
     /**
      * It sets the list of sequence IDs where the pattern appears.
-     * @param ids  a list of sequence ids 
+     *
+     * @param ids a list of sequence ids
      */
-    public void setAppearingIn(BitSet ids){
+    public void setAppearingIn(BitSet ids) {
         //this.appearingIn=new ArrayList<Integer>(ids);
-        this.appearingIn=ids;
+        this.appearingIn = ids;
         setSupport(this.appearingIn.cardinality());
     }
-    
+
     /**
      * Check if the current Pattern is a subpattern of another one
      * given as parameter.
+     *
      * @param abstractionCreator an instance of an abstraction creator
-     * @param p the other pattern 
+     * @param p                  the other pattern
      * @return true if this pattern is a subpattern. Otherwise, false.
      */
-    public boolean isSubpattern(AbstractionCreator abstractionCreator, Pattern p){
-       //We initialize all the positions values to 0
-       List<Integer> positions=new ArrayList<Integer>(p.size());
-       for(int i=0;i<size();i++){
-           positions.add(0);
-       }
-       //And we call to the method of abstractionCreator
-       return abstractionCreator.isSubpattern(this,p,0,positions);
+    public boolean isSubpattern(AbstractionCreator abstractionCreator, Pattern p) {
+        //We initialize all the positions values to 0
+        List<Integer> positions = new ArrayList<Integer>(p.size());
+        for (int i = 0; i < size(); i++) {
+            positions.add(0);
+        }
+        //And we call to the method of abstractionCreator
+        return abstractionCreator.isSubpattern(this, p, 0, positions);
     }
 
     /**
      * Method to obtain the support of a pattern
-     * 
+     *
      * @return the support
      */
     public int getSupport() {
@@ -298,6 +312,7 @@ public class Pattern implements Comparable<Pattern>{
 
     /**
      * Method to set the support of this pattern
+     *
      * @param support as an integer value
      */
     public void setSupport(int support) {
@@ -305,20 +320,21 @@ public class Pattern implements Comparable<Pattern>{
     }
 
     /**
-     * Get the sum of all the sequence 
+     * Get the sum of all the sequence
      * identifiers that are present in the support of this pattern.
+     *
      * @return the sum of the ids.
      */
     public int getSumIdSequences() {
-        if(sumIdSequences<0)
-            sumIdSequences=calculateSumIdSequences();
+        if (sumIdSequences < 0)
+            sumIdSequences = calculateSumIdSequences();
         return sumIdSequences;
     }
 
     /**
-     * Set the value for the addition of all the sequence 
+     * Set the value for the addition of all the sequence
      * identifiers that are present in the support of this pattern
-     * 
+     *
      * @param sumIdSequences the sum
      */
     public void setSumIdSequences(int sumIdSequences) {
@@ -327,17 +343,19 @@ public class Pattern implements Comparable<Pattern>{
 
     /**
      * Method to calculate the sum of sequence identifiers.
+     *
      * @return the sum of the sequence identifiers.
      */
     private int calculateSumIdSequences() {
-        int sum=0;
-        for(int i=appearingIn.nextSetBit(0);i>=0;i=appearingIn.nextSetBit(i+1))
-            sum+=i;
+        int sum = 0;
+        for (int i = appearingIn.nextSetBit(0); i >= 0; i = appearingIn.nextSetBit(i + 1))
+            sum += i;
         return sum;
     }
-    
+
     /**
      * It concatenates the given pair as a last element of the pattern
+     *
      * @param pair the pair
      * @return the resulting pattern
      */
@@ -346,9 +364,10 @@ public class Pattern implements Comparable<Pattern>{
         result.add(pair);
         return result;
     }
-    
+
     /**
      * It concatenates the given pattern to the current pattern
+     *
      * @param pattern the pattern
      * @return the resulting pattern
      */
@@ -357,5 +376,5 @@ public class Pattern implements Comparable<Pattern>{
         result.getElements().addAll(pattern.getElements());
         return result;
     }
-    
+
 }

@@ -19,38 +19,37 @@ package ca.pfv.spmf.algorithms.sequentialpatterns.skopus;
 
 import java.util.HashSet;
 
-public class BinPartitionSet extends HashSet<BinPartition>{
-	public BinPartitionSet(int n){
-		super((int)Math.ceil(n * 1.5));
-		return;
-	}
-	
-	public void createAllPartition(ItemsetRec irParaParent,
-			BinPartitionTemplate bpt){
-		assert(irParaParent.size() == bpt.getLength());
-		if(irParaParent.size() != bpt.getLength()){
-			this.clear();
-			return;
-		}
+public class BinPartitionSet extends HashSet<BinPartition> {
+    public BinPartitionSet(int n) {
+        super((int) Math.ceil(n * 1.5));
+        return;
+    }
 
-		for(int ixTemplate = 0; ixTemplate < bpt.size(); ixTemplate++){
-			ItemsetRec irLeft = new ItemsetRec(irParaParent.size());
-			ItemsetRec irRigh = new ItemsetRec(irParaParent.size());
-			Byte[] naTemp = bpt.get(ixTemplate);
-			for(int i = 0; i<naTemp.length; i++){
-				if(naTemp[i] == 0){
-					irLeft.add(irParaParent.get(i));
-				}
-				else{
-					irRigh.add(irParaParent.get(i));
-				}
-			}//for(int i = 0; i<naTemp.length; i++)
-			BinPartition bp = new BinPartition(irLeft, irRigh);
-			this.add(bp);
-		}
-		
-		
-		return;
-	}
+    public void createAllPartition(ItemsetRec irParaParent,
+                                   BinPartitionTemplate bpt) {
+        assert (irParaParent.size() == bpt.getLength());
+        if (irParaParent.size() != bpt.getLength()) {
+            this.clear();
+            return;
+        }
+
+        for (int ixTemplate = 0; ixTemplate < bpt.size(); ixTemplate++) {
+            ItemsetRec irLeft = new ItemsetRec(irParaParent.size());
+            ItemsetRec irRigh = new ItemsetRec(irParaParent.size());
+            Byte[] naTemp = bpt.get(ixTemplate);
+            for (int i = 0; i < naTemp.length; i++) {
+                if (naTemp[i] == 0) {
+                    irLeft.add(irParaParent.get(i));
+                } else {
+                    irRigh.add(irParaParent.get(i));
+                }
+            }//for(int i = 0; i<naTemp.length; i++)
+            BinPartition bp = new BinPartition(irLeft, irRigh);
+            this.add(bp);
+        }
+
+
+        return;
+    }
 
 }

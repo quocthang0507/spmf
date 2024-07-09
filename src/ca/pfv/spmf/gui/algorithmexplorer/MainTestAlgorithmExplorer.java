@@ -18,18 +18,19 @@ package ca.pfv.spmf.gui.algorithmexplorer;
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
+
 /**
  * This example shows how to run the AlgorithmExplorer tool of SPMF from the source code.
- * @author Philippe Fournier-Viger
  *
+ * @author Philippe Fournier-Viger
  */
 public class MainTestAlgorithmExplorer {
 
 
-	public static void main(String[] args) {
-		AlgorithmExplorer frame = new AlgorithmExplorer(true);
-		frame.setVisible(true);
-	}
-	
-	
+    public static void main(String[] args) {
+        AlgorithmExplorer frame = new AlgorithmExplorer(true);
+        frame.setVisible(true);
+    }
+
+
 }

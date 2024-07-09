@@ -1,7 +1,6 @@
 package ca.pfv.spmf.algorithms.frequentpatterns.echum;
 
 
-
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
@@ -14,28 +13,28 @@ import ca.pfv.spmf.test.MainTestEFIM_saveToFile;
  */
 public class MainTestECHUM_saveToFile {
 
-	public static void main(String [] arg) throws IOException{
+    public static void main(String[] arg) throws IOException {
 
-	
-		String input= fileToPath("DB_Utility.txt");
 
-		String output = "output.txt";
-		
-		// the minutil threshold
-		int minutil = 20; 
-		
-		double minCor=0.1;
+        String input = fileToPath("DB_Utility.txt");
 
-		// Run the  algorithm
-		AlgoECHUM algo = new AlgoECHUM();
-		algo.runAlgorithm(minutil, minCor, input, output, true, Integer.MAX_VALUE, true );
-		// Print statistics
-		algo.printStats();
+        String output = "output.txt";
 
-	}
-	
-	public static String fileToPath(String filename) throws UnsupportedEncodingException{
-		URL url = MainTestEFIM_saveToFile.class.getResource(filename);
-		 return java.net.URLDecoder.decode(url.getPath(),"UTF-8");
-	}
+        // the minutil threshold
+        int minutil = 20;
+
+        double minCor = 0.1;
+
+        // Run the  algorithm
+        AlgoECHUM algo = new AlgoECHUM();
+        algo.runAlgorithm(minutil, minCor, input, output, true, Integer.MAX_VALUE, true);
+        // Print statistics
+        algo.printStats();
+
+    }
+
+    public static String fileToPath(String filename) throws UnsupportedEncodingException {
+        URL url = MainTestEFIM_saveToFile.class.getResource(filename);
+        return java.net.URLDecoder.decode(url.getPath(), "UTF-8");
+    }
 }

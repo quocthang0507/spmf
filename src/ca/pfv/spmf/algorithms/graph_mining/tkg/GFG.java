@@ -4,29 +4,26 @@ import java.util.HashSet;
 import java.util.Set;
 
 // Java implementation of the approach
-class GFG
-{
+class GFG {
 
     static int MAX = 100;
 
     // Stores the vertices
-    static int []store = new int[MAX];
+    static int[] store = new int[MAX];
     static int n;
 
     // Graph
-    static int [][]graph = new int [MAX][MAX];
+    static int[][] graph = new int[MAX][MAX];
 
     // Degree of the vertices
-    static int []d = new int[MAX];
+    static int[] d = new int[MAX];
 
     // Function to check if the given set of vertices
 // in store array is a clique or not
-    static boolean is_clique(int b)
-    {
+    static boolean is_clique(int b) {
         // Run a loop for all the set of edges
         // for the select vertex
-        for (int i = 1; i < b; i++)
-        {
+        for (int i = 1; i < b; i++) {
             for (int j = i + 1; j < b; j++)
 
                 // If any edge is missing
@@ -37,15 +34,13 @@ class GFG
     }
 
     // Function to print the clique
-    static void print(int n)
-    {
+    static void print(int n) {
         for (int i = 1; i < n; i++)
             System.out.print(store[i] + " ");
         System.out.print(", ");
     }
 
-    static Set<Integer> createClique(int n)
-    {
+    static Set<Integer> createClique(int n) {
         Set<Integer> clique = new HashSet<Integer>();
         for (int i = 1; i < n; i++)
             clique.add(store[i]);
@@ -53,14 +48,12 @@ class GFG
     }
 
     // Function to find all the cliques of size s
-    static void findCliques(int i, int l, int s, Set<Set<Integer>> cliques)
-    {
+    static void findCliques(int i, int l, int s, Set<Set<Integer>> cliques) {
         // Check if any vertices from i+1 can be inserted
         for (int j = i + 1; j <= n - (s - l); j++)
 
             // If the degree of the graph is sufficient
-            if (d[j] >= s - 1)
-            {
+            if (d[j] >= s - 1) {
 
                 // Add the vertex to store
                 store[l] = j;
@@ -90,12 +83,12 @@ class GFG
         Set<Set<Integer>> cliques = new HashSet<Set<Integer>>();
         graph = new int[g.vertices.length][g.vertices.length];
         d = new int[g.vertices.length];
-        for (Vertex v: g.getAllVertices()) {
+        for (Vertex v : g.getAllVertices()) {
             if (v.getLabel() != vertexLabel) {
                 continue;
             }
 
-            for (Edge e: v.getEdgeList()) {
+            for (Edge e : v.getEdgeList()) {
                 if (e.getEdgeLabel() != edgeLabel) {
                     continue;
                 }
@@ -121,20 +114,18 @@ class GFG
     }
 
     // Driver code
-    public static void main(String[] args)
-    {
-        int edges[][] = { { 1, 2 },
-                { 2, 3 },
-                { 3, 1 },
-                { 4, 3 },
-                { 4, 5 },
-                { 5, 3 } },
+    public static void main(String[] args) {
+        int edges[][] = {{1, 2},
+                {2, 3},
+                {3, 1},
+                {4, 3},
+                {4, 5},
+                {5, 3}},
                 k = 3;
         int size = edges.length;
         n = 5;
 
-        for (int i = 0; i < size; i++)
-        {
+        for (int i = 0; i < size; i++) {
             graph[edges[i][0]][edges[i][1]] = 1;
             graph[edges[i][1]][edges[i][0]] = 1;
             d[edges[i][0]]++;

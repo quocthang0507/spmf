@@ -9,6 +9,7 @@ import ca.pfv.spmf.algorithms.frequentpatterns.lppm.AlgoLPPMDepth2;
 
 /**
  * This file shows how to run the LPPM_Depth algorithm on an input file.
+ *
  * @author Peng yang
  */
 public class MainTestLPPM_depth {
@@ -29,19 +30,19 @@ public class MainTestLPPM_depth {
         // whether use the OTS strategy (Only using Timestamps of Single items)
         boolean useOTS = false;
 
-        if(useOTS){
+        if (useOTS) {
             AlgoLPPMDepth1 algo = new AlgoLPPMDepth1();
-            algo.runAlgorithm(inputFile, outputFile,maxPer,minDur,maxSoPer,self_increment);
+            algo.runAlgorithm(inputFile, outputFile, maxPer, minDur, maxSoPer, self_increment);
             algo.printStats();
-        }else {
+        } else {
             AlgoLPPMDepth2 algo = new AlgoLPPMDepth2();
-            algo.runAlgorithm(inputFile, outputFile,maxPer,minDur,maxSoPer,self_increment);
+            algo.runAlgorithm(inputFile, outputFile, maxPer, minDur, maxSoPer, self_increment);
             algo.printStats();
         }
     }
 
     public static String fileToPath(String filename) throws UnsupportedEncodingException {
         URL url = MainTestLPPM_breadth.class.getResource(filename);
-        return java.net.URLDecoder.decode(url.getPath(),"UTF-8");
+        return java.net.URLDecoder.decode(url.getPath(), "UTF-8");
     }
 }

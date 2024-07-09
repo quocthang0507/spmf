@@ -10,15 +10,15 @@ import ca.pfv.spmf.algorithms.graph_mining.tkg.AlgoCGSPANMNI;
 /**
  * This class describes the CGSPAN algorithm parameters when MNI threshold is used. It is designed to be used by the graphical and command line interface.
  *
- * @see AlgoCGSPANMNI
  * @author Zevin Shaul et al.
+ * @see AlgoCGSPANMNI
  */
 public class DescriptionAlgoCGSPANMNI extends DescriptionOfAlgorithm {
 
     /**
      * Default constructor
      */
-    public DescriptionAlgoCGSPANMNI(){
+    public DescriptionAlgoCGSPANMNI() {
     }
 
     @Override
@@ -45,41 +45,41 @@ public class DescriptionAlgoCGSPANMNI extends DescriptionOfAlgorithm {
         int maxNumberOfEdges = Integer.MAX_VALUE;
 
         // The maximum number of edges for frequent subgraph patterns
-        if (parameters.length >=2 && "".equals(parameters[1]) == false) {
+        if (parameters.length >= 2 && "".equals(parameters[1]) == false) {
             maxNumberOfEdges = getParamAsInteger(parameters[1]);
         }
 
         // If true, single frequent vertices will be output
         boolean outputSingleFrequentVertices = true;
 
-        if (parameters.length >=3 && "".equals(parameters[2]) == false) {
+        if (parameters.length >= 3 && "".equals(parameters[2]) == false) {
             outputSingleFrequentVertices = getParamAsBoolean(parameters[2]);
         }
 
         // If true, a dot file will be output for visualization using GraphViz
         boolean outputDotFile = false;
 
-        if (parameters.length >=4 && "".equals(parameters[3]) == false) {
+        if (parameters.length >= 4 && "".equals(parameters[3]) == false) {
             outputDotFile = getParamAsBoolean(parameters[3]);
         }
 
         // Output the ids of graph containing each frequent subgraph
         boolean outputGraphIds = true;
 
-        if (parameters.length >=5 && "".equals(parameters[4]) == false) {
+        if (parameters.length >= 5 && "".equals(parameters[4]) == false) {
             outputGraphIds = getParamAsBoolean(parameters[4]);
         }
 
         // For the detection of failure
         boolean detectFailure = false;
 
-        if (parameters.length >=6 && "".equals(parameters[5]) == false) {
+        if (parameters.length >= 6 && "".equals(parameters[5]) == false) {
             detectFailure = getParamAsBoolean(parameters[5]);
         }
 
         // For the detection of failure
         boolean outputDebug = false;
-        if (parameters.length >=7 && "".equals(parameters[6]) == false) {
+        if (parameters.length >= 7 && "".equals(parameters[6]) == false) {
             outputDebug = getParamAsBoolean(parameters[6]);
         }
 
@@ -104,7 +104,7 @@ public class DescriptionAlgoCGSPANMNI extends DescriptionOfAlgorithm {
         parameters[3] = new DescriptionOfParameter("Output DOT file", "(e.g. false)", Boolean.class, true);
         parameters[4] = new DescriptionOfParameter("Output Graph IDs", "(e.g. true)", Boolean.class, true);
         parameters[5] = new DescriptionOfParameter("Failure dectection", "(e.g. true)", Boolean.class, true);
-        parameters[6] = new DescriptionOfParameter("Output Debug Info", "(e.g. false)", Boolean.class,  true);
+        parameters[6] = new DescriptionOfParameter("Output Debug Info", "(e.g. false)", Boolean.class, true);
         return parameters;
     }
 
@@ -115,15 +115,16 @@ public class DescriptionAlgoCGSPANMNI extends DescriptionOfAlgorithm {
 
     @Override
     public String[] getInputFileTypes() {
-        return new String[]{"Database of instances","Graph database", "Labeled graph database"};
+        return new String[]{"Database of instances", "Graph database", "Labeled graph database"};
     }
 
     @Override
     public String[] getOutputFileTypes() {
         return new String[]{"Patterns", "Subgraphs", "Frequent subgraphs"};
     }
-	@Override
-	public AlgorithmType getAlgorithmType() {
-		return AlgorithmType.DATA_MINING;
-	}
+
+    @Override
+    public AlgorithmType getAlgorithmType() {
+        return AlgorithmType.DATA_MINING;
+    }
 }

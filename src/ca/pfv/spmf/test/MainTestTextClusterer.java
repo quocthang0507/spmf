@@ -8,24 +8,25 @@ import ca.pfv.spmf.algorithms.clustering.text_clusterer.TextClusterAlgo;
 
 /**
  * Example of how to use the Text Clusterer from the source code
+ *
  * @author Sabarish Raghu (Copyright 2015)
  */
 public class MainTestTextClusterer {
 
-	public static void main(String [] arg) throws IOException{
+    public static void main(String[] arg) throws IOException {
 
-		String input = fileToPath("input_text_clustering.txt");  
-		String output = "output.txt";
-		boolean performStemming = true;
-		boolean removeStopWords = true;
+        String input = fileToPath("input_text_clustering.txt");
+        String output = "output.txt";
+        boolean performStemming = true;
+        boolean removeStopWords = true;
 
-		TextClusterAlgo algo = new TextClusterAlgo();
-		algo.runAlgorithm(input, output, performStemming, removeStopWords);
-		algo.printStatistics();
-	}
+        TextClusterAlgo algo = new TextClusterAlgo();
+        algo.runAlgorithm(input, output, performStemming, removeStopWords);
+        algo.printStatistics();
+    }
 
-	public static String fileToPath(String filename) throws UnsupportedEncodingException{
-		URL url = MainTestTextClusterer.class.getResource(filename);
-		 return java.net.URLDecoder.decode(url.getPath(),"UTF-8");
-	}
+    public static String fileToPath(String filename) throws UnsupportedEncodingException {
+        URL url = MainTestTextClusterer.class.getResource(filename);
+        return java.net.URLDecoder.decode(url.getPath(), "UTF-8");
+    }
 }

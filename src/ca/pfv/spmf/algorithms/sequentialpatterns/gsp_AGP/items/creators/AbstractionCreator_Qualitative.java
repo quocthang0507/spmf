@@ -26,21 +26,21 @@ import ca.pfv.spmf.algorithms.sequentialpatterns.gsp_AGP.items.patterns.PatternC
 
 /**
  * This class is the implementation of a creator of a qualitative abstraction.
- *
+ * <p>
  * Copyright Antonio Gomariz Peñalver 2013
- *
+ * <p>
  * This file is part of the SPMF DATA MINING SOFTWARE
  * (http://www.philippe-fournier-viger.com/spmf).
- *
+ * <p>
  * SPMF is free software: you can redistribute it and/or modify it under the
  * terms of the GNU General Public License as published by the Free Software
  * Foundation, either version 3 of the License, or (at your option) any later
  * version.
- *
+ * <p>
  * SPMF is distributed in the hope that it will be useful, but WITHOUT ANY
  * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
  * A PARTICULAR PURPOSE. See the GNU General Public License for more details.
- *
+ * <p>
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  *
@@ -66,6 +66,10 @@ public class AbstractionCreator_Qualitative implements AbstractionCreator {
             instance = new AbstractionCreator_Qualitative();
         }
         return instance;
+    }
+
+    public static void sclear() {
+        instance = null;
     }
 
     /**
@@ -142,11 +146,11 @@ public class AbstractionCreator_Qualitative implements AbstractionCreator {
     }
 
     /**
-     * It returns the subpattern obtained by removing an item 
-     *  at a given index in a pattern.
+     * It returns the subpattern obtained by removing an item
+     * at a given index in a pattern.
      *
      * @param extension The pattern on which we will get a subpattern
-     * @param index the element to remove from the given pattern
+     * @param index     the element to remove from the given pattern
      * @return the resulting subpattern
      */
     @Override
@@ -249,10 +253,6 @@ public class AbstractionCreator_Qualitative implements AbstractionCreator {
         instance = null;
     }
 
-    public static void sclear() {
-        instance = null;
-    }
-
     /**
      * Method that creates an abstraction depending of two time values. The
      * abstraction will be true if both times are the same, otherwise it will be
@@ -278,15 +278,15 @@ public class AbstractionCreator_Qualitative implements AbstractionCreator {
      * index>. The method used to find the item it depends on how the relations,
      * between the current item and the previous one, are
      *
-     * @param sequence The sequence where we want to find the item
-     * @param itemPair Item to find
-     * @param absPair abstraction of the item to find
-     * @param previousAbs Previous abstraction in the pattern of this item
-     * @param itemsetIndex Itemset index that the current item has
-     * @param itemIndex Item index that the current item has.
+     * @param sequence             The sequence where we want to find the item
+     * @param itemPair             Item to find
+     * @param absPair              abstraction of the item to find
+     * @param previousAbs          Previous abstraction in the pattern of this item
+     * @param itemsetIndex         Itemset index that the current item has
+     * @param itemIndex            Item index that the current item has.
      * @param previousItemsetIndex Itemset index of the previous item in the
-     * pattern
-     * @param previousItemIndex Item index of the previous item in the pattern
+     *                             pattern
+     * @param previousItemIndex    Item index of the previous item in the pattern
      * @return The position where the item is
      */
     public int[] findPositionOfItemInSequence(Sequence sequence, Item itemPair, Abstraction_Generic absPair, Abstraction_Generic previousAbs, int itemsetIndex, int itemIndex, int previousItemsetIndex, int previousItemIndex) {
@@ -322,17 +322,15 @@ public class AbstractionCreator_Qualitative implements AbstractionCreator {
      * (b c) < d, and pattern2=(b c) < d < e, we are interested in checking if
      * the subpattern of pattern1, obtaining by suppressing the first item, is
      * equal to the subpattern of pattern2 that is obtained by removing its last
-     * item. I.e., 
-     * p1 = a < (b c) < d 
-     * p2 = (b c) < d < e 
-     * and we want two know if the central part of both pattern is the same. 
+     * item. I.e.,
+     * p1 = a < (b c) < d
+     * p2 = (b c) < d < e
+     * and we want two know if the central part of both pattern is the same.
      * If is not, we set different to true.
      *
-
-     *
      * @param creator
-     * @param pattern1 The pattern that plays the role of prefix
-     * @param pattern2 The pattern that plays the rol of suffix
+     * @param pattern1   The pattern that plays the role of prefix
+     * @param pattern2   The pattern that plays the rol of suffix
      * @param minSupport The minimum relative support
      * @return The candidate generated from the two patterns
      */
@@ -356,7 +354,7 @@ public class AbstractionCreator_Qualitative implements AbstractionCreator {
         }
         if (different) {//If we cannot compose any candidate we return null
             return null;
-        } else {/*otherwise, we first check if the junction of their appearing 
+        } else {/*otherwise, we first check if the junction of their appearing
          * sets still has more appearances than the minimum relative support is
          */
             BitSet intersection = (BitSet) pattern1.getAppearingIn().clone();
@@ -374,15 +372,16 @@ public class AbstractionCreator_Qualitative implements AbstractionCreator {
     }
 
     /**
-     * Method to find a candidate in a sequence. It is an intermedium call in 
+     * Method to find a candidate in a sequence. It is an intermedium call in
      * order to separate the implementation and to be able to define different
      * ways of searching.
-     * @param finder finder of candidates
+     *
+     * @param finder    finder of candidates
      * @param candidate The candidate to find
-     * @param sequence The sequence where we want to try finding the candidate
-     * @param k The level in which we are, i.e. the candidate length
-     * @param i the candidate item in which we start
-     * @param position The position list for all the candiate elements
+     * @param sequence  The sequence where we want to try finding the candidate
+     * @param k         The level in which we are, i.e. the candidate length
+     * @param i         the candidate item in which we start
+     * @param position  The position list for all the candiate elements
      */
     public void isCandidateInSequence(CandidateInSequenceFinder finder, Pattern candidate, Sequence sequence, int k, int i, List<int[]> position) {
         finder.isCandidatePresentInTheSequence_qualitative(candidate, sequence, k, 0, position);

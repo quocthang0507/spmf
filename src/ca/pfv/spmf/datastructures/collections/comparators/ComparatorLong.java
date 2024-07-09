@@ -18,23 +18,24 @@ package ca.pfv.spmf.datastructures.collections.comparators;
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
+
 /**
  * This class implements a simple comparators for long values.
- * 
+ *
  * @author Philippe Fournier-Viger
  * @see ListLong
  */
 public class ComparatorLong {
 
-	/**
-	 * Compare two long and return a value >0, =0 or <0 if the first long is bigger,
-	 * equal or smaller than the second long
-	 * 
-	 * @param num1 the first long
-	 * @param num2 the second long
-	 * @return the comparison value
-	 */
-	public long compare(long num1, long num2) {
-		return num1 - num2;
-	}
+    /**
+     * Compare two long and return a value >0, =0 or <0 if the first long is bigger,
+     * equal or smaller than the second long
+     *
+     * @param num1 the first long
+     * @param num2 the second long
+     * @return the comparison value
+     */
+    public long compare(long num1, long num2) {
+        return num1 - num2;
+    }
 }

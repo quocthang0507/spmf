@@ -4,39 +4,40 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-/**Inspired in SPMF Implementation of a sequence.
+/**
+ * Inspired in SPMF Implementation of a sequence.
  * A sequence is defined as a list of itemsets and can have an identifier.
- * 
+ * <p>
  * Copyright Antonio Gomariz Peñalver 2013
- * 
+ * <p>
  * This file is part of the SPMF DATA MINING SOFTWARE
  * (http://www.philippe-fournier-viger.com/spmf).
- *
+ * <p>
  * SPMF is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- *
+ * <p>
  * SPMF is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- *
+ * <p>
  * You should have received a copy of the GNU General Public License
  * along with SPMF.  If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  * @author agomariz
  */
 public class Sequence {
 
     /**
-     * Counter that has the total items contained in the sequence.
-     */
-    private int numberOfItems = 0;
-    /**
      * Itemsets that compose the sequence
      */
     private final List<Itemset> itemsets = new ArrayList<Itemset>();
+    /**
+     * Counter that has the total items contained in the sequence.
+     */
+    private int numberOfItems = 0;
     /**
      * Sequence identifier
      */
@@ -44,6 +45,7 @@ public class Sequence {
 
     /**
      * Standard constructor for a sequence
+     *
      * @param id The sequence identifier
      */
     public Sequence(int id) {
@@ -52,6 +54,7 @@ public class Sequence {
 
     /**
      * It adds an itemset in the last position of the sequence
+     *
      * @param itemset the itemset to add
      */
     public void addItemset(Itemset itemset) {
@@ -61,8 +64,9 @@ public class Sequence {
 
     /**
      * It adds an item in the specified itemset of the sequence
+     *
      * @param indexItemset Itemset index where we want to insert the item
-     * @param item The item that we want to insert
+     * @param item         The item that we want to insert
      */
     public void addItem(int indexItemset, Item item) {
         itemsets.get(indexItemset).addItem(item);
@@ -71,6 +75,7 @@ public class Sequence {
 
     /**
      * It removes the specified itemset from the sequence
+     *
      * @param indexItemset Itemset index of itemset that we want to remove
      * @return the removed itemset
      */
@@ -82,8 +87,9 @@ public class Sequence {
 
     /**
      * It removes the specified item from the specified itemset in the sequence
+     *
      * @param indexItemset Itemset index from where we want to remove the item
-     * @param indexItem Item index that we want to remove
+     * @param indexItem    Item index that we want to remove
      * @return the removed item
      */
     public Item remove(int indexItemset, int indexItem) {
@@ -93,6 +99,7 @@ public class Sequence {
 
     /**
      * It clones a sequence
+     *
      * @return the clone sequence
      */
     public Sequence cloneSequence() {
@@ -105,6 +112,7 @@ public class Sequence {
 
     /**
      * Get the string representation of this sequence
+     *
      * @return the string representation
      */
     @Override
@@ -126,6 +134,7 @@ public class Sequence {
 
     /**
      * It returns the sequence ID
+     *
      * @return the sequence ID
      */
     public int getId() {
@@ -134,6 +143,7 @@ public class Sequence {
 
     /**
      * Get the list of itemsets of this sequence
+     *
      * @return the list of itemsets
      */
     public List<Itemset> getItemsets() {
@@ -142,6 +152,7 @@ public class Sequence {
 
     /**
      * Get the itemset of this sequence at a given position.
+     *
      * @param index the index of the itemset
      * @return the itemset
      */
@@ -151,6 +162,7 @@ public class Sequence {
 
     /**
      * It returns the number of itemsets that the sequence has
+     *
      * @return the number of itemsets
      */
     public int size() {
@@ -159,6 +171,7 @@ public class Sequence {
 
     /**
      * It returns the number of items that the sequence has
+     *
      * @return the number of items
      */
     public int length() {
@@ -166,17 +179,19 @@ public class Sequence {
     }
 
     /**
-     * It returns the time length of the sequence, i.e. the timestamp of the 
+     * It returns the time length of the sequence, i.e. the timestamp of the
      * last itemset minus the timestamp of the first itemset
+     *
      * @return the time length
      */
     public long getTimeLength() {
         return itemsets.get(itemsets.size() - 1).getTimestamp() - itemsets.get(0).getTimestamp();
     }
-    
+
     /**
      * Set the sequence ID of this sequence
-     * @param id  the sequence ID
+     *
+     * @param id the sequence ID
      */
     public void setID(int id) {
         this.id = id;
@@ -186,9 +201,10 @@ public class Sequence {
 class comparatorTimestamps implements Comparator<Itemset> {
     /**
      * Comparator class that compares two itemsets by timestamp.
+     *
      * @param o1
      * @param o2
-     * @return 
+     * @return
      */
     @Override
     public int compare(Itemset o1, Itemset o2) {

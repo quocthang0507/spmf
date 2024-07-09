@@ -1,4 +1,5 @@
 package ca.pfv.spmf.algorithms.graph_mining.aerminer;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -9,34 +10,44 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 /* This file is copyright (c) 2020 by Ganghuan He
-* 
-* This file is part of the SPMF DATA MINING SOFTWARE
-* (http://www.philippe-fournier-viger.com/spmf).
-* 
-* SPMF is free software: you can redistribute it and/or modify it under the
-* terms of the GNU General Public License as published by the Free Software
-* Foundation, either version 3 of the License, or (at your option) any later
-* version.
-* 
-* SPMF is distributed in the hope that it will be useful, but WITHOUT ANY
-* WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
-* A PARTICULAR PURPOSE. See the GNU General Public License for more details.
-* You should have received a copy of the GNU General Public License along with
-* SPMF. If not, see <http://www.gnu.org/licenses/>.
-*/
+ *
+ * This file is part of the SPMF DATA MINING SOFTWARE
+ * (http://www.philippe-fournier-viger.com/spmf).
+ *
+ * SPMF is free software: you can redistribute it and/or modify it under the
+ * terms of the GNU General Public License as published by the Free Software
+ * Foundation, either version 3 of the License, or (at your option) any later
+ * version.
+ *
+ * SPMF is distributed in the hope that it will be useful, but WITHOUT ANY
+ * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
+ * A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+ * You should have received a copy of the GNU General Public License along with
+ * SPMF. If not, see <http://www.gnu.org/licenses/>.
+ */
+
 /**
  * To read the input graph
- * @see AERMiner
+ *
  * @author Ganghuan He 2020
+ * @see AERMiner
  */
 public class ReadGraph {
-    /** indicate whether to store all attribute values as type of double **/
+    /**
+     * indicate whether to store all attribute values as type of double
+     **/
     private static boolean ALLASDOUBLE = true;
-    /** set maximal number of attribute */
+    /**
+     * set maximal number of attribute
+     */
     private static int TOTAL_NUM_ATTR = ParametersSettingAERMiner.TOTAL_NUM_ATTR;
-    /** store path of file that record attributes of vertices each time */
+    /**
+     * store path of file that record attributes of vertices each time
+     */
     private static String ATTR_FILE_PATH = ParametersSettingAERMiner.ATTR_FILE_PATH;
-    /** store path of file that record edges of vertices each time */
+    /**
+     * store path of file that record edges of vertices each time
+     */
     private static String EDGE_FILE_PATH = ParametersSettingAERMiner.EDGE_FILE_PATH;
 
     public static void main(String[] args) throws IOException {
@@ -44,8 +55,6 @@ public class ReadGraph {
 //        readAttrMapping();
         statGraph();
     }
-
-
 
 
     public static void statGraph() throws IOException {
@@ -56,17 +65,17 @@ public class ReadGraph {
         int numVertices = dyAG.get(0).getVerNum();
         int totalCount4E = 0;
         for (Entry<Integer, AttributedGraph> entry : dyAG.entrySet()) {
-        	Integer i = entry.getKey();
-        	
+            Integer i = entry.getKey();
+
             AttributedGraph aG = dyAG.get(i);
-            for (Map.Entry<Integer, Set<Integer>> edgeLinkEntry: aG.getEdgesMap().entrySet()) {
+            for (Map.Entry<Integer, Set<Integer>> edgeLinkEntry : aG.getEdgesMap().entrySet()) {
                 totalCount4E += edgeLinkEntry.getValue().size();
             }
         }
         StringBuilder sb = new StringBuilder();
         sb.append("total timestamps: ").append(numTimestamps);
         sb.append("\ntotal vertices: ").append(numVertices);
-        sb.append("\naverage edges for each vertex each timestamp: ").append(1.0 * totalCount4E/(numTimestamps * numVertices));
+        sb.append("\naverage edges for each vertex each timestamp: ").append(1.0 * totalCount4E / (numTimestamps * numVertices));
         System.out.println(sb.toString());
     }
 
@@ -85,7 +94,7 @@ public class ReadGraph {
 
     }
 
-    private static void readEdges(Map<Integer,AttributedGraph> DyAG) throws IOException {
+    private static void readEdges(Map<Integer, AttributedGraph> DyAG) throws IOException {
         TOTAL_NUM_ATTR = ParametersSettingAERMiner.TOTAL_NUM_ATTR;
         ATTR_FILE_PATH = ParametersSettingAERMiner.ATTR_FILE_PATH;
         EDGE_FILE_PATH = ParametersSettingAERMiner.EDGE_FILE_PATH;
@@ -108,7 +117,7 @@ public class ReadGraph {
     }
 
 
-    private static void readAttributes(Map<Integer,AttributedGraph> DyAG) throws IOException {
+    private static void readAttributes(Map<Integer, AttributedGraph> DyAG) throws IOException {
         //add vertices and attributes for an empty DyAG according to file "attributes.txt"
         ATTR_FILE_PATH = ParametersSettingAERMiner.ATTR_FILE_PATH;
         BufferedReader brAttr = new BufferedReader(new FileReader(ATTR_FILE_PATH));
@@ -119,7 +128,7 @@ public class ReadGraph {
             //if it indicate a new attributed graph
             if (line1.startsWith("T")) {
                 AttributedGraph aG = new AttributedGraph(count);
-                while ((line1 = brAttr.readLine()) != null && ! line1.startsWith("T")) {
+                while ((line1 = brAttr.readLine()) != null && !line1.startsWith("T")) {
                     attrLineProcess(aG, line1);
                 }
                 DyAG.put(count, aG);
@@ -131,7 +140,8 @@ public class ReadGraph {
 
     /**
      * This method process each edge line from "graph - Copie.txt" to add edges
-     * @param aG the attributed graph
+     *
+     * @param aG   the attributed graph
      * @param line the edge line to be processed
      */
     private static void edgeLineProcess(AttributedGraph aG, String line) {
@@ -150,7 +160,8 @@ public class ReadGraph {
 
     /**
      * This method process each attribute line from "attributes.txt" to create vertex and add it to DyAG
-     * @param aG the attributed graph associated with this line
+     *
+     * @param aG   the attributed graph associated with this line
      * @param line the attribute line to be processed
      */
     private static void attrLineProcess(AttributedGraph aG, String line) {

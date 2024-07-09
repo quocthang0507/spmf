@@ -23,25 +23,25 @@ import ca.pfv.spmf.algorithms.sequentialpatterns.prefixSpan_AGP.savers.Saver;
  * This is an the real execution of PrefixSpan algorithm.
  * The main methods of this class are called from class AlgoPrefixSpan_AGP, and
  * the main loop of the algorithm is executed here.
- * 
- * NOTE: This implementation saves the pattern  to a file as soon 
+ * <p>
+ * NOTE: This implementation saves the pattern  to a file as soon
  * as they are found or can keep the pattern into memory, depending
  * on what the user choose.
- *
+ * <p>
  * Copyright Antonio Gomariz Peñalver 2013
- *
+ * <p>
  * This file is part of the SPMF DATA MINING SOFTWARE
  * (http://www.philippe-fournier-viger.com/spmf).
- *
+ * <p>
  * SPMF is free software: you can redistribute it and/or modify it under the
  * terms of the GNU General Public License as published by the Free Software
  * Foundation, either version 3 of the License, or (at your option) any later
  * version.
- *
+ * <p>
  * SPMF is distributed in the hope that it will be useful, but WITHOUT ANY
  * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
  * A PARTICULAR PURPOSE. See the GNU General Public License for more details.
- *
+ * <p>
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  *
@@ -77,11 +77,12 @@ class RecursionPrefixSpan_AGP {
 
     /**
      * Standard constructor
+     *
      * @param abstractionCreator the abstraction creator
-     * @param saver The saver for correctly save the results where the user wants
+     * @param saver              The saver for correctly save the results where the user wants
      * @param minSupportAbsolute The absolue minimum support
-     * @param pseudoDatabase The original pseudoSequence database (without frequent items)
-     * @param mapSequenceID Map which match the frequent items with their appearances
+     * @param pseudoDatabase     The original pseudoSequence database (without frequent items)
+     * @param mapSequenceID      Map which match the frequent items with their appearances
      */
     public RecursionPrefixSpan_AGP(AbstractionCreator abstractionCreator, Saver saver, long minSupportAbsolute, PseudoSequenceDatabase pseudoDatabase, Map<Item, BitSet> mapSequenceID) {
         this.abstractionCreator = abstractionCreator;
@@ -93,9 +94,10 @@ class RecursionPrefixSpan_AGP {
 
     /**
      * It executes the actual PrefixSpan Algorithm
+     *
      * @param keepPatterns Flag indicating if the user wants to keep the results
-     * or he is just interested in the number of frequent patterns
-     * @param verbose Flag for debugging purposes
+     *                     or he is just interested in the number of frequent patterns
+     * @param verbose      Flag for debugging purposes
      */
     public void execute(boolean keepPatterns, boolean verbose) {
         //We get all the frequent items and we sort them
@@ -134,10 +136,11 @@ class RecursionPrefixSpan_AGP {
 
     /**
      * It projects the database given as parameter
-     * @param item The item from which we make the projection
-     * @param database The database where we make the projection
+     *
+     * @param item        The item from which we make the projection
+     * @param database    The database where we make the projection
      * @param abstraction Abstraction associated with the item to project
-     * @param firstTime Flag that points out if it the first time that 
+     * @param firstTime   Flag that points out if it the first time that
      * @return The new projected database
      */
     private PseudoSequenceDatabase makePseudoProjections(Item item, PseudoSequenceDatabase database, Abstraction_Generic abstraction, boolean firstTime) {
@@ -147,9 +150,9 @@ class RecursionPrefixSpan_AGP {
         for (int sequenceIndex = 0; sequenceIndex < pseudoSequences.size(); sequenceIndex++) { // for each sequence
             PseudoSequence sequence = pseudoSequences.get(sequenceIndex);
             /* We guess the maximum size that our new projected database can
-             * achieve. If its number of potential sequences is less than the 
+             * achieve. If its number of potential sequences is less than the
              * minimum support, we can stop projecting
-             */ 
+             */
             int potentialSize = newProjectedDatabase.size() + pseudoSequences.size() - sequenceIndex;
             if (potentialSize < minSupportAbsolute) {
                 return null;
@@ -168,7 +171,7 @@ class RecursionPrefixSpan_AGP {
             for (int k = 0; k < sequence.numberOfProjectionsIncluded(); k++) {
                 int sequenceSize = sequence.size(k);
                 // for each itemset of the sequence
-                for (int i = 0; i < sequenceSize; i++) {  
+                for (int i = 0; i < sequenceSize; i++) {
                     // we get the index ofthe given item to project in current the itemset
                     int index = sequence.indexOf(k, i, item);
                     //If the item has been found and either is the first projection or the method compute is true
@@ -189,7 +192,7 @@ class RecursionPrefixSpan_AGP {
                                     //And we add the new projected sequence to the new database
                                     newProjectedDatabase.addSequence(newSequence);
                                 }
-                                /*We set the flag to true, indicating that the 
+                                /*We set the flag to true, indicating that the
                                  * current sequence has been already projected
                                  */
                                 alreadyProjected = true;
@@ -197,8 +200,8 @@ class RecursionPrefixSpan_AGP {
                                 /*If the sequence is already projected and the 
                                 projection point has not been previously used*/
                                 if (projectionsAlreadyMade.add(sequence.getFirstItemset(k) + i)) {
-                                    /*We make another projection in the same 
-                                     * sequence previously projected, adding a 
+                                    /*We make another projection in the same
+                                     * sequence previously projected, adding a
                                      * new projection point*/
                                     newSequence.addProjectionPoint(k, sequence.getRelativeTimeStamp(i, k), sequence, i, index + 1);
                                 }
@@ -209,7 +212,7 @@ class RecursionPrefixSpan_AGP {
                         } else if ((i != sequenceSize - 1)) {
                             //and has not been yet projected
                             if (!alreadyProjected) {
-                                /*We create a new projected sequence starting 
+                                /*We create a new projected sequence starting
                                  * in the next itemset to where the item appeared*/
                                 newSequence = new PseudoSequence(sequence.getRelativeTimeStamp(i, k), sequence, i + 1, 0, k);
                                 //And we count the projection
@@ -221,7 +224,7 @@ class RecursionPrefixSpan_AGP {
                                     //And we add the new projected sequence to the new database
                                     newProjectedDatabase.addSequence(newSequence);
                                 }
-                                /*We set the flag to true, indicating that the 
+                                /*We set the flag to true, indicating that the
                                  * current sequence has been already projected
                                  */
                                 alreadyProjected = true;
@@ -229,8 +232,8 @@ class RecursionPrefixSpan_AGP {
                                 /*If the sequence is already projected and the 
                                 projection point has not been previously used*/
                                 if (projectionsAlreadyMade.add(sequence.getFirstItemset(k) + i)) {
-                                    /*We make another projection in the same 
-                                     * sequence previously projected, adding a 
+                                    /*We make another projection in the same
+                                     * sequence previously projected, adding a
                                      * new projection point*/
                                     newSequence.addProjectionPoint(k, sequence.getRelativeTimeStamp(i, k), sequence, i + 1, 0);
                                 }
@@ -246,13 +249,14 @@ class RecursionPrefixSpan_AGP {
     /**
      * Method that executes the main loop of prefixSpan for all the patterns
      * with a size greater than 1
-     * @param prefix prefix from which we made the projected database and where
-     * the frequent items that we find will be added
-     * @param k size of patterns that are going to be generated
-     * @param context prefix-projected databases
-     * @param keepPatterns flag indicating if we want to keep the output or we 
-     * are interesting in just the number of frequent patterns
-     * @param verbose flag for debuggin purposes
+     *
+     * @param prefix       prefix from which we made the projected database and where
+     *                     the frequent items that we find will be added
+     * @param k            size of patterns that are going to be generated
+     * @param context      prefix-projected databases
+     * @param keepPatterns flag indicating if we want to keep the output or we
+     *                     are interesting in just the number of frequent patterns
+     * @param verbose      flag for debuggin purposes
      */
     private void prefixSpanLoop(Pattern prefix, int k, PseudoSequenceDatabase context, boolean keepPatterns, boolean verbose) {
         // find frequent items that appear in the given pseudosequence database.
@@ -295,6 +299,7 @@ class RecursionPrefixSpan_AGP {
 
     /**
      * It returns the number of frequent patterns.
+     *
      * @return the number of frequent patterns.
      */
     public int numberOfFrequentPatterns() {

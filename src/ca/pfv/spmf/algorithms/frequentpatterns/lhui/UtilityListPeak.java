@@ -16,21 +16,24 @@ package ca.pfv.spmf.algorithms.frequentpatterns.lhui;
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
+
 import java.util.ArrayList;
 
 /**
  * This is an implementation of a utility list as used by PHUI-Miner.
- * 
+ *
  * @author Yimin Zhang, Philippe Fournier-Viger
  * @see AlgoLHUIMiner
  * @see AlgoPHUIMiner
  */
 public class UtilityListPeak extends UtilityListLHUI {
-	public UtilityListPeak(Integer item) {
-		super(item);
-	}
+    /**
+     * peak periods
+     */
+    ArrayList<Period> peak = new ArrayList<Period>();
 
-	/** peak periods */
-	ArrayList<Period> peak = new ArrayList<Period>();
+    public UtilityListPeak(Integer item) {
+        super(item);
+    }
 
 }

@@ -16,21 +16,21 @@ import ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_p.items.patterns.Pattern
  * This is an implementation of a class implementing the Saver interface. By
  * means of these lines, the user choose to keep his patterns in a file whose
  * path is given to this class.
- *
+ * <p>
  * Copyright Antonio Gomariz Peñalver 2013
- *
+ * <p>
  * This file is part of the SPMF DATA MINING SOFTWARE
  * (http://www.philippe-fournier-viger.com/spmf).
- *
+ * <p>
  * SPMF is free software: you can redistribute it and/or modify it under the
  * terms of the GNU General Public License as published by the Free Software
  * Foundation, either version 3 of the License, or (at your option) any later
  * version.
- *
+ * <p>
  * SPMF is distributed in the hope that it will be useful, but WITHOUT ANY
  * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
  * A PARTICULAR PURPOSE. See the GNU General Public License for more details.
- *
+ * <p>
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  *
@@ -38,17 +38,17 @@ import ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_p.items.patterns.Pattern
  */
 public class SaverIntoFile implements Saver {
 
-    private BufferedWriter writer = null;
-    private String path = null;
-
     /**
      * if true, sequences ids will be output for each pattern
      */
     boolean outputSequenceIdentifiers;
-    
+    private BufferedWriter writer = null;
+    private String path = null;
+
     /**
      * Constructor
-     * @param outputFilePath file path for output file
+     *
+     * @param outputFilePath            file path for output file
      * @param outputSequenceIdentifiers if true, sequences ids will be output for each pattern
      */
     public SaverIntoFile(String outputFilePath, boolean outputSequenceIdentifiers) throws IOException {

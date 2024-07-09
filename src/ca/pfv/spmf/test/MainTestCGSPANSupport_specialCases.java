@@ -9,7 +9,7 @@ import ca.pfv.spmf.algorithms.graph_mining.tkg.AlgoCGSPANSupport;
 /**
  * Example of how to use the CGSPAN algorithm
  * from the source code and output the result to a file.
- *
+ * <p>
  * This example shows the five cases where  early termination failure may occur.
  * By activating the early termination failure detection, the complete results can be found.
  * But it is also possible deactivate the detection to obtain a trade-off between completness and speed.
@@ -18,7 +18,7 @@ import ca.pfv.spmf.algorithms.graph_mining.tkg.AlgoCGSPANSupport;
  */
 public class MainTestCGSPANSupport_specialCases {
 
-    public static void main(String [] arg) throws IOException, ClassNotFoundException, InterruptedException {
+    public static void main(String[] arg) throws IOException, ClassNotFoundException, InterruptedException {
 
         // set the input and output file path
         String input = fileToPath("early_termination_failure/reason_1");
@@ -55,8 +55,8 @@ public class MainTestCGSPANSupport_specialCases {
         algo.printStats();
     }
 
-    public static String fileToPath(String filename) throws UnsupportedEncodingException{
+    public static String fileToPath(String filename) throws UnsupportedEncodingException {
         URL url = MainTestGSPAN.class.getResource(filename);
-        return java.net.URLDecoder.decode(url.getPath(),"UTF-8");
+        return java.net.URLDecoder.decode(url.getPath(), "UTF-8");
     }
 }

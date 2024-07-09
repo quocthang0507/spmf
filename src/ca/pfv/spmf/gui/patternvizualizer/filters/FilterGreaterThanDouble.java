@@ -17,58 +17,66 @@ package ca.pfv.spmf.gui.patternvizualizer.filters;
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
+
 /**
  * This class is a filter for selecting only patterns having a double value no less than a given value.
- * 
+ *
  * @author Philippe Fournier-Viger
  */
-public class FilterGreaterThanDouble extends AbstractFilter{
-	/** the given value*/
-	double value;
-	
-	/**
-	 * Constructor
-	 * @param value the given value
-	 * @param columnName the colum the filter is applied to
-	 * @param columnID the index of the column that the filter is applied to
-	 */
-	public FilterGreaterThanDouble(double value, String columnName, int columnID){
-		super(columnName, columnID);
-		this.value = value;
-	}
+public class FilterGreaterThanDouble extends AbstractFilter {
+    /**
+     * the given value
+     */
+    double value;
 
-	/**
-	 * Get the name of this filter
-	 * @return the name
-	 */
-	public static String getFilterGenericName() {
-		return " is no less than:";
-	}
+    /**
+     * Constructor
+     *
+     * @param value      the given value
+     * @param columnName the colum the filter is applied to
+     * @param columnID   the index of the column that the filter is applied to
+     */
+    public FilterGreaterThanDouble(double value, String columnName, int columnID) {
+        super(columnName, columnID);
+        this.value = value;
+    }
 
-	/**
-	 * Get a string representation of this filter including the given value and column name
-	 * @return a string representation of the filter indicating the filter name, given value and column name.
-	 */
-	public String getFilterWithParameterName() {
-		return "\"" + getColumnName() + "\" >= " + value;
-	}
+    /**
+     * Get the name of this filter
+     *
+     * @return the name
+     */
+    public static String getFilterGenericName() {
+        return " is no less than:";
+    }
 
-	/**
-	 * Abstract method to determine if an object should be kept according to the filter
-	 * @param object  the object
-	 * @return true if the object should be kept. Otherwise, false.
-	 */
-	public boolean isKept(Object object) {
-		return ((Double) object) >= value;
-	}
+    /**
+     * Get the Class that this filter is applicable to (e.g. Integer.class)
+     *
+     * @return a Class object
+     */
+    @SuppressWarnings("rawtypes")
+    static Class getApplicableClass() {
+        return Double.class;
+    }
 
-	/**
-	 * Get the Class that this filter is applicable to (e.g. Integer.class)
-	 * @return a Class object
-	 */
-	@SuppressWarnings("rawtypes")
-	static Class getApplicableClass() {
-		return Double.class;
-	}
+    /**
+     * Get a string representation of this filter including the given value and column name
+     *
+     * @return a string representation of the filter indicating the filter name, given value and column name.
+     */
+    public String getFilterWithParameterName() {
+        return "\"" + getColumnName() + "\" >= " + value;
+    }
+
+    /**
+     * Abstract method to determine if an object should be kept according to the filter
+     *
+     * @param object the object
+     * @return true if the object should be kept. Otherwise, false.
+     */
+    public boolean isKept(Object object) {
+        return ((Double) object) >= value;
+    }
 
 }

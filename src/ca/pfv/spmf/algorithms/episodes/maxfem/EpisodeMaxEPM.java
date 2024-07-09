@@ -18,9 +18,10 @@ import ca.pfv.spmf.algorithms.episodes.general.AbstractEpisode;
  *
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  * Copyright Peng Yang, Philippe Fournier-Viger, 2019
  */
+
 /**
  * implement Class of Episode ( serial episode) in complex sequence it means
  * that the episode can contains multiple symbols for one time point
@@ -28,55 +29,57 @@ import ca.pfv.spmf.algorithms.episodes.general.AbstractEpisode;
  * @author Peng Yang
  * @see AlgoMAXFEM
  */
-public class EpisodeMaxEPM extends AbstractEpisode  implements Comparable<EpisodeMaxEPM> {
-	
-	int sumOfEvenItems;
-	int sumOfOddItems;
-	int realsize;
+public class EpisodeMaxEPM extends AbstractEpisode implements Comparable<EpisodeMaxEPM> {
 
-	/**
-	 * Constructor
-	 * @param support the support
-	 */
-	EpisodeMaxEPM(int support) {
-		super(support);
-		realsize = 0;
-	}
+    int sumOfEvenItems;
+    int sumOfOddItems;
+    int realsize;
 
-	/**
-	 * Constructor
-	 * @param events the events
-	 * @param support the support of this episode
-	 */
-	public EpisodeMaxEPM(List<int[]> events, int support) {
-		super(events,support);
-		
-		for(int[] itemset : events) {
-			for(int val : itemset) {
-				if(val % 2 == 0) {
-					sumOfEvenItems+=val;
-				}else {
-					sumOfOddItems+=val;
-				}
-			}
-		}
+    /**
+     * Constructor
+     *
+     * @param support the support
+     */
+    EpisodeMaxEPM(int support) {
+        super(support);
+        realsize = 0;
+    }
 
-		for(int[] itemset : events) {
-			realsize+= itemset.length;
-		}
-	} 
-	
+    /**
+     * Constructor
+     *
+     * @param events  the events
+     * @param support the support of this episode
+     */
+    public EpisodeMaxEPM(List<int[]> events, int support) {
+        super(events, support);
+
+        for (int[] itemset : events) {
+            for (int val : itemset) {
+                if (val % 2 == 0) {
+                    sumOfEvenItems += val;
+                } else {
+                    sumOfOddItems += val;
+                }
+            }
+        }
+
+        for (int[] itemset : events) {
+            realsize += itemset.length;
+        }
+    }
+
     /**
      * Get the size of this episode.
      * Warning: this scans the episode to calculate the size so it should not
      * be called too often.
+     *
      * @return the size.
      */
     public int realSize() {
-    	return realsize;
+        return realsize;
     }
 
-	
 
 //	/**
 //	 * Create an i-extension of this episode
@@ -97,33 +100,32 @@ public class EpisodeMaxEPM extends AbstractEpisode  implements Comparable<Episod
 //	}
 
 
+    /**
+     * Create an s-extension of this episode
+     *
+     * @param flowingEpisodeName the following episode name (set of items)
+     * @param support            the support
+     * @return a new episode that is the s-extension of this episode
+     */
+    public EpisodeMaxEPM sExtension(int[] flowingEpisodeName, int support) {
+        List<int[]> newEvents = new ArrayList<int[]>(events);
+        newEvents.add(flowingEpisodeName);
+        return new EpisodeMaxEPM(newEvents, support);
+    }
 
-	/**
-	 * Create an s-extension of this episode
-	 * @param flowingEpisodeName the following episode name (set of items)
-	 * @param support the support
-	 * @return a new episode that is the s-extension of this episode
-	 */
-	public EpisodeMaxEPM sExtension(int[] flowingEpisodeName, int support) {
-		List<int[]> newEvents = new ArrayList<int[]>(events);
-		newEvents.add(flowingEpisodeName);
-		return new EpisodeMaxEPM(newEvents, support);
-	}
 
-	
-	
-	public int compareTo(EpisodeMaxEPM o) {
-		if(o == this){
-			return 0;
-		}
-		int compare = o.sumOfEvenItems + o.sumOfOddItems
-				- this.sumOfEvenItems - this.sumOfOddItems;
-		if(compare !=0){
-			return compare;
-		}
+    public int compareTo(EpisodeMaxEPM o) {
+        if (o == this) {
+            return 0;
+        }
+        int compare = o.sumOfEvenItems + o.sumOfOddItems
+                - this.sumOfEvenItems - this.sumOfOddItems;
+        if (compare != 0) {
+            return compare;
+        }
 
-		return this.hashCode() - o.hashCode();
-	}
+        return this.hashCode() - o.hashCode();
+    }
 
 
 }

@@ -12,6 +12,7 @@ import ca.pfv.spmf.algorithms.sequentialpatterns.gsp_AGP.items.creators.Abstract
 /**
  * Example of how to use the algorithm GSP, saving the results in the main
  * memory
+ *
  * @author agomariz
  */
 public class MainTestGSP_saveToMemory {
@@ -19,30 +20,30 @@ public class MainTestGSP_saveToMemory {
 
     public static void main(String[] args) throws IOException {
         // Load a sequence database
-        double support = (double)0.5, mingap = 0, maxgap = Integer.MAX_VALUE, windowSize = 0;
+        double support = (double) 0.5, mingap = 0, maxgap = Integer.MAX_VALUE, windowSize = 0;
 
         boolean keepPatterns = true;
-        boolean verbose=false;
-        
+        boolean verbose = false;
+
         // if you set the following parameter to true, the sequence ids of the sequences where
         // each pattern appears will be shown in the result
         boolean outputSequenceIdentifiers = false;
 
         AbstractionCreator abstractionCreator = AbstractionCreator_Qualitative.getInstance();
         SequenceDatabase sequenceDatabase = new SequenceDatabase(abstractionCreator);
-        
+
         sequenceDatabase.loadFile(fileToPath("contextPrefixSpan.txt"), support);
 
-        AlgoGSP algorithm = new AlgoGSP(support, mingap, maxgap, windowSize,abstractionCreator);
+        AlgoGSP algorithm = new AlgoGSP(support, mingap, maxgap, windowSize, abstractionCreator);
 
 
         System.out.println(sequenceDatabase.toString());
 
-        algorithm.runAlgorithm(sequenceDatabase,keepPatterns,verbose,null, outputSequenceIdentifiers);
-        System.out.println(algorithm.getNumberOfFrequentPatterns()+ " frequent pattern found.");
+        algorithm.runAlgorithm(sequenceDatabase, keepPatterns, verbose, null, outputSequenceIdentifiers);
+        System.out.println(algorithm.getNumberOfFrequentPatterns() + " frequent pattern found.");
 
         System.out.println(algorithm.printedOutputToSaveInFile());
-        
+
         //System.out.println(algorithm.printStatistics());
     }
 

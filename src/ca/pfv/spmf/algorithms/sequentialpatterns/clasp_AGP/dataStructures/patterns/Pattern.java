@@ -10,25 +10,25 @@ import ca.pfv.spmf.algorithms.sequentialpatterns.clasp_AGP.dataStructures.creato
 /**
  * Implementation of pattern structure. We define it as a list of pairs <abstraction, item>.
  * Besides, a bitSet appearingIn denotes the sequences where the pattern appears.
- * 
+ * <p>
  * Copyright Antonio Gomariz Peñalver 2013
- * 
+ * <p>
  * This file is part of the SPMF DATA MINING SOFTWARE
  * (http://www.philippe-fournier-viger.com/spmf).
- *
+ * <p>
  * SPMF is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- *
+ * <p>
  * SPMF is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- *
+ * <p>
  * You should have received a copy of the GNU General Public License
  * along with SPMF.  If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  * @author agomariz
  */
 public class Pattern implements Comparable<Pattern> {
@@ -52,7 +52,8 @@ public class Pattern implements Comparable<Pattern> {
 
     /**
      * New pattern from a list of pairs <abstraction, item>
-     * @param elements 
+     *
+     * @param elements
      */
     public Pattern(List<ItemAbstractionPair> elements) {
         this.elements = elements;
@@ -61,7 +62,8 @@ public class Pattern implements Comparable<Pattern> {
 
     /**
      * New pattern from a single pair <abstraction, item>
-     * @param pair 
+     *
+     * @param pair
      */
     public Pattern(ItemAbstractionPair pair) {
         this.elements = new ArrayList<ItemAbstractionPair>();
@@ -71,6 +73,7 @@ public class Pattern implements Comparable<Pattern> {
 
     /**
      * Get the string representation of this pattern
+     *
      * @return the string representation
      */
     @Override
@@ -92,48 +95,49 @@ public class Pattern implements Comparable<Pattern> {
         }
         return result.toString();
     }
-    
+
     /**
      * Get the string representation of this pattern. Adjusted to SPMF format.
+     *
      * @param outputSequenceIdentifiers show the sequence identifiers where the pattern appears if true
      * @return the string representation
      */
     public String toStringToFile(boolean outputSequenceIdentifiers) {
         StringBuilder result = new StringBuilder();
         for (int i = 0; i < elements.size(); i++) {
-            if(i==elements.size()-1){
-                if(i!=0)
+            if (i == elements.size() - 1) {
+                if (i != 0)
                     result.append(elements.get(i).toStringToFile());
                 else
                     result.append(elements.get(i).getItem());
                 result.append(" -1");
-            }
-            else if(i==0){
+            } else if (i == 0) {
                 result.append(elements.get(i).getItem());
-            }else{
+            } else {
                 result.append(elements.get(i).toStringToFile());
             }
-            
+
         }
         result.append(" #SUP: ");
         result.append(getSupport());
         // if the user wants the sequence IDs, we will show them
-        if(outputSequenceIdentifiers) {
-        	result.append(" #SID: ");
-        	for (int i = appearingIn.nextSetBit(0); i >= 0; i = appearingIn.nextSetBit(i+1)) {
-        		result.append(i -1); // BUG FIX: PHILIPPE 2017 - we must decrease ids by 1
-        		result.append(" ");
-        	}
+        if (outputSequenceIdentifiers) {
+            result.append(" #SID: ");
+            for (int i = appearingIn.nextSetBit(0); i >= 0; i = appearingIn.nextSetBit(i + 1)) {
+                result.append(i - 1); // BUG FIX: PHILIPPE 2017 - we must decrease ids by 1
+                result.append(" ");
+            }
         }
         return result.toString();
     }
-    
-    public int getSupport(){
+
+    public int getSupport() {
         return appearingIn.cardinality();
     }
 
     /**
      * It clones a pattern
+     *
      * @return the clone
      */
     public Pattern clonePatron() {
@@ -144,6 +148,7 @@ public class Pattern implements Comparable<Pattern> {
 
     /**
      * It obtains the elements of the pattern
+     *
      * @return the list of elements
      */
     public List<ItemAbstractionPair> getElements() {
@@ -151,7 +156,17 @@ public class Pattern implements Comparable<Pattern> {
     }
 
     /**
+     * Setter method to set the elements of the pattern
+     *
+     * @param elements a list of elements
+     */
+    public void setElements(List<ItemAbstractionPair> elements) {
+        this.elements = elements;
+    }
+
+    /**
      * It obtains the Ith element of the pattern
+     *
      * @param i the position
      * @return the ith element
      */
@@ -168,6 +183,7 @@ public class Pattern implements Comparable<Pattern> {
 
     /**
      * It obtains the last but one element of the pattern
+     *
      * @return the last but one element
      */
     public ItemAbstractionPair getLastButOneElement() {
@@ -178,17 +194,10 @@ public class Pattern implements Comparable<Pattern> {
     }
 
     /**
-     * Setter method to set the elements of the pattern
-     * @param elements a list of elements
-     */
-    public void setElements(List<ItemAbstractionPair> elements) {
-        this.elements = elements;
-    }
-
-    /**
-     * It adds an item with its abstraction in the pattern. The new pair is 
+     * It adds an item with its abstraction in the pattern. The new pair is
      * added in the last position of the pattern.
-     * @param pair 
+     *
+     * @param pair
      */
     public void add(ItemAbstractionPair pair) {
         this.elements.add(pair);
@@ -196,7 +205,8 @@ public class Pattern implements Comparable<Pattern> {
 
     /**
      * It returns the number of items contained in the pattern
-     * @return  the number of items
+     *
+     * @return the number of items
      */
     public int size() {
         return elements.size();
@@ -206,12 +216,13 @@ public class Pattern implements Comparable<Pattern> {
      * Compare this pattern with another.
      * Since we always compare elements which belong to the same equivalence class
      * we only make the comparison of the last items of both patterns.
+     *
      * @param o the other pattern
      * @return 0 if equal, -1 if smaller, otherwise 1
      */
     @Override
     public int compareTo(Pattern o) {
-        return getIthElement(size() - 1).compareTo(o.getIthElement(o.size() - 1)); 
+        return getIthElement(size() - 1).compareTo(o.getIthElement(o.size() - 1));
     }
 
     @Override
@@ -235,6 +246,7 @@ public class Pattern implements Comparable<Pattern> {
 
     /**
      * It informs us if this pattern is a prefix of the argument given pattern.
+     *
      * @param p the pattern
      * @return true if yes, otherwise false
      */
@@ -250,6 +262,7 @@ public class Pattern implements Comparable<Pattern> {
 
     /**
      * It returns the list of sequence IDs where the pattern appears.
+     *
      * @return the list of sequence IDs
      */
     public BitSet getAppearingIn() {
@@ -258,7 +271,8 @@ public class Pattern implements Comparable<Pattern> {
 
     /**
      * it set the list of sequence IDs where the pattern appears.
-     * @param appearingIn 
+     *
+     * @param appearingIn
      */
     public void setAppearingIn(BitSet appearingIn) {
         this.appearingIn = appearingIn;
@@ -271,8 +285,9 @@ public class Pattern implements Comparable<Pattern> {
 
     /**
      * It concatenates the given pair as a last element of the pattern
+     *
      * @param pair the pair
-     * @return  the resulting pattern
+     * @return the resulting pattern
      */
     public Pattern concatenate(ItemAbstractionPair pair) {
         Pattern result = clonePatron();
@@ -282,6 +297,7 @@ public class Pattern implements Comparable<Pattern> {
 
     /**
      * It concatenates the given pattern to the current pattern
+     *
      * @param pattern
      * @return the resulting pattern
      */
@@ -294,8 +310,9 @@ public class Pattern implements Comparable<Pattern> {
     /**
      * It answers if the current Pattern is a subpattern of another one
      * given as parameter.
+     *
      * @param abstractionCreator an abstraction creator
-     * @param p pattern to check if it is a superpattern of the current one
+     * @param p                  pattern to check if it is a superpattern of the current one
      * @return true if it is a subpattern otherwise, false
      */
     public boolean isSubpattern(AbstractionCreator abstractionCreator, Pattern p) {

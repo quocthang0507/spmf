@@ -12,78 +12,78 @@ import ca.pfv.spmf.patterns.cluster.DoubleArray;
 
 /**
  * This class describes the algorithm to visualize a time series.
- * 
- * @see InstanceViewer
+ *
  * @author Philippe Fournier-Viger
+ * @see InstanceViewer
  */
 public class DescriptionAlgoInstanceViewer extends DescriptionOfAlgorithm {
 
-	/**
-	 * Default constructor
-	 */
-	public DescriptionAlgoInstanceViewer(){
-	}
+    /**
+     * Default constructor
+     */
+    public DescriptionAlgoInstanceViewer() {
+    }
 
-	@Override
-	public String getName() {
-		return "Vizualize_instances";
-	}
+    @Override
+    public String getName() {
+        return "Vizualize_instances";
+    }
 
-	@Override
-	public String getAlgorithmCategory() {
-		return "CLUSTERING";
-	}
+    @Override
+    public String getAlgorithmCategory() {
+        return "CLUSTERING";
+    }
 
-	@Override
-	public String getURLOfDocumentation() {
-		return "http://www.philippe-fournier-viger.com/spmf/InstanceViewer.php";
-	}
+    @Override
+    public String getURLOfDocumentation() {
+        return "http://www.philippe-fournier-viger.com/spmf/InstanceViewer.php";
+    }
 
-	@Override
-	public void runAlgorithm(String[] parameters, String inputFile, String outputFile) throws IOException {
+    @Override
+    public void runAlgorithm(String[] parameters, String inputFile, String outputFile) throws IOException {
 
-		String separator;
-		if (parameters.length > 0 && "".equals(parameters[0]) == false) {
-			separator = getParamAsString(parameters[0]);
-		}else{
-			separator = " ";
-		}
-		
-		AlgoInstanceFileReader reader = new AlgoInstanceFileReader();
-		List<DoubleArray> instances = reader.runAlgorithm(inputFile, separator);
-		List<String> attributes = reader.getAttributeNames();
+        String separator;
+        if (parameters.length > 0 && "".equals(parameters[0]) == false) {
+            separator = getParamAsString(parameters[0]);
+        } else {
+            separator = " ";
+        }
 
-		InstanceViewer viewer = new InstanceViewer(instances, attributes);
-		viewer.setVisible(true);
-	}
+        AlgoInstanceFileReader reader = new AlgoInstanceFileReader();
+        List<DoubleArray> instances = reader.runAlgorithm(inputFile, separator);
+        List<String> attributes = reader.getAttributeNames();
 
-	@Override
-	public DescriptionOfParameter[] getParametersDescription() {
-        
-		DescriptionOfParameter[] parameters = new DescriptionOfParameter[1];
-		parameters[0] = new DescriptionOfParameter("separator", "(e.g. ',' , default: ' ')", String.class, true);
-		return parameters;
-	}
+        InstanceViewer viewer = new InstanceViewer(instances, attributes);
+        viewer.setVisible(true);
+    }
 
-	@Override
-	public String getImplementationAuthorNames() {
-		return "Philippe Fournier-Viger";
-	}
+    @Override
+    public DescriptionOfParameter[] getParametersDescription() {
 
-	@Override
-	public String[] getInputFileTypes() {
-		return new String[]{"Database of instances", "Database of double vectors"};
-	}
+        DescriptionOfParameter[] parameters = new DescriptionOfParameter[1];
+        parameters[0] = new DescriptionOfParameter("separator", "(e.g. ',' , default: ' ')", String.class, true);
+        return parameters;
+    }
 
-	@Override
-	public String[] getOutputFileTypes() {
-		return null;
-	}
+    @Override
+    public String getImplementationAuthorNames() {
+        return "Philippe Fournier-Viger";
+    }
 
-	@Override
-	public AlgorithmType getAlgorithmType() {
-		return AlgorithmType.DATA_VIEWER;
-	}
-	
-	
+    @Override
+    public String[] getInputFileTypes() {
+        return new String[]{"Database of instances", "Database of double vectors"};
+    }
+
+    @Override
+    public String[] getOutputFileTypes() {
+        return null;
+    }
+
+    @Override
+    public AlgorithmType getAlgorithmType() {
+        return AlgorithmType.DATA_VIEWER;
+    }
+
+
 }

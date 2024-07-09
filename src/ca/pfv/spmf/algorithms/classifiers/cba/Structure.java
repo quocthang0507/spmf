@@ -1,19 +1,19 @@
 /**
  * This file is part of SPMF data mining library.
  * It is adapted from some GPL code obtained from the LAC library, which used some SPMF code.
- *
+ * <p>
  * Copyright (C) SPMF, LAC
- *   
+ * <p>
  * LAC is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- *
+ * <p>
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details. You should have 
- * received a copy of the GNU General Public License along with 
+ * GNU General Public License for more details. You should have
+ * received a copy of the GNU General Public License along with
  * this program.  If not, see http://www.gnu.org/licenses/
  */
 package ca.pfv.spmf.algorithms.classifiers.cba;
@@ -45,7 +45,7 @@ public class Structure {
 
     /**
      * Constructor
-     * 
+     *
      * @param idInstance Identifier for the current instance
      * @param klass      klass being represented at the current structure
      * @param indexCRule index for the cRule being represented
@@ -60,7 +60,7 @@ public class Structure {
 
     /**
      * Get the index for the current instance
-     * 
+     *
      * @return the index for the instance
      */
     public int getdIdInstance() {
@@ -69,7 +69,7 @@ public class Structure {
 
     /**
      * Get the class for the current instance
-     * 
+     *
      * @return the klass
      */
     public short getKlass() {
@@ -78,7 +78,7 @@ public class Structure {
 
     /**
      * Get index for the cRule
-     * 
+     *
      * @return the index for the cRule
      */
     public int getIndexCRule() {
@@ -87,7 +87,7 @@ public class Structure {
 
     /**
      * Get index for the wRule
-     * 
+     *
      * @return the index for the wRule
      */
     public int getIndexWRule() {

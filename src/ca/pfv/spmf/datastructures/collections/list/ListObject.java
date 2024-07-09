@@ -20,154 +20,158 @@ import ca.pfv.spmf.datastructures.collections.comparators.ComparatorObject;
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
+
 /**
  * Abstract class defining the operations that a List of Object should have.
- * @author Philippe Fournier-Viger 2023
  *
  * @param <T> the type of objects stored in the list.
+ * @author Philippe Fournier-Viger 2023
  */
 public abstract class ListObject<T> {
 
-	/**
-	 * Check if this list is empty
-	 * 
-	 * @return true if empty. Otherwise, false
-	 */
-	public abstract boolean isEmpty();
+    /**
+     * Check if this list is empty
+     *
+     * @return true if empty. Otherwise, false
+     */
+    public abstract boolean isEmpty();
 
-	/**
-	 * Clear the structure
-	 */
-	public abstract void clear();
+    /**
+     * Clear the structure
+     */
+    public abstract void clear();
 
-	/**
-	 * Add an element at a given position
-	 * 
-	 * @param element the element
-	 */
-	public abstract void add(T element);
-	
-	/** Add all elements from a list to this list
-	 * 
-	 * @param list another list
-	 */
-	public void addAll(ListObject<T> list) {
-		for(int z = 0; z < list.size(); z++) {
-			this.add(list.get(z));
-		}
-	}
+    /**
+     * Add an element at a given position
+     *
+     * @param element the element
+     */
+    public abstract void add(T element);
 
-	/**
-	 * Set the value at a given position
-	 * 
-	 * @param index the position
-	 * @param value the value
-	 */
-	public abstract void set(int index, T value);
+    /**
+     * Add all elements from a list to this list
+     *
+     * @param list another list
+     */
+    public void addAll(ListObject<T> list) {
+        for (int z = 0; z < list.size(); z++) {
+            this.add(list.get(z));
+        }
+    }
 
-	/**
-	 * Remove the element at a given position
-	 * 
-	 * @param index the element
-	 */
-	public abstract void removeAt(int index);
-	
-	/** Add all elements from a list to this list
-	 * 
-	 * @param list another list
-	 */
-	public void removeAll(ListObject<T> list) {
-		for(int z = 0; z < list.size(); z++) {
-			this.remove(list.get(z));
-		}
-	}
+    /**
+     * Set the value at a given position
+     *
+     * @param index the position
+     * @param value the value
+     */
+    public abstract void set(int index, T value);
 
-	/**
-	 * Remove the element that has a given value
-	 * 
-	 * @param index the element
-	 */
-	public abstract void remove(T value);
+    /**
+     * Remove the element at a given position
+     *
+     * @param index the element
+     */
+    public abstract void removeAt(int index);
 
-	/**
-	 * Get the element at a given position
-	 * 
-	 * @param index the element
-	 * @return the element
-	 */
-	public abstract T get(int index);
+    /**
+     * Add all elements from a list to this list
+     *
+     * @param list another list
+     */
+    public void removeAll(ListObject<T> list) {
+        for (int z = 0; z < list.size(); z++) {
+            this.remove(list.get(z));
+        }
+    }
 
-	/**
-	 * Get the number of elements in this array
-	 * 
-	 * @return the number of elements
-	 */
-	public abstract int size();
+    /**
+     * Remove the element that has a given value
+     *
+     * @param index the element
+     */
+    public abstract void remove(T value);
 
-	/**
-	 * Check if a value is in the structure
-	 * 
-	 * @param value the value
-	 * @return true if it is contained. Otherwise, false
-	 */
-	public abstract boolean contains(T value);
+    /**
+     * Get the element at a given position
+     *
+     * @param index the element
+     * @return the element
+     */
+    public abstract T get(int index);
 
-	/**
-	 * Get the position of the first occurrence of a value in this list.
-	 * 
-	 * @param value the value
-	 * @return the position of the first occurrence or -1 if the value is not found
-	 */
-	public abstract int indexOf(T value);
+    /**
+     * Get the number of elements in this array
+     *
+     * @return the number of elements
+     */
+    public abstract int size();
 
-	/**
-	 * Sort the array using a comparator (by selection sort)
-	 */
-	public abstract void sort(ComparatorObject<T> comparator);
+    /**
+     * Check if a value is in the structure
+     *
+     * @param value the value
+     * @return true if it is contained. Otherwise, false
+     */
+    public abstract boolean contains(T value);
 
-	/**
-	 * This method returns a sub-list view of the list, that is immutable. This view
-	 * is like a list but it does not allow to modify the content of the sublist. In
-	 * other words, operations like add and remove are not allowed. However, note
-	 * that if someone modifies the original list, then the content of the sublist
-	 * could be changed indirectly.
-	 * 
-	 * @param fromPosition the position where the sublist starts (inclusive)
-	 * @param toPosition   the position where the sublist ends (exclusive)
-	 * @return the sublist
-	 */
-	public abstract ListObject<T> immutableSubList(int fromPosition, int toPosition);
+    /**
+     * Get the position of the first occurrence of a value in this list.
+     *
+     * @param value the value
+     * @return the position of the first occurrence or -1 if the value is not found
+     */
+    public abstract int indexOf(T value);
 
-	/**
-	 * Get an iterator
-	 * 
-	 * @return an iterator
-	 */
-	public abstract IteratorList iterator();
+    /**
+     * Sort the array using a comparator (by selection sort)
+     */
+    public abstract void sort(ComparatorObject<T> comparator);
 
-	/**
-	 * Iterator class
-	 * @author philippe
-	 */
-	public abstract class IteratorList {
+    /**
+     * This method returns a sub-list view of the list, that is immutable. This view
+     * is like a list but it does not allow to modify the content of the sublist. In
+     * other words, operations like add and remove are not allowed. However, note
+     * that if someone modifies the original list, then the content of the sublist
+     * could be changed indirectly.
+     *
+     * @param fromPosition the position where the sublist starts (inclusive)
+     * @param toPosition   the position where the sublist ends (exclusive)
+     * @return the sublist
+     */
+    public abstract ListObject<T> immutableSubList(int fromPosition, int toPosition);
 
-		/**
-		 * Has a next element
-		 * 
-		 * @return true or false
-		 */
-		public abstract boolean hasNext();
+    /**
+     * Get an iterator
+     *
+     * @return an iterator
+     */
+    public abstract IteratorList iterator();
 
-		/**
-		 * Get the next element
-		 * 
-		 * @return the next element
-		 */
-		public abstract T next();
-		
-		/**
-		 * Remove the current element
-		 */
-		public abstract void remove();
-	}
+    /**
+     * Iterator class
+     *
+     * @author philippe
+     */
+    public abstract class IteratorList {
+
+        /**
+         * Has a next element
+         *
+         * @return true or false
+         */
+        public abstract boolean hasNext();
+
+        /**
+         * Get the next element
+         *
+         * @return the next element
+         */
+        public abstract T next();
+
+        /**
+         * Remove the current element
+         */
+        public abstract void remove();
+    }
 }

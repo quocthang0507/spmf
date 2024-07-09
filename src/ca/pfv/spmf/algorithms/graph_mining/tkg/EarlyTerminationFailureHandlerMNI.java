@@ -23,8 +23,8 @@ import java.util.stream.Collectors;
 /**
  * This is the implementation of early termination failure handling when closed subgraph frequency is defined by MNI
  *
- * @see EarlyTerminationFailureHandlerAbstract
  * @author Shaul Zevin
+ * @see EarlyTerminationFailureHandlerAbstract
  */
 
 public class EarlyTerminationFailureHandlerMNI extends EarlyTerminationFailureHandlerAbstract {
@@ -40,7 +40,6 @@ public class EarlyTerminationFailureHandlerMNI extends EarlyTerminationFailureHa
     }
 
     /**
-     *
      * Checks if by breaking some edges not on the rightmost path
      * either a new frequent forward extension from the rightmost vertex can be created
      * or more projections can be added to a forward extension from the rightmost vertex and this extension is frequent

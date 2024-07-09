@@ -23,29 +23,29 @@ import ca.pfv.spmf.gui.viewers.eventsequenceviewer.EventSequenceViewer;
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
+
 /**
- * 
  * Example of how to use EventSequenceViewer
- * 
+ * <p>
  * algorithm from the source code.
- * 
+ *
  * @author Philippe Fournier-Viger (Copyright 2024)
  */
 public class MainTestEventSequenceViewer {
 
-	public static void main(String[] arg) throws IOException {
+    public static void main(String[] arg) throws IOException {
 
-		// Input file path
-		String input = fileToPath("contextEMMAWithNames.txt");
+        // Input file path
+        String input = fileToPath("contextEMMAWithNames.txt");
 
-		// Applying the event sequence viewer
-		EventSequenceViewer algorithm = new EventSequenceViewer(true, input);
+        // Applying the event sequence viewer
+        EventSequenceViewer algorithm = new EventSequenceViewer(true, input);
 
-	}
+    }
 
-	public static String fileToPath(String filename) throws UnsupportedEncodingException {
-		System.out.println("filename : " + filename);
-		URL url = MainTestEventSequenceViewer.class.getResource(filename);
-		return java.net.URLDecoder.decode(url.getPath(), "UTF-8");
-	}
+    public static String fileToPath(String filename) throws UnsupportedEncodingException {
+        System.out.println("filename : " + filename);
+        URL url = MainTestEventSequenceViewer.class.getResource(filename);
+        return java.net.URLDecoder.decode(url.getPath(), "UTF-8");
+    }
 }

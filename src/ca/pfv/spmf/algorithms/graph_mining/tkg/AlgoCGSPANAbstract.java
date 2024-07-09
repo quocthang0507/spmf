@@ -30,65 +30,53 @@ import java.util.stream.Collectors;
  */
 public abstract class AlgoCGSPANAbstract {
     /**
-     * The list of closed subgraphs found by the last execution
-     */
-    protected List<ClosedSubgraph> closedSubgraphs;
-
-    /**
-     * runtime of the most recent execution
-     */
-    protected long runtime = 0;
-
-    /**
-     * runtime of the most recent execution
-     */
-    protected double maxmemory = 0;
-
-    /**
-     * pattern count of the most recent execution
-     */
-    protected int patternCount = 0;
-
-    /**
-     * number of graph in the input database
-     */
-    protected int graphCount = 0;
-
-    /**
-     * frequent vertex labels
-     */
-    protected List<Integer> frequentVertexLabels;
-
-    /**
-     * if true, debug mode is activated
-     */
-    protected boolean DEBUG_MODE = false;
-
-    /**
      * eliminate infrequent labels from graphs
      */
     protected static final boolean ELIMINATE_INFREQUENT_VERTICES = true;  // strategy in Gspan paper
-
     /**
      * eliminate infrequent vertex pairs from graphs
      */
     protected static final boolean ELIMINATE_INFREQUENT_VERTEX_PAIRS = true;
-
     /**
      * eliminate infrequent labels from graphs
      */
     protected static final boolean ELIMINATE_INFREQUENT_EDGE_LABELS = true;  // strategy in Gspan paper
-
     /**
      * apply edge count pruning strategy
      */
     protected static final boolean EDGE_COUNT_PRUNING = true;
-
     /**
      * skip strategy
      */
     protected static final boolean SKIP_STRATEGY = false;
-
+    /**
+     * The list of closed subgraphs found by the last execution
+     */
+    protected List<ClosedSubgraph> closedSubgraphs;
+    /**
+     * runtime of the most recent execution
+     */
+    protected long runtime = 0;
+    /**
+     * runtime of the most recent execution
+     */
+    protected double maxmemory = 0;
+    /**
+     * pattern count of the most recent execution
+     */
+    protected int patternCount = 0;
+    /**
+     * number of graph in the input database
+     */
+    protected int graphCount = 0;
+    /**
+     * frequent vertex labels
+     */
+    protected List<Integer> frequentVertexLabels;
+    /**
+     * if true, debug mode is activated
+     */
+    protected boolean DEBUG_MODE = false;
     /**
      * infrequent edges removed
      */
@@ -823,6 +811,100 @@ public abstract class AlgoCGSPANAbstract {
     }
 
     /**
+     * Create the pruning matrix
+     */
+    protected abstract void removeInfrequentVertexPairs(List<DatabaseGraph> graphDB);
+
+    /**
+     * Check if a DFS code is canonical
+     *
+     * @param c a DFS code
+     * @return true if it is canonical, and otherwise, false.
+     */
+    protected boolean isCanonical(DFSCode c) {
+        DFSCode canC = new DFSCode();
+        for (int i = 0; i < c.size(); i++) {
+            Map<ExtendedEdge, Set<Integer>> extensions = rightMostPathExtensionsFromSingle(canC, new Graph(c));
+            ExtendedEdge minEE = null;
+            for (ExtendedEdge ee : extensions.keySet()) {
+                if (ee.smallerThanOriginal(minEE))
+                    minEE = ee;
+            }
+
+            if (minEE.smallerThanOriginal(c.getAt(i)))
+                return false;
+            canC.add(minEE);
+        }
+        return true;
+    }
+
+    /**
+     * This method outputs vertices that do not have equivalent occurrence with any closed subgraph.
+     *
+     * @param graphDB   a graph database
+     * @param projected empty projections
+     */
+    protected abstract void outputClosedOneVertex(List<DatabaseGraph> graphDB, ProjectedCompact projected) throws IOException, ClassNotFoundException, InterruptedException;
+
+    public boolean isDetectEarlyTerminationFailure() {
+        return detectEarlyTerminationFailure;
+    }
+
+    public void setDetectEarlyTerminationFailure(boolean detectEarlyTerminationFailure) {
+        this.detectEarlyTerminationFailure = detectEarlyTerminationFailure;
+    }
+
+    public boolean isOutputExtendableByMultipleIsomorphisms() {
+        return outputExtendableByMultipleIsomorphisms;
+    }
+
+    public void setOutputExtendableByMultipleIsomorphisms(boolean outputExtendableByMultipleIsomorphisms) {
+        this.outputExtendableByMultipleIsomorphisms = outputExtendableByMultipleIsomorphisms;
+    }
+
+    /**
+     * Recursive method to perform the depth-first search
+     *
+     * @param c                              the current DFS code
+     * @param graphDB                        the graph database
+     * @param graphIds                       the ids of graph where the graph "c" appears
+     * @param projected                      projections of the current DFS code into database graphs
+     * @param earlyTerminationFailureHandler early termination failure detector
+     * @throws IOException            exception if error writing/reading to file
+     * @throws ClassNotFoundException if error casting a class
+     */
+    protected abstract void cgSpanDFS(DFSCode c, List<DatabaseGraph> graphDB, Set<Integer> graphIds, ProjectedCompact projected, IEarlyTerminationFailureHandler earlyTerminationFailureHandler) throws IOException, ClassNotFoundException, InterruptedException;
+
+    /**
+     * This method finds all frequent vertex labels from a graph database.
+     *
+     * @param graphDB a graph database
+     */
+    protected abstract void findAllOnlyOneVertex(List<DatabaseGraph> graphDB);
+
+    /**
+     * Print statistics about the algorithm execution to System.out.
+     */
+    public abstract void printStats();
+
+    /**
+     * Set the debug mode to true or false
+     *
+     * @param value true or false
+     */
+    public void setDebugMode(boolean value) {
+        DEBUG_MODE = value;
+    }
+
+    public boolean isPdfsAutomorphismOptimization() {
+        return pdfsAutomorphismOptimization;
+    }
+
+    public void setPdfsAutomorphismOptimization(boolean pdfsAutomorphismOptimization) {
+        this.pdfsAutomorphismOptimization = pdfsAutomorphismOptimization;
+    }
+
+    /**
      * Pair
      */
     protected class Pair {
@@ -900,11 +982,6 @@ public abstract class AlgoCGSPANAbstract {
     }
 
     /**
-     * Create the pruning matrix
-     */
-    protected abstract void removeInfrequentVertexPairs(List<DatabaseGraph> graphDB);
-
-    /**
      * compares two edges by the lexicographical order
      */
     public class ExtendedEdgeLexicographicalComparator implements Comparator<ExtendedEdge> {
@@ -920,97 +997,6 @@ public abstract class AlgoCGSPANAbstract {
                 return 1;
             }
         }
-    }
-
-    /**
-     * Check if a DFS code is canonical
-     *
-     * @param c a DFS code
-     * @return true if it is canonical, and otherwise, false.
-     */
-    protected boolean isCanonical(DFSCode c) {
-        DFSCode canC = new DFSCode();
-        for (int i = 0; i < c.size(); i++) {
-            Map<ExtendedEdge, Set<Integer>> extensions = rightMostPathExtensionsFromSingle(canC, new Graph(c));
-            ExtendedEdge minEE = null;
-            for (ExtendedEdge ee : extensions.keySet()) {
-                if (ee.smallerThanOriginal(minEE))
-                    minEE = ee;
-            }
-
-            if (minEE.smallerThanOriginal(c.getAt(i)))
-                return false;
-            canC.add(minEE);
-        }
-        return true;
-    }
-
-    /**
-     * This method outputs vertices that do not have equivalent occurrence with any closed subgraph.
-     *
-     * @param graphDB   a graph database
-     * @param projected empty projections
-     */
-    protected abstract void outputClosedOneVertex(List<DatabaseGraph> graphDB, ProjectedCompact projected) throws IOException, ClassNotFoundException, InterruptedException;
-
-
-    public boolean isDetectEarlyTerminationFailure() {
-        return detectEarlyTerminationFailure;
-    }
-
-    public void setDetectEarlyTerminationFailure(boolean detectEarlyTerminationFailure) {
-        this.detectEarlyTerminationFailure = detectEarlyTerminationFailure;
-    }
-
-    public boolean isOutputExtendableByMultipleIsomorphisms() {
-        return outputExtendableByMultipleIsomorphisms;
-    }
-
-    public void setOutputExtendableByMultipleIsomorphisms(boolean outputExtendableByMultipleIsomorphisms) {
-        this.outputExtendableByMultipleIsomorphisms = outputExtendableByMultipleIsomorphisms;
-    }
-
-    /**
-     * Recursive method to perform the depth-first search
-     *
-     * @param c                              the current DFS code
-     * @param graphDB                        the graph database
-     * @param graphIds                       the ids of graph where the graph "c" appears
-     * @param projected                      projections of the current DFS code into database graphs
-     * @param earlyTerminationFailureHandler early termination failure detector
-     * @throws IOException            exception if error writing/reading to file
-     * @throws ClassNotFoundException if error casting a class
-     */
-    protected abstract void cgSpanDFS(DFSCode c, List<DatabaseGraph> graphDB, Set<Integer> graphIds, ProjectedCompact projected, IEarlyTerminationFailureHandler earlyTerminationFailureHandler) throws IOException, ClassNotFoundException, InterruptedException;
-
-    /**
-     * This method finds all frequent vertex labels from a graph database.
-     *
-     * @param graphDB a graph database
-     */
-    protected abstract void findAllOnlyOneVertex(List<DatabaseGraph> graphDB);
-
-
-    /**
-     * Print statistics about the algorithm execution to System.out.
-     */
-    public abstract void printStats();
-
-    /**
-     * Set the debug mode to true or false
-     *
-     * @param value true or false
-     */
-    public void setDebugMode(boolean value) {
-        DEBUG_MODE = value;
-    }
-
-    public boolean isPdfsAutomorphismOptimization() {
-        return pdfsAutomorphismOptimization;
-    }
-
-    public void setPdfsAutomorphismOptimization(boolean pdfsAutomorphismOptimization) {
-        this.pdfsAutomorphismOptimization = pdfsAutomorphismOptimization;
     }
 
     /**

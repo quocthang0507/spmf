@@ -35,7 +35,7 @@ import ca.pfv.spmf.tools.MemoryLogger;
 
 /**
  * TThe implementation of the "NECLATCLOSED algorithm,
- *  provided by Nader Aryabarzan, available on GitHub via https://github.com/aryabarzan/NEclatClosed.
+ * provided by Nader Aryabarzan, available on GitHub via https://github.com/aryabarzan/NEclatClosed.
  * <br/><br/>
  * Aryabarzan, N., & Minaei-Bidgoli, B. (2021). NEclatClosed: A vertical algorithm for mining frequent closed itemsets. Expert Systems with Applications, 174, 114738.
  *
@@ -44,40 +44,6 @@ import ca.pfv.spmf.tools.MemoryLogger;
  */
 
 public class AlgoNEclatClosed {
-    // the start time and end time of the last algorithm execution
-    long startTimestamp;
-    long endTimestamp;
-
-    // number of itemsets found
-    int outputCount = 0;
-
-    // object to write the output file
-    BufferedWriter writer = null;
-
-
-    public int numOfFItem; // Number of items
-    public int minSupport; // minimum count
-    public Item[] item; // list of items sorted by count
-
-    // public FILE out;
-    public int[] itemsetX; // the current itemset
-    public int itemsetXLen = 0; // the size of the current itemset
-
-
-    // Tree stuff
-    public SetEnumerationTreeNode nlRoot;
-
-    /**
-     * A map containing the tidset (i.e. cover) of each item represented as a bitset
-     */
-    private Map<Integer, BitSet> mapItemTIDS;
-
-
-    //    public int[] sameItems;
-    //private CP_Tree cp_tree;
-    private CPStorage cpStorage;
-
-
     /**
      * Comparator to sort items by decreasing order of frequency
      */
@@ -86,15 +52,36 @@ public class AlgoNEclatClosed {
             return ((Item) b).num - ((Item) a).num;
         }
     };
-
+    public int numOfFItem; // Number of items
+    public int minSupport; // minimum count
+    public Item[] item; // list of items sorted by count
+    // public FILE out;
+    public int[] itemsetX; // the current itemset
+    public int itemsetXLen = 0; // the size of the current itemset
+    // Tree stuff
+    public SetEnumerationTreeNode nlRoot;
+    // the start time and end time of the last algorithm execution
+    long startTimestamp;
+    long endTimestamp;
+    // number of itemsets found
+    int outputCount = 0;
+    // object to write the output file
+    BufferedWriter writer = null;
+    /**
+     * A map containing the tidset (i.e. cover) of each item represented as a bitset
+     */
+    private Map<Integer, BitSet> mapItemTIDS;
+    //    public int[] sameItems;
+    //private CP_Tree cp_tree;
+    private CPStorage cpStorage;
     private int numOfTrans;
 
     /**
      * Run the algorithm
      *
      * @param input_dataset the input file path
-     * @param minsup   the minsup threshold
-     * @param output   the output file path
+     * @param minsup        the minsup threshold
+     * @param output        the output file path
      * @throws IOException if error while reading/writting to file
      */
     public void runAlgorithm(String input_dataset, double minsup, String output)
@@ -368,7 +355,7 @@ public class AlgoNEclatClosed {
 //                prev = sibling;
 //            }
 //            sibling = prev.next;
-            sibling=sibling.next;
+            sibling = sibling.next;
         }
 
 
@@ -459,8 +446,8 @@ class MyBitVector {
         }
     }
 
-    long[] bits;
     public int cardinality;
+    long[] bits;
 
 
     public MyBitVector(int[] itemset, int last) {

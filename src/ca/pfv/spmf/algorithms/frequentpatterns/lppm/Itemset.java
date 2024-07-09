@@ -19,9 +19,10 @@ import java.util.List;
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
+
 /**
  * This class represents an itemset as used by the LPPM algorithms.
- * 
+ *
  * @author Peng yang
  * @see AlgoLPPMBreadth1
  * @see AlgoLPPMBreadth2
@@ -29,64 +30,70 @@ import java.util.List;
  * @see AlgoLPPMDepth2
  */
 public class Itemset {
-	/** the list of items in this itemset */
-	private int[] items;
+    /**
+     * the list of items in this itemset
+     */
+    private int[] items;
 
-	/** the list of time intervals */
-	private List<int[]> timeIntervals;
+    /**
+     * the list of time intervals
+     */
+    private List<int[]> timeIntervals;
 
-	/**
-	 * Constructor of an itemset
-	 * 
-	 * @param items the items
-	 * @param timeIntervals the time intervals
-	 */
-	Itemset(int[] items, List<int[]> timeIntervals) {
-		this.items = items;
-		this.timeIntervals = timeIntervals;
-	}
+    /**
+     * Constructor of an itemset
+     *
+     * @param items         the items
+     * @param timeIntervals the time intervals
+     */
+    Itemset(int[] items, List<int[]> timeIntervals) {
+        this.items = items;
+        this.timeIntervals = timeIntervals;
+    }
 
-	/**
-	 * Constructor of an itemset containing a single item
-	 * 
-	 * @param item the item
-	 */
-	Itemset(int item, List<int[]> timeIntervals) {
-		this.items = new int[] { item };
-		this.timeIntervals = timeIntervals;
-	}
+    /**
+     * Constructor of an itemset containing a single item
+     *
+     * @param item the item
+     */
+    Itemset(int item, List<int[]> timeIntervals) {
+        this.items = new int[]{item};
+        this.timeIntervals = timeIntervals;
+    }
 
-	/**
-	 * Get the time intervals for this itemset
-	 * @return the time intervals
-	 */
-	public List<int[]> getTimeIntervals() {
-		return timeIntervals;
-	}
+    /**
+     * Get the time intervals for this itemset
+     *
+     * @return the time intervals
+     */
+    public List<int[]> getTimeIntervals() {
+        return timeIntervals;
+    }
 
-	/**
-	 * Get the items contained in this itemset
-	 * @return the items
-	 */
-	public int[] getItems() {
-		return this.items;
-	}
+    /**
+     * Get the items contained in this itemset
+     *
+     * @return the items
+     */
+    public int[] getItems() {
+        return this.items;
+    }
 
-	@Override
-	/**
-	 * Get a string representation of this itemset
-	 */
-	public String toString() {
-		String s = "";
-		for (int n : items) {
-			s = s + n + " ,";
-		}
-		s = s.substring(0, s.length() - 1);
-		s += " : ";
-		for (int[] interval : timeIntervals) {
-			s = s + "[ " + interval[0] + " , " + interval[1] + " ] ";
-		}
-		return s;
-	}
+    @Override
+    /**
+     * Get a string representation of this itemset
+     */
+    public String toString() {
+        String s = "";
+        for (int n : items) {
+            s = s + n + " ,";
+        }
+        s = s.substring(0, s.length() - 1);
+        s += " : ";
+        for (int[] interval : timeIntervals) {
+            s = s + "[ " + interval[0] + " , " + interval[1] + " ] ";
+        }
+        return s;
+    }
 
 }

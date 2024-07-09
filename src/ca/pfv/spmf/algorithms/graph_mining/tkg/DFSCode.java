@@ -1,4 +1,5 @@
 package ca.pfv.spmf.algorithms.graph_mining.tkg;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -14,54 +15,59 @@ import java.util.Set;
 import java.util.Stack;
 
 /* This file is copyright (c) 2018 by Chao Cheng
-* 
-* This file is part of the SPMF DATA MINING SOFTWARE
-* (http://www.philippe-fournier-viger.com/spmf).
-* 
-* SPMF is free software: you can redistribute it and/or modify it under the
-* terms of the GNU General Public License as published by the Free Software
-* Foundation, either version 3 of the License, or (at your option) any later
-* version.
-* 
-* SPMF is distributed in the hope that it will be useful, but WITHOUT ANY
-* WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
-* A PARTICULAR PURPOSE. See the GNU General Public License for more details.
-* You should have received a copy of the GNU General Public License along with
-* SPMF. If not, see <http://www.gnu.org/licenses/>.
-*/
+ *
+ * This file is part of the SPMF DATA MINING SOFTWARE
+ * (http://www.philippe-fournier-viger.com/spmf).
+ *
+ * SPMF is free software: you can redistribute it and/or modify it under the
+ * terms of the GNU General Public License as published by the Free Software
+ * Foundation, either version 3 of the License, or (at your option) any later
+ * version.
+ *
+ * SPMF is distributed in the hope that it will be useful, but WITHOUT ANY
+ * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
+ * A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+ * You should have received a copy of the GNU General Public License along with
+ * SPMF. If not, see <http://www.gnu.org/licenses/>.
+ */
+
 /**
  * This is an implementation of the DFS code of the GSPAN algorithm
- *  <br/><br/>
- *  
+ * <br/><br/>
+ * <p>
  * The gspan algorithm is described  in :
  * <br/><br/>
- *  
- * gSpan: Graph-Based Substructure Pattern Mining, by X. Yan and J. Han. 
+ * <p>
+ * gSpan: Graph-Based Substructure Pattern Mining, by X. Yan and J. Han.
  * Proc. 2002 of Int. Conf. on Data Mining (ICDM'02
- * 
+ * <p>
  * <br/><br/>
- *  
+ * <p>
  * The Gspan algorithm finds all the frequents subgraphs and their support in a
  * graph provided by the user.
  * <br/><br/>
- *  
+ * <p>
  * This implementation saves the result to a file
- * 
- * @see AlgoGSPAN
+ *
  * @author Chao Cheng
+ * @see AlgoGSPAN
  */
-public class DFSCode implements Serializable{
-	
-    /** Serial UID */
-	private static final long serialVersionUID = -3332379071310578036L;
-	
-	/**    maintain rightmost child and current rightmost path */
+public class DFSCode implements Serializable {
+
+    /**
+     * Serial UID
+     */
+    private static final long serialVersionUID = -3332379071310578036L;
+
+    /**
+     * maintain rightmost child and current rightmost path
+     */
     private int rightMost;
-    
+
     private Stack<Integer> rightMostPath;
-    
+
     private List<ExtendedEdge> eeL;
-    
+
     private int size;
 
     /**
@@ -76,6 +82,7 @@ public class DFSCode implements Serializable{
 
     /**
      * Make a copy of a DFS code
+     *
      * @return a copy
      * @throws IOException
      * @throws ClassNotFoundException
@@ -94,12 +101,13 @@ public class DFSCode implements Serializable{
     }
 
     public boolean notPreOfRM(int v) {
-        if(rightMostPath.size() <= 1) return true;
+        if (rightMostPath.size() <= 1) return true;
         return v != rightMostPath.elementAt(rightMostPath.size() - 2);
     }
 
     /**
      * Get all vertex labels
+     *
      * @return a list of vertex label
      */
     public List<Integer> getAllVLabels() {
@@ -124,6 +132,7 @@ public class DFSCode implements Serializable{
 
     /**
      * Add an edge to the DFS code
+     *
      * @param ee the edge
      */
     public void add(ExtendedEdge ee) {
@@ -131,8 +140,7 @@ public class DFSCode implements Serializable{
             rightMost = 1;
             rightMostPath.push(0);
             rightMostPath.push(1);
-        }
-        else {
+        } else {
             int v1 = ee.getV1();
             int v2 = ee.getV2();
             if (v1 < v2) {
@@ -142,8 +150,7 @@ public class DFSCode implements Serializable{
                     rightMostPath.pop();
                 }
                 rightMostPath.push(v2);
-            }
-            else {
+            } else {
                 //if backward edge, no change
             }
         }

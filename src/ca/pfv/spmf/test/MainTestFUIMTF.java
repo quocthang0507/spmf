@@ -11,21 +11,21 @@ import ca.pfv.spmf.algorithms.frequentpatterns.fuimtf.AlgoFUIMTF;
  * license.
  */
 public class MainTestFUIMTF {
-	public static void main(String[] arg) throws IOException {
+    public static void main(String[] arg) throws IOException {
 
-		String input = fileToPath("DB_Utility.txt");
-		String output = "output.txt";
-		int min_utility = 30; //
-		double min_supDouble = 0.1;
+        String input = fileToPath("DB_Utility.txt");
+        String output = "output.txt";
+        int min_utility = 30; //
+        double min_supDouble = 0.1;
 
-		// Applying the TF-Free algorithm
-		AlgoFUIMTF algo = new AlgoFUIMTF();
-		algo.runAlgorithm(input, output, min_utility, min_supDouble);
-		algo.printStats();
-	}
+        // Applying the TF-Free algorithm
+        AlgoFUIMTF algo = new AlgoFUIMTF();
+        algo.runAlgorithm(input, output, min_utility, min_supDouble);
+        algo.printStats();
+    }
 
-	public static String fileToPath(String filename) throws UnsupportedEncodingException {
-		URL url = MainTestFUIMTF.class.getResource(filename);
-		return java.net.URLDecoder.decode(url.getPath(), "UTF-8");
-	}
+    public static String fileToPath(String filename) throws UnsupportedEncodingException {
+        URL url = MainTestFUIMTF.class.getResource(filename);
+        return java.net.URLDecoder.decode(url.getPath(), "UTF-8");
+    }
 }

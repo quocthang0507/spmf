@@ -29,11 +29,11 @@ public class MainTestHMiner_Closed {
 
     public static void main(String[] args) {
         try {
-    		// input file path
-    		String input = fileToPath("DB_Utility.txt");
-    		// the minutility threshold
-    		long min_utility = 30; 
-    		
+            // input file path
+            String input = fileToPath("DB_Utility.txt");
+            // the minutility threshold
+            long min_utility = 30;
+
             String output = ".//output.txt";
 
             AlgoHMiner_Closed algorithm = new AlgoHMiner_Closed();
@@ -44,7 +44,7 @@ public class MainTestHMiner_Closed {
             algorithm.runAlgorithm(input, output, min_utility,
                     applyTransactionMergingOptimization, applyEUCSOptimization);
             algorithm.printStats();
-            
+
             //WRITE ALL THE CHUIs found until now to a file
             algorithm.writeCHUIsToFile(output);
 

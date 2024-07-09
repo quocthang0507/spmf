@@ -333,7 +333,7 @@ public class AlgoCGSPANSupport extends AlgoCGSPANAbstract {
 
             if (!hasEquivalentOccurrence) {
                 // Save the graph
-                ClosedSubgraph subgraph = new ClosedSubgraph(c, graphIds, graphIds.size(), projected,graphIds.size());
+                ClosedSubgraph subgraph = new ClosedSubgraph(c, graphIds, graphIds.size(), projected, graphIds.size());
                 closedSubgraphs.add(subgraph);
                 System.out.println("closed subgraph " + closedSubgraphs.size() + " added");
                 updateClosedSubgraphsHashTable(subgraph);
@@ -347,7 +347,7 @@ public class AlgoCGSPANSupport extends AlgoCGSPANAbstract {
     /**
      * This method finds all frequent vertex labels from a graph database.
      *
-     * @param graphDB                a graph database
+     * @param graphDB a graph database
      */
     protected void findAllOnlyOneVertex(List<DatabaseGraph> graphDB) {
 
@@ -404,8 +404,8 @@ public class AlgoCGSPANSupport extends AlgoCGSPANAbstract {
     /**
      * This method outputs vertices that do not have equivalent occurrence with any closed subgraph.
      *
-     * @param graphDB                a graph database
-     * @param projected              empty projections
+     * @param graphDB   a graph database
+     * @param projected empty projections
      */
     protected void outputClosedOneVertex(List<DatabaseGraph> graphDB, ProjectedCompact projected) throws IOException, ClassNotFoundException, InterruptedException {
         // Create a map (key = vertex label, value = graph ids)

@@ -21,30 +21,35 @@ import java.util.concurrent.ConcurrentHashMap;
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
+
 /**
  * This is an implementation of a DFS code edge projection into a database graph, used by the CGSPAN algorithm.
- *  <br/><br/>
- *
+ * <br/><br/>
+ * <p>
  * The cgspan algorithm is described in : <br/>
  * <br/>
  * <p>
  * cgSpan: Closed Graph-Based Substructure Pattern Mining, by Zevin Shaul, Sheikh Naaz
  * IEEE BigData 2021 7th Special Session on Intelligent Data Mining
  * <p>
- *
+ * <p>
  * <br/>
- *
+ * <p>
  * The CGspan algorithm finds all the closed subgraphs and their support in a
  * graph provided by the user.
  * <br/><br/>
- *
+ * <p>
  * This implementation saves the result to a file
  *
- * @see AlgoCGSPANAbstract
  * @author Shaul Zevin
+ * @see AlgoCGSPANAbstract
  */
 
 public class ProjectedEdge {
+    /**
+     * projected edges cache
+     */
+    public static Map<EdgeEnumeration, ProjectedEdge[]> projectedEdges = new ConcurrentHashMap<EdgeEnumeration, ProjectedEdge[]>();
     /**
      * projection of the DFS code edge into database graph edge
      */
@@ -53,13 +58,7 @@ public class ProjectedEdge {
      * direction of the edge as used in the DFS code
      */
     private boolean isReversed;
-
     private int hash;
-
-    /**
-     * projected edges cache
-     */
-    public static Map<EdgeEnumeration, ProjectedEdge[]> projectedEdges = new ConcurrentHashMap<EdgeEnumeration, ProjectedEdge[]>();
 
     protected ProjectedEdge(EdgeEnumeration edgeEnumeration, boolean isReversed) {
         this.edgeEnumeration = edgeEnumeration;
@@ -69,23 +68,24 @@ public class ProjectedEdge {
 
     /**
      * retrieves projected edge from cache
+     *
      * @param edgeEnumeration database graph edge
-     * @param isReversed projected edge direction
+     * @param isReversed      projected edge direction
      * @return projected edge
      */
     public static ProjectedEdge get(EdgeEnumeration edgeEnumeration, boolean isReversed) {
         if (isReversed) {
             return projectedEdges.get(edgeEnumeration)[0];
-        }
-        else {
+        } else {
             return projectedEdges.get(edgeEnumeration)[1];
         }
     }
 
     /**
      * retrieves projected edge from cache
+     *
      * @param edgeEnumeration database graph edge
-     * @param isReversed projected edge direction
+     * @param isReversed      projected edge direction
      * @return projected edge if found in cache, null otherwise
      */
     public static ProjectedEdge getIfExists(EdgeEnumeration edgeEnumeration, boolean isReversed) {
@@ -96,8 +96,7 @@ public class ProjectedEdge {
 
         if (isReversed) {
             return projectedEdges.get(edgeEnumeration)[0];
-        }
-        else {
+        } else {
             return projectedEdges.get(edgeEnumeration)[1];
         }
     }
@@ -105,14 +104,15 @@ public class ProjectedEdge {
     /**
      * initializes projected edges cache with all edges from graphs database.
      * For each database graph edge, two projected edges are created, one for each direction.
+     *
      * @param graphDB
      */
     public static void init(List<DatabaseGraph> graphDB) {
         projectedEdges = new ConcurrentHashMap<EdgeEnumeration, ProjectedEdge[]>();
 
-        for (DatabaseGraph databaseGraph: graphDB) {
+        for (DatabaseGraph databaseGraph : graphDB) {
             Map<Edge, EdgeEnumeration> edgeEdgeEnumerationMap = databaseGraph.getEdgesEnumeration();
-            for (EdgeEnumeration edgeEnumeration: edgeEdgeEnumerationMap.values()) {
+            for (EdgeEnumeration edgeEnumeration : edgeEdgeEnumerationMap.values()) {
                 ProjectedEdge reversed = new ProjectedEdge(edgeEnumeration, true);
                 ProjectedEdge notReversed = new ProjectedEdge(edgeEnumeration, false);
                 ProjectedEdge arr[] = new ProjectedEdge[2];

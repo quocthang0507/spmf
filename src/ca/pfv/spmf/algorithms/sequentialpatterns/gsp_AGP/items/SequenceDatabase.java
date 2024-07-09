@@ -24,51 +24,51 @@ import ca.pfv.spmf.algorithms.sequentialpatterns.gsp_AGP.items.patterns.PatternC
  * Implementation of a sequence database, where each sequence is implemented
  * as an array of integers and should have a unique id.
  * See examples in /test/ directory for the format of input files.
- *
+ * <p>
  * Copyright (c) 2013 Antonio Gomariz Peñalver
- * 
+ * <p>
  * This file is part of the SPMF DATA MINING SOFTWARE
  * (http://www.philippe-fournier-viger.com/spmf).
- *
+ * <p>
  * SPMF is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- *
+ * <p>
  * SPMF is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- *
+ * <p>
  * You should have received a copy of the GNU General Public License
  * along with SPMF.  If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  * @author agomariz
  */
 public class SequenceDatabase {
-    
+
     private AbstractionCreator abstractionCreator;
-    
+
     /**
      * Map to associate the frequent items with the 1-patterns composed by themselves
      */
     private Map<Item, Pattern> frequentItems = new HashMap<Item, Pattern>();
-    
+
     /**
      * List of sequences that compose the database
      */
     private List<Sequence> sequences = new ArrayList<Sequence>();
-    
+
     /**
      * Instance of ItemFactory
      */
     private ItemFactory<Integer> itemFactory = new ItemFactory<Integer>();
-    
+
     /**
      * Instance of PatternCreator
      */
     private PatternCreator patternCreator = PatternCreator.getInstance();
-    
+
     public SequenceDatabase(AbstractionCreator abstractionCreator) {
         this.abstractionCreator = abstractionCreator;
     }
@@ -77,9 +77,10 @@ public class SequenceDatabase {
      * It loads the database contained in the file path given as parameter.
      * Besides, all the frequent 1-patterns are identified and the original database
      * is updated by removing the non-frequent items
-     * @param path File path of the original database
+     *
+     * @param path               File path of the original database
      * @param minSupportAbsolute Minimum absolute support
-     * @throws IOException 
+     * @throws IOException
      */
     public void loadFile(String path, double minSupportAbsolute) throws IOException {
         String thisLine;
@@ -89,14 +90,14 @@ public class SequenceDatabase {
             myInput = new BufferedReader(new InputStreamReader(fis));
             while ((thisLine = myInput.readLine()) != null) {
                 // si la linea no es un comentario
-            	if (thisLine.charAt(0) != '#' && thisLine.charAt(0) != '%'
-						&& thisLine.charAt(0) != '@') {
+                if (thisLine.charAt(0) != '#' && thisLine.charAt(0) != '%'
+                        && thisLine.charAt(0) != '@') {
                     // añade una secuencia
                     addSequence(thisLine.split(" "));
                 }
             }
             double minSupRelative = (int) Math.ceil(minSupportAbsolute * sequences.size());
-           // double support = (int) (minSupport * sequences.size());
+            // double support = (int) (minSupport * sequences.size());
             Set<Item> items = frequentItems.keySet();
             Set<Item> itemsToRemove = new HashSet<Item>();
             for (Item item : items) {
@@ -117,10 +118,11 @@ public class SequenceDatabase {
             }
         }
     }
-    
+
     /**
      * It creates and addes the sequence found in the array of Strings
-     * @param integers 
+     *
+     * @param integers
      */
     public void addSequence(String[] integers) {
         ItemAbstractionPairCreator creadorPares = ItemAbstractionPairCreator.getInstance();
@@ -182,6 +184,7 @@ public class SequenceDatabase {
 
     /**
      * It returns the frequent 1-patterns
+     *
      * @return the list of frequent items.
      */
     public List<Pattern> frequentItems() {
@@ -191,8 +194,9 @@ public class SequenceDatabase {
     }
 
     /**
-     * It return a map where are associated each frequent item with the 
+     * It return a map where are associated each frequent item with the
      * 1-pattern composed by itself
+     *
      * @return the map
      */
     public Map<Item, Pattern> getFrequentItems() {
@@ -212,9 +216,10 @@ public class SequenceDatabase {
     }
 
     /**
-     * Reduce the original database, removing the items given in the 
+     * Reduce the original database, removing the items given in the
      * parameter set
-     * @param keySet 
+     *
+     * @param keySet
      */
     private void shrinkDatabase(Set<Item> keySet) {
         for (Sequence sequence : sequences) {

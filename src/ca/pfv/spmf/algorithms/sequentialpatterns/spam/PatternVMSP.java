@@ -3,80 +3,87 @@ package ca.pfv.spmf.algorithms.sequentialpatterns.spam;
 /**
  * Implementation of a pattern found by the VMSP algorithm.
  * <br/><br/>
- * 
+ * <p>
  * Copyright (c) 2013 Philippe Fournier-Viger, Antonio Gomariz
- *  <br/><br/>
- *  
+ * <br/><br/>
+ * <p>
  * This file is part of the SPMF DATA MINING SOFTWARE
  * (http://www.philippe-fournier-viger.com/spmf).
- * 
- *  <br/><br/>
+ * <p>
+ * <br/><br/>
  * SPMF is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  * <br/><br/>
- * 
+ * <p>
  * SPMF is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  * <br/><br/>
- * 
+ * <p>
  * You should have received a copy of the GNU General Public License
  * along with SPMF. If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
+ * @author Philippe Fournier-Viger  & Antonio Gomariz
  * @see AlgoVMSP
-*  @see Prefix
-*  @author Philippe Fournier-Viger  & Antonio Gomariz
+ * @see Prefix
  */
-public class PatternVMSP implements Comparable<PatternVMSP>{
-	
-	/** the pattern */
-	PrefixVMSP prefix;
-	
-	/** the support of this pattern */
-	public int support;
-	
-	/** the bitset corresponding to this pattern, which indicates the sequences containing this pattern (optional) */
-	Bitmap bitmap = null;
+public class PatternVMSP implements Comparable<PatternVMSP> {
 
-	/**
-	 * Constructor
-	 * @param prefix the pattern
-	 * @param suppport its support
-	 */
-	public PatternVMSP(PrefixVMSP prefix, int suppport) {
-		this.prefix = prefix;
-		this.support = suppport;
-	}
+    /**
+     * the support of this pattern
+     */
+    public int support;
+    /**
+     * the pattern
+     */
+    PrefixVMSP prefix;
+    /**
+     * the bitset corresponding to this pattern, which indicates the sequences containing this pattern (optional)
+     */
+    Bitmap bitmap = null;
 
-	public int compareTo(PatternVMSP o) {
-		if(o == this){
-			return 0;
-		}
-		int compare = o.prefix.sumOfEvenItems + o.prefix.sumOfOddItems
-				- this.prefix.sumOfEvenItems - this.prefix.sumOfOddItems;
-		if(compare !=0){
-			return compare;
-		}
+    /**
+     * Constructor
+     *
+     * @param prefix   the pattern
+     * @param suppport its support
+     */
+    public PatternVMSP(PrefixVMSP prefix, int suppport) {
+        this.prefix = prefix;
+        this.support = suppport;
+    }
 
-		return this.hashCode() - o.hashCode();
-	}
+    public int compareTo(PatternVMSP o) {
+        if (o == this) {
+            return 0;
+        }
+        int compare = o.prefix.sumOfEvenItems + o.prefix.sumOfOddItems
+                - this.prefix.sumOfEvenItems - this.prefix.sumOfOddItems;
+        if (compare != 0) {
+            return compare;
+        }
 
-	/**
-	 * Get this pattern
-	 * @return the pattern
-	 */
-	public PrefixVMSP getPrefix() {
-		return prefix;
-	}
+        return this.hashCode() - o.hashCode();
+    }
 
-	/**
-	 * Get the support of this pattern
-	 * @return the support
-	 */
-	public int getSupport() {
-		return support;
-	}
+    /**
+     * Get this pattern
+     *
+     * @return the pattern
+     */
+    public PrefixVMSP getPrefix() {
+        return prefix;
+    }
+
+    /**
+     * Get the support of this pattern
+     *
+     * @return the support
+     */
+    public int getSupport() {
+        return support;
+    }
 }

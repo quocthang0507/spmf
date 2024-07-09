@@ -12,6 +12,7 @@ import ca.pfv.spmf.algorithms.sequentialpatterns.prefixSpan_AGP.items.creators.A
 /**
  * Example of how to use the algorithm GSP, saving the results in a given
  * file
+ *
  * @author agomariz
  */
 public class MainTestPrefixSpan_AGP_saveToFile {
@@ -20,13 +21,13 @@ public class MainTestPrefixSpan_AGP_saveToFile {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws IOException {
-    	String output = ".//output.txt";
+        String output = ".//output.txt";
         // Load a sequence database
-        double support = (double)180/360;
-        
+        double support = (double) 180 / 360;
+
         boolean keepPatterns = true;
-        boolean verbose=false;
-        
+        boolean verbose = false;
+
         // if you set the following parameter to true, the sequence ids of the sequences where
         // each pattern appears will be shown in the result
         boolean outputSequenceIdentifiers = false;
@@ -43,8 +44,8 @@ public class MainTestPrefixSpan_AGP_saveToFile {
         System.out.println(sequenceDatabase.toString());
 
         //Put the concrete path file where we want to keep the output
-        algorithm.runAlgorithm(sequenceDatabase,keepPatterns,verbose, output, outputSequenceIdentifiers);
-        System.out.println(algorithm.getNumberOfFrequentPatterns()+ " patterns found.");
+        algorithm.runAlgorithm(sequenceDatabase, keepPatterns, verbose, output, outputSequenceIdentifiers);
+        System.out.println(algorithm.getNumberOfFrequentPatterns() + " patterns found.");
         System.out.println(algorithm.printStatistics());
     }
 

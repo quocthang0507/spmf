@@ -17,6 +17,7 @@ package ca.pfv.spmf.algorithms.sequentialpatterns.prefixSpan_AGP;
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
+
 import java.io.IOException;
 import java.util.BitSet;
 import java.util.Map;
@@ -37,11 +38,11 @@ import ca.pfv.spmf.tools.MemoryLogger;
  * PrefixSpan was proposed by Pei et al. 2001. This algorithm was inspired in the
  * implementation of SPMF and, from it, I changed and optimized some things.
  * <br/><br/>
- * 
- * NOTE: This implementation saves the pattern  to a file as soon 
+ * <p>
+ * NOTE: This implementation saves the pattern  to a file as soon
  * as they are found or can keep the pattern into memory if no output path is provided by the user.
- * 
- * @author Antonio Gomariz Peñalver 
+ *
+ * @author Antonio Gomariz Peñalver
  */
 public class AlgoPrefixSpan_AGP {
 
@@ -60,13 +61,13 @@ public class AlgoPrefixSpan_AGP {
      */
     protected SequenceDatabase originalDataset;
     /**
-     * Saver variable to decide where the user want to save the results, if it the case
-     */
-    Saver saver = null;
-    /**
      * Start and end points in order to calculate the overall time taken by the algorithm
      */
     protected long start, end;
+    /**
+     * Saver variable to decide where the user want to save the results, if it the case
+     */
+    Saver saver = null;
     /**
      * The abstraction creator
      */
@@ -78,8 +79,9 @@ public class AlgoPrefixSpan_AGP {
 
     /**
      * Standard constructor. It takes the minimum support threshold (from 1 up to 0) and an abstraction creator
+     *
      * @param minsupRelative the relative minimum  support threshold
-     * @param creator the abstraction creator
+     * @param creator        the abstraction creator
      */
     public AlgoPrefixSpan_AGP(double minsupRelative, AbstractionCreator creator) {
         this.minSupRelative = minsupRelative;
@@ -87,16 +89,17 @@ public class AlgoPrefixSpan_AGP {
     }
 
     /**
-     * Method that starts the execution of the algorithm. 
-     * @param database The original database in which we apply PrefixSpan
-     * @param keepPatterns Flag indicating if the user want to keep the frequent 
-     * patterns or he just want the amount of them
-     * @param verbose Flag for debugging purposes
-     * @param outputFilePath Path pointing out to the file where the output, 
-     * composed of frequent patterns, has to be kept. If, conversely, this 
-     * parameter is null, we understand that the user wants the output in the main memory
+     * Method that starts the execution of the algorithm.
+     *
+     * @param database                  The original database in which we apply PrefixSpan
+     * @param keepPatterns              Flag indicating if the user want to keep the frequent
+     *                                  patterns or he just want the amount of them
+     * @param verbose                   Flag for debugging purposes
+     * @param outputFilePath            Path pointing out to the file where the output,
+     *                                  composed of frequent patterns, has to be kept. If, conversely, this
+     *                                  parameter is null, we understand that the user wants the output in the main memory
      * @param outputSequenceIdentifiers if true, sequences ids will be output for each pattern
-     * @throws IOException 
+     * @throws IOException
      */
     public void runAlgorithm(SequenceDatabase database, boolean keepPatterns, boolean verbose, String outputFilePath, boolean outputSequenceIdentifiers) throws IOException {
         //calculation of the absolute minimum support
@@ -106,7 +109,7 @@ public class AlgoPrefixSpan_AGP {
             this.minSupAbsolute = 1;
         }
         // reset the stats about memory usage
-	MemoryLogger.getInstance().reset();
+        MemoryLogger.getInstance().reset();
         //keeping the starting time
         start = System.currentTimeMillis();
         //Starting PrefixSpanAlgorithm
@@ -118,19 +121,20 @@ public class AlgoPrefixSpan_AGP {
     }
 
     /**
-     * Method that executes the first steps before calling the actual main 
-     * method of PrefixSpan. In particular, the original database is fully 
-     * converted to a pseudosequece database, removing the infrequent items 
+     * Method that executes the first steps before calling the actual main
+     * method of PrefixSpan. In particular, the original database is fully
+     * converted to a pseudosequece database, removing the infrequent items
      * that appeared in the original dabase
-     * @param database The original database
-     * @param keepPatterns Flag indicating if the user want to keep the frequent 
-     * patterns or he just want the amount of them
-     * @param verbose Flag for debugging purposes
-     * @param outputFilePath Path pointing out to the file where the output, 
-     * composed of frequent patterns, has to be kept. If, conversely, this 
-     * parameter is null, we understand that the user wants the output in the main memory
+     *
+     * @param database                  The original database
+     * @param keepPatterns              Flag indicating if the user want to keep the frequent
+     *                                  patterns or he just want the amount of them
+     * @param verbose                   Flag for debugging purposes
+     * @param outputFilePath            Path pointing out to the file where the output,
+     *                                  composed of frequent patterns, has to be kept. If, conversely, this
+     *                                  parameter is null, we understand that the user wants the output in the main memory
      * @param outputSequenceIdentifiers if true, sequences ids will be output for each pattern
-     * @throws IOException 
+     * @throws IOException
      */
     protected void prefixSpan(SequenceDatabase database, boolean keepPatterns, boolean verbose, String outputFilePath, boolean outputSequenceIdentifiers) throws IOException {
         //If we do no have any file path
@@ -139,7 +143,7 @@ public class AlgoPrefixSpan_AGP {
             saver = new SaverIntoMemory(outputSequenceIdentifiers);
         } else {
             //Otherwise, the user wants to save them in the given file
-            saver = new SaverIntoFile(outputFilePath,outputSequenceIdentifiers);
+            saver = new SaverIntoFile(outputFilePath, outputSequenceIdentifiers);
         }
         /*We get the map which relates the frequent items with their appearances
         in the database*/
@@ -154,12 +158,13 @@ public class AlgoPrefixSpan_AGP {
         //Finally we update the number of frequent patterns that we found
         numberOfFrequentPatterns = algorithm.numberOfFrequentPatterns();
         // check the memory usage for statistics
-	MemoryLogger.getInstance().checkMemory();
+        MemoryLogger.getInstance().checkMemory();
     }
 
     /**
-     * Method to get the outlined information about the search for frequent 
+     * Method to get the outlined information about the search for frequent
      * sequences by means of PrefixSpan algorithm as a string.
+     *
      * @return a string
      */
     public String printStatistics() {
@@ -171,7 +176,7 @@ public class AlgoPrefixSpan_AGP {
         sb.append(numberOfFrequentPatterns);
         sb.append('\n');
         sb.append(" Max memory (mb):");
-	sb.append(MemoryLogger.getInstance().getMaxMemory());
+        sb.append(MemoryLogger.getInstance().getMaxMemory());
         sb.append('\n');
         sb.append(saver.print());
         sb.append('\n');
@@ -181,6 +186,7 @@ public class AlgoPrefixSpan_AGP {
 
     /**
      * Get the number of frequent patterns found.
+     *
      * @return the number of frequent patterns.
      */
     public int getNumberOfFrequentPatterns() {
@@ -189,6 +195,7 @@ public class AlgoPrefixSpan_AGP {
 
     /**
      * It gets the time spent by the algoritm in its execution.
+     *
      * @return the time spent (long).
      */
     public long getRunningTime() {
@@ -198,6 +205,7 @@ public class AlgoPrefixSpan_AGP {
     /**
      * It gets the absolute minimum support, i.e. the minimum number of database
      * sequences where a pattern has to appear
+     *
      * @return the minimum support (double)
      */
     public double getAbsoluteMinSupport() {
@@ -208,11 +216,12 @@ public class AlgoPrefixSpan_AGP {
      * It projects the initial database converting each original sequence to
      * pseudosequences in order to enable the later pseudoprojections in the
      * main loop of PrefixSpan
-     * @param database The original Database
-     * @param mapSequenceID Map with all the items appearing in the original 
-     * database, and a bitset pointing out in which sequences the items appear
+     *
+     * @param database           The original Database
+     * @param mapSequenceID      Map with all the items appearing in the original
+     *                           database, and a bitset pointing out in which sequences the items appear
      * @param minSupportAbsolute The absolute minimum support
-     * @return 
+     * @return
      */
     private PseudoSequenceDatabase projectInitialDatabase(SequenceDatabase database, Map<Item, BitSet> mapSequenceID, long minSupportAbsolute) {
         PseudoSequenceDatabase initialContext = new PseudoSequenceDatabase();
@@ -222,8 +231,8 @@ public class AlgoPrefixSpan_AGP {
             Sequence optimizedSequence = sequence.cloneSequenceMinusItems(mapSequenceID, minSupportAbsolute);
             if (optimizedSequence.size() != 0) {
                 /*
-                 * If after remove the infrequent items, we remove all the items 
-                 * of an original sequence, we insert an empty pseudosequence 
+                 * If after remove the infrequent items, we remove all the items
+                 * of an original sequence, we insert an empty pseudosequence
                  * in order not to affect to the absolute minimum support
                  */
                 PseudoSequence pseudoSequence = new PseudoSequence(0, optimizedSequence, 0, 0);

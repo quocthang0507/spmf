@@ -13,7 +13,7 @@ package ca.pfv.spmf.algorithms.episodes.minepi;
  *
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  * Copyright Peng Yang  2019
  */
 
@@ -22,74 +22,76 @@ package ca.pfv.spmf.algorithms.episodes.minepi;
  * is an episode containing no more than a single symbol for each time point. It
  * is used by the MINEPI algorithm.
  *
- * @see AlgoMINEPI
  * @author Peng yang
+ * @see AlgoMINEPI
  */
 public class SerialEpisode {
 
-	/**
-	 * the events in the serial episode each event is a single event(symbol)
-	 */
-	int[] events;
+    /**
+     * the events in the serial episode each event is a single event(symbol)
+     */
+    int[] events;
 
-	/** The support of episode */
-	int support = 0;
+    /**
+     * The support of episode
+     */
+    int support = 0;
 
-	/**
-	 * Constructor
-	 */
-	SerialEpisode() {
+    /**
+     * Constructor
+     */
+    SerialEpisode() {
 
-	}
+    }
 
-	/**
-	 * Constructor of an episode
-	 * 
-	 * @param events  the events
-	 * @param support the support
-	 */
-	SerialEpisode(int[] events, int support) {
-		this.events = events;
-		this.support = support;
-	}
+    /**
+     * Constructor of an episode
+     *
+     * @param events  the events
+     * @param support the support
+     */
+    SerialEpisode(int[] events, int support) {
+        this.events = events;
+        this.support = support;
+    }
 
-	/**
-	 * Increase the support by 1.
-	 */
-	public void increaseSupport() {
-		this.support++;
-	}
+    /**
+     * Increase the support by 1.
+     */
+    public void increaseSupport() {
+        this.support++;
+    }
 
-	/**
-	 * Compare two prefix. This episode will use last n-1 event as suffix to compare
-	 * with the first n-1 event of the episode of having the same size
-	 * 
-	 * @param prefix the other prefix
-	 * @return true if the same prefix. Otherwise, false.
-	 */
-	public boolean compare2prefix(SerialEpisode prefix) {
-		// we only compare with others in the condition that the size is large 1
-		for (int i = 0; i < this.events.length - 1; i++) {
-			if (this.events[i + 1] != prefix.events[i])
-				return false;
-		}
-		return true;
-	}
+    /**
+     * Compare two prefix. This episode will use last n-1 event as suffix to compare
+     * with the first n-1 event of the episode of having the same size
+     *
+     * @param prefix the other prefix
+     * @return true if the same prefix. Otherwise, false.
+     */
+    public boolean compare2prefix(SerialEpisode prefix) {
+        // we only compare with others in the condition that the size is large 1
+        for (int i = 0; i < this.events.length - 1; i++) {
+            if (this.events[i + 1] != prefix.events[i])
+                return false;
+        }
+        return true;
+    }
 
-	/**
-	 * Get a string representation of this object
-	 * 
-	 * @return a string
-	 */
-	public String toString() {
-		String returnString = "";
-		int episodeLength = events.length;
-		for (int i = 0; i < episodeLength - 1; i++) {
-			returnString = returnString + String.valueOf(events[i]) + " -1 ";
-		}
-		returnString = returnString + String.valueOf(events[episodeLength - 1]) + " -1 #SUP : "
-				+ String.valueOf(this.support);
-		return returnString;
-	}
+    /**
+     * Get a string representation of this object
+     *
+     * @return a string
+     */
+    public String toString() {
+        String returnString = "";
+        int episodeLength = events.length;
+        for (int i = 0; i < episodeLength - 1; i++) {
+            returnString = returnString + String.valueOf(events[i]) + " -1 ";
+        }
+        returnString = returnString + String.valueOf(events[episodeLength - 1]) + " -1 #SUP : "
+                + String.valueOf(this.support);
+        return returnString;
+    }
 
 }

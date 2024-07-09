@@ -16,21 +16,21 @@ import ca.pfv.spmf.algorithms.sequentialpatterns.clasp_AGP.dataStructures.patter
  * occurs at the same time), or to be with an after relation with respect to
  * that previous pair (the previous pair have a before relation with respect to
  * this one)
- *
+ * <p>
  * Copyright Antonio Gomariz Peñalver 2013
- *
+ * <p>
  * This file is part of the SPMF DATA MINING SOFTWARE
  * (http://www.philippe-fournier-viger.com/spmf).
- *
+ * <p>
  * SPMF is free software: you can redistribute it and/or modify it under the
  * terms of the GNU General Public License as published by the Free Software
  * Foundation, either version 3 of the License, or (at your option) any later
  * version.
- *
+ * <p>
  * SPMF is distributed in the hope that it will be useful, but WITHOUT ANY
  * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
  * A PARTICULAR PURPOSE. See the GNU General Public License for more details.
- *
+ * <p>
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  *
@@ -40,11 +40,11 @@ public class AbstractionCreator_Qualitative extends AbstractionCreator {
 
     private static AbstractionCreator_Qualitative instance = null;
 
-    public static void sclear() {
-        instance = null;
+    private AbstractionCreator_Qualitative() {
     }
 
-    private AbstractionCreator_Qualitative() {
+    public static void sclear() {
+        instance = null;
     }
 
     public static AbstractionCreator_Qualitative getInstance() {
@@ -56,6 +56,7 @@ public class AbstractionCreator_Qualitative extends AbstractionCreator {
 
     /**
      * It creates a default abstraction. The abstraction is established to false
+     *
      * @return the abstraction
      */
     @Override
@@ -65,8 +66,9 @@ public class AbstractionCreator_Qualitative extends AbstractionCreator {
 
     /**
      * It creates a relation with the given parameter.
-     * @param hasEqualRelation The boolean indicatin if the item has an equal 
-     * relation with the previous item in the pattern
+     *
+     * @param hasEqualRelation The boolean indicatin if the item has an equal
+     *                         relation with the previous item in the pattern
      * @return the created relation
      */
     public Abstraction_Generic crearAbstraccion(boolean hasEqualRelation) {
@@ -75,9 +77,10 @@ public class AbstractionCreator_Qualitative extends AbstractionCreator {
 
     /**
      * It obtains the subpattern that is derived from removing from the given
-     * pattern ,the item specified in the position pointed out by the given index 
+     * pattern ,the item specified in the position pointed out by the given index
+     *
      * @param extension the pattern
-     * @param index the index
+     * @param index     the index
      * @return the subpattern
      */
     @Override
@@ -96,7 +99,7 @@ public class AbstractionCreator_Qualitative extends AbstractionCreator {
                     subpatternElements.add(pairCreator.getItemAbstractionPair(extension.getIthElement(i).getItem(), abstraction));
                 } else {
                     subpatternElements.add(extension.getIthElement(i));
-                }                
+                }
             } else {
                 if (index == 0) {
                     abstraction = createDefaultAbstraction();
@@ -118,13 +121,14 @@ public class AbstractionCreator_Qualitative extends AbstractionCreator {
     /**
      * Method that check if for the two patterns given as parameters, the
      * shortest one is a subpattern of the longest one
-     * @param shorter The pattern which we check if is a subpattern of another
-     * longer than it
-     * @param larger Pattern which we want to check if another pattern is 
-     * subpattern of itself
-     * @param index index that indicates which position we have to take into account
+     *
+     * @param shorter   The pattern which we check if is a subpattern of another
+     *                  longer than it
+     * @param larger    Pattern which we want to check if another pattern is
+     *                  subpattern of itself
+     * @param index     index that indicates which position we have to take into account
      * @param positions List of positions of the appearances of the elements of
-     * the shorter pattern in the longer one
+     *                  the shorter pattern in the longer one
      * @return true if it is a subpattern, otherwise false
      */
     @Override
@@ -133,18 +137,18 @@ public class AbstractionCreator_Qualitative extends AbstractionCreator {
         ItemAbstractionPair pair = shorter.getIthElement(index);
         Item itemPair = pair.getItem();
         Abstraction_Generic absPair = pair.getAbstraction();
-        
+
         //And we also get the abstraction that was in the index-1 position
         Abstraction_Generic previousAbs = index > 0 ? shorter.getIthElement(index - 1).getAbstraction() : null;
         //Flag in order to cancel the search
         boolean cancelled = false;
         Integer pos;
-        /* While the item index pointed out by the position is less than the 
+        /* While the item index pointed out by the position is less than the
          * size of the largest pattern
          */
         while (positions.get(index) < larger.size()) {
-            /* 
-             * We search for the item of the shorter pattern pointed by index in 
+            /*
+             * We search for the item of the shorter pattern pointed by index in
              * the longer one
              */
             if (index == 0) {
@@ -174,9 +178,9 @@ public class AbstractionCreator_Qualitative extends AbstractionCreator {
                         return true;
                     }
                 } else {//If, conversely, we are in the last element of the shorter pattern
-                    /* 
-                     * We have already found a matching between shorter and 
-                     * longer and we conclude that one is a subpattern of the 
+                    /*
+                     * We have already found a matching between shorter and
+                     * longer and we conclude that one is a subpattern of the
                      * other one
                      */
                     positions.clear();
@@ -185,7 +189,7 @@ public class AbstractionCreator_Qualitative extends AbstractionCreator {
             } else {//If conversely, we did not find any position for the current index
                 //If we are not in the first element of the pattern
                 if (index > 0) {
-                    /* We increase the itemset position of the previous index in 
+                    /* We increase the itemset position of the previous index in
                      * order to find other matching elements
                      */
                     int newPos = increaseItemset(larger, positions.get(index - 1));
@@ -194,8 +198,8 @@ public class AbstractionCreator_Qualitative extends AbstractionCreator {
                 }
                 //We set to to true the flag that indicates the end of the method
                 cancelled = true;
-                /* 
-                 * And break the loop in order to go back and try to find other 
+                /*
+                 * And break the loop in order to go back and try to find other
                  * matching elements that makes the subsequence possible
                  */
                 break;
@@ -205,15 +209,15 @@ public class AbstractionCreator_Qualitative extends AbstractionCreator {
          * for the first element of the shorter pattern
          */
         if (index > 0 && !cancelled) {
-            /* We increase the itemset position of the previous index in order 
+            /* We increase the itemset position of the previous index in order
              * to find other matching elements
              */
             int newPos = increaseItemset(larger, positions.get(index - 1));
             //And we update that position
             positions.set(index - 1, newPos);
         }
-        /* 
-         * We return a false value, indicating that we cannot reach a matching 
+        /*
+         * We return a false value, indicating that we cannot reach a matching
          * with the current choices of elements in the longer pattern
          */
         return false;
@@ -222,9 +226,10 @@ public class AbstractionCreator_Qualitative extends AbstractionCreator {
     /**
      * Method that search the first appearance of an item (given as parameter)
      * in a pattern, starting from a beginning index
-     * @param p Pattern where we search for an item
+     *
+     * @param p         Pattern where we search for an item
      * @param beginning Index from which we start to search from the item
-     * @param itemPair Item to search for
+     * @param itemPair  Item to search for
      * @return The item position where we found the item, or null if this
      * does not appear
      */
@@ -241,13 +246,14 @@ public class AbstractionCreator_Qualitative extends AbstractionCreator {
     /**
      * It searches for a position in the pattern given as parameter where
      * an item, also given as a parameter, appears
-     * @param p Pattern where we are going to search for
-     * @param itemPair Item to search for
-     * @param currentAbs Abstraction of the current element of the pattern 
-     * where the item appeared
-     * @param previousAbs Astraction of the previous element of the pattern 
-     * where the item appeared
-     * @param currentPosition Position for the current element
+     *
+     * @param p                Pattern where we are going to search for
+     * @param itemPair         Item to search for
+     * @param currentAbs       Abstraction of the current element of the pattern
+     *                         where the item appeared
+     * @param previousAbs      Astraction of the previous element of the pattern
+     *                         where the item appeared
+     * @param currentPosition  Position for the current element
      * @param previousPosition Position of the previous element
      * @return the position
      */
@@ -261,13 +267,13 @@ public class AbstractionCreator_Qualitative extends AbstractionCreator {
         } else {//Otherwise
             //We start keeping the currentPosition
             int positionToSearchFor = currentPosition;
-            /* 
-             * If the positions of both the current item and the previous one 
+            /*
+             * If the positions of both the current item and the previous one
              * are not in different itemsets
              */
             if (!areInDifferentItemsets(p, previousPosition, currentPosition)) {
                 /*
-                 * We increase the position until we get the first element that 
+                 * We increase the position until we get the first element that
                  * appear in another itemset
                  */
                 positionToSearchFor = increaseItemset(p, currentPosition);
@@ -279,6 +285,7 @@ public class AbstractionCreator_Qualitative extends AbstractionCreator {
 
     /**
      * It increase the position of a given position by 1.
+     *
      * @param beginning the position
      * @return the position +1
      */
@@ -287,9 +294,10 @@ public class AbstractionCreator_Qualitative extends AbstractionCreator {
     }
 
     /**
-     * Increase a position to the first element position where it starts 
+     * Increase a position to the first element position where it starts
      * another itemset
-     * @param p Pattern in which we search for the beginning of another itemset
+     *
+     * @param p         Pattern in which we search for the beginning of another itemset
      * @param beginning Index from which we start to search for
      * @return The item index where a new Itemset starts
      */
@@ -304,9 +312,9 @@ public class AbstractionCreator_Qualitative extends AbstractionCreator {
                 return i;
             }
         }
-        /* 
+        /*
          * If we have got this point that means that we were in the last itemset
-         * of the pattern and, therefore, we return the size of the pattern, 
+         * of the pattern and, therefore, we return the size of the pattern,
          * since there can not be any index bigger than this value
          */
         return p.size();
@@ -314,8 +322,9 @@ public class AbstractionCreator_Qualitative extends AbstractionCreator {
 
     /**
      * Search for an item in the same itemset that the previous one appeared
-     * @param pattern Pattern where we are goin to search for the item
-     * @param itemPair Item to search for
+     *
+     * @param pattern   Pattern where we are goin to search for the item
+     * @param itemPair  Item to search for
      * @param beginning Index from which we are going to start to search for
      * @return the index where the item appears, or null if this index does not
      * exist
@@ -328,13 +337,13 @@ public class AbstractionCreator_Qualitative extends AbstractionCreator {
             //If the item has not an equal relation
             if (!qualitativeAbstraction.hasEqualRelation()) {
                 /*
-                 * We have finished without finding the item, since we have 
+                 * We have finished without finding the item, since we have
                  * already change of itemset
                  */
                 return null;
             } else {
                 /*
-                 * If, conversely, there is an equal relation, we check if this 
+                 * If, conversely, there is an equal relation, we check if this
                  * item is equal to which we are searching for
                  */
                 if (currentPair.getItem().equals(itemPair)) {
@@ -347,23 +356,24 @@ public class AbstractionCreator_Qualitative extends AbstractionCreator {
     }
 
     /**
-     * Method that informs if for a pattern, two positions correspond 
+     * Method that informs if for a pattern, two positions correspond
      * to a same itemset or not
+     *
      * @param pattern Pattern in which we check the two positions
-     * @param p1 First position
-     * @param p2 Second position
+     * @param p1      First position
+     * @param p2      Second position
      * @return True if they are in different itemsets, False otherwise
      */
     private boolean areInDifferentItemsets(Pattern pattern, Integer p1, Integer p2) {
         //For all the elements between positions p1 and p2
-        for (int i = p1+1; i <= p2 && i < pattern.size(); i++) {
+        for (int i = p1 + 1; i <= p2 && i < pattern.size(); i++) {
             ItemAbstractionPair currentPair = pattern.getIthElement(i);
             Abstraction_Qualitative qualitativeAbs = (Abstraction_Qualitative) currentPair.getAbstraction();
             /*
-             * If the ith element does not have an equal relation, we conclude 
+             * If the ith element does not have an equal relation, we conclude
              * that p1 and p2 are not in the same itemset and we can finish
              */
-            if(!qualitativeAbs.hasEqualRelation())
+            if (!qualitativeAbs.hasEqualRelation())
                 return true;
         }
         //If we get this point that means p1 and p2 are in the same itemset

@@ -9,21 +9,21 @@ import java.util.Map;
  * occurs at the same time), or to be with an after relation with respect to
  * that previous pair (the previous pair have a before relation with respect to
  * this one)
- *
+ * <p>
  * Copyright Antonio Gomariz Peñalver 2013
- *
+ * <p>
  * This file is part of the SPMF DATA MINING SOFTWARE
  * (http://www.philippe-fournier-viger.com/spmf).
- *
+ * <p>
  * SPMF is free software: you can redistribute it and/or modify it under the
  * terms of the GNU General Public License as published by the Free Software
  * Foundation, either version 3 of the License, or (at your option) any later
  * version.
- *
+ * <p>
  * SPMF is distributed in the hope that it will be useful, but WITHOUT ANY
  * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
  * A PARTICULAR PURPOSE. See the GNU General Public License for more details.
- *
+ * <p>
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  *
@@ -31,15 +31,6 @@ import java.util.Map;
  */
 public class Abstraction_Qualitative extends Abstraction_Generic {
 
-    public static void clear() {
-        //pool.clear();
-    }
-
-    /**
-     * Abstraction indicating if the item associated has an equal relation with
-     * the previous item in the pattern
-     */
-    private boolean hasEqualRelation;
     private static Map<Boolean, Abstraction_Qualitative> pool = new HashMap<Boolean, Abstraction_Qualitative>(4);
 
     static {
@@ -49,13 +40,24 @@ public class Abstraction_Qualitative extends Abstraction_Generic {
         pool.put(Boolean.FALSE, falseValue);
     }
 
+    /**
+     * Abstraction indicating if the item associated has an equal relation with
+     * the previous item in the pattern
+     */
+    private boolean hasEqualRelation;
+
     private Abstraction_Qualitative(boolean equalRelation) {
         super();
         this.hasEqualRelation = equalRelation;
     }
 
+    public static void clear() {
+        //pool.clear();
+    }
+
     /**
      * It creates a new abstraction with the given value.
+     *
      * @param hasEqualRelation the value
      * @return the created abstraction
      */
@@ -103,9 +105,10 @@ public class Abstraction_Qualitative extends Abstraction_Generic {
         }
         return result.toString();
     }
-    
+
     /**
      * Get the string representation of this object in SPMF format.
+     *
      * @return the string representation
      */
     @Override

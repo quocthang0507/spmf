@@ -4,25 +4,25 @@ import java.io.Serializable;
 
 /**
  * An itemset as used by the IncCHUI algorithm.
+ *
+ * @author Dam et al.
  * @see AlgoIncCHUI
- * @author Dam et al. 
  */
 public class ItemsetIncCHUI implements Comparable<ItemsetIncCHUI>, Serializable {
 
-    private int[] itemset;
-
     public double utility;
     public int supp;
+    private int[] itemset;
     //public double simscore; 
-
-    public int[] getItemset() {
-        return itemset;
-    }
 
     public ItemsetIncCHUI(int[] itemset, double utility, int support) {
         this.itemset = itemset;
         this.utility = utility;
         this.supp = support;
+    }
+
+    public int[] getItemset() {
+        return itemset;
     }
 
     public int[] getItems() {

@@ -18,28 +18,29 @@ import java.util.Objects;
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
+
 /**
  * This is an implementation of database graph edge enumeration, used by the CGSPAN algorithm.
  * Each edge in database graphs is uniquely enumerated by (graph id, edge) pair.
- *  <br/><br/>
- *
+ * <br/><br/>
+ * <p>
  * The cgspan algorithm is described in : <br/>
  * <br/>
  * <p>
  * cgSpan: Closed Graph-Based Substructure Pattern Mining, by Zevin Shaul, Sheikh Naaz
  * IEEE BigData 2021 7th Special Session on Intelligent Data Mining
  * <p>
- *
+ * <p>
  * <br/>
- *
+ * <p>
  * The CGspan algorithm finds all the closed subgraphs and their support in a
  * graph provided by the user.
  * <br/><br/>
- *
+ * <p>
  * This implementation saves the result to a file
  *
- * @see AlgoCGSPANAbstract
  * @author Shaul Zevin
+ * @see AlgoCGSPANAbstract
  */
 
 public class EdgeEnumeration implements Comparable {
@@ -83,7 +84,7 @@ public class EdgeEnumeration implements Comparable {
 
     @Override
     public int compareTo(Object o) {
-        EdgeEnumeration other = (EdgeEnumeration)o;
+        EdgeEnumeration other = (EdgeEnumeration) o;
         if (gid != other.gid) {
             return gid - other.gid;
         }

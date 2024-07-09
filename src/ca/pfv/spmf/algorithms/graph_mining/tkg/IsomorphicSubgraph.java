@@ -24,6 +24,8 @@ import java.util.*;
  * @author Shaul Zevin
  */
 public class IsomorphicSubgraph {
+    // the maximum position of all isomorphic subgraph edges in DFS code
+    int maxEdgeIndex = 0;
     // frequent subgraph dfs code
     private DFSCode dfsCode;
     // prefix of frequent graph dfs code which includes all extended edges of isomorphism
@@ -42,12 +44,9 @@ public class IsomorphicSubgraph {
     private Set<Integer> isomorphismRightmostPathVertices = new HashSet<Integer>();
     // if rightmost vertex is included in isomorphic vertices
     private boolean includesRightmostVertex;
-    // the maximum position of all isomorphic subgraph edges in DFS code
-    int maxEdgeIndex = 0;
 
     /**
-     *
-     * @param dfsCode frequent subgraph DFS code
+     * @param dfsCode         frequent subgraph DFS code
      * @param isomorphicEdges edges with both vertices having identical labels.
      *                        Each edge in the set must share at least one vertex with another edge in the set.
      *                        If the edge does not share a vertex with any edge in the set, DFS code must have an edge that connects
@@ -59,7 +58,7 @@ public class IsomorphicSubgraph {
         List<ExtendedEdge> graphDfsCode = new ArrayList(dfsCode.getEeL());
 
         // isomorphic vertices construction
-        for (ExtendedEdge extendedEdge: isomorphicEdges) {
+        for (ExtendedEdge extendedEdge : isomorphicEdges) {
             isomorphicEdgesVertices.add(extendedEdge.v1);
             isomorphicEdgesVertices.add(extendedEdge.v2);
         }
@@ -104,11 +103,11 @@ public class IsomorphicSubgraph {
 
         // find which isomorphic vertices are on the rightmost path
         Set<Integer> rightmostPathVertices = new HashSet<Integer>();
-        for(int rightmostPathVertex: dfsCode.getRightMostPath()) {
+        for (int rightmostPathVertex : dfsCode.getRightMostPath()) {
             rightmostPathVertices.add(rightmostPathVertex);
         }
 
-        for (int extendedEdgeIndex: edgesIndices) {
+        for (int extendedEdgeIndex : edgesIndices) {
             ExtendedEdge extendedEdge = dfsCode.getAt(extendedEdgeIndex);
             if (rightmostPathVertices.contains(extendedEdge.v1)) {
                 isomorphismRightmostPathVertices.add(extendedEdge.v1);
@@ -123,8 +122,7 @@ public class IsomorphicSubgraph {
     }
 
     /**
-     *
-     * @param projectedCompact DFS code projections
+     * @param projectedCompact     DFS code projections
      * @param pdfsCompactCanonical canonical projection.
      *                             Projection is canonical with respect to the isomorphic subgraph if the following holds:
      *                             Construct set of isomorphic projections by
@@ -133,7 +131,6 @@ public class IsomorphicSubgraph {
      *                             3. projection in the set has same set of projected vertices as canonical projection from DFS code edges that belong to the isomorphic subgraph.
      *                             For each projection in the isomorphic projections set, from the ordered list of isomorphic subgraph DFS code isomorphic vertices construct list of their projections.
      *                             Canonical projection is the projection having the smallest list by the lexicographical order.
-     *
      * @return isomorphic projections defined by conditions 1,2 and 3 above.
      */
     public IsomorphicSubgraphProjections projections(ProjectedCompact projectedCompact, PDFSCompact pdfsCompactCanonical) {
@@ -149,7 +146,7 @@ public class IsomorphicSubgraph {
             isomorphicSubgraphProjections.addProjection(projection);
 
             // rightmost path projections
-            for (int isomorphismRightmostPathVertex: isomorphismRightmostPathVertices) {
+            for (int isomorphismRightmostPathVertex : isomorphismRightmostPathVertices) {
                 int projectedIsomorphismRightmostPathVertex = pdfsCompact.getVertices().get(isomorphismRightmostPathVertex).getId();
                 isomorphicSubgraphProjections.addVertexRightMostPathIndexProjection(projectedIsomorphismRightmostPathVertex, isomorphismRightmostPathVertex, projection);
             }
@@ -158,7 +155,7 @@ public class IsomorphicSubgraph {
             if (includesRightmostVertex) {
                 int projectedIsomorphismRightmostVertex = pdfsCompact.getVertices().get(pdfsCompact.getVertices().size() - 1).getId();
 
-                for (int isomorphismRightmostPathVertex: isomorphismRightmostPathVertices) {
+                for (int isomorphismRightmostPathVertex : isomorphismRightmostPathVertices) {
                     if (isomorphismRightmostPathVertex == dfsCode.getRightMost() || isomorphismRightmostPathVertex == dfsCode.getRightMost() - 1) {
                         continue;
                     }
@@ -174,17 +171,16 @@ public class IsomorphicSubgraph {
     }
 
     /**
-     *
      * @param projectedCompact projections
-     * @param pdfs projection to be tested
+     * @param pdfs             projection to be tested
      * @return true if projection is canonical, false otherwise
-     *         Projection is canonical with respect to the isomorphic subgraph if the following holds:
-     *         Construct set of isomorphic projections by
-     *         1. projection in the set is projected from the isomorphic subgraph DFS code.
-     *         2. projection in the set has same projected edges as canonical projection from DFS edges that do not belong to the isomorphic subgraph.
-     *         3. projection in the set has same set of projected vertices as canonical projection from DFS code edges that belong to the isomorphic subgraph.
-     *         For each projection in the isomorphic projections set, from the ordered list of isomorphic subgraph DFS code isomorphic vertices construct list of their projections.
-     *         Canonical projection is the projection having the smallest list by the lexicographical order.
+     * Projection is canonical with respect to the isomorphic subgraph if the following holds:
+     * Construct set of isomorphic projections by
+     * 1. projection in the set is projected from the isomorphic subgraph DFS code.
+     * 2. projection in the set has same projected edges as canonical projection from DFS edges that do not belong to the isomorphic subgraph.
+     * 3. projection in the set has same set of projected vertices as canonical projection from DFS code edges that belong to the isomorphic subgraph.
+     * For each projection in the isomorphic projections set, from the ordered list of isomorphic subgraph DFS code isomorphic vertices construct list of their projections.
+     * Canonical projection is the projection having the smallest list by the lexicographical order.
      */
     public boolean isCanonicalPDFS(ProjectedCompact projectedCompact, List<ProjectedEdge> pdfs) {
 
@@ -201,9 +197,8 @@ public class IsomorphicSubgraph {
     }
 
     /**
-     *
      * @param projectedCompact projections
-     * @param pdfs projection
+     * @param pdfs             projection
      * @return iterator, iterator will output projections in projected vertices lexicographical order
      */
     private ProjectedIterator isomorphismOrderIterator(ProjectedCompact projectedCompact, List<ProjectedEdge> pdfs) {
@@ -216,7 +211,7 @@ public class IsomorphicSubgraph {
         Map<Integer, Set<Integer>> labelIsomorphicVertices = new HashMap<Integer, Set<Integer>>();
         Set<Integer> isomorphicVertices = new HashSet<Integer>();
 
-        for (int isomorphicEdgeIndex: isomorphicEdgesIndices) {
+        for (int isomorphicEdgeIndex : isomorphicEdgesIndices) {
             ProjectedEdge isomorphicProjectedEdge = pdfs.get(isomorphicEdgeIndex);
             int label = isomorphismDfsCode.getAt(isomorphicEdgeIndex).vLabel1;
             if (!labelIsomorphicVertices.containsKey(label)) {
@@ -231,7 +226,7 @@ public class IsomorphicSubgraph {
         // from label to sorted list of projected vertices
         Map<Integer, List<Integer>> labelIsomorphicVerticesSorted = new HashMap<Integer, List<Integer>>();
 
-        for (int label: labelIsomorphicVertices.keySet()) {
+        for (int label : labelIsomorphicVertices.keySet()) {
             List<Integer> vertices = new ArrayList(labelIsomorphicVertices.get(label));
             Collections.sort(vertices);
             labelIsomorphicVerticesSorted.put(label, vertices);
@@ -262,7 +257,7 @@ public class IsomorphicSubgraph {
                         }
                         int v2 = sortedVertices.get(t);
                         Edge edge = new Edge(v1, v2, edgeLabel);
-                        Edge edgeDB = new Edge(edge.v1 < edge.v2? edge.v1: edge.v2, edge.v1 < edge.v2? edge.v2: edge.v1, edgeLabel);
+                        Edge edgeDB = new Edge(edge.v1 < edge.v2 ? edge.v1 : edge.v2, edge.v1 < edge.v2 ? edge.v2 : edge.v1, edgeLabel);
                         EdgeEnumeration edgeEnumeration = new EdgeEnumeration(gid, edgeDB);
                         ProjectedEdge projectedEdge = ProjectedEdge.getIfExists(edgeEnumeration, edge.v1 != edgeDB.v1);
 
@@ -274,8 +269,7 @@ public class IsomorphicSubgraph {
                         }
                     }
                 }
-            }
-            else {
+            } else {
                 // internal edges
                 if (internalNonIsomorphicEdgesIndices.contains(i)) {
                     ExtendedEdge extendedEdge = isomorphismDfsCode.getAt(i);
@@ -288,13 +282,13 @@ public class IsomorphicSubgraph {
                     if (forward) {
                         // add edges in the lexicographical order of projected vertices
                         // create all possible edges in the lexicographical order of projected vertices and add an edge if it exists
-                        for (int v1: labelIsomorphicVerticesSorted.get(vLabel1)) {
+                        for (int v1 : labelIsomorphicVerticesSorted.get(vLabel1)) {
                             if (!projectedCompact.getProjected().get(i).get(gid).containsKey(v1)) {
                                 continue;
                             }
-                            for (int v2: labelIsomorphicVerticesSorted.get(vLabel2)) {
+                            for (int v2 : labelIsomorphicVerticesSorted.get(vLabel2)) {
                                 Edge edge = new Edge(v1, v2, edgeLabel);
-                                Edge edgeDB = new Edge(edge.v1 < edge.v2? edge.v1: edge.v2, edge.v1 < edge.v2? edge.v2: edge.v1, edgeLabel);
+                                Edge edgeDB = new Edge(edge.v1 < edge.v2 ? edge.v1 : edge.v2, edge.v1 < edge.v2 ? edge.v2 : edge.v1, edgeLabel);
                                 EdgeEnumeration edgeEnumeration = new EdgeEnumeration(gid, edgeDB);
                                 ProjectedEdge projectedEdge = ProjectedEdge.getIfExists(edgeEnumeration, edge.v1 != edgeDB.v1);
 
@@ -306,17 +300,16 @@ public class IsomorphicSubgraph {
                                 }
                             }
                         }
-                    }
-                    else {
+                    } else {
                         // add edges in the lexicographical order of projected vertices
                         // create all possible edges in the lexicographical order of projected vertices and add an edge if it exists
-                        for (int v2: labelIsomorphicVerticesSorted.get(vLabel2)) {
-                            for (int v1: labelIsomorphicVerticesSorted.get(vLabel1)) {
+                        for (int v2 : labelIsomorphicVerticesSorted.get(vLabel2)) {
+                            for (int v1 : labelIsomorphicVerticesSorted.get(vLabel1)) {
                                 if (!projectedCompact.getProjected().get(i).get(gid).containsKey(v1)) {
                                     continue;
                                 }
                                 Edge edge = new Edge(v1, v2, edgeLabel);
-                                Edge edgeDB = new Edge(edge.v1 < edge.v2? edge.v1: edge.v2, edge.v1 < edge.v2? edge.v2: edge.v1, edgeLabel);
+                                Edge edgeDB = new Edge(edge.v1 < edge.v2 ? edge.v1 : edge.v2, edge.v1 < edge.v2 ? edge.v2 : edge.v1, edgeLabel);
                                 EdgeEnumeration edgeEnumeration = new EdgeEnumeration(gid, edgeDB);
                                 ProjectedEdge projectedEdge = ProjectedEdge.getIfExists(edgeEnumeration, edge.v1 != edgeDB.v1);
 
@@ -329,16 +322,14 @@ public class IsomorphicSubgraph {
                             }
                         }
                     }
-                }
-                else {
+                } else {
                     // outgoing edges
                     if (outgoingEdgesIndices.contains(i)) {
                         ExtendedEdge extendedEdge = isomorphismDfsCode.getAt(i);
                         int isomorphicVertexLabel;
                         if (isomorphicEdgesVertices.contains(extendedEdge.v1)) {
                             isomorphicVertexLabel = extendedEdge.vLabel1;
-                        }
-                        else {
+                        } else {
                             isomorphicVertexLabel = extendedEdge.vLabel2;
                         }
 
@@ -348,12 +339,12 @@ public class IsomorphicSubgraph {
                         // add edges in the lexicographical order of projected vertices
                         // create all possible edges in the lexicographical order of projected vertices and add an edge if it exists
                         if (isomorphicVertices.contains(outgoingEdge.v1)) {
-                            for (int v1: labelIsomorphicVerticesSorted.get(isomorphicVertexLabel)) {
+                            for (int v1 : labelIsomorphicVerticesSorted.get(isomorphicVertexLabel)) {
                                 if (!projectedCompact.getProjected().get(i).get(gid).containsKey(v1)) {
                                     continue;
                                 }
                                 Edge edge = new Edge(v1, outgoingEdge.v2, outgoingEdge.getEdgeLabel());
-                                Edge edgeDB = new Edge(edge.v1 < edge.v2? edge.v1: edge.v2, edge.v1 < edge.v2? edge.v2: edge.v1, edge.getEdgeLabel());
+                                Edge edgeDB = new Edge(edge.v1 < edge.v2 ? edge.v1 : edge.v2, edge.v1 < edge.v2 ? edge.v2 : edge.v1, edge.getEdgeLabel());
                                 EdgeEnumeration edgeEnumeration = new EdgeEnumeration(gid, edgeDB);
                                 boolean reversed = edge.v1 != edgeDB.v1;
                                 if (outgoingProjectedEdge.isReversed()) {
@@ -368,8 +359,7 @@ public class IsomorphicSubgraph {
                                     projectionsAt.get(gid).get(v1).add(projectedEdge);
                                 }
                             }
-                        }
-                        else {
+                        } else {
                             if (projectedCompact.getProjected().get(i).get(gid).containsKey(outgoingEdge.v1)) {
                                 for (int v2 : labelIsomorphicVerticesSorted.get(isomorphicVertexLabel)) {
                                     Edge edge = new Edge(outgoingEdge.v1, v2, outgoingEdge.getEdgeLabel());
@@ -390,9 +380,8 @@ public class IsomorphicSubgraph {
                                 }
                             }
                         }
-                    }
-                    else {
-                        int v1 = pdfs.get(i).isReversed()? pdfs.get(i).getEdgeEnumeration().getEdge().v2: pdfs.get(i).getEdgeEnumeration().getEdge().v1;
+                    } else {
+                        int v1 = pdfs.get(i).isReversed() ? pdfs.get(i).getEdgeEnumeration().getEdge().v2 : pdfs.get(i).getEdgeEnumeration().getEdge().v1;
                         if (!projectionsAt.get(gid).containsKey(v1)) {
                             projectionsAt.get(gid).put(v1, new LinkedHashSet<ProjectedEdge>());
                         }

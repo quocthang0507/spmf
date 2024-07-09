@@ -4,17 +4,17 @@ import java.io.IOException;
 
 public abstract class AbstractIO {
 
-	protected IOContext context;
+    protected IOContext context;
 
-	public AbstractIO(IOContext context) {
-		super();
-		this.context = context;
-	}
+    public AbstractIO(IOContext context) {
+        super();
+        this.context = context;
+    }
 
-	public void close() throws IOException {
-		doClose();
-	}
+    public void close() throws IOException {
+        doClose();
+    }
 
-	protected abstract void doClose() throws IOException;
+    protected abstract void doClose() throws IOException;
 
 }

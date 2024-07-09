@@ -17,6 +17,7 @@ package ca.pfv.spmf.algorithms.sequentialpatterns.clospan_AGP;
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
+
 import java.io.IOException;
 import java.util.BitSet;
 import java.util.List;
@@ -37,12 +38,12 @@ import ca.pfv.spmf.tools.MemoryLogger;
 /**
  * This is an implementation of the CloSpan algorithm. CloSpan was proposed by
  * X. Yan et al. 2003.
- *<br/><br/>
- *
+ * <br/><br/>
+ * <p>
  * NOTE: This implementation saves the pattern to a file as soon as they are
  * found or can keep the pattern into memory if no output path is provided by the user.
- * 
- * @author Antonio Gomariz Peñalver 
+ *
+ * @author Antonio Gomariz Peñalver
  */
 public class AlgoCloSpan {
 
@@ -57,25 +58,25 @@ public class AlgoCloSpan {
      * all generated frequent sequences, i.e. sequential patterns
      */
     /**
-     * Saver variable to decide where the user want to save the results, if it
-     * the case
-     */
-    Saver saver = null;
-    /**
-     * Start and End points in order to calculate the overall time taken by the 
+     * Start and End points in order to calculate the overall time taken by the
      * algorithm
      */
     protected long overallStart, overallEnd;
     /**
-     * Start and End points in order to calculate the time taken by the main 
+     * Start and End points in order to calculate the time taken by the main
      * part of CloSpan algorithm
      */
     protected long mainMethodStart, mainMethodEnd;
     /**
-     * Start and End points in order to calculate the time taken by the 
+     * Start and End points in order to calculate the time taken by the
      * post-processing method of CloSpan algorithm
      */
     protected long postProcessingStart, postProcessingEnd;
+    /**
+     * Saver variable to decide where the user want to save the results, if it
+     * the case
+     */
+    Saver saver = null;
     /**
      * The abstraction creator
      */
@@ -85,12 +86,12 @@ public class AlgoCloSpan {
      */
     private int numberOfFrequentPatterns = 0;
     /**
-     * flag to indicate if we are interesting in only finding the closed 
+     * flag to indicate if we are interesting in only finding the closed
      * sequences
      */
     private boolean findClosedPatterns;
     /**
-     * flag to indicate if we are interesting in only finding the closed sequence 
+     * flag to indicate if we are interesting in only finding the closed sequence
      * through the postprocessing step
      */
     private boolean executePruningMethods;
@@ -99,10 +100,10 @@ public class AlgoCloSpan {
      * Standard constructor. It takes the relative minimum support threshold (from 1 up
      * to 0) and an abstraction creator
      *
-     * @param minSupRelative the relative minimum support threshold
-     * @param creator the abstraction creator
+     * @param minSupRelative     the relative minimum support threshold
+     * @param creator            the abstraction creator
      * @param findClosedPatterns flag to indicate if we are interesting in only
-     * finding the closed sequences
+     *                           finding the closed sequences
      */
     public AlgoCloSpan(double minSupRelative, AbstractionCreator creator, boolean findClosedPatterns, boolean executePruningMethods) {
         this.minSupRelative = minSupRelative;
@@ -114,14 +115,14 @@ public class AlgoCloSpan {
     /**
      * Method that starts the execution of the algorithm.
      *
-     * @param database The original database in which we apply PrefixSpan
-     * @param keepPatterns Flag indicating if the user want to keep the frequent
-     * patterns or he just want the amount of them
-     * @param verbose Flag for debugging purposes
-     * @param outputFilePath Path pointing out to the file where the output,
-     * composed of frequent patterns, has to be kept. If, conversely, this
-     * parameter is null, we understand that the user wants the output in the
-     * main memory
+     * @param database                  The original database in which we apply PrefixSpan
+     * @param keepPatterns              Flag indicating if the user want to keep the frequent
+     *                                  patterns or he just want the amount of them
+     * @param verbose                   Flag for debugging purposes
+     * @param outputFilePath            Path pointing out to the file where the output,
+     *                                  composed of frequent patterns, has to be kept. If, conversely, this
+     *                                  parameter is null, we understand that the user wants the output in the
+     *                                  main memory
      * @param outputSequenceIdentifiers if true, sequence identifiers will be output for each pattern
      * @throws IOException
      */
@@ -144,21 +145,22 @@ public class AlgoCloSpan {
     }
 
     /**
-     * Method that executes the first steps before calling the actual main 
-     * method of CloSpan. In particular, the original database is fully 
-     * converted to a pseudosequece database, removing the infrequent items 
+     * Method that executes the first steps before calling the actual main
+     * method of CloSpan. In particular, the original database is fully
+     * converted to a pseudosequece database, removing the infrequent items
      * that appeared in the original dabase
-     * @param database The original database
-     * @param keepPatterns Flag indicating if the user want to keep the frequent 
-     * patterns or he just want the amount of them
-     * @param verbose Flag for debugging purposes
-     * @param findClosedPatterns flag to indicate if we are interesting in only
-     * finding the closed sequences
-     * @param outputFilePath Path pointing out to the file where the output, 
-     * composed of frequent patterns, has to be kept. If, conversely, this 
-     * parameter is null, we understand that the user wants the output in the main memory
-     * @param outputSequenceIdentifiers  if true, sequence identifiers will be output for each pattern
-     * @throws IOException 
+     *
+     * @param database                  The original database
+     * @param keepPatterns              Flag indicating if the user want to keep the frequent
+     *                                  patterns or he just want the amount of them
+     * @param verbose                   Flag for debugging purposes
+     * @param findClosedPatterns        flag to indicate if we are interesting in only
+     *                                  finding the closed sequences
+     * @param outputFilePath            Path pointing out to the file where the output,
+     *                                  composed of frequent patterns, has to be kept. If, conversely, this
+     *                                  parameter is null, we understand that the user wants the output in the main memory
+     * @param outputSequenceIdentifiers if true, sequence identifiers will be output for each pattern
+     * @throws IOException
      */
     protected void cloSpan(SequenceDatabase database, boolean keepPatterns, boolean verbose, boolean findClosedPatterns, boolean executePruningMethods, String outputFilePath, boolean outputSequenceIdentifiers) throws IOException {
         //If we do no have any file path
@@ -167,7 +169,7 @@ public class AlgoCloSpan {
             saver = new SaverIntoMemory(outputSequenceIdentifiers);
         } else {
             //Otherwise, the user wants to save them in the given file
-            saver = new SaverIntoFile(outputFilePath,outputSequenceIdentifiers);
+            saver = new SaverIntoFile(outputFilePath, outputSequenceIdentifiers);
         }
 
         /*
@@ -184,21 +186,21 @@ public class AlgoCloSpan {
         PseudoSequenceDatabase pseudoDatabase = projectInitialDatabase(database, mapSequenceID, (int) minSupAbsolute);
 
         //We initialize the class that is in charge of managing the main loop of PrefixSpan
-        RecursionCloSpan algorithm = new RecursionCloSpan(abstractionCreator, saver, (int) minSupAbsolute, pseudoDatabase, mapSequenceID, findClosedPatterns,executePruningMethods);
-        
-        mainMethodStart=System.currentTimeMillis();
+        RecursionCloSpan algorithm = new RecursionCloSpan(abstractionCreator, saver, (int) minSupAbsolute, pseudoDatabase, mapSequenceID, findClosedPatterns, executePruningMethods);
+
+        mainMethodStart = System.currentTimeMillis();
         //And we execute the actual algorithm
         algorithm.execute(verbose);
-        mainMethodEnd=System.currentTimeMillis();
+        mainMethodEnd = System.currentTimeMillis();
 
         long timeForMainMethod = (mainMethodEnd - mainMethodStart) / 1000;
 
         //Finally we update the number of frequent patterns that we found
         numberOfFrequentPatterns = algorithm.numberOfFrequentPatterns();
-        
+
         // check the memory usage for statistics
-	MemoryLogger.getInstance().checkMemory();
-        
+        MemoryLogger.getInstance().checkMemory();
+
         if (verbose) {
             System.out.println("CLOSPAN: The algorithm takes " + timeForMainMethod + " seconds and finds " + numberOfFrequentPatterns + " patterns");
         }
@@ -215,25 +217,26 @@ public class AlgoCloSpan {
             if (verbose) {
                 System.out.println("CLOSPAN: The post-processing algorithm to remove the non-Closed patterns takes " + timeForPostProcessingStep + " seconds and finds " + numberOfFrequentPatterns + " Closed patterns");
             }
-        }else{
-            if(keepPatterns){
+        } else {
+            if (keepPatterns) {
                 List<Pattern> outputPatternsFromMainMethod = algorithm.getFrequentPatterns();
-                for(Pattern p:outputPatternsFromMainMethod){
+                for (Pattern p : outputPatternsFromMainMethod) {
                     saver.savePattern(p);
                 }
             }
         }
 
         algorithm.clear();
-        pseudoDatabase.clear();        
-        
+        pseudoDatabase.clear();
+
         // check the memory usage for statistics
-	MemoryLogger.getInstance().checkMemory();
+        MemoryLogger.getInstance().checkMemory();
     }
 
     /**
-     * Method to get the outlined information about the search for frequent 
+     * Method to get the outlined information about the search for frequent
      * sequences by means of CloSpan algorithm s a string
+     *
      * @return a string containing this information
      */
     public String printStatistics() {
@@ -245,20 +248,21 @@ public class AlgoCloSpan {
         sb.append(numberOfFrequentPatterns);
         sb.append('\n');
         sb.append(" Max memory (mb):");
-	sb.append(MemoryLogger.getInstance().getMaxMemory());
+        sb.append(MemoryLogger.getInstance().getMaxMemory());
         sb.append('\n');
         sb.append(saver.print());
         sb.append('\n');
         sb.append("\n===================================================\n");
         return sb.toString();
     }
-    
+
     public int getNumberOfFrequentPatterns() {
         return numberOfFrequentPatterns;
     }
 
     /**
      * It gets the total time spent by the algoritm in its execution.
+     *
      * @return the time
      */
     public long getRunningTime() {
@@ -268,6 +272,7 @@ public class AlgoCloSpan {
     /**
      * It gets the absolute minimum support, i.e. the minimum number of database
      * sequences where a pattern has to appear
+     *
      * @return the minimum support
      */
     public double getAbsoluteMinSupport() {
@@ -278,11 +283,12 @@ public class AlgoCloSpan {
      * It projects the initial database converting each original sequence to
      * pseudosequences in order to enable the later pseudoprojections in the
      * main loop of PrefixSpan
-     * @param database The original Database
-     * @param mapSequenceID Map with all the items appearing in the original 
-     * database, and a bitset pointing out in which sequences the items appear
+     *
+     * @param database           The original Database
+     * @param mapSequenceID      Map with all the items appearing in the original
+     *                           database, and a bitset pointing out in which sequences the items appear
      * @param minSupportAbsolute The absolute minimum  support
-     * @return 
+     * @return
      */
     private PseudoSequenceDatabase projectInitialDatabase(SequenceDatabase database, Map<Item, BitSet> mapSequenceID, long minSupportAbsolute) {
         PseudoSequenceDatabase initialContext = new PseudoSequenceDatabase();
@@ -292,8 +298,8 @@ public class AlgoCloSpan {
             Sequence optimizedSequence = sequence.cloneSequenceMinusItems(mapSequenceID, minSupportAbsolute);
             if (optimizedSequence.size() != 0) {
                 /*
-                 * If after remove the infrequent items, we remove all the items 
-                 * of an original sequence, we insert an empty pseudosequence 
+                 * If after remove the infrequent items, we remove all the items
+                 * of an original sequence, we insert an empty pseudosequence
                  * in order not to affect to the absolute minimum support
                  */
                 PseudoSequence pseudoSequence = new PseudoSequence(0, optimizedSequence, 0, 0);

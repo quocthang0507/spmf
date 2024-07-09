@@ -25,23 +25,20 @@ import java.util.List;
  */
 public interface IProjectedIteratorCallback {
     /**
-     *
-     * @param projectedEdges projection
+     * @param projectedEdges    projection
      * @param nextProjectedEdge projection extension
      * @return true if projection should be extended with edge and false otherwise
      */
     boolean beforeAdvance(List<ProjectedEdge> projectedEdges, ProjectedEdge nextProjectedEdge);
 
     /**
-     *
-     * @param projectedEdges projection
+     * @param projectedEdges    projection
      * @param nextProjectedEdge projection extension
      * @return true if after extending the projection with edge, the iterator should also try extensions with other edges at the same position, false otherwise
      */
     boolean afterAdvance(List<ProjectedEdge> projectedEdges, ProjectedEdge nextProjectedEdge);
 
     /**
-     *
      * @param pdfsCompact fully extended projection
      * @return allows callback to add more information to the projection by subclassing PDFSCompact
      */

@@ -20,72 +20,75 @@ import java.util.List;
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
+
 /**
  * A time interval sequence as used by algorithms like FastTIRP and VertTIRP
- * 
+ *
  * @author Philippe Fournier-Viger, 2024
  */
 public class TimeIntervalSequence {
 
-	/** the list of time intervals */
-	private List<SymbolicTimeInterval> timeIntervals;
+    /**
+     * the list of time intervals
+     */
+    private List<SymbolicTimeInterval> timeIntervals;
 
-	/**
-	 * Constructor
-	 */
-	public TimeIntervalSequence() {
-		timeIntervals = new ArrayList<SymbolicTimeInterval>();
-	}
+    /**
+     * Constructor
+     */
+    public TimeIntervalSequence() {
+        timeIntervals = new ArrayList<SymbolicTimeInterval>();
+    }
 
-	/**
-	 * Add a time interval to this sequence
-	 * 
-	 * @param item the time interval
-	 */
-	public void add(SymbolicTimeInterval item) {
-		timeIntervals.add(item);
-	}
+    /**
+     * Add a time interval to this sequence
+     *
+     * @param item the time interval
+     */
+    public void add(SymbolicTimeInterval item) {
+        timeIntervals.add(item);
+    }
 
-	/**
-	 * Get the size of this sequence
-	 * 
-	 * @return the size
-	 */
-	public int size() {
-		return timeIntervals.size();
-	}
+    /**
+     * Get the size of this sequence
+     *
+     * @return the size
+     */
+    public int size() {
+        return timeIntervals.size();
+    }
 
-	/**
-	 * Get the time interval at a given position in this sequence
-	 * 
-	 * @param index the position
-	 * @return the time interval
-	 */
-	public SymbolicTimeInterval get(int index) {
-		return timeIntervals.get(index);
-	}
+    /**
+     * Get the time interval at a given position in this sequence
+     *
+     * @param index the position
+     * @return the time interval
+     */
+    public SymbolicTimeInterval get(int index) {
+        return timeIntervals.get(index);
+    }
 
-	/**
-	 * Get the list of time intervals in this sequence
-	 * 
-	 * @return the list of time intervals
-	 */
-	public List<SymbolicTimeInterval> getTimeIntervals() {
-		return timeIntervals;
-	}
+    /**
+     * Get the list of time intervals in this sequence
+     *
+     * @return the list of time intervals
+     */
+    public List<SymbolicTimeInterval> getTimeIntervals() {
+        return timeIntervals;
+    }
 
-	/**
-	 * Get a string representation of this sequence
-	 * 
-	 * @return the string
-	 */
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		for (SymbolicTimeInterval item : timeIntervals) {
-			builder.append(item.toString());
-			builder.append(' ');
-		}
-		return builder.toString();
-	}
+    /**
+     * Get a string representation of this sequence
+     *
+     * @return the string
+     */
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        for (SymbolicTimeInterval item : timeIntervals) {
+            builder.append(item.toString());
+            builder.append(' ');
+        }
+        return builder.toString();
+    }
 
 }

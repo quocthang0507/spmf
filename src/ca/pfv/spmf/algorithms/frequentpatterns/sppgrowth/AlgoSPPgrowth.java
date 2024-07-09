@@ -1,4 +1,5 @@
 package ca.pfv.spmf.algorithms.frequentpatterns.sppgrowth;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
@@ -21,7 +22,7 @@ import ca.pfv.spmf.tools.MemoryLogger;
 
  * This file is part of the SPMF DATA MINING SOFTWARE *
  * (http://www.philippe-fournier-viger.com/spmf).
- * 
+ *
  * SPMF is free software: you can redistribute it and/or modify it under the *
  * terms of the GNU General Public License as published by the Free Software *
  * Foundation, either version 3 of the License, or (at your option) any later *
@@ -29,7 +30,7 @@ import ca.pfv.spmf.tools.MemoryLogger;
  * ANY * WARRANTY; without even the implied warranty of MERCHANTABILITY or
  * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
  * details.
- * 
+ *
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
@@ -40,61 +41,83 @@ import ca.pfv.spmf.tools.MemoryLogger;
  * The SPP-growth algorithm finds all periodic time-intervals of patterns.
  * SPP-Growth is presented in this paper:
  * <br/><br/>
- * Fournier-Viger, P., Yang, P., Lin, J. C.-W., Kiran, U. (2019). Discovering Stable Periodic-Frequent Patterns 
- * in Transactional Data. Proc. 32nd Intern. Conf. on Industrial, Engineering and Other Applications of Applied 
+ * Fournier-Viger, P., Yang, P., Lin, J. C.-W., Kiran, U. (2019). Discovering Stable Periodic-Frequent Patterns
+ * in Transactional Data. Proc. 32nd Intern. Conf. on Industrial, Engineering and Other Applications of Applied
  * Intelligent Systems (IEA AIE 2019), Springer LNAI, pp. 230-244
- * 
+ *
  * @see SPPTree
  * @see SPPNode
  * @see Support_maxla
  */
 
 public class AlgoSPPgrowth {
-    /**  start time of the latest execution */
-    private long startTimestamp; 
-    /** end time of the latest execution */
-    private long endTime; 
-
-    /** largest TID in the database */
-    private int lastTID = -1; 
-    
-    /** number of freq. itemsets found */
-    private int itemsetCount; 
-
-    /** object to write the output file */
-    BufferedWriter writer = null; 
-
-    /** The  patterns that are found (if the user wants to keep them into memory) */
-    protected Itemsets patterns = null;
-
-    /** This variable is used to determine the size of buffers to store itemsets.
-    // A value of 50 is enough because it allows up to 2^50 patterns! */
+    /**
+     * This variable is used to determine the size of buffers to store itemsets.
+     * // A value of 50 is enough because it allows up to 2^50 patterns!
+     */
     final int BUFFERS_SIZE = 2000;
-
-    /** buffer for storing the current itemset that is mined when performing mining
-    // the idea is to always reuse the same buffer to reduce memory usage. */
+    /**
+     * The  patterns that are found (if the user wants to keep them into memory)
+     */
+    protected Itemsets patterns = null;
+    /**
+     * object to write the output file
+     */
+    BufferedWriter writer = null;
+    /**
+     * start time of the latest execution
+     */
+    private long startTimestamp;
+    /**
+     * end time of the latest execution
+     */
+    private long endTime;
+    /**
+     * largest TID in the database
+     */
+    private int lastTID = -1;
+    /**
+     * number of freq. itemsets found
+     */
+    private int itemsetCount;
+    /**
+     * buffer for storing the current itemset that is mined when performing mining
+     * // the idea is to always reuse the same buffer to reduce memory usage.
+     */
     private int[] itemsetBuffer = null;
 
-    /** This buffer is used to store an itemset that will be written to file
-    // so that the algorithm can sort the itemset before it is output to file
-    // (when the user choose to output result to file). */
+    /**
+     * This buffer is used to store an itemset that will be written to file
+     * // so that the algorithm can sort the itemset before it is output to file
+     * // (when the user choose to output result to file).
+     */
     private int[] itemsetOutputBuffer = null;
 
-    /** maximum pattern length */
+    /**
+     * maximum pattern length
+     */
     private int maxPatternLength = 1000;
 
-    /** whether the timestamps need self increment as step of 1 for each transcation
+    /**
+     * whether the timestamps need self increment as step of 1 for each transcation
      * or timestamps is provided in the input file
-    // default as true */
+     * // default as true
+     */
     private boolean self_increment;
 
-    /** the minimum duration threshold. */
+    /**
+     * the minimum duration threshold.
+     */
     private int minSup;
 
-    /** the maximum periodicity threshold. */
+    /**
+     * the maximum periodicity threshold.
+     */
     private int maxPer;
 
-    /** the maxLa */
+    /**
+     * the maxLa
+     */
     private int maxLa;
 
 
@@ -102,14 +125,15 @@ public class AlgoSPPgrowth {
      * Constructor
      */
     public AlgoSPPgrowth() {
-    	
+
     }
 
     /**
      * Method to run the FPGRowth algorithm.
-     * @param input the path to an input file containing a transaction database.
+     *
+     * @param input  the path to an input file containing a transaction database.
      * @param output the output file path for saving the result (if null, the result
-     *        will be returned by the method instead of being saved).
+     *               will be returned by the method instead of being saved).
      * @param maxPer the maximum periodicity threshold
      * @param minSup the minimum support threshold
      * @param maxLa  the max lability threshold
@@ -122,7 +146,7 @@ public class AlgoSPPgrowth {
 
         // number of itemsets found
         itemsetCount = 0;
-        
+
         // save the parameters
         this.minSup = minSup;
         this.maxPer = maxPer;
@@ -154,13 +178,13 @@ public class AlgoSPPgrowth {
         // by descending order of item's support.
         SPPTree tree = new SPPTree();
 
-        buildTreeByScanDataAgain(tree, input,mapSPP_list);
-        System.out.println("# of node : "+tree.numberOfNode);
+        buildTreeByScanDataAgain(tree, input, mapSPP_list);
+        System.out.println("# of node : " + tree.numberOfNode);
 
         // (3) We start to mine the SPP-Tree by calling the recursive method.
         // Initially, the prefix alpha is empty.
         // if at least an item has periodic frequent time-interval
-        if(tree.headerList.size() > 0) {
+        if (tree.headerList.size() > 0) {
             // initialize the buffer for storing the current itemset
             itemsetBuffer = new int[BUFFERS_SIZE];
 
@@ -175,11 +199,11 @@ public class AlgoSPPgrowth {
 //        writer.write(testRes.toString());
 
         // close the output file if the result was saved to a file
-        if(writer != null){
+        if (writer != null) {
             writer.close();
         }
         // record the execution end time
-        endTime= System.currentTimeMillis();
+        endTime = System.currentTimeMillis();
 
         // check the memory usage
         MemoryLogger.getInstance().checkMemory();
@@ -192,23 +216,23 @@ public class AlgoSPPgrowth {
     }
 
     private void SPPGrowth(SPPTree tree, int[] prefix, int prefixLength, Map<Integer, Support_maxla> mapSPP_list) throws IOException {
-        if(prefixLength == maxPatternLength){
+        if (prefixLength == maxPatternLength) {
             return;
         }
 
         // For each  item in the header table list of the tree in reverse order.
-        while(tree.headerList.size()>0){
+        while (tree.headerList.size() > 0) {
             // get the tail item
-            Integer item = tree.headerList.get(tree.headerList.size()-1);
+            Integer item = tree.headerList.get(tree.headerList.size() - 1);
 
             // Create Beta by concatening prefix Alpha by adding the current item to alpha
             prefix[prefixLength] = item;
 
 
             // save beta to the output file
-            saveItemset(prefix, prefixLength+1, mapSPP_list.get(item).getSupport(),mapSPP_list.get(item).getMaxla());
+            saveItemset(prefix, prefixLength + 1, mapSPP_list.get(item).getSupport(), mapSPP_list.get(item).getMaxla());
 
-            if(prefixLength+1 < maxPatternLength){
+            if (prefixLength + 1 < maxPatternLength) {
 
                 // === (A) Construct beta's prefix tree ===
                 // It is a subdatabase which consists of the set of prefix paths
@@ -221,7 +245,7 @@ public class AlgoSPPgrowth {
                 // Key: item   Value: TIDs
                 Map<Integer, List<Integer>> mapBetaTIDs = new HashMap<Integer, List<Integer>>();
 
-                while(path != null) {
+                while (path != null) {
                     // if the path is not just the root node
                     if (path.parent.itemID != -1) {
                         // create the prefixpath
@@ -242,7 +266,9 @@ public class AlgoSPPgrowth {
                             // if the first time we see that node id
                             if (mapBetaTIDs.get(parent.itemID) == null) {
                                 // just add the path timestamps
-                                mapBetaTIDs.put(parent.itemID, new ArrayList<Integer>(){{addAll(pathTIDs);}});
+                                mapBetaTIDs.put(parent.itemID, new ArrayList<Integer>() {{
+                                    addAll(pathTIDs);
+                                }});
                             } else {
                                 // otherwise, add all of timestamps to map
                                 mapBetaTIDs.get(parent.itemID).addAll(pathTIDs);
@@ -260,7 +286,7 @@ public class AlgoSPPgrowth {
                 Map<Integer, Support_maxla> mapBetaSPPlist = getMapBetaSPPlist(mapBetaTIDs);
 
                 // header table has SPP
-                if(mapBetaSPPlist.size()>0) {
+                if (mapBetaSPPlist.size() > 0) {
                     // (B) Construct beta's conditional SPPTree
                     // Create the tree.
                     SPPTree treeBeta = new SPPTree();
@@ -273,7 +299,7 @@ public class AlgoSPPgrowth {
                     if (treeBeta.root.childs.size() > 0) {
 
                         // Create the header list.
-                        treeBeta.createHeaderList(tree.headerList,mapBetaSPPlist);
+                        treeBeta.createHeaderList(tree.headerList, mapBetaSPPlist);
                         // recursive call
                         SPPGrowth(treeBeta, prefix, prefixLength + 1, mapBetaSPPlist);
                     }
@@ -289,16 +315,17 @@ public class AlgoSPPgrowth {
     }
 
     /**
-     *    convert beta's timestamps to time-intervals
+     * convert beta's timestamps to time-intervals
+     *
      * @param mapBetaTIDs
      * @return
      */
-    private Map<Integer, Support_maxla> getMapBetaSPPlist(Map<Integer, List<Integer>> mapBetaTIDs){
+    private Map<Integer, Support_maxla> getMapBetaSPPlist(Map<Integer, List<Integer>> mapBetaTIDs) {
 
         Map<Integer, Support_maxla> mapBetaSPPlist = new HashMap<>();
 
 
-        for(Map.Entry<Integer,List<Integer>> entry:mapBetaTIDs.entrySet()) {
+        for (Map.Entry<Integer, List<Integer>> entry : mapBetaTIDs.entrySet()) {
 
             Support_maxla sm = new Support_maxla();
             List<Integer> TIDs = entry.getValue();
@@ -310,7 +337,7 @@ public class AlgoSPPgrowth {
             int pre_la = 0;
             for (int current_TID : TIDs) {
 
-                int current_la = Math.max(0,pre_la+current_TID-pre_TID-maxPer);
+                int current_la = Math.max(0, pre_la + current_TID - pre_TID - maxPer);
 
                 sm.setMaxla(current_la);
                 sm.increaseSupport();
@@ -321,13 +348,13 @@ public class AlgoSPPgrowth {
 
             // 3. Deal with the last timestamp
 
-            int current_la = Math.max(0,pre_la+lastTID-pre_TID-maxPer);
+            int current_la = Math.max(0, pre_la + lastTID - pre_TID - maxPer);
 
             sm.setMaxla(current_la);
 
             // 4. save time-interval
-            if(sm.getSupport() >= minSup && sm.getMaxla() <= maxLa){
-                mapBetaSPPlist.put(entry.getKey(),sm);
+            if (sm.getSupport() >= minSup && sm.getMaxla() <= maxLa) {
+                mapBetaSPPlist.put(entry.getKey(), sm);
             }
         }
         // clear the memory of mapTimestampsBeta
@@ -342,8 +369,8 @@ public class AlgoSPPgrowth {
         // increase the number of itemsets found for statistics purpose
         itemsetCount++;
 
-         // if the result should be saved to a file
-        if(writer != null){
+        // if the result should be saved to a file
+        if (writer != null) {
             // copy the itemset in the output buffer and sort items
             System.arraycopy(itemset, 0, itemsetOutputBuffer, 0, itemsetLength);
             Arrays.sort(itemsetOutputBuffer, 0, itemsetLength);
@@ -351,9 +378,9 @@ public class AlgoSPPgrowth {
             // Create a string buffer
             StringBuilder buffer = new StringBuilder();
             // write the items of the itemset
-            for(int i=0; i< itemsetLength; i++){
+            for (int i = 0; i < itemsetLength; i++) {
                 buffer.append(itemsetOutputBuffer[i]);
-                if(i != itemsetLength-1){
+                if (i != itemsetLength - 1) {
                     buffer.append(' ');
                 }
             }
@@ -369,7 +396,7 @@ public class AlgoSPPgrowth {
             writer.newLine();
 
         }// otherwise the result is kept into memory
-        else{
+        else {
             // create an object Itemset and add it to the set of patterns
             // found.
             int[] itemsetArray = new int[itemsetLength];
@@ -390,7 +417,7 @@ public class AlgoSPPgrowth {
 
         String line;
 
-        if(self_increment) { // the timestamp is self-increment
+        if (self_increment) { // the timestamp is self-increment
 
             int current_TID = 1;
             while (((line = reader.readLine()) != null)) {
@@ -410,17 +437,17 @@ public class AlgoSPPgrowth {
                     // only the item is SPP
                     // and the current timestamp in its time-interval
                     // then this item can be added to the transaction (tree) .
-                    if(mapSPP_list.containsKey(item_name) && !transaction.contains(item_name)){
+                    if (mapSPP_list.containsKey(item_name) && !transaction.contains(item_name)) {
                         transaction.add(item_name);
                     }
                 }
                 // sort item in the transaction by descending order of total duration
-                Collections.sort(transaction, new Comparator<Integer>(){
-                    public int compare(Integer item1, Integer item2){
-                         //compare the support
-                        int compare = mapSPP_list.get(item2).getSupport() -  mapSPP_list.get(item1).getSupport();
+                Collections.sort(transaction, new Comparator<Integer>() {
+                    public int compare(Integer item1, Integer item2) {
+                        //compare the support
+                        int compare = mapSPP_list.get(item2).getSupport() - mapSPP_list.get(item1).getSupport();
                         // if the same support, we check the lexical ordering!
-                        if(compare == 0){
+                        if (compare == 0) {
                             return (item1 - item2);
                         }
                         // otherwise, just use the total duration
@@ -430,14 +457,14 @@ public class AlgoSPPgrowth {
                 });
 
                 // add the sorted transaction and current timestamp into tree.
-                if(transaction.size()>0){
-                    tree.addTransaction(transaction,current_TID);
+                if (transaction.size() > 0) {
+                    tree.addTransaction(transaction, current_TID);
                 }
                 // self increment
                 current_TID++;
             }
 
-        }else {  //// the timestamp exist in file
+        } else {  //// the timestamp exist in file
 
             int current_TID = 1;
 
@@ -459,19 +486,19 @@ public class AlgoSPPgrowth {
                     // only the item has periodic frequent time-interval
                     // and the current timestamp in its time-interval
                     // then this item can be added to the transaction (tree) .
-                    if(mapSPP_list.containsKey(item_name) && !transaction.contains(item_name)){
+                    if (mapSPP_list.containsKey(item_name) && !transaction.contains(item_name)) {
                         transaction.add(item_name);
                     }
 
                 }
                 // sort item in the transaction by descending order of total duration
-                Collections.sort(transaction, new Comparator<Integer>(){
-                    public int compare(Integer item1, Integer item2){
+                Collections.sort(transaction, new Comparator<Integer>() {
+                    public int compare(Integer item1, Integer item2) {
 
                         // compare the support
                         int compare = mapSPP_list.get(item2).getSupport() - mapSPP_list.get(item1).getSupport();
                         // if the same support, we check the lexical ordering!
-                        if(compare == 0){
+                        if (compare == 0) {
                             return (item1 - item2);
                         }
                         // otherwise, just use the total duration
@@ -480,8 +507,8 @@ public class AlgoSPPgrowth {
                     }
                 });
                 // add the sorted transaction and current timestamp into tree.
-                if(transaction.size()>0){
-                    tree.addTransaction(transaction,current_TID);
+                if (transaction.size() > 0) {
+                    tree.addTransaction(transaction, current_TID);
                 }
             }
         }
@@ -490,10 +517,9 @@ public class AlgoSPPgrowth {
         reader.close();
 
         // We create the header table for the tree using the calculated support of single items
-        tree.createHeaderList(null,mapSPP_list);
+        tree.createHeaderList(null, mapSPP_list);
 
     }
-
 
 
     private Map<Integer, Support_maxla> scanDatabaseToDeterminSPPlistOfSingleItems(String input) throws IOException {
@@ -507,13 +533,13 @@ public class AlgoSPPgrowth {
 
         // this save the previous timestamp of item
         //    key:   item ,     value: previous TID
-        Map<Integer,Integer> preTID = new HashMap<>();
+        Map<Integer, Integer> preTID = new HashMap<>();
 
         // this save the current lability of a item
         //   key:   item ,     value: i-th lability
-        Map<Integer,Integer> prela = new HashMap<>();
+        Map<Integer, Integer> prela = new HashMap<>();
 
-        if(self_increment) { // the timestamp is self-increment
+        if (self_increment) { // the timestamp is self-increment
             int current_TID = 1;
             while (((line = reader.readLine()) != null)) {
                 // if the line is  a comment, is  empty or is a
@@ -534,22 +560,22 @@ public class AlgoSPPgrowth {
                     // if a transaction has same item
                     if (per == 0) continue;
 
-                    
+
                     int current_la = Math.max(0, prela.getOrDefault(item_name, 0) + per - maxPer);
-                    if(!mapSPP_list.containsKey(item_name)) mapSPP_list.put(item_name,new Support_maxla());
+                    if (!mapSPP_list.containsKey(item_name)) mapSPP_list.put(item_name, new Support_maxla());
                     mapSPP_list.get(item_name).setMaxla(current_la);
-                    
-                    prela.put(item_name,current_la);
-                    preTID.put(item_name,current_TID);
+
+                    prela.put(item_name, current_la);
+                    preTID.put(item_name, current_TID);
                     mapSPP_list.get(item_name).increaseSupport();
                 }
                 current_TID++;
             }
             lastTID = current_TID - 1;
 
-        }else {  //// the timestamp exist in file
-            int current_TID=1;
-            while( ((line = reader.readLine())!= null)) {
+        } else {  //// the timestamp exist in file
+            int current_TID = 1;
+            while (((line = reader.readLine()) != null)) {
                 if (line.isEmpty() || line.charAt(0) == '#' || line.charAt(0) == '%' || line.charAt(0) == '@') {
                     continue;
                 }
@@ -568,13 +594,12 @@ public class AlgoSPPgrowth {
                     if (per == 0) continue;
 
 
-
                     int current_la = Math.max(0, prela.getOrDefault(item_name, 0) + per - maxPer);
-                    if(!mapSPP_list.containsKey(item_name)) mapSPP_list.put(item_name,new Support_maxla());
+                    if (!mapSPP_list.containsKey(item_name)) mapSPP_list.put(item_name, new Support_maxla());
                     mapSPP_list.get(item_name).setMaxla(current_la);
 
-                    prela.put(item_name,current_la);
-                    preTID.put(item_name,current_TID);
+                    prela.put(item_name, current_la);
+                    preTID.put(item_name, current_TID);
                     mapSPP_list.get(item_name).increaseSupport();
                 }
             }
@@ -594,10 +619,10 @@ public class AlgoSPPgrowth {
 //            if (item_name == 449)
 //                testRes.add(lastTID-preTID.get(item_name));
 
-            entry.getValue().setMaxla(prela.get(item_name)+lastTID - preTID.get(item_name) - maxPer);
+            entry.getValue().setMaxla(prela.get(item_name) + lastTID - preTID.get(item_name) - maxPer);
 
             //  the item has not periodic frequent time-interval
-            if(entry.getValue().getSupport() < minSup || entry.getValue().getMaxla() > maxLa){
+            if (entry.getValue().getSupport() < minSup || entry.getValue().getMaxla() > maxLa) {
                 // remove it.
                 it.remove();
             }
@@ -624,13 +649,14 @@ public class AlgoSPPgrowth {
 
     /**
      * Set the maximum pattern length
+     *
      * @param length the maximum length
      */
     public void setMaximumPatternLength(int length) {
         maxPatternLength = length;
     }
 
-    public void cancelSelfIncrement(){
+    public void cancelSelfIncrement() {
         this.self_increment = false;
     }
 

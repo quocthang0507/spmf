@@ -17,6 +17,7 @@ package ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP;
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -33,12 +34,11 @@ import ca.pfv.spmf.tools.MemoryLogger;
  * This is an implementation of the SPAM algorithm. SPAM was proposed by Ayres
  * in 2002.
  * <br/><br/>
- *
+ * <p>
  * NOTE: This implementation saves the pattern to a file as soon as they are
  * found or can keep the pattern into memory if no output path is provided by the user.
- * 
- * 
- * @author Antonio Gomariz Peñalver 
+ *
+ * @author Antonio Gomariz Peñalver
  */
 public class AlgoSPAM_AGP {
 
@@ -52,11 +52,6 @@ public class AlgoSPAM_AGP {
      */
     protected double minSupAbsolute;
     /**
-     * Saver variable to decide where the user want to save the results, if it
-     * the case
-     */
-    Saver saver = null;
-    /**
      * Start and end points in order to calculate the overall time taken by the
      * algorithm
      */
@@ -65,6 +60,11 @@ public class AlgoSPAM_AGP {
      * Equivalence class whose class' identifier is a frequent item
      */
     protected List<EquivalenceClass> frequentItems;
+    /**
+     * Saver variable to decide where the user want to save the results, if it
+     * the case
+     */
+    Saver saver = null;
     /**
      * Number of frequent patterns found by the algorithm
      */
@@ -84,14 +84,14 @@ public class AlgoSPAM_AGP {
      * Whenever we choose to keep the patterns found, we can keep them in a file
      * or in the main memory
      *
-     * @param database Original database in where we want to search for the
-     * frequent patterns.
-     * @param keepPatterns Flag indicating if we want to keep the output or not
-     * @param verbose Flag for debugging purposes
-     * @param outputFilePath Path of the file in which we want to store the
-     * frequent patterns. If this value is null, we keep the patterns in the
-     * main memory. This argument is taken into account just when keepPatterns
-     * is activated.
+     * @param database                  Original database in where we want to search for the
+     *                                  frequent patterns.
+     * @param keepPatterns              Flag indicating if we want to keep the output or not
+     * @param verbose                   Flag for debugging purposes
+     * @param outputFilePath            Path of the file in which we want to store the
+     *                                  frequent patterns. If this value is null, we keep the patterns in the
+     *                                  main memory. This argument is taken into account just when keepPatterns
+     *                                  is activated.
      * @param outputSequenceIdentifiers if true, sequence identifiers will be output for each pattern found
      * @throws IOException
      */
@@ -102,7 +102,7 @@ public class AlgoSPAM_AGP {
             saver = new SaverIntoMemory(outputSequenceIdentifiers);
         } else {
             //Otherwise, the user wants to save them in the given file
-            saver = new SaverIntoFile(outputFilePath,outputSequenceIdentifiers);
+            saver = new SaverIntoFile(outputFilePath, outputSequenceIdentifiers);
         }
 
         this.minSupAbsolute = (int) Math.ceil(minSupRelative * database.size());
@@ -110,7 +110,7 @@ public class AlgoSPAM_AGP {
             this.minSupAbsolute = 1;
         }
         // reset the stats about memory usage
-	MemoryLogger.getInstance().reset();
+        MemoryLogger.getInstance().reset();
         //keeping the starting time
         start = System.currentTimeMillis();
         //We run SPAM algorithm
@@ -123,11 +123,12 @@ public class AlgoSPAM_AGP {
 
     /**
      * The actual method for extracting frequent sequences.
-     * @param database The original database
+     *
+     * @param database           The original database
      * @param minSupportAbsolute the absolute minimum  support
-     * @param keepPatterns flag indicating if we are interested in keeping the 
-     * output of the algorithm
-     * @param verbose Flag for debugging purposes
+     * @param keepPatterns       flag indicating if we are interested in keeping the
+     *                           output of the algorithm
+     * @param verbose            Flag for debugging purposes
      */
     protected void runSPAM(SequenceDatabase database, long minSupportAbsolute, boolean keepPatterns, boolean verbose) {
 
@@ -152,7 +153,7 @@ public class AlgoSPAM_AGP {
         for (EquivalenceClass atom : frequentItems) {
             rootClass.addClassMember(atom);
         }
-        
+
         //Inizialitation of the class that is in charge of find the frequent patterns
         FrequentPatternEnumeration_SPAM frequentPatternEnumeration = new FrequentPatternEnumeration_SPAM(minSupAbsolute, saver);
         //We execute the search
@@ -166,9 +167,10 @@ public class AlgoSPAM_AGP {
 
     /**
      * It gets the patterns that are the identifiers of the given equivalence classes
+     *
      * @param equivalenceClasses The set of equivalence classes from where we want
-     * to obtain their class identifiers
-     * @return 
+     *                           to obtain their class identifiers
+     * @return
      */
     private Collection<Pattern> getPatterns(List<EquivalenceClass> equivalenceClasses) {
         ArrayList<Pattern> patterns = new ArrayList<Pattern>();
@@ -188,7 +190,7 @@ public class AlgoSPAM_AGP {
         sb.append(numberOfFrequentPatterns);
         sb.append('\n');
         sb.append(" Max memory (mb):");
-	sb.append(MemoryLogger.getInstance().getMaxMemory());
+        sb.append(MemoryLogger.getInstance().getMaxMemory());
         sb.append('\n');
         sb.append(saver.print());
         sb.append("\n===================================================\n");
@@ -201,6 +203,7 @@ public class AlgoSPAM_AGP {
 
     /**
      * It gets the time spent by the algoritm in its execution.
+     *
      * @return the total time
      */
     public long getRunningTime() {
@@ -210,6 +213,7 @@ public class AlgoSPAM_AGP {
     /**
      * It gets the minimum relative support, i.e. the minimum number of database
      * sequences where a pattern has to appear
+     *
      * @return the minimum support
      */
     public double getMinSupRelative() {

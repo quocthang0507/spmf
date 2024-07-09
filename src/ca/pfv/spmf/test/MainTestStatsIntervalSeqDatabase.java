@@ -23,27 +23,27 @@ import ca.pfv.spmf.tools.dataset_stats.IntervalSeqDatabaseStats;
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
+
 /**
- * 
  * Example of how to calculate stats for a file containing an interval sequence sequence in SPMF format
  * from the source code.
- * 
+ *
  * @author Philippe Fournier-Viger (Copyright 2024)
  */
 public class MainTestStatsIntervalSeqDatabase {
 
-	public static void main(String[] arg) throws IOException {
+    public static void main(String[] arg) throws IOException {
 
-		// Input file path
-		String input = fileToPath("test.csv");
+        // Input file path
+        String input = fileToPath("test.csv");
 
-		// Applying the algorithm
-		IntervalSeqDatabaseStats algorithm = new IntervalSeqDatabaseStats();
-		algorithm.runAlgorithm(input);
-	}
+        // Applying the algorithm
+        IntervalSeqDatabaseStats algorithm = new IntervalSeqDatabaseStats();
+        algorithm.runAlgorithm(input);
+    }
 
-	public static String fileToPath(String filename) throws UnsupportedEncodingException {
-		URL url = MainTestStatsIntervalSeqDatabase.class.getResource(filename);
-		return java.net.URLDecoder.decode(url.getPath(), "UTF-8");
-	}
+    public static String fileToPath(String filename) throws UnsupportedEncodingException {
+        URL url = MainTestStatsIntervalSeqDatabase.class.getResource(filename);
+        return java.net.URLDecoder.decode(url.getPath(), "UTF-8");
+    }
 }

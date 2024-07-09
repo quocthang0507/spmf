@@ -23,24 +23,25 @@ import java.text.ParseException;
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
+
 /**
  * Class for testing the pattern vizualizer window using the "output.txt" file provided in this directory.
- * 
+ *
  * @author Philippe Fournier-Viger
  */
 public class MainTestPatternVizualizer {
 
-	public static void main(String[] args) throws ParseException, IOException {
-		// the path of the file containing patterns for this test
-		String patternFilePath = fileToPath("test.txt");
-		
-		// create the frame
-		PatternVizualizer frame = new PatternVizualizer(patternFilePath);
-		frame.setVisible(true);
-	}
-	
-	public static String fileToPath(String filename) throws UnsupportedEncodingException{
-		URL url = MainTestPatternVizualizer.class.getResource(filename);
-		 return java.net.URLDecoder.decode(url.getPath(),"UTF-8");
-	}
+    public static void main(String[] args) throws ParseException, IOException {
+        // the path of the file containing patterns for this test
+        String patternFilePath = fileToPath("test.txt");
+
+        // create the frame
+        PatternVizualizer frame = new PatternVizualizer(patternFilePath);
+        frame.setVisible(true);
+    }
+
+    public static String fileToPath(String filename) throws UnsupportedEncodingException {
+        URL url = MainTestPatternVizualizer.class.getResource(filename);
+        return java.net.URLDecoder.decode(url.getPath(), "UTF-8");
+    }
 }

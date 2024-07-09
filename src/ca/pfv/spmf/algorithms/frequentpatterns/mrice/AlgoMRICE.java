@@ -1,21 +1,22 @@
 package ca.pfv.spmf.algorithms.frequentpatterns.mrice;
 /* This file is copyright (c) 2008-2016 Philippe Fournier-Viger
-* 
-* This file is part of the SPMF DATA MINING SOFTWARE
-* (http://www.philippe-fournier-viger.com/spmf).
-* 
-* SPMF is free software: you can redistribute it and/or modify it under the
-* terms of the GNU General Public License as published by the Free Software
-* Foundation, either version 3 of the License, or (at your option) any later
-* version.
-* 
-* SPMF is distributed in the hope that it will be useful, but WITHOUT ANY
-* WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
-* A PARTICULAR PURPOSE. See the GNU General Public License for more details.
-* You should have received a copy of the GNU General Public License along with
-* SPMF. If not, see <http://www.gnu.org/licenses/>.
-* 
-*/
+ *
+ * This file is part of the SPMF DATA MINING SOFTWARE
+ * (http://www.philippe-fournier-viger.com/spmf).
+ *
+ * SPMF is free software: you can redistribute it and/or modify it under the
+ * terms of the GNU General Public License as published by the Free Software
+ * Foundation, either version 3 of the License, or (at your option) any later
+ * version.
+ *
+ * SPMF is distributed in the hope that it will be useful, but WITHOUT ANY
+ * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
+ * A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+ * You should have received a copy of the GNU General Public License along with
+ * SPMF. If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileInputStream;
@@ -37,106 +38,44 @@ import java.util.Set;
 
 /**
  * This is an implementation of the "MRI-CE algorithm" for Minimal Infrequence Itemsets Mining
+ *
  * @author Song. et al. (2024)
  */
 
 public class AlgoMRICE {
+    final int iterations = 200; // the iterations of algorithm
+    final float alpha = (float) 0.999; // the mutation parameter
+    final float beta = (float) 0.01;
     // variable for statistics
     long startTimestamp = 0; // the time the algorithm started
     long endTimestamp = 0; // the time the algorithm terminated
     int pop_size = 1000; // the sample numbers
-    final int iterations = 200; // the iterations of algorithm
     boolean compressSpace = false;
     boolean crossMutation = false;
     int consecutiveTerminations = 1;
     int transactionCount = 0; // the size of transactions
-    int min_sup=0;
-    int minimalSupport=0;
+    int min_sup = 0;
+    int minimalSupport = 0;
     int total_items = 0;
     int actual_iterations = 0;
     PriorityQueue<Map.Entry<Integer, Integer>> priorityQueue;
-    final float alpha = (float) 0.999; // the mutation parameter
-    final float beta = (float) 0.01;
     Map<Integer, Integer> mapItemToF; // create a map to store the frequency of each item
     List<Integer> FPattern;// the items which has support more than min_sup
     BufferedWriter writer = null;
     float[] p; // probability vector
-
-    // this class represent an item in a transaction
-    static class Pair {
-        int item = 0;
-    }
-
-    // this class represent the sample
-    class Particle {
-        BitSet X; // the sample
-        int fitness; // fitness value of sample(support)
-
-        public Particle() {
-            X = new BitSet(FPattern.size());
-        }
-
-        public Particle(int length) {
-            X = new BitSet(length);
-        }
-
-        public void copyParticle(Particle particle1) {
-            this.X = (BitSet) particle1.X.clone();
-            this.fitness = particle1.fitness;
-        }
-
-        @Override
-        public boolean equals(Object obj) {
-            if(this == obj) return true;
-            if (obj == null || getClass() != obj.getClass()) return false;
-            Particle particle = (Particle) obj;
-            return this.X.equals(particle.X);
-        }
-
-        @Override
-        public int hashCode() {
-            return this.X.hashCode();
-        }
-    }
-
-    static class FI {
-        String itemset;
-        int fitness;
-
-        public FI(String itemset, int fitness) {
-            super();
-            this.itemset = itemset;
-            this.fitness = fitness;
-        }
-
-    }
-
-    class Item {
-        int item;
-        BitSet TIDS;
-
-        public Item(int item) {
-            TIDS = new BitSet(transactionCount);
-            this.item = item;
-        }
-    }
-
     List<Particle> population = new ArrayList<>();// samples
-
     //List<Particle> populationMutation = new ArrayList<>();//sample to mutation
     //List<Particle> nextPopulationMutation = new ArrayList<>();
     //List<Particle> populationNew = new ArrayList<>();// new sample
     List<FI> fiSets = new ArrayList<>();
-
     // Create a list to store database
     List<List<Pair>> database = new ArrayList<>();
     List<Item> Items;
-    //List<Particle> KFIList = new ArrayList<Particle>(); // Frequent item_sets
-
     Set<BitSet> MifItemset;
     List<Integer> NonSelectedFPattern;
     Set<Integer> NonSelectedFPatternOpt;
     List<Integer> selectedFPattern;
+    //List<Particle> KFIList = new ArrayList<Particle>(); // Frequent item_sets
     Set<Particle> FItemset;
     Set<Particle> iterationPopulationSet = new HashSet<>();
     List<Particle> MRI = new ArrayList<>();
@@ -146,10 +85,8 @@ public class AlgoMRICE {
     Set<BitSet> FItemsetHC;
     // To construct Oscillation Factor queue
     Queue<Integer> slideContainer;
-
     //int newPopSize;
     double factor0 = 0.0;
-
     /**
      * Default constructor
      */
@@ -164,7 +101,7 @@ public class AlgoMRICE {
      * @throws IOException exception if error while writing the file
      */
 
-    public void runAlgorithm(String input, String output,double min_sup_percentage) throws IOException {
+    public void runAlgorithm(String input, String output, double min_sup_percentage) throws IOException {
 
         FPattern = new ArrayList<>();
         writer = new BufferedWriter(new FileWriter(output));
@@ -208,7 +145,7 @@ public class AlgoMRICE {
             }
         }
         //the method for calculate the min_sup and FPattern
-        min_sup = (int) Math.ceil(min_sup_percentage*transactionCount);
+        min_sup = (int) Math.ceil(min_sup_percentage * transactionCount);
         MifItemset = new HashSet<BitSet>();
         raisingMinSup(mapItemToF);
         Collections.sort(FPattern);
@@ -306,26 +243,26 @@ public class AlgoMRICE {
 
                 update();
 
-                if (pt.length > 1){
+                if (pt.length > 1) {
                     //random cross mutation
                     random_cross_mutation();
                 }
 
                 //iteration complete
-                if (sum == MifItemset.size()){
-                    countUnChanged ++;
-                }else if ( countUnChanged > 0){
+                if (sum == MifItemset.size()) {
+                    countUnChanged++;
+                } else if (countUnChanged > 0) {
                     sum = MifItemset.size();
-                    countUnChanged --;
-                }else {
+                    countUnChanged--;
+                } else {
                     sum = MifItemset.size();
                 }
-                if (countUnChanged == consecutiveTerminations){
+                if (countUnChanged == consecutiveTerminations) {
                     break;
                 }
 
                 //To compress
-                compressionExecutor(i,prior);
+                compressionExecutor(i, prior);
 
                 actual_iterations++;
             }
@@ -339,31 +276,29 @@ public class AlgoMRICE {
 
     }
 
-
-
-    public double computeFactor0(Queue<Integer> slideContainer){
+    public double computeFactor0(Queue<Integer> slideContainer) {
         double sum = 0.0;
         double slideSum = 0.0;
-        for (Integer integer : slideContainer){
+        for (Integer integer : slideContainer) {
             sum += integer;
         }
         double mean = sum / slideContainer.size();
-        for(Integer integer : slideContainer){
+        for (Integer integer : slideContainer) {
             slideSum += Math.abs(integer - mean);
         }
         return Math.sqrt(1.0 + slideSum);
     }
 
     /**
-     * @param i iteration
+     * @param i     iteration
      * @param prior
      */
-    public void compressionExecutor(int i,int prior){
+    public void compressionExecutor(int i, int prior) {
         slideContainer.offer(MifItemset.size() - prior);
         //gap
-        if (slideContainer.size() > 3){
+        if (slideContainer.size() > 3) {
             slideContainer.poll();
-            pop_size = compressPopulationImprove(pop_size,7,3,i,slideContainer,factor0);
+            pop_size = compressPopulationImprove(pop_size, 7, 3, i, slideContainer, factor0);
         } else if (slideContainer.size() == 3) {
             //count factor0
             factor0 = computeFactor0(slideContainer);
@@ -372,6 +307,7 @@ public class AlgoMRICE {
 
     /**
      * Compressed population size
+     *
      * @param prePopSize
      * @param k
      * @param q
@@ -380,15 +316,15 @@ public class AlgoMRICE {
      * @param factor0
      * @return
      */
-    public int compressPopulationImprove(int prePopSize,int k,double q,int i,Queue<Integer> slideContainer,double factor0){
+    public int compressPopulationImprove(int prePopSize, int k, double q, int i, Queue<Integer> slideContainer, double factor0) {
         //Integer[] slideElements = slideContainer.toArray(new Integer[3]);
         double sum = 0.0;
         double slideSum = 0.0;
-        for (Integer integer : slideContainer){
+        for (Integer integer : slideContainer) {
             sum += integer;
         }
         double mean = sum / slideContainer.size();
-        for(Integer integer : slideContainer){
+        for (Integer integer : slideContainer) {
             slideSum += Math.abs(integer - mean);
         }
         double factor = Math.sqrt(1.0 + slideSum);
@@ -397,14 +333,12 @@ public class AlgoMRICE {
         //double test2 = (1.0/2.0)*(factor/factor0)+(1.0/2.0)*Math.log(1 + i)/i;
         //double test = Math.pow(Math.E,-k*((1/2)*(factor/factor0)+(1/2)*Math.log(1 + i)/i));
 
-        return (int) (prePopSize*Math.pow(1 - (Math.pow(Math.E,-k*((1.0/3.0)*(factor/factor0)+(2.0/3.0)*Math.log(1 + i)/i))),1.0/q));
+        return (int) (prePopSize * Math.pow(1 - (Math.pow(Math.E, -k * ((1.0 / 3.0) * (factor / factor0) + (2.0 / 3.0) * Math.log(1 + i) / i))), 1.0 / q));
     }
-
-
-
 
     /**
      * termination
+     *
      * @throws IOException
      */
     public void termination() {
@@ -412,22 +346,21 @@ public class AlgoMRICE {
         try {
             writeOut();
             writer.close();
-        }catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
         printStats();
         System.exit(0);
     }
 
-
-    public int comparebit(BitSet a,BitSet b){
-        int x = 0,y = 0;
-        if (a.cardinality() != b.cardinality()){
+    public int comparebit(BitSet a, BitSet b) {
+        int x = 0, y = 0;
+        if (a.cardinality() != b.cardinality()) {
             return a.cardinality() - b.cardinality();
         } else if (a.length() != b.length()) {
             return a.length() - b.length();
-        }else {
-            while (a.nextSetBit(x) == b.nextSetBit(y) && a.nextSetBit(x) < a.length() - 1){
+        } else {
+            while (a.nextSetBit(x) == b.nextSetBit(y) && a.nextSetBit(x) < a.length() - 1) {
                 x = a.nextSetBit(x + 1);
                 y = b.nextSetBit(y + 1);
             }
@@ -438,7 +371,7 @@ public class AlgoMRICE {
     /**
      * Add the basic elements to the FItemset
      */
-    public void initFItemset(){
+    public void initFItemset() {
         for (int i = 0; i < FPattern.size(); i++) {
             Particle pt = new Particle(FPattern.size());
             pt.X.set(i);
@@ -449,7 +382,7 @@ public class AlgoMRICE {
     /**
      * Initialize FItemsetHC to boost performance
      */
-    public void initFItemsetHC(){
+    public void initFItemsetHC() {
         for (int i = 0; i < FPattern.size(); i++) {
             BitSet bitSet = new BitSet(FPattern.size());
             bitSet.set(i);
@@ -459,9 +392,10 @@ public class AlgoMRICE {
 
     /**
      * Initializes frequent items that are not selected for combination
+     *
      * @param FPattern
      */
-    public void initNonSelectedFPattern(List<Integer> FPattern){
+    public void initNonSelectedFPattern(List<Integer> FPattern) {
         NonSelectedFPattern = new LinkedList<Integer>();
 
         for (int i = 0; i < FPattern.size(); i++) {
@@ -472,6 +406,7 @@ public class AlgoMRICE {
 
     /**
      * This method is to calculate min_sup and FPattern
+     *
      * @param map whith the item and frequency
      */
     public void raisingMinSup(Map<Integer, Integer> map) {
@@ -479,9 +414,9 @@ public class AlgoMRICE {
             return;
 
         for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
-            if (entry.getValue() >= min_sup){
+            if (entry.getValue() >= min_sup) {
                 FPattern.add(entry.getKey());
-            }else {
+            } else {
                 MRIInit.add(entry.getKey() + " " + "#SUP:" + entry.getValue());
             }
         }
@@ -522,7 +457,6 @@ public class AlgoMRICE {
         }
     }
 
-
     /**
      * Cross to generate new sample
      */
@@ -530,7 +464,7 @@ public class AlgoMRICE {
 
         int t;
 
-        int mutation_size = (int) Math.min(pt.length, pop_size*(1-alpha));
+        int mutation_size = (int) Math.min(pt.length, pop_size * (1 - alpha));
         //This is a population of cross
         for (int i = 0; i < mutation_size; i += 2) {
 
@@ -559,12 +493,12 @@ public class AlgoMRICE {
                 j++;
             }
 
-            if (temp1.X.cardinality()!= 0){
+            if (temp1.X.cardinality() != 0) {
                 temp1.fitness = isRBAIndividual(temp1);
                 population.add(temp1);
                 insertIndividuals(temp1);
             }
-            if (temp2.X.cardinality()!=0){
+            if (temp2.X.cardinality() != 0) {
                 temp2.fitness = isRBAIndividual(temp2);
                 population.add(temp2);
                 insertIndividuals(temp2);
@@ -595,11 +529,11 @@ public class AlgoMRICE {
 
         //Release the previous generation population collection space
 
-        for (int i = 0; i < (int) (pop_size*alpha); ++i) {
+        for (int i = 0; i < (int) (pop_size * alpha); ++i) {
             Particle tempParticle = new Particle(FPattern.size());
             update_Particle(tempParticle);
 
-            if(tempParticle.X.cardinality() == 0){
+            if (tempParticle.X.cardinality() == 0) {
                 continue;
             }
 
@@ -624,15 +558,13 @@ public class AlgoMRICE {
         }
     }
 
-
-    private void insertIndividuals(Particle tmp){
+    private void insertIndividuals(Particle tmp) {
         iterationPopulationSet.add(tmp);
-        if (MifItemset.add(tmp.X)){
+        if (MifItemset.add(tmp.X)) {
             MRI.add(tmp);
         }
 
     }
-
 
     /**
      * It is used to get the collection of transactions in which the itemset resides.
@@ -646,7 +578,7 @@ public class AlgoMRICE {
 
         List<Integer> tempList2 = new ArrayList<>();
 
-        for (int i = tempBAIndividual.X.nextSetBit(0);i != -1;i = tempBAIndividual.X.nextSetBit(i + 1)){
+        for (int i = tempBAIndividual.X.nextSetBit(0); i != -1; i = tempBAIndividual.X.nextSetBit(i + 1)) {
             tempList.add(i);
         }
 
@@ -664,7 +596,7 @@ public class AlgoMRICE {
         for (int i = 1; i < tempList.size(); ++i) {
             midBitSet = (BitSet) tempBitSet.clone();
             tempBitSet.and(Items.get(tempList.get(i)).TIDS);
-            if (tempBitSet.cardinality() == midBitSet.cardinality()){
+            if (tempBitSet.cardinality() == midBitSet.cardinality()) {
                 NonSelectedFPattern.remove(tempList.get(i));
                 tempBitSet = midBitSet;
                 continue;
@@ -694,7 +626,7 @@ public class AlgoMRICE {
 
                 //tempFItemset.X.set(tempList.get(i));
 
-                while (!checkMinInf(tempFItemset,tempList2,inFItemset)){
+                while (!checkMinInf(tempFItemset, tempList2, inFItemset)) {
                     //The check failed, and the infrequent subset is continued to check
                     tempFItemset = inFItemset;
                     inFItemset = new Particle(FPattern.size());
@@ -707,32 +639,33 @@ public class AlgoMRICE {
             }
         }
 
-        return searchOutOfTempList(tempFItemset,tempList2,tempBitSet,tempBAIndividual,inFItemset);
+        return searchOutOfTempList(tempFItemset, tempList2, tempBitSet, tempBAIndividual, inFItemset);
     }
 
     /**
      * try to combine with his frequent items in the outer layer of the random generated set
+     *
      * @param tempFItemset
      * @param tempList2
      * @param tempBitSet
      * @param tempBAIndividual
      */
-    public int searchOutOfTempList( Particle tempFItemset,
-                                    List<Integer> tempList2,
-                                    BitSet tempBitSet,
-                                    Particle tempBAIndividual,
-                                    Particle inFItemset
-                                    ){
+    public int searchOutOfTempList(Particle tempFItemset,
+                                   List<Integer> tempList2,
+                                   BitSet tempBitSet,
+                                   Particle tempBAIndividual,
+                                   Particle inFItemset
+    ) {
 
         BitSet midBitSetOut = null;
 
-        while (NonSelectedFPattern.size() > 0){
-            int j = (int) (Math.random()*NonSelectedFPattern.size());
+        while (NonSelectedFPattern.size() > 0) {
+            int j = (int) (Math.random() * NonSelectedFPattern.size());
             //test
             //j = 0;
             midBitSetOut = (BitSet) tempBitSet.clone();
             tempBitSet.and(Items.get(NonSelectedFPattern.get(j)).TIDS);
-            if (tempBitSet.cardinality() == midBitSetOut.cardinality()){
+            if (tempBitSet.cardinality() == midBitSetOut.cardinality()) {
                 NonSelectedFPattern.remove(j);
                 tempBitSet = midBitSetOut;
                 continue;
@@ -742,12 +675,12 @@ public class AlgoMRICE {
 
             NonSelectedFPattern.remove(j);
 
-            if (tempBitSet.cardinality() >= min_sup){
+            if (tempBitSet.cardinality() >= min_sup) {
                 //Performance enhancement
                 FItemsetHC.add((BitSet) tempFItemset.X.clone());
             } else {
 
-                while (!checkMinInf(tempFItemset,tempList2,inFItemset)){
+                while (!checkMinInf(tempFItemset, tempList2, inFItemset)) {
                     tempFItemset = inFItemset;
                 }
 
@@ -766,23 +699,22 @@ public class AlgoMRICE {
     }
 
     /**
-     *
      * @param i
      * @param tempList
      * @param tempBitSet
      * @param midBitSet
      */
-    public void searchAgin(int i,List<Integer> tempList,BitSet tempBitSet,BitSet midBitSet){
-        if (i >= tempList.size() - 1){
+    public void searchAgin(int i, List<Integer> tempList, BitSet tempBitSet, BitSet midBitSet) {
+        if (i >= tempList.size() - 1) {
             //At this point, there is no time to try and need to expand the scope of the check
-            if (NonSelectedFPattern.size() > 0){
+            if (NonSelectedFPattern.size() > 0) {
                 //
-            }else {
+            } else {
                 System.out.println("There is no minf，Discovery anomaly");
 
                 System.exit(0);
             }
-        }else {
+        } else {
             //Explain the random generated items and can be tried, and the operation is withdrawn
             tempBitSet = (BitSet) midBitSet.clone();
         }
@@ -790,21 +722,22 @@ public class AlgoMRICE {
 
     /**
      * Whether the subset of the check item is MifI
+     *
      * @param tempFItemset
      * @param tempList2
      * @return
      */
     public boolean checkMinInf(Particle tempFItemset,
-                                  List<Integer> tempList2,
-                                  Particle inFItemset
-                                  ){
+                               List<Integer> tempList2,
+                               Particle inFItemset
+    ) {
         //initialize
         tempList2.clear();
 
         BitSet tempBitSet2 = null;
         //inFItemset = null;
 
-        for (int i = tempFItemset.X.nextSetBit(0);i != -1;i = tempFItemset.X.nextSetBit(i + 1)){
+        for (int i = tempFItemset.X.nextSetBit(0); i != -1; i = tempFItemset.X.nextSetBit(i + 1)) {
             tempList2.add(i);
         }
 
@@ -856,10 +789,9 @@ public class AlgoMRICE {
         return true;
     }
 
-
-
     /**
      * Method to inseret tempItemset to huiSets
+     *
      * @param tempParticle the itemset to be inserted
      */
     private void insert(Particle tempParticle) {
@@ -896,11 +828,11 @@ public class AlgoMRICE {
      */
     private void writeOut() throws IOException {
 
-        for (String string : MRIInit){
+        for (String string : MRIInit) {
             writer.write(string);
             writer.newLine();
         }
-        for (Particle particle : MRI){
+        for (Particle particle : MRI) {
 
             StringBuilder temp = new StringBuilder();
             for (int i = 0; i < FPattern.size(); i++) {
@@ -917,7 +849,6 @@ public class AlgoMRICE {
 
     }
 
-
     /**
      * Print statistics about the latest execution to System.out.
      */
@@ -928,5 +859,64 @@ public class AlgoMRICE {
         System.out.println(" The total number iterations ~ " + actual_iterations);
         System.out.println(" Time ~ " + (endTimestamp - startTimestamp) + "ms");
         System.out.println("--------------------------------------------------------------");
+    }
+
+    // this class represent an item in a transaction
+    static class Pair {
+        int item = 0;
+    }
+
+    static class FI {
+        String itemset;
+        int fitness;
+
+        public FI(String itemset, int fitness) {
+            super();
+            this.itemset = itemset;
+            this.fitness = fitness;
+        }
+
+    }
+
+    // this class represent the sample
+    class Particle {
+        BitSet X; // the sample
+        int fitness; // fitness value of sample(support)
+
+        public Particle() {
+            X = new BitSet(FPattern.size());
+        }
+
+        public Particle(int length) {
+            X = new BitSet(length);
+        }
+
+        public void copyParticle(Particle particle1) {
+            this.X = (BitSet) particle1.X.clone();
+            this.fitness = particle1.fitness;
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            if (this == obj) return true;
+            if (obj == null || getClass() != obj.getClass()) return false;
+            Particle particle = (Particle) obj;
+            return this.X.equals(particle.X);
+        }
+
+        @Override
+        public int hashCode() {
+            return this.X.hashCode();
+        }
+    }
+
+    class Item {
+        int item;
+        BitSet TIDS;
+
+        public Item(int item) {
+            TIDS = new BitSet(transactionCount);
+            this.item = item;
+        }
     }
 }

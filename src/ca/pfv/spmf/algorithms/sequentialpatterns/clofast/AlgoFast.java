@@ -23,58 +23,65 @@ import ca.pfv.spmf.tools.MemoryLogger;
 
 
 /* This file is copyright (c)  E. Salvemini et al.
-* 
-* This file is part of the SPMF DATA MINING SOFTWARE
-* (http://www.philippe-fournier-viger.com/spmf).
-* 
-* SPMF is free software: you can redistribute it and/or modify it under the
-* terms of the GNU General Public License as published by the Free Software
-* Foundation, either version 3 of the License, or (at your option) any later
-* version.
-* 
-* SPMF is distributed in the hope that it will be useful, but WITHOUT ANY
-* WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
-* A PARTICULAR PURPOSE. See the GNU General Public License for more details.
-* You should have received a copy of the GNU General Public License along with
-* SPMF. If not, see <http://www.gnu.org/licenses/>.
-*/
+ *
+ * This file is part of the SPMF DATA MINING SOFTWARE
+ * (http://www.philippe-fournier-viger.com/spmf).
+ *
+ * SPMF is free software: you can redistribute it and/or modify it under the
+ * terms of the GNU General Public License as published by the Free Software
+ * Foundation, either version 3 of the License, or (at your option) any later
+ * version.
+ *
+ * SPMF is distributed in the hope that it will be useful, but WITHOUT ANY
+ * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
+ * A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+ * You should have received a copy of the GNU General Public License along with
+ * SPMF. If not, see <http://www.gnu.org/licenses/>.
+ */
 
 /**
  * This is an implementation of the Fast algorithm. Fast was proposed in the following paper
- *<br/><br/>
+ * <br/><br/>
+ * <p>
+ * Salvemini E, Fumarola F, Malerba D, Han J (2011) FAST sequence mining based
+ * on sparse id-lists. In: Kryszkiewicz M, Rybinski H, Skowron A, Ras ZW (eds)
+ * ISMIS, vol 6804 of Lecture Notes in Computer Science, Springer, Berlin, pp 316–325<br/><br/>
  *
- *Salvemini E, Fumarola F, Malerba D, Han J (2011) FAST sequence mining based 
- *on sparse id-lists. In: Kryszkiewicz M, Rybinski H, Skowron A, Ras ZW (eds) 
- *ISMIS, vol 6804 of Lecture Notes in Computer Science, Springer, Berlin, pp 316–325<br/><br/>
- * 
  * @author E. Salvemini et al.
  */
 public class AlgoFast {
 
-	/** The dataset */
+    /**
+     * the time the algorithm started
+     */
+    long startTimestamp = 0;
+    /**
+     * the time the algorithm terminated
+     */
+    long endTimestamp = 0;
+    /**
+     * the number of patterns generated
+     */
+    int patternCount = 0;
+    /**
+     * a maximum support value (optional parameter)
+     */
+    float maxSup = Float.MAX_VALUE;
+    /**
+     * The dataset
+     */
     private FastDataset ds;
-
-    /** The sequence tree */
+    /**
+     * The sequence tree
+     */
     private SequenceTree sequenceTree;
-    
-	/** the time the algorithm started */
-	long startTimestamp = 0; 
-	
-	/** the time the algorithm terminated */
-	long endTimestamp = 0;  
-	
-	/** the number of patterns generated */
-	int patternCount = 0; 
-	
-	/** a maximum support value (optional parameter) */
-	float maxSup = Float.MAX_VALUE;
-	
-	
+
+
     /**
      * Constructor
      */
     public AlgoFast() {
-    	
+
     }
 
     /**
@@ -86,11 +93,11 @@ public class AlgoFast {
         itemsetExtension();
 
         MemoryLogger.getInstance().checkMemory();
-        
+
         sequenceTree = sequenceExtension();
     }
 
-    
+
     public List<SequenceNode> getFrequentSequences() {
         return SequenceTree.visit(sequenceTree);
     }
@@ -231,86 +238,89 @@ public class AlgoFast {
         }
         out.flush();
         out.close();
-        
+
         patternCount = nodes.size();
 //        statistics.setNumFrequentSequences(nodes.size());
     }
-    
+
     /**
      * Run the algorithm
+     *
      * @param inputFile  an input file path in SPMF format
-     * @param outputPath  an output file path
-     * @param minsup  the minimum suppor threshold
-     * @throws IOException   if error reading or writing to file
+     * @param outputPath an output file path
+     * @param minsup     the minimum suppor threshold
+     * @throws IOException if error reading or writing to file
      */
-	public void runAlgorithm(String inputFile, String outputPath, float minsup) throws IOException {
-		// read the dataset
-		
-		startTimestamp = System.currentTimeMillis();
-		MemoryLogger.getInstance().reset();
+    public void runAlgorithm(String inputFile, String outputPath, float minsup) throws IOException {
+        // read the dataset
+
+        startTimestamp = System.currentTimeMillis();
+        MemoryLogger.getInstance().reset();
 
         this.ds = FastDataset.fromPrefixspanSource(inputFile, minsup, maxSup);
-        
+
         // run the algoritm
         run();
 
         //save patterns to the output file
         writePatterns(Paths.get(outputPath));
-        
+
         MemoryLogger.getInstance().checkMemory();
         endTimestamp = System.currentTimeMillis();
-	}
-	
+    }
+
     /**
      * Run the algorithm
+     *
      * @param FastDataset dataset  a dataset already loaded in memory
      * @param outputPath  an output file path
-     * @param minsup  the minimum suppor threshold
-     * @throws IOException   if error reading or writing to file
+     * @param minsup      the minimum suppor threshold
+     * @throws IOException if error reading or writing to file
      */
-	public void runAlgorithm(FastDataset dataset, String outputPath, float minsup) throws IOException {
+    public void runAlgorithm(FastDataset dataset, String outputPath, float minsup) throws IOException {
 
-		startTimestamp = System.currentTimeMillis();
-		MemoryLogger.getInstance().reset();
-		
-		this.ds = dataset;
-        
+        startTimestamp = System.currentTimeMillis();
+        MemoryLogger.getInstance().reset();
+
+        this.ds = dataset;
+
         // run the algoritm
         run();
 
         //save patterns to the output file
         writePatterns(Paths.get(outputPath));
-        
+
         MemoryLogger.getInstance().checkMemory();
         endTimestamp = System.currentTimeMillis();
-	}
+    }
 
-	/**
-	 * Print the statistics of the algorithm execution to System.out.
-	 */
-	public void printStatistics() {
-		StringBuilder r = new StringBuilder(200);
-		r.append("=============  Algorithm Fast v2.29 - STATISTICS =============\n");
-		r.append("Pattern count : ");
-		r.append(patternCount);
-		r.append('\n');
-		r.append("Total time: ");
-		r.append((endTimestamp - startTimestamp) / 1000f );
-		r.append(" s \n");
-		r.append("Max memory (mb) : " );
-		r.append( MemoryLogger.getInstance().getMaxMemory());
-		r.append('\n');
-		r.append("===================================================\n");
-		System.out.println(r.toString());	
-	}
+    /**
+     * Print the statistics of the algorithm execution to System.out.
+     */
+    public void printStatistics() {
+        StringBuilder r = new StringBuilder(200);
+        r.append("=============  Algorithm Fast v2.29 - STATISTICS =============\n");
+        r.append("Pattern count : ");
+        r.append(patternCount);
+        r.append('\n');
+        r.append("Total time: ");
+        r.append((endTimestamp - startTimestamp) / 1000f);
+        r.append(" s \n");
+        r.append("Max memory (mb) : ");
+        r.append(MemoryLogger.getInstance().getMaxMemory());
+        r.append('\n');
+        r.append("===================================================\n");
+        System.out.println(r.toString());
+    }
 
-	/**
-	 * Set a maximum support value
-	 * @param maxsup the maximum support
-	 */
-	public void setMaximumSupport(float maxSup) {
-		this.maxSup = maxSup;
-	}
-    
+    /**
+     * Set a maximum support value
+     *
+     * @param maxsup the maximum support
+     */
+    public void setMaximumSupport(float maxSup) {
+        this.maxSup = maxSup;
+    }
+
 
 }

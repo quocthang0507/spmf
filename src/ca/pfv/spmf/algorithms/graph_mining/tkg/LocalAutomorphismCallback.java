@@ -23,8 +23,8 @@ import java.util.List;
 /**
  * Validates that only canonical isomorphic subgraph projection will be returned by the iterator
  *
- * @see IProjectedIteratorCallback
  * @author Shaul Zevin
+ * @see IProjectedIteratorCallback
  */
 public class LocalAutomorphismCallback implements IProjectedIteratorCallback {
     private LocalPDFSAutomorphismDetector localPDFSAutomorphismDetector;
@@ -34,8 +34,7 @@ public class LocalAutomorphismCallback implements IProjectedIteratorCallback {
     }
 
     /**
-     *
-     * @param projectedEdges projection
+     * @param projectedEdges    projection
      * @param nextProjectedEdge projection extension
      * @return false if nextProjectedEdge is the last edge of isomorphic subgraph projection and projection is not canonical,
      * true otherwise
@@ -60,6 +59,7 @@ public class LocalAutomorphismCallback implements IProjectedIteratorCallback {
 
     /**
      * merges projections of isomorphic subgraphs of the canonical projection
+     *
      * @param pdfsCompact merged projection
      * @return
      */

@@ -19,30 +19,31 @@ import java.util.stream.Collectors;
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
+
 /**
  * This is an implementation of a DFS code projections into a graphs database, used by the CGSPAN algorithm.
  * Projections are implemented as a linked list of projected edges sets.
  * Set in position i contains database edge in position i of each DFS code projection.
  * Sets are indexed by the database graph and then by 'from' vertex.
- *  <br/><br/>
- *
+ * <br/><br/>
+ * <p>
  * The cgspan algorithm is described in : <br/>
  * <br/>
  * <p>
  * cgSpan: Closed Graph-Based Substructure Pattern Mining, by Zevin Shaul, Sheikh Naaz
  * IEEE BigData 2021 7th Special Session on Intelligent Data Mining
  * <p>
- *
+ * <p>
  * <br/>
- *
+ * <p>
  * The CGspan algorithm finds all the closed subgraphs and their support in a
  * graph provided by the user.
  * <br/><br/>
- *
+ * <p>
  * This implementation saves the result to a file
  *
- * @see AlgoCGSPANAbstract
  * @author Shaul Zevin
+ * @see AlgoCGSPANAbstract
  */
 
 public class ProjectedCompact {
@@ -51,7 +52,7 @@ public class ProjectedCompact {
     // graphs database
     private List<DatabaseGraph> graphDatabase;
     // projections
-    private List<Map<Integer, Map<Integer,Set<ProjectedEdge>>>> projected = new ArrayList<Map<Integer, Map<Integer,Set<ProjectedEdge>>>>();
+    private List<Map<Integer, Map<Integer, Set<ProjectedEdge>>>> projected = new ArrayList<Map<Integer, Map<Integer, Set<ProjectedEdge>>>>();
     // projections count
     private long numProjections = 0;
     // projections count in each database graph
@@ -68,6 +69,7 @@ public class ProjectedCompact {
 
     /**
      * computes MNI, minimum node image, defined by the minimum of |Number of graphs database vertices to which particular DFS code vertex is projected|
+     *
      * @return MNI value
      */
     public int MNI() {
@@ -82,9 +84,9 @@ public class ProjectedCompact {
                 visitedVertices.add(v1);
                 Set<VertexEnumeration> projectedVertices = new HashSet<VertexEnumeration>();
                 Map<Integer, Map<Integer, Set<ProjectedEdge>>> index = projected.get(i);
-                for (int gid: index.keySet()) {
+                for (int gid : index.keySet()) {
                     Map<Integer, Set<ProjectedEdge>> vertexEdges = index.get(gid);
-                    for (int vertex: vertexEdges.keySet()) {
+                    for (int vertex : vertexEdges.keySet()) {
                         VertexEnumeration vertexEnumeration = new VertexEnumeration(vertex, gid);
                         projectedVertices.add(vertexEnumeration);
                     }
@@ -92,8 +94,7 @@ public class ProjectedCompact {
 
                 if (mni == 0) {
                     mni = projectedVertices.size();
-                }
-                else {
+                } else {
                     if (projectedVertices.size() < mni) {
                         mni = projectedVertices.size();
                     }
@@ -106,11 +107,11 @@ public class ProjectedCompact {
                 Set<VertexEnumeration> projectedVertices = new HashSet<VertexEnumeration>();
 
                 Map<Integer, Map<Integer, Set<ProjectedEdge>>> index = projected.get(i);
-                for (int gid: index.keySet()) {
+                for (int gid : index.keySet()) {
                     Map<Integer, Set<ProjectedEdge>> vertexEdges = index.get(gid);
-                    for (int fromVertex: vertexEdges.keySet()) {
-                        for (ProjectedEdge projectedEdge: vertexEdges.get(fromVertex)) {
-                            int vertex = projectedEdge.isReversed()? projectedEdge.getEdgeEnumeration().getEdge().v1: projectedEdge.getEdgeEnumeration().getEdge().v2;
+                    for (int fromVertex : vertexEdges.keySet()) {
+                        for (ProjectedEdge projectedEdge : vertexEdges.get(fromVertex)) {
+                            int vertex = projectedEdge.isReversed() ? projectedEdge.getEdgeEnumeration().getEdge().v1 : projectedEdge.getEdgeEnumeration().getEdge().v2;
                             VertexEnumeration vertexEnumeration = new VertexEnumeration(vertex, gid);
                             projectedVertices.add(vertexEnumeration);
                         }
@@ -119,8 +120,7 @@ public class ProjectedCompact {
 
                 if (mni == 0) {
                     mni = projectedVertices.size();
-                }
-                else {
+                } else {
                     if (projectedVertices.size() < mni) {
                         mni = projectedVertices.size();
                     }
@@ -148,11 +148,11 @@ public class ProjectedCompact {
         this.graphDatabase = graphDatabase;
     }
 
-    public List<Map<Integer, Map<Integer,Set<ProjectedEdge>>>> getProjected() {
+    public List<Map<Integer, Map<Integer, Set<ProjectedEdge>>>> getProjected() {
         return projected;
     }
 
-    public void setProjected(List<Map<Integer, Map<Integer,Set<ProjectedEdge>>>> projected) {
+    public void setProjected(List<Map<Integer, Map<Integer, Set<ProjectedEdge>>>> projected) {
         this.projected = projected;
     }
 
@@ -173,7 +173,6 @@ public class ProjectedCompact {
     }
 
     /**
-     *
      * @return iterator on projections
      */
     public ProjectedIterator iterator() {
@@ -181,7 +180,6 @@ public class ProjectedCompact {
     }
 
     /**
-     *
      * @param gid database graph id
      * @return iterator on projections of the database graph
      */
@@ -190,8 +188,7 @@ public class ProjectedCompact {
     }
 
     /**
-     *
-     * @param gid database graph id
+     * @param gid       database graph id
      * @param callbacks list of callbacks to be called by the iterator
      * @return iterator on projections of the database graph
      */
@@ -201,7 +198,8 @@ public class ProjectedCompact {
 
     /**
      * Consumer side of consumers/producers projections iterator implementation
-     * @param queueSize maximal number of projections to be produced by the producers at any point of time
+     *
+     * @param queueSize    maximal number of projections to be produced by the producers at any point of time
      * @param numProducers number of producer threads
      * @return projections consumer
      */
@@ -211,9 +209,10 @@ public class ProjectedCompact {
 
     /**
      * Consumer side of consumers/producers projections iterator implementation
-     * @param queueSize maximal number of projections to be produced by the producers at any point of time
+     *
+     * @param queueSize    maximal number of projections to be produced by the producers at any point of time
      * @param numProducers number of producer threads
-     * @param callbacks list of callbacks to be called by producer
+     * @param callbacks    list of callbacks to be called by producer
      * @return projections consumer
      */
     public ProjectedIteratorConsumer iterator(int queueSize, int numProducers, List<IProjectedIteratorCallback> callbacks) {
@@ -222,9 +221,10 @@ public class ProjectedCompact {
 
     /**
      * Consumer side of consumers/producers projections iterator implementation
-     * @param queueSize maximal number of projections to be produced by the producers at any point of time
+     *
+     * @param queueSize    maximal number of projections to be produced by the producers at any point of time
      * @param numProducers number of producer threads
-     * @param gid database graph id, producers will produce projections from this graph only
+     * @param gid          database graph id, producers will produce projections from this graph only
      * @return projections consumer
      */
     public ProjectedIteratorConsumer iterator(int queueSize, int numProducers, int gid) {
@@ -233,10 +233,11 @@ public class ProjectedCompact {
 
     /**
      * Consumer side of consumers/producers projections iterator implementation
-     * @param queueSize maximal number of projections to be produced by the producers at any point of time
+     *
+     * @param queueSize    maximal number of projections to be produced by the producers at any point of time
      * @param numProducers number of producer threads
-     * @param gid database graph id, producers will produce projections from this graph only
-     * @param callbacks list of callbacks to be called by producer
+     * @param gid          database graph id, producers will produce projections from this graph only
+     * @param callbacks    list of callbacks to be called by producer
      * @return projections consumer
      */
     public ProjectedIteratorConsumer iterator(int queueSize, int numProducers, int gid, List<IProjectedIteratorCallback> callbacks) {
@@ -244,7 +245,6 @@ public class ProjectedCompact {
     }
 
     /**
-     *
      * @param prefixLength the length of projection prefix
      * @return iterator to output unique projections prefixes
      */
@@ -253,8 +253,7 @@ public class ProjectedCompact {
     }
 
     /**
-     *
-     * @param gid database graph id, projections prefixes will be returned for this graph only
+     * @param gid          database graph id, projections prefixes will be returned for this graph only
      * @param prefixLength the length of projection prefix
      * @return iterator to output unique projections prefixes
      */
@@ -264,14 +263,15 @@ public class ProjectedCompact {
 
     /**
      * for each DFS code edge builds a set of all enumerated edges projected by that edge
+     *
      * @return list of sets of all enumerated edges projected by each edge in the DFS code
      */
     public List<Set<EdgeEnumeration>> buildKeys() {
         List<Set<EdgeEnumeration>> keys = new LinkedList<Set<EdgeEnumeration>>();
-        for (Map<Integer, Map<Integer, Set<ProjectedEdge>>> index: projected) {
+        for (Map<Integer, Map<Integer, Set<ProjectedEdge>>> index : projected) {
             Set<EdgeEnumeration> key = new HashSet<EdgeEnumeration>();
-            for (Map<Integer, Set<ProjectedEdge>> vertexEdges: index.values()) {
-                for (Set<ProjectedEdge> edges: vertexEdges.values()) {
+            for (Map<Integer, Set<ProjectedEdge>> vertexEdges : index.values()) {
+                for (Set<ProjectedEdge> edges : vertexEdges.values()) {
                     key.addAll(edges.stream().map(ProjectedEdge::getEdgeEnumeration).collect(Collectors.toSet()));
                 }
             }
@@ -282,21 +282,20 @@ public class ProjectedCompact {
     }
 
     /**
-     *
-     * @param label counted label
+     * @param label         counted label
      * @param graphDatabase graphs database
      * @return count of distinct vertices in all projections labeled by 'label' parameter
      */
     public int verticesWithLabelCount(int label, List<DatabaseGraph> graphDatabase) {
         Map<Integer, Set<Integer>> graphVerticesWithLabel = new HashMap<Integer, Set<Integer>>();
-        for (Integer graphId: graphIds) {
+        for (Integer graphId : graphIds) {
             graphVerticesWithLabel.put(graphId, new HashSet<Integer>());
         }
 
         ProjectedIterator iterator = iterator();
         while (iterator.hasNext()) {
             PDFSCompact pdfs = iterator.next();
-            for (ProjectedEdge projectedEdge: pdfs.getProjectedEdges()) {
+            for (ProjectedEdge projectedEdge : pdfs.getProjectedEdges()) {
                 int gid = projectedEdge.getEdgeEnumeration().getGid();
                 DatabaseGraph g = graphDatabase.get(gid);
                 Edge edge = projectedEdge.getEdgeEnumeration().getEdge();
@@ -313,7 +312,7 @@ public class ProjectedCompact {
 
         int count = 0;
 
-        for (int gid: graphVerticesWithLabel.keySet()) {
+        for (int gid : graphVerticesWithLabel.keySet()) {
             count += graphVerticesWithLabel.get(gid).size();
         }
 
@@ -325,7 +324,7 @@ public class ProjectedCompact {
             projected.get(i).put(projectedEdge.getEdgeEnumeration().getGid(), new HashMap<Integer, Set<ProjectedEdge>>());
         }
 
-        int vertex = projectedEdge.isReversed() ? projectedEdge.getEdgeEnumeration().getEdge().v2: projectedEdge.getEdgeEnumeration().getEdge().v1;
+        int vertex = projectedEdge.isReversed() ? projectedEdge.getEdgeEnumeration().getEdge().v2 : projectedEdge.getEdgeEnumeration().getEdge().v1;
 
         if (!projected.get(i).get(projectedEdge.getEdgeEnumeration().getGid()).containsKey(vertex)) {
             projected.get(i).get(projectedEdge.getEdgeEnumeration().getGid()).put(vertex, new HashSet<ProjectedEdge>());
@@ -336,6 +335,7 @@ public class ProjectedCompact {
 
     /**
      * adds a single projection of length one
+     *
      * @param projectedEdge edge the projection is composed of
      */
     public void addProjection(ProjectedEdge projectedEdge) {
@@ -352,16 +352,16 @@ public class ProjectedCompact {
 
         if (!numProjectionsInGraph.containsKey(projectedEdge.getEdgeEnumeration().getGid())) {
             numProjectionsInGraph.put(projectedEdge.getEdgeEnumeration().getGid(), 1l);
-        }
-        else {
+        } else {
             numProjectionsInGraph.put(projectedEdge.getEdgeEnumeration().getGid(), numProjectionsInGraph.get(projectedEdge.getEdgeEnumeration().getGid()) + 1);
         }
     }
 
     /**
      * adds projection edge at specific position
+     *
      * @param projectedEdge projection edge to add
-     * @param index position of projection edge
+     * @param index         position of projection edge
      */
     public void addProjection(ProjectedEdge projectedEdge, int index) {
         addProjection(projectedEdge, index, 1);
@@ -369,8 +369,9 @@ public class ProjectedCompact {
 
     /**
      * adds an edge which one or more projections have as the specific position
-     * @param projectedEdge projection edge to add
-     * @param index position of of projection(s) edge
+     *
+     * @param projectedEdge     projection edge to add
+     * @param index             position of of projection(s) edge
      * @param projectionsNumber number of projections which share the edge
      */
     public void addProjection(ProjectedEdge projectedEdge, int index, long projectionsNumber) {
@@ -383,8 +384,7 @@ public class ProjectedCompact {
 
         if (!numProjectionsInGraph.containsKey(projectedEdge.getEdgeEnumeration().getGid())) {
             numProjectionsInGraph.put(projectedEdge.getEdgeEnumeration().getGid(), projectionsNumber);
-        }
-        else {
+        } else {
             numProjectionsInGraph.put(projectedEdge.getEdgeEnumeration().getGid(), numProjectionsInGraph.get(projectedEdge.getEdgeEnumeration().getGid()) + projectionsNumber);
         }
     }
@@ -392,7 +392,8 @@ public class ProjectedCompact {
 
     /**
      * adds a single projection which consists of projection of prefix up to the last edge and the last edge
-     * @param pdfs projection prefix up to the last edge
+     *
+     * @param pdfs          projection prefix up to the last edge
      * @param projectedEdge last projected edge
      */
     public void addProjection(PDFSCompact pdfs, ProjectedEdge projectedEdge) {
@@ -414,17 +415,17 @@ public class ProjectedCompact {
 
         if (!numProjectionsInGraph.containsKey(projectedEdge.getEdgeEnumeration().getGid())) {
             numProjectionsInGraph.put(projectedEdge.getEdgeEnumeration().getGid(), 1l);
-        }
-        else {
+        } else {
             numProjectionsInGraph.put(projectedEdge.getEdgeEnumeration().getGid(), numProjectionsInGraph.get(projectedEdge.getEdgeEnumeration().getGid()) + 1);
         }
     }
 
     /**
      * adds projections which consists of projections prefixes up to the last edge and the last edge which is shared by all projections
-     * @param projectedEdges projections prefixes up the last edge
+     *
+     * @param projectedEdges    projections prefixes up the last edge
      * @param projectionsNumber number of projections
-     * @param projectedEdge last projected edge shared by all projections
+     * @param projectedEdge     last projected edge shared by all projections
      */
     public void addProjection(List<Set<ProjectedEdge>> projectedEdges, long projectionsNumber, ProjectedEdge projectedEdge) {
         if (projected.size() == 0) {
@@ -434,7 +435,7 @@ public class ProjectedCompact {
         }
 
         for (int i = 0; i < projectedEdges.size(); i++) {
-            for (ProjectedEdge edge: projectedEdges.get(i)) {
+            for (ProjectedEdge edge : projectedEdges.get(i)) {
                 addProjectionEdge(edge, i);
             }
         }
@@ -447,14 +448,14 @@ public class ProjectedCompact {
 
         if (!numProjectionsInGraph.containsKey(projectedEdge.getEdgeEnumeration().getGid())) {
             numProjectionsInGraph.put(projectedEdge.getEdgeEnumeration().getGid(), projectionsNumber);
-        }
-        else {
+        } else {
             numProjectionsInGraph.put(projectedEdge.getEdgeEnumeration().getGid(), numProjectionsInGraph.get(projectedEdge.getEdgeEnumeration().getGid()) + projectionsNumber);
         }
     }
 
     /**
      * adds projections
+     *
      * @param projectedCompact added projections
      */
     public void addProjection(ProjectedCompact projectedCompact) {
@@ -462,18 +463,16 @@ public class ProjectedCompact {
             Map<Integer, Map<Integer, Set<ProjectedEdge>>> otherIndex = projectedCompact.getProjected().get(i);
             Map<Integer, Map<Integer, Set<ProjectedEdge>>> myIndex = projected.get(i);
 
-            for (Integer gid: otherIndex.keySet()) {
+            for (Integer gid : otherIndex.keySet()) {
                 if (!myIndex.containsKey(gid)) {
                     myIndex.put(gid, otherIndex.get(gid));
-                }
-                else {
+                } else {
                     Map<Integer, Set<ProjectedEdge>> otherVertexEdges = otherIndex.get(gid);
                     Map<Integer, Set<ProjectedEdge>> myVertexEdges = myIndex.get(gid);
-                    for (Integer vertex: otherVertexEdges.keySet()) {
+                    for (Integer vertex : otherVertexEdges.keySet()) {
                         if (!myVertexEdges.containsKey(vertex)) {
                             myVertexEdges.put(vertex, otherVertexEdges.get(vertex));
-                        }
-                        else {
+                        } else {
                             myVertexEdges.get(vertex).addAll(otherVertexEdges.get(vertex));
                         }
                     }
@@ -485,11 +484,10 @@ public class ProjectedCompact {
 
         numProjections += projectedCompact.getNumProjections();
 
-        for (int graphId: projectedCompact.getNumProjectionsInGraph().keySet()) {
+        for (int graphId : projectedCompact.getNumProjectionsInGraph().keySet()) {
             if (numProjectionsInGraph.containsKey(graphId)) {
                 numProjectionsInGraph.put(graphId, numProjectionsInGraph.get(graphId) + projectedCompact.getNumProjectionsInGraph().get(graphId));
-            }
-            else {
+            } else {
                 numProjectionsInGraph.put(graphId, projectedCompact.getNumProjectionsInGraph().get(graphId));
             }
         }
@@ -513,8 +511,8 @@ public class ProjectedCompact {
 
     public Set<ProjectedEdge> getProjections(int index) {
         Set<ProjectedEdge> projectedEdges = new HashSet<ProjectedEdge>();
-        for (Map<Integer, Set<ProjectedEdge>> vertexEdges: projected.get(index).values()) {
-            for (Set<ProjectedEdge> edges: vertexEdges.values()) {
+        for (Map<Integer, Set<ProjectedEdge>> vertexEdges : projected.get(index).values()) {
+            for (Set<ProjectedEdge> edges : vertexEdges.values()) {
                 projectedEdges.addAll(edges);
             }
         }
@@ -523,20 +521,19 @@ public class ProjectedCompact {
     }
 
     /**
-     *
      * @param i DFS index of projected edges
      * @return enumerations of all 'to' projected vertices from all projected edges at position specified by the index
      */
     public Set<VertexEnumeration> getDFSedgeAtToVerticesEnumerations(int i) {
         Set<VertexEnumeration> verticesEnumerations = new HashSet<VertexEnumeration>();
         Map<Integer, Map<Integer, Set<ProjectedEdge>>> index = projected.get(i);
-        for (Map<Integer, Set<ProjectedEdge>> vertexEdges: index.values()) {
-            for (Set<ProjectedEdge> edges: vertexEdges.values()) {
-                for (ProjectedEdge projectedEdge: edges) {
+        for (Map<Integer, Set<ProjectedEdge>> vertexEdges : index.values()) {
+            for (Set<ProjectedEdge> edges : vertexEdges.values()) {
+                for (ProjectedEdge projectedEdge : edges) {
                     verticesEnumerations.add(new VertexEnumeration(projectedEdge.getEdgeEnumeration().getGid(), projectedEdge.isReversed() ? projectedEdge.getEdgeEnumeration().getEdge().v1 : projectedEdge.getEdgeEnumeration().getEdge().v2));
                 }
             }
-         }
+        }
 
         return verticesEnumerations;
     }

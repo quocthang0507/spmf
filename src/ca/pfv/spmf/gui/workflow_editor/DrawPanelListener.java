@@ -19,26 +19,29 @@ import java.util.List;
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
+
 /**
  * A class that represents a listener for events from the draw panel of the workflow editor
- * 
+ *
  * @author Philippe Fournier-Viger
  * @see WorkflowEditorWindow
  * @see DrawPanel
  */
 interface DrawPanelListener {
 
-	/**
-	 * Method to notify the listener that a node was selected in the draw panel
-	 */
-	void notifyNodeSelected(Node node);
-	/**
-	 * Method to notify the listenerthat the number of groups (algorithms) has changed in the draw panel
-	 */
-	void notifyOfListOfGroups(List<GroupOfNodes> allgroups);
-	/**
-	 * Notify the listener that the last node of the workflow has an output.
-	 * This is important to determine if aditional nodes can be added.
-	 */
-	void notifyHasOutputNode(boolean hasOutput);
+    /**
+     * Method to notify the listener that a node was selected in the draw panel
+     */
+    void notifyNodeSelected(Node node);
+
+    /**
+     * Method to notify the listenerthat the number of groups (algorithms) has changed in the draw panel
+     */
+    void notifyOfListOfGroups(List<GroupOfNodes> allgroups);
+
+    /**
+     * Notify the listener that the last node of the workflow has an output.
+     * This is important to determine if aditional nodes can be added.
+     */
+    void notifyHasOutputNode(boolean hasOutput);
 }

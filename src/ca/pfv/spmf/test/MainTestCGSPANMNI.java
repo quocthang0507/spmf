@@ -14,7 +14,7 @@ import ca.pfv.spmf.algorithms.graph_mining.tkg.AlgoCGSPANMNI;
  */
 public class MainTestCGSPANMNI {
 
-    public static void main(String [] arg) throws IOException, ClassNotFoundException, InterruptedException {
+    public static void main(String[] arg) throws IOException, ClassNotFoundException, InterruptedException {
 
         // set the input path
         String input = fileToPath("contextTKG.txt");
@@ -43,7 +43,7 @@ public class MainTestCGSPANMNI {
         algo.setDetectEarlyTerminationFailure(false);
 
         algo.setPdfsAutomorphismOptimization(true);
-        
+
         // for debugging
 //        algo.setDebugMode(true);
 
@@ -55,8 +55,8 @@ public class MainTestCGSPANMNI {
         algo.printStats();
     }
 
-    public static String fileToPath(String filename) throws UnsupportedEncodingException{
+    public static String fileToPath(String filename) throws UnsupportedEncodingException {
         URL url = MainTestGSPAN.class.getResource(filename);
-        return java.net.URLDecoder.decode(url.getPath(),"UTF-8");
+        return java.net.URLDecoder.decode(url.getPath(), "UTF-8");
     }
 }

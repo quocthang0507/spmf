@@ -1,13 +1,14 @@
 package ca.pfv.spmf.test;
 
+import ca.pfv.spmf.algorithms.episodes.emma.AlgoAFEM;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
 
-import ca.pfv.spmf.algorithms.episodes.emma.AlgoAFEM;
-
 /**
  * This file shows how to run the AFEM algorithm on an input file.
+ *
  * @author Philippe Fournier-Viger
  * @see AlgoAFEM
  */
@@ -29,13 +30,13 @@ public class MainTestAFEM_Simple {
 
         // self-growth = flase only for online_minute.txt , others are true
         AlgoAFEM algo = new AlgoAFEM();
-        algo.runAlgorithm(inputFile, outputFile,minSup,maxWindow,selfIncrement);
+        algo.runAlgorithm(inputFile, outputFile, minSup, maxWindow, selfIncrement);
         algo.printStats();
-        
+
     }
 
     public static String fileToPath(String filename) throws UnsupportedEncodingException {
         URL url = MainTestAFEM_Simple.class.getResource(filename);
-        return java.net.URLDecoder.decode(url.getPath(),"UTF-8");
+        return java.net.URLDecoder.decode(url.getPath(), "UTF-8");
     }
 }

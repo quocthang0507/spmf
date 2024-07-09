@@ -1,25 +1,26 @@
 package ca.pfv.spmf.algorithms.frequentpatterns.sppgrowth;
+
 public class Support_maxla {
     int support = 0;
     int maxla = 0;
 
-    Support_maxla(){}
+    Support_maxla() {
+    }
 
-    public void increaseSupport(){
+    public void increaseSupport() {
         this.support++;
     }
 
-    public int getSupport(){
+    public int getSupport() {
         return this.support;
     }
 
-    public void setMaxla(int current_la){
-        this.maxla = Math.max(this.maxla,current_la);
+    public int getMaxla() {
+        return this.maxla;
     }
 
-
-    public int getMaxla(){
-        return this.maxla;
+    public void setMaxla(int current_la) {
+        this.maxla = Math.max(this.maxla, current_la);
     }
 
 }

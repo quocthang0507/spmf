@@ -20,7 +20,7 @@ import ca.pfv.spmf.algorithms.frequentpatterns.MRCPPS.AlgoMRCPPS;
  *
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  * Copyright Peng Yang, Philippe Fournier-Viger, 2019
  */
 public class MainTestMRCPPS {
@@ -34,7 +34,7 @@ public class MainTestMRCPPS {
         double maxStd = 1;
         double minBond = 0.5;
         double minRa = 0.5;
-        
+
         // Activate some optimization called Lemma 2 from the paper
         // (it is recommended to leave this parameter to true unless for doing some experiments)
         boolean useLemma2 = true;
@@ -46,12 +46,12 @@ public class MainTestMRCPPS {
         int groupNum = 0;
 
         AlgoMRCPPS algo = new AlgoMRCPPS();
-        algo.runAlgorithm(inputFile,outputFile,maxSup, maxStd, minBond, minRa, useLemma2, needGroup, groupNum);
+        algo.runAlgorithm(inputFile, outputFile, maxSup, maxStd, minBond, minRa, useLemma2, needGroup, groupNum);
         algo.printStats();
     }
 
     public static String fileToPath(String filename) throws UnsupportedEncodingException {
         URL url = MainTestMRCPPS.class.getResource(filename);
-        return java.net.URLDecoder.decode(url.getPath(),"UTF-8");
+        return java.net.URLDecoder.decode(url.getPath(), "UTF-8");
     }
 }

@@ -8,18 +8,23 @@ import java.util.BitSet;
  * Storing the cardinality is useful because the cardinality() method
  * of a bitset in Java is very expensive, so it should not be called
  * more than once.
- */ 
-public class BitSetSupport{
-	/** the bitset */
-	public BitSet bitset = new BitSet();
-	/** the support */
-	public int support;
-	
-	/**
-	 * Get the bitset
-	 * @return the biset
-	 */
-	public BitSet getBitset() {
-		return bitset;
-	}
+ */
+public class BitSetSupport {
+    /**
+     * the bitset
+     */
+    public BitSet bitset = new BitSet();
+    /**
+     * the support
+     */
+    public int support;
+
+    /**
+     * Get the bitset
+     *
+     * @return the biset
+     */
+    public BitSet getBitset() {
+        return bitset;
+    }
 }

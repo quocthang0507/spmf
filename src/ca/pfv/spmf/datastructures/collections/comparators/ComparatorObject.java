@@ -18,21 +18,22 @@ package ca.pfv.spmf.datastructures.collections.comparators;
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
+
 /**
  * This abstract class is a simple comparators for Object values.
- * 
+ *
  * @author Philippe Fournier-Viger
  * @see ListObject
  */
 public abstract class ComparatorObject<T> {
 
-	/**
-	 * Compare two objects and return a value >0, =0 or <0 if the first object is
-	 * bigger, equal or smaller than the second object
-	 * 
-	 * @param num1 the first object
-	 * @param num2 the second object
-	 * @return the comparison value
-	 */
-	public abstract int compare(T obj1, T ojb2);
+    /**
+     * Compare two objects and return a value >0, =0 or <0 if the first object is
+     * bigger, equal or smaller than the second object
+     *
+     * @param num1 the first object
+     * @param num2 the second object
+     * @return the comparison value
+     */
+    public abstract int compare(T obj1, T ojb2);
 }

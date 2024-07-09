@@ -11,8 +11,8 @@ import ca.pfv.spmf.algorithms.sequentialpatterns.clospan_AGP.items.creators.Abst
 import ca.pfv.spmf.algorithms.sequentialpatterns.clospan_AGP.items.creators.AbstractionCreator_Qualitative;
 
 /**
- * Example of how to use the algorithm PrefixSpan but executing a 
- * postprocessing step at the end in order to find only the closed 
+ * Example of how to use the algorithm PrefixSpan but executing a
+ * postprocessing step at the end in order to find only the closed
  * frequent patterns. The output is saved in the main memory
  *
  * @author agomariz
@@ -30,7 +30,7 @@ public class MainTestPrefixSpan_PostProcessingStepForClosedMining_saveToMemory {
         boolean verbose = false;
         boolean findClosedPatterns = true;
         boolean executePruningMethods = false;
-        
+
         // if you set the following parameter to true, the sequence ids of the sequences where
         // each pattern appears will be shown in the result
         boolean outputSequenceIdentifiers = true;
@@ -44,9 +44,9 @@ public class MainTestPrefixSpan_PostProcessingStepForClosedMining_saveToMemory {
 
         //System.out.println(sequenceDatabase.toString());
 
-        AlgoCloSpan algorithm = new AlgoCloSpan(support, abstractionCreator, findClosedPatterns,executePruningMethods);
+        AlgoCloSpan algorithm = new AlgoCloSpan(support, abstractionCreator, findClosedPatterns, executePruningMethods);
 
-        algorithm.runAlgorithm(sequenceDatabase, keepPatterns, verbose, null,outputSequenceIdentifiers);
+        algorithm.runAlgorithm(sequenceDatabase, keepPatterns, verbose, null, outputSequenceIdentifiers);
         System.out.println(algorithm.getNumberOfFrequentPatterns() + " pattern found.");
 
         if (keepPatterns) {

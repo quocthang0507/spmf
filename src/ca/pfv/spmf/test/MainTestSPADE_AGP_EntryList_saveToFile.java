@@ -17,6 +17,7 @@ import ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP.idLists.creators
 /**
  * Example of how to use the algorithm SPADE, saving the results in a given
  * file
+ *
  * @author agomariz
  */
 public class MainTestSPADE_AGP_EntryList_saveToFile {
@@ -25,8 +26,8 @@ public class MainTestSPADE_AGP_EntryList_saveToFile {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws IOException {
-    	String outputPath = ".//output.txt";
-    	
+        String outputPath = ".//output.txt";
+
         // Load a sequence database
         double support = 0.5;
 
@@ -34,28 +35,28 @@ public class MainTestSPADE_AGP_EntryList_saveToFile {
         boolean verbose = false;
 
         AbstractionCreator abstractionCreator = AbstractionCreator_Qualitative.getInstance();
-        boolean dfs=true;
-        
+        boolean dfs = true;
+
         // if you set the following parameter to true, the sequence ids of the sequences where
         // each pattern appears will be shown in the result
-        boolean outputSequenceIdentifiers = false; 
-        
-        IdListCreator idListCreator =IdListCreator_StandardMap.getInstance();
-                
+        boolean outputSequenceIdentifiers = false;
+
+        IdListCreator idListCreator = IdListCreator_StandardMap.getInstance();
+
         CandidateGenerator candidateGenerator = CandidateGenerator_Qualitative.getInstance();
-        
+
         SequenceDatabase sequenceDatabase = new SequenceDatabase(abstractionCreator, idListCreator);
 
         sequenceDatabase.loadFile(fileToPath("contextPrefixSpan.txt"), support);
-        
+
         System.out.println(sequenceDatabase.toString());
 
-        AlgoSPADE algorithm = new AlgoSPADE(support,dfs,abstractionCreator);
-        
-        algorithm.runAlgorithm(sequenceDatabase, candidateGenerator,keepPatterns,verbose,outputPath,outputSequenceIdentifiers);
-        System.out.println("Minimum support (relative) = "+support);
-        System.out.println(algorithm.getNumberOfFrequentPatterns()+ " frequent patterns.");
-        
+        AlgoSPADE algorithm = new AlgoSPADE(support, dfs, abstractionCreator);
+
+        algorithm.runAlgorithm(sequenceDatabase, candidateGenerator, keepPatterns, verbose, outputPath, outputSequenceIdentifiers);
+        System.out.println("Minimum support (relative) = " + support);
+        System.out.println(algorithm.getNumberOfFrequentPatterns() + " frequent patterns.");
+
         System.out.println(algorithm.printStatistics());
     }
 

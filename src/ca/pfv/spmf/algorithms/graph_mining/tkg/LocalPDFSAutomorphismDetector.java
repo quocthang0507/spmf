@@ -22,8 +22,8 @@ import java.util.*;
 /**
  * finds and holds isomorphic subgraphs on the DFS code
  *
- * @see IsomorphicSubgraph
  * @author Shaul Zevin
+ * @see IsomorphicSubgraph
  */
 public class LocalPDFSAutomorphismDetector {
     // DFS code projections
@@ -38,6 +38,7 @@ public class LocalPDFSAutomorphismDetector {
 
     /**
      * checks if the projection is canonical
+     *
      * @param projectedEdges projection
      * @return false if projection length equals to the maximum edge index of the isomorphic subgraph on the DFS code and projection is not canonical,
      * true otherwise
@@ -67,7 +68,7 @@ public class LocalPDFSAutomorphismDetector {
         Map<ExtendedEdge, Boolean> visited = new HashMap<ExtendedEdge, Boolean>();
         Map<ExtendedEdge, Integer> components = new HashMap<ExtendedEdge, Integer>();
 
-        for (ExtendedEdge extendedEdge: dfsCode.getEeL()) {
+        for (ExtendedEdge extendedEdge : dfsCode.getEeL()) {
             if (extendedEdge.vLabel1 == extendedEdge.vLabel2) {
                 isomorphicExtendedEdges.put(extendedEdge, new HashSet<ExtendedEdge>());
                 visited.put(extendedEdge, false);
@@ -75,8 +76,8 @@ public class LocalPDFSAutomorphismDetector {
         }
 
         // merge edges that have identical vertex labels and share a vertex
-        for (ExtendedEdge ee1: isomorphicExtendedEdges.keySet()) {
-            for (ExtendedEdge ee2: isomorphicExtendedEdges.keySet()) {
+        for (ExtendedEdge ee1 : isomorphicExtendedEdges.keySet()) {
+            for (ExtendedEdge ee2 : isomorphicExtendedEdges.keySet()) {
                 if (ee1 == ee2) {
                     continue;
                 }
@@ -88,8 +89,8 @@ public class LocalPDFSAutomorphismDetector {
         }
 
         // merge sets of edges from the previous step if exists an edge that connects them
-        for (ExtendedEdge ee1: isomorphicExtendedEdges.keySet()) {
-            for (ExtendedEdge extendedEdge: dfsCode.getEeL()) {
+        for (ExtendedEdge ee1 : isomorphicExtendedEdges.keySet()) {
+            for (ExtendedEdge extendedEdge : dfsCode.getEeL()) {
                 if (ee1 == extendedEdge) {
                     continue;
                 }
@@ -99,7 +100,7 @@ public class LocalPDFSAutomorphismDetector {
                 }
 
                 if (extendedEdge.v1 == ee1.v1 || extendedEdge.v1 == ee1.v2) {
-                    for (ExtendedEdge ee2: isomorphicExtendedEdges.keySet()) {
+                    for (ExtendedEdge ee2 : isomorphicExtendedEdges.keySet()) {
                         if (extendedEdge.v2 == ee2.v1 || extendedEdge.v2 == ee2.v2) {
                             isomorphicExtendedEdges.get(ee1).add(ee2);
                             isomorphicExtendedEdges.get(ee2).add(ee1);
@@ -112,7 +113,7 @@ public class LocalPDFSAutomorphismDetector {
         // run connected components algorithm
         int component = 0;
 
-        for (ExtendedEdge extendedEdge: isomorphicExtendedEdges.keySet()) {
+        for (ExtendedEdge extendedEdge : isomorphicExtendedEdges.keySet()) {
             if (!visited.get(extendedEdge)) {
                 connectedComponentsDFS(extendedEdge, isomorphicExtendedEdges, visited, components, component);
                 component++;
@@ -122,7 +123,7 @@ public class LocalPDFSAutomorphismDetector {
         // create isomorphic graph for each connected component
         for (int i = 0; i < component; i++) {
             Set<ExtendedEdge> componentIsomorphicEdges = new HashSet<ExtendedEdge>();
-            for (ExtendedEdge extendedEdge: components.keySet()) {
+            for (ExtendedEdge extendedEdge : components.keySet()) {
                 if (components.get(extendedEdge) == i) {
                     componentIsomorphicEdges.add(extendedEdge);
                 }
@@ -133,7 +134,7 @@ public class LocalPDFSAutomorphismDetector {
         }
     }
 
-    private void connectedComponentsDFS(ExtendedEdge extendedEdge, Map<ExtendedEdge, Set<ExtendedEdge>> isomorphicExtendedEdges, Map<ExtendedEdge, Boolean> visited, Map<ExtendedEdge, Integer> components, int component)  {
+    private void connectedComponentsDFS(ExtendedEdge extendedEdge, Map<ExtendedEdge, Set<ExtendedEdge>> isomorphicExtendedEdges, Map<ExtendedEdge, Boolean> visited, Map<ExtendedEdge, Integer> components, int component) {
         visited.put(extendedEdge, true);
         components.put(extendedEdge, component);
         for (ExtendedEdge connectedExtendedEdge : isomorphicExtendedEdges.get(extendedEdge)) {
@@ -144,13 +145,14 @@ public class LocalPDFSAutomorphismDetector {
 
     /**
      * replaces a canonical projection with projections of all isomorphic subgraphs represented by that projection
+     *
      * @param pdfsCompactCanonical canonical projection
      * @return all projections of the isomorphic subgraphs
      */
     public PDFSCompact beforeSubmit(PDFSCompact pdfsCompactCanonical) {
         IsomorphicSubgraphProjections projections = new IsomorphicSubgraphProjections(pdfsCompactCanonical.databaseGraph, pdfsCompactCanonical.projectedEdges, pdfsCompactCanonical.vertices, new HashSet<Integer>());
         // merge projections of all isomorphic subgraphs
-        for (IsomorphicSubgraph isomorphicSubgraph: isomorphismsMaxIndices.values()) {
+        for (IsomorphicSubgraph isomorphicSubgraph : isomorphismsMaxIndices.values()) {
             IsomorphicSubgraphProjections isomorphicSubgraphProjections = isomorphicSubgraph.projections(projectedCompact, pdfsCompactCanonical);
             projections = projections.merge(isomorphicSubgraphProjections, projectedCompact.getDfsCode().getRightMost());
         }

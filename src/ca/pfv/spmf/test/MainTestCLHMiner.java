@@ -12,26 +12,26 @@ import ca.pfv.spmf.algorithms.frequentpatterns.clhminer.AlgoCLHMiner;
 public class MainTestCLHMiner {
 
 
-	public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException {
 
-		// input file path (taxonomy)
-		String TaxonomyPath = fileToPath("taxonomy_CLHMiner.txt");
-		// input file path (transactions)
-		String inputPath = fileToPath("transaction_CLHMiner.txt");
-		// Output path
-		String outputPath = "output.txt";
-		
-		// minimum utility
-		int minimumUtility = 60;
-		
-		// run the algorithm
-		AlgoCLHMiner cl = new AlgoCLHMiner();
-		cl.runAlgorithm(minimumUtility, inputPath, outputPath, TaxonomyPath);
-		cl.printStats();
-	}
-	
-	public static String fileToPath(String filename) throws UnsupportedEncodingException{
-		URL url = MainTestAprioriHT_saveToFile.class.getResource(filename);
-		 return java.net.URLDecoder.decode(url.getPath(),"UTF-8");
-	}
+        // input file path (taxonomy)
+        String TaxonomyPath = fileToPath("taxonomy_CLHMiner.txt");
+        // input file path (transactions)
+        String inputPath = fileToPath("transaction_CLHMiner.txt");
+        // Output path
+        String outputPath = "output.txt";
+
+        // minimum utility
+        int minimumUtility = 60;
+
+        // run the algorithm
+        AlgoCLHMiner cl = new AlgoCLHMiner();
+        cl.runAlgorithm(minimumUtility, inputPath, outputPath, TaxonomyPath);
+        cl.printStats();
+    }
+
+    public static String fileToPath(String filename) throws UnsupportedEncodingException {
+        URL url = MainTestAprioriHT_saveToFile.class.getResource(filename);
+        return java.net.URLDecoder.decode(url.getPath(), "UTF-8");
+    }
 }

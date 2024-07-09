@@ -25,7 +25,7 @@ import ca.pfv.spmf.tools.MemoryLogger;
  *
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  * Copyright Peng Yang  2019
  */
 
@@ -33,327 +33,335 @@ import ca.pfv.spmf.tools.MemoryLogger;
  * This is a implementation of the MINEPI+ algorithm. MINEPI+ was proposed by
  * Huang et al. 2008 in this paper <br/>
  * <br/>
- * 
+ * <p>
  * Kuo-Yu Huang,Chia-Hui Chang (2008):Efficient mining of frequent episodes from
  * complex sequences. Inf. Syst.33(1):96-114
- * 
+ * <p>
  * <br/>
  * <br/>
  * This algorithm is implemented for mining episodes in a complex sequence The
  * calculation of frequency base on the head frequency the head frequency
  * statisfy anti-monotone
- * 
+ *
  * @author Peng Yang
  */
 public class AlgoMINEPIPlus {
 
-	/** start time of the latest execution */
-	private long startTimestamp;
+    /**
+     * The patterns that are found (if the user want to keep them into memory)
+     */
+    protected FrequentEpisodes freEpisodes = null;
+    /**
+     * start time of the latest execution
+     */
+    private long startTimestamp;
+    /**
+     * end time of the latest execution
+     */
+    private long endTimestamp;
+    /**
+     * candidate count
+     */
+    private int candidateCount = 0;
+    /**
+     * Set this to true if the dataset don't have timestamps. Then timestamps will
+     * be given automatically to transactions by self-increment, that is 1, 2, 3 ...
+     * If false, the timestamps from the dataset will be used instead.
+     */
+    private boolean selfIncrement;
+    /**
+     * save the frequent episodes of size 1
+     */
+    private List<EpisodeMP> f1;
 
-	/** end time of the latest execution */
-	private long endTimestamp;
+    /**
+     * save the boundlist of frequent episodes of size 1
+     */
+    private List<List<int[]>> f1BoundList;
 
-	/** candidate count */
-	private int candidateCount = 0;
+    /**
+     * the minimum support threshold
+     */
+    private int minSupport;
 
-	/**
-	 * Set this to true if the dataset don't have timestamps. Then timestamps will
-	 * be given automatically to transactions by self-increment, that is 1, 2, 3 ...
-	 * If false, the timestamps from the dataset will be used instead.
-	 */
-	private boolean selfIncrement;
+    /**
+     * the maximum window threshold
+     */
+    private int maxWindow;
 
-	/**
-	 * The patterns that are found (if the user want to keep them into memory)
-	 */
-	protected FrequentEpisodes freEpisodes = null;
+    /**
+     * Constructor
+     */
+    public AlgoMINEPIPlus() {
 
-	/** save the frequent episodes of size 1 */
-	private List<EpisodeMP> f1;
+    }
 
-	/** save the boundlist of frequent episodes of size 1 */
-	private List<List<int[]>> f1BoundList;
+    /**
+     * Method to run MINEPI+ algorithm
+     *
+     * @param input         a sequence
+     * @param output        the path of the output file to save the result or null
+     *                      if you want the result to be saved into memory
+     * @param minSupport    the minimum support threshold
+     * @param maxWindow     the maximum window size
+     * @param selfIncrement Set this to true if the dataset don't have timestamps.
+     *                      Then timestamps will be given automatically to
+     *                      transactions by self-increment, that is 1, 2, 3 ... If
+     *                      false, the timestamps from the dataset will be used
+     *                      instead.
+     * @return the set of frequent episodes
+     * @throws IOException if error while reading or writing files
+     */
+    public FrequentEpisodes runAlgorithm(String input, String output, int minSupport, int maxWindow,
+                                         boolean selfIncrement) throws IOException {
+        // reset maximum
+        MemoryLogger.getInstance().reset();
 
-	/** the minimum support threshold */
-	private int minSupport;
+        this.minSupport = minSupport;
+        this.maxWindow = maxWindow;
+        this.selfIncrement = selfIncrement;
 
-	/** the maximum window threshold */
-	private int maxWindow;
+        startTimestamp = System.currentTimeMillis();
 
-	/**
-	 * Constructor
-	 */
-	public AlgoMINEPIPlus() {
+        this.freEpisodes = new FrequentEpisodes();
 
-	}
+        // scan the file to the menory (sequence) and determine the frequent 1-episodes
+        // in the level1
+        scanDatabaseToDetermineFrequentSingleEpisode(input);
 
-	/**
-	 * Method to run MINEPI+ algorithm
-	 * 
-	 * @param input         a sequence
-	 * @param output        the path of the output file to save the result or null
-	 *                      if you want the result to be saved into memory
-	 * @param minSupport    the minimum support threshold
-	 * @param maxWindow     the maximum window size
-	 * @param selfIncrement Set this to true if the dataset don't have timestamps.
-	 *                      Then timestamps will be given automatically to
-	 *                      transactions by self-increment, that is 1, 2, 3 ... If
-	 *                      false, the timestamps from the dataset will be used
-	 *                      instead.
-	 * @return the set of frequent episodes
-	 * @throws IOException if error while reading or writing files
-	 */
-	public FrequentEpisodes runAlgorithm(String input, String output, int minSupport, int maxWindow,
-			boolean selfIncrement) throws IOException {
-		// reset maximum
-		MemoryLogger.getInstance().reset();
+        for (int i = 0; i < f1.size(); i++) {
+            // the episode contains the boundlist.
+            serialJoins(f1.get(i), f1BoundList.get(i), f1.get(i).getLastItem(), 1);
+        }
 
-		this.minSupport = minSupport;
-		this.maxWindow = maxWindow;
-		this.selfIncrement = selfIncrement;
+        // record end time
+        endTimestamp = System.currentTimeMillis();
+        // check the memory usage
+        MemoryLogger.getInstance().checkMemory();
 
-		startTimestamp = System.currentTimeMillis();
+        if (output != null) {
+            this.freEpisodes.saveToFile(output);
+        }
+        return freEpisodes;
+    }
 
-		this.freEpisodes = new FrequentEpisodes();
+    public void serialJoins(EpisodeMP alpha, List<int[]> alphaBoundlist, int lastItem, int levelNum) {
 
-		// scan the file to the menory (sequence) and determine the frequent 1-episodes
-		// in the level1
-		scanDatabaseToDetermineFrequentSingleEpisode(input);
+        for (int j = 0; j < f1.size(); j++) {
+            EpisodeMP fj = f1.get(j);
 
-		for (int i = 0; i < f1.size(); i++) {
-			// the episode contains the boundlist.
-			serialJoins(f1.get(i), f1BoundList.get(i), f1.get(i).getLastItem(), 1);
-		}
+            if (fj.getLastItem() > lastItem) {
+                List<int[]> tempBoundlist = equalJoin(alphaBoundlist, f1BoundList.get(j));
+                int support = getEntityCount(tempBoundlist);
+                if (support >= minSupport) {
+                    EpisodeMP beta = alpha.iExtension(fj.getLastItem(), support);
+                    this.freEpisodes.addFrequentEpisode(beta, levelNum);
+                    serialJoins(beta, tempBoundlist, fj.getLastItem(), levelNum);
+                }
+            }
+            List<int[]> tempBoundlist = temporalJoin(alphaBoundlist, f1BoundList.get(j));
+            int support = getEntityCount(tempBoundlist);
+            if (support >= minSupport) {
+                EpisodeMP beta = alpha.sExtension(fj.getLastItem(), support);
+                this.freEpisodes.addFrequentEpisode(beta, levelNum + 1);
+                serialJoins(beta, tempBoundlist, fj.getLastItem(), levelNum + 1);
+            }
+        }
+    }
 
-		// record end time
-		endTimestamp = System.currentTimeMillis();
-		// check the memory usage
-		MemoryLogger.getInstance().checkMemory();
+    /**
+     * Get the entity count of a bound list
+     *
+     * @param tempBoundlist the bound list
+     * @return the entity count (support)
+     */
+    private int getEntityCount(List<int[]> tempBoundlist) {
+        if (tempBoundlist.size() <= 0) {
+            return 0;
+        }
+        int support = 1;
+        int lastStarTime = tempBoundlist.get(0)[0];
+        for (int i = 0; i < tempBoundlist.size(); i++) {
+            if (lastStarTime != tempBoundlist.get(i)[0]) {
+                support++;
+                lastStarTime = tempBoundlist.get(i)[0];
+            }
+        }
+        return support;
+    }
 
-		if (output != null) {
-			this.freEpisodes.saveToFile(output);
-		}
-		return freEpisodes;
-	}
+    /**
+     * Perform a temporal join In the temporalJoin, we only need record the all
+     * position that meeet the conditions within the maxWindow
+     *
+     * @param alphaBoundlist the bound list of an episode alpha
+     * @param fjBoundlist    the fj bound list
+     * @return a list of bound list
+     */
+    private List<int[]> temporalJoin(List<int[]> alphaBoundlist, List<int[]> fjBoundlist) {
+        this.candidateCount++;
 
-	public void serialJoins(EpisodeMP alpha, List<int[]> alphaBoundlist, int lastItem, int levelNum) {
+        List<int[]> tempBoundlist = new ArrayList<>();
 
-		for (int j = 0; j < f1.size(); j++) {
-			EpisodeMP fj = f1.get(j);
+        for (int i = 0; i < alphaBoundlist.size(); i++) {
 
-			if (fj.getLastItem() > lastItem) {
-				List<int[]> tempBoundlist = equalJoin(alphaBoundlist, f1BoundList.get(j));
-				int support = getEntityCount(tempBoundlist);
-				if (support >= minSupport) {
-					EpisodeMP beta = alpha.iExtension(fj.getLastItem(), support);
-					this.freEpisodes.addFrequentEpisode(beta, levelNum);
-					serialJoins(beta, tempBoundlist, fj.getLastItem(), levelNum);
-				}
-			}
-			List<int[]> tempBoundlist = temporalJoin(alphaBoundlist, f1BoundList.get(j));
-			int support = getEntityCount(tempBoundlist);
-			if (support >= minSupport) {
-				EpisodeMP beta = alpha.sExtension(fj.getLastItem(), support);
-				this.freEpisodes.addFrequentEpisode(beta, levelNum + 1);
-				serialJoins(beta, tempBoundlist, fj.getLastItem(), levelNum + 1);
-			}
-		}
-	}
+            for (int j = 0; j < fjBoundlist.size(); j++) {
+                if (fjBoundlist.get(j)[1] > alphaBoundlist.get(i)[1]) {
+                    if (fjBoundlist.get(j)[1] - alphaBoundlist.get(i)[0] >= maxWindow) {
+                        break;
+                    } else {
+                        int[] boundlist = new int[]{alphaBoundlist.get(i)[0], fjBoundlist.get(j)[1]};
 
-	/**
-	 * Get the entity count of a bound list
-	 * 
-	 * @param tempBoundlist the bound list
-	 * @return the entity count (support)
-	 */
-	private int getEntityCount(List<int[]> tempBoundlist) {
-		if (tempBoundlist.size() <= 0) {
-			return 0;
-		}
-		int support = 1;
-		int lastStarTime = tempBoundlist.get(0)[0];
-		for (int i = 0; i < tempBoundlist.size(); i++) {
-			if (lastStarTime != tempBoundlist.get(i)[0]) {
-				support++;
-				lastStarTime = tempBoundlist.get(i)[0];
-			}
-		}
-		return support;
-	}
+                        tempBoundlist.add(boundlist);
 
-	/**
-	 * Perform a temporal join In the temporalJoin, we only need record the all
-	 * position that meeet the conditions within the maxWindow
-	 * 
-	 * @param alphaBoundlist the bound list of an episode alpha
-	 * @param fjBoundlist    the fj bound list
-	 * @return a list of bound list
-	 * 
-	 */
-	private List<int[]> temporalJoin(List<int[]> alphaBoundlist, List<int[]> fjBoundlist) {
-		this.candidateCount++;
+                    }
+                }
+            }
+        }
+        return tempBoundlist;
+    }
 
-		List<int[]> tempBoundlist = new ArrayList<>();
+    /**
+     * Perform an equal join
+     *
+     * @param alphaBoundlist an alpha bound list
+     * @param fjBoundlist    an fj bound list
+     * @return a bound list resulting from the join
+     */
+    private List<int[]> equalJoin(List<int[]> alphaBoundlist, List<int[]> fjBoundlist) {
+        this.candidateCount++;
 
-		for (int i = 0; i < alphaBoundlist.size(); i++) {
+        List<int[]> tempBoundlist = new ArrayList<>();
 
-			for (int j = 0; j < fjBoundlist.size(); j++) {
-				if (fjBoundlist.get(j)[1] > alphaBoundlist.get(i)[1]) {
-					if (fjBoundlist.get(j)[1] - alphaBoundlist.get(i)[0] >= maxWindow) {
-						break;
-					} else {
-						int[] boundlist = new int[] { alphaBoundlist.get(i)[0], fjBoundlist.get(j)[1] };
+        for (int i = 0; i < alphaBoundlist.size(); i++) {
 
-						tempBoundlist.add(boundlist);
+            for (int j = 0; j < fjBoundlist.size(); j++) {
+                if (alphaBoundlist.get(i)[1] < fjBoundlist.get(j)[1]) {
+                    // if current alphaBound less than current singleBound, then i++
+                    // for singleBouldlist [1] and [0] are equal
+                    break;
+                } else if (alphaBoundlist.get(i)[1] == fjBoundlist.get(j)[1]) {
+                    // if current alphaBound equal to the current singleBound, we add this bound
+                    tempBoundlist.add(alphaBoundlist.get(i));
+                    break;
+                }
+            }
+        }
+        return tempBoundlist;
+    }
 
-					}
-				}
-			}
-		}
-		return tempBoundlist;
-	}
+    /**
+     * Scan the database to determine the frequent single episodes
+     *
+     * @param input a path to an input file
+     * @throws IOException if error while reading or writing to file
+     */
+    private void scanDatabaseToDetermineFrequentSingleEpisode(String input) throws IOException {
+        // read file
+        @SuppressWarnings("resource")
+        BufferedReader reader = new BufferedReader(new FileReader(input));
+        String line;
 
-	/**
-	 * Perform an equal join
-	 * 
-	 * @param alphaBoundlist an alpha bound list
-	 * @param fjBoundlist    an fj bound list
-	 * @return a bound list resulting from the join
-	 */
-	private List<int[]> equalJoin(List<int[]> alphaBoundlist, List<int[]> fjBoundlist) {
-		this.candidateCount++;
+        // key: 1-Episode, value: bould list
+        Map<Integer, List<int[]>> mapSingleEventCount = new HashMap<>();
 
-		List<int[]> tempBoundlist = new ArrayList<>();
+        if (selfIncrement) {
+            int currentTID = 0;
+            while (((line = reader.readLine()) != null)) {
 
-		for (int i = 0; i < alphaBoundlist.size(); i++) {
+                currentTID++;
+                // if the line is a comment, is empty or is a
+                // kind of metadata
+                if (line.isEmpty() || line.charAt(0) == '#' || line.charAt(0) == '%' || line.charAt(0) == '@') {
+                    continue;
+                }
 
-			for (int j = 0; j < fjBoundlist.size(); j++) {
-				if (alphaBoundlist.get(i)[1] < fjBoundlist.get(j)[1]) {
-					// if current alphaBound less than current singleBound, then i++
-					// for singleBouldlist [1] and [0] are equal
-					break;
-				} else if (alphaBoundlist.get(i)[1] == fjBoundlist.get(j)[1]) {
-					// if current alphaBound equal to the current singleBound, we add this bound
-					tempBoundlist.add(alphaBoundlist.get(i));
-					break;
-				}
-			}
-		}
-		return tempBoundlist;
-	}
+                String[] lineSplited = line.split(" ");
 
-	/**
-	 * Scan the database to determine the frequent single episodes
-	 * 
-	 * @param input a path to an input file
-	 * @throws IOException if error while reading or writing to file
-	 */
-	private void scanDatabaseToDetermineFrequentSingleEpisode(String input) throws IOException {
-		// read file
-		@SuppressWarnings("resource")
-		BufferedReader reader = new BufferedReader(new FileReader(input));
-		String line;
+                for (String itemString : lineSplited) {
+                    Integer itemName = Integer.parseInt(itemString);
 
-		// key: 1-Episode, value: bould list
-		Map<Integer, List<int[]>> mapSingleEventCount = new HashMap<>();
+                    List<int[]> bouldList = mapSingleEventCount.get(itemName);
+                    if (bouldList == null) {
+                        bouldList = new ArrayList<>();
+                        bouldList.add(new int[]{currentTID, currentTID});
+                        mapSingleEventCount.put(itemName, bouldList);
+                        candidateCount++;
 
-		if (selfIncrement) {
-			int currentTID = 0;
-			while (((line = reader.readLine()) != null)) {
+                    } else {
+                        bouldList.add(new int[]{currentTID, currentTID});
+                        mapSingleEventCount.put(itemName, bouldList);
+                    }
 
-				currentTID++;
-				// if the line is a comment, is empty or is a
-				// kind of metadata
-				if (line.isEmpty() || line.charAt(0) == '#' || line.charAt(0) == '%' || line.charAt(0) == '@') {
-					continue;
-				}
+                }
 
-				String[] lineSplited = line.split(" ");
+            }
+        } else {
+            //// the timestamp exist in file
+            int currentTID = 1;
 
-				for (String itemString : lineSplited) {
-					Integer itemName = Integer.parseInt(itemString);
+            while (((line = reader.readLine()) != null)) {
+                if (line.isEmpty() || line.charAt(0) == '#' || line.charAt(0) == '%' || line.charAt(0) == '@') {
+                    continue;
+                }
 
-					List<int[]> bouldList = mapSingleEventCount.get(itemName);
-					if (bouldList == null) {
-						bouldList = new ArrayList<>();
-						bouldList.add(new int[] { currentTID, currentTID });
-						mapSingleEventCount.put(itemName, bouldList);
-						candidateCount++;
+                String[] lineSplited = line.split("\\|");
 
-					} else {
-						bouldList.add(new int[] { currentTID, currentTID });
-						mapSingleEventCount.put(itemName, bouldList);
-					}
+                String[] lineItems = lineSplited[0].split(" ");
+                currentTID = Integer.parseInt(lineSplited[1]);
 
-				}
+                for (String itemString : lineItems) {
+                    Integer itemName = Integer.parseInt(itemString);
 
-			}
-		} else {
-			//// the timestamp exist in file
-			int currentTID = 1;
+                    List<int[]> bouldList = mapSingleEventCount.get(itemName);
+                    if (bouldList == null) {
+                        bouldList = new ArrayList<>();
+                        bouldList.add(new int[]{currentTID, currentTID});
+                        mapSingleEventCount.put(itemName, bouldList);
+                        candidateCount++;
+                    } else {
+                        bouldList.add(new int[]{currentTID, currentTID});
+                        mapSingleEventCount.put(itemName, bouldList);
+                    }
+                }
+            }
+        }
 
-			while (((line = reader.readLine()) != null)) {
-				if (line.isEmpty() || line.charAt(0) == '#' || line.charAt(0) == '%' || line.charAt(0) == '@') {
-					continue;
-				}
+        this.freEpisodes = new FrequentEpisodes();
+        this.f1 = new ArrayList<>();
+        this.f1BoundList = new ArrayList<>();
 
-				String[] lineSplited = line.split("\\|");
+        for (Map.Entry<Integer, List<int[]>> entry : mapSingleEventCount.entrySet()) {
+            List<int[]> bouldList = entry.getValue();
+            if (bouldList.size() >= minSupport) {
+                // save frequent 1-episodes
+                int[] symbol = new int[]{entry.getKey()};
+                @SuppressWarnings("serial")
+                List<int[]> event = new ArrayList<int[]>() {
+                    {
+                        add(symbol);
+                    }
+                };
+                EpisodeMP episode = new EpisodeMP(event, bouldList.size());
 
-				String[] lineItems = lineSplited[0].split(" ");
-				currentTID = Integer.parseInt(lineSplited[1]);
+                this.freEpisodes.addFrequentEpisode(episode, 1);
+                this.f1.add(episode);
+                this.f1BoundList.add(bouldList);
+            }
+        }
+    }
 
-				for (String itemString : lineItems) {
-					Integer itemName = Integer.parseInt(itemString);
-
-					List<int[]> bouldList = mapSingleEventCount.get(itemName);
-					if (bouldList == null) {
-						bouldList = new ArrayList<>();
-						bouldList.add(new int[] { currentTID, currentTID });
-						mapSingleEventCount.put(itemName, bouldList);
-						candidateCount++;
-					} else {
-						bouldList.add(new int[] { currentTID, currentTID });
-						mapSingleEventCount.put(itemName, bouldList);
-					}
-				}
-			}
-		}
-
-		this.freEpisodes = new FrequentEpisodes();
-		this.f1 = new ArrayList<>();
-		this.f1BoundList = new ArrayList<>();
-
-		for (Map.Entry<Integer, List<int[]>> entry : mapSingleEventCount.entrySet()) {
-			List<int[]> bouldList = entry.getValue();
-			if (bouldList.size() >= minSupport) {
-				// save frequent 1-episodes
-				int[] symbol = new int[] { entry.getKey() };
-				@SuppressWarnings("serial")
-				List<int[]> event = new ArrayList<int[]>() {
-					{
-						add(symbol);
-					}
-				};
-				EpisodeMP episode = new EpisodeMP(event, bouldList.size());
-
-				this.freEpisodes.addFrequentEpisode(episode, 1);
-				this.f1.add(episode);
-				this.f1BoundList.add(bouldList);
-			}
-		}
-	}
-
-	/**
-	 * Print statistics about the algorithm execution to System.out.
-	 */
-	public void printStats() {
-		System.out.println("=============  MINEPI+_S (head episode) - STATS =============");
-		System.out.println(" Candidates count : " + candidateCount);
-		System.out.println(" The algorithm stopped at size : " + freEpisodes.getTotalLevelNum());
-		System.out.println(" Frequent episodes count : " + this.freEpisodes.getFrequentEpisodesCount());
-		System.out.println(" Maximum memory usage : " + MemoryLogger.getInstance().getMaxMemory() + " mb");
-		System.out.println(" Total time ~ : " + (endTimestamp - startTimestamp) + " ms");
-		System.out.println("===================================================");
-	}
+    /**
+     * Print statistics about the algorithm execution to System.out.
+     */
+    public void printStats() {
+        System.out.println("=============  MINEPI+_S (head episode) - STATS =============");
+        System.out.println(" Candidates count : " + candidateCount);
+        System.out.println(" The algorithm stopped at size : " + freEpisodes.getTotalLevelNum());
+        System.out.println(" Frequent episodes count : " + this.freEpisodes.getFrequentEpisodesCount());
+        System.out.println(" Maximum memory usage : " + MemoryLogger.getInstance().getMaxMemory() + " mb");
+        System.out.println(" Total time ~ : " + (endTimestamp - startTimestamp) + " ms");
+        System.out.println("===================================================");
+    }
 
 }

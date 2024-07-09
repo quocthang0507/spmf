@@ -20,67 +20,72 @@ import ca.pfv.spmf.gui.viewers.graphviewer.GraphViewerPanel;
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
+
 /**
  * This class represents a graph element (node or edge) as used by the
  * GraphViewerPanel
- * 
+ *
  * @author Philippe Fournier-Viger
  * @see GraphViewerPanel
  */
 public abstract class GraphElement {
-	/** Name of the element */
-	private String name;
-	
-	/** Id of the element */
-	private String id;
+    /**
+     * Name of the element
+     */
+    private String name;
 
-	/**
-	 * Constructor
-	 * 
-	 * @param name name of the element
-	 * @param id the id of the element
-	 */
-	public GraphElement(String name, String id) {
-		this.name = name;
-		this.id = id;
-	}
-	
-	/**
-	 * Constructor
-	 * 
-	 * @param name name of the element
-	 */
-	public GraphElement(String name) {
-		this.name = name;
-	}
+    /**
+     * Id of the element
+     */
+    private String id;
 
-	/**
-	 * Get the name of this graph element
-	 * 
-	 * @return a String
-	 */
-	public String getName() {
-		return name;
-	}
-	
-	/**
-	 * Get the name of this graph element
-	 * 
-	 * @return a String
-	 */
-	public String getId() {
-		return id;
-	}
-	
-	public String getIdAndNameAsString(boolean displayID, boolean displayName) {
-		if(displayID && displayName && getId() != null) {
-			return getId() + ":" + getName();
-		}else if(displayID && getId() != null) {
-			return getId();
-		}else if(displayName) {
-			return getName();
-		}
-		return "";
-	}
+    /**
+     * Constructor
+     *
+     * @param name name of the element
+     * @param id   the id of the element
+     */
+    public GraphElement(String name, String id) {
+        this.name = name;
+        this.id = id;
+    }
+
+    /**
+     * Constructor
+     *
+     * @param name name of the element
+     */
+    public GraphElement(String name) {
+        this.name = name;
+    }
+
+    /**
+     * Get the name of this graph element
+     *
+     * @return a String
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * Get the name of this graph element
+     *
+     * @return a String
+     */
+    public String getId() {
+        return id;
+    }
+
+    public String getIdAndNameAsString(boolean displayID, boolean displayName) {
+        if (displayID && displayName && getId() != null) {
+            return getId() + ":" + getName();
+        } else if (displayID && getId() != null) {
+            return getId();
+        } else if (displayName) {
+            return getName();
+        }
+        return "";
+    }
 
 }

@@ -19,37 +19,44 @@ import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 /* Copyright (c) 2008-2024 Philippe Fournier-Viger
-* 
-* This file is part of the SPMF DATA MINING SOFTWARE
-* (http://www.philippe-fournier-viger.com/spmf).
-* 
-* SPMF is free software: you can redistribute it and/or modify it under the
-* terms of the GNU General Public License as published by the Free Software
-* Foundation, either version 3 of the License, or (at your option) any later
-* version.
-* 
-* SPMF is distributed in the hope that it will be useful, but WITHOUT ANY
-* WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
-* A PARTICULAR PURPOSE. See the GNU General Public License for more details.
-* 
-* You should have received a copy of the GNU General Public License along with
-* SPMF. If not, see <http://www.gnu.org/licenses/>.
-*/
+ *
+ * This file is part of the SPMF DATA MINING SOFTWARE
+ * (http://www.philippe-fournier-viger.com/spmf).
+ *
+ * SPMF is free software: you can redistribute it and/or modify it under the
+ * terms of the GNU General Public License as published by the Free Software
+ * Foundation, either version 3 of the License, or (at your option) any later
+ * version.
+ *
+ * SPMF is distributed in the hope that it will be useful, but WITHOUT ANY
+ * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
+ * A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along with
+ * SPMF. If not, see <http://www.gnu.org/licenses/>.
+ */
+
 /**
  * A simple class to visualize the content of a FASTA file.
-* 
+ *
  * @author Philipe-Fournier-Viger
  **/
 public class FastaViewer extends JFrame {
     /**
-	 * serial UID
-	 */
-	private static final long serialVersionUID = -8629592973530410144L;
-	/** The text area for displaying the file content */
-	private JTextArea textArea;
-	/** The current fasta dataset loaded in memory */
+     * serial UID
+     */
+    private static final long serialVersionUID = -8629592973530410144L;
+    /**
+     * The text area for displaying the file content
+     */
+    private JTextArea textArea;
+    /**
+     * The current fasta dataset loaded in memory
+     */
     private FastaDataset dataset;
-    /** The status bar */
+    /**
+     * The status bar
+     */
     private JLabel statusBar;
 
     public FastaViewer(boolean runAsStandaloneApp) {
@@ -59,8 +66,8 @@ public class FastaViewer extends JFrame {
         createStatusBar();
         setTitle("Simple FASTA Dataset Viewer");
         setSize(800, 600);
-        if(runAsStandaloneApp) {
-        	setDefaultCloseOperation(EXIT_ON_CLOSE);
+        if (runAsStandaloneApp) {
+            setDefaultCloseOperation(EXIT_ON_CLOSE);
         }
         setLocationRelativeTo(null);
     }
@@ -191,12 +198,12 @@ public class FastaViewer extends JFrame {
             JOptionPane.showMessageDialog(null, "Error reading file: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
+
     // Method to count codons
     private void countCodons(boolean includeDegeneracy) {
         try {
             String output = chooseOutputFilePath();
-            if(output != null) { // Ensure the user selected a file
+            if (output != null) { // Ensure the user selected a file
                 AlgoCountCodons algo = new AlgoCountCodons();
                 algo.runAlgorithm(dataset, output, includeDegeneracy);
                 algo.printStats();
@@ -211,11 +218,11 @@ public class FastaViewer extends JFrame {
         }
     }
 
- // Method to count kmers
+    // Method to count kmers
     private void countKmers(int k) {
         try {
             String output = chooseOutputFilePath();
-            if(output != null) { // Ensure the user selected a file
+            if (output != null) { // Ensure the user selected a file
                 AlgoCountKMers algo = new AlgoCountKMers();
                 algo.runAlgorithm(dataset, k, output);
                 algo.printStats();
@@ -234,7 +241,7 @@ public class FastaViewer extends JFrame {
     private void countTopKKmers(int k, int topk) {
         try {
             String output = chooseOutputFilePath();
-            if(output != null) { // Ensure the user selected a file
+            if (output != null) { // Ensure the user selected a file
                 AlgoCountTopKMers algo = new AlgoCountTopKMers();
                 algo.runAlgorithm(dataset, k, topk, output);
                 algo.printStats();
@@ -251,20 +258,20 @@ public class FastaViewer extends JFrame {
 
     // Helper methods (chooseOutputFilePath and promptToViewOutput) would be the same as provided earlier
 
-    
+
     private String chooseOutputFilePath() {
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setDialogTitle("Select an output file");
         fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-        
+
         int userSelection = fileChooser.showSaveDialog(this);
         if (userSelection == JFileChooser.APPROVE_OPTION) {
             return fileChooser.getSelectedFile().getAbsolutePath();
         }
         return null; // or handle cancellation
     }
-    
- // Method to prompt the user to view the output file and open it if requested
+
+    // Method to prompt the user to view the output file and open it if requested
     private void promptToViewOutput(String outputFilePath) {
         int response = JOptionPane.showConfirmDialog(null, "Do you want to view the output file?", "View Output", JOptionPane.YES_NO_OPTION);
         if (response == JOptionPane.YES_OPTION) {

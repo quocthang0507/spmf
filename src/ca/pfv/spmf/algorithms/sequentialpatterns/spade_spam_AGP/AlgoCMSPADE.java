@@ -29,25 +29,25 @@ import ca.pfv.spmf.tools.MemoryLogger;
 /**
  * This is an implementation of the CM-SPADE algorithm. SPADE was proposed by
  * ZAKI in 2001. This is a modified version with coocurence maps.
- *
+ * <p>
  * NOTE: This implementation saves the pattern to a file as soon as they are
  * found or can keep the pattern into memory, depending on what the user choose.
- *
+ * <p>
  * Copyright Antonio Gomariz Peñalver 2013, modified by Philippe Fournier-Viger,
  * 2013
- *
+ * <p>
  * This file is part of the SPMF DATA MINING SOFTWARE
  * (http://www.philippe-fournier-viger.com/spmf).
- *
+ * <p>
  * SPMF is free software: you can redistribute it and/or modify it under the
  * terms of the GNU General Public License as published by the Free Software
  * Foundation, either version 3 of the License, or (at your option) any later
  * version.
- *
+ * <p>
  * SPMF is distributed in the hope that it will be useful, but WITHOUT ANY
  * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
  * A PARTICULAR PURPOSE. See the GNU General Public License for more details.
- *
+ * <p>
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  *
@@ -55,35 +55,35 @@ import ca.pfv.spmf.tools.MemoryLogger;
  */
 public class AlgoCMSPADE {
 
-    private int intersectionCounter = 0;
-    /**
-     * the minimum support threshold
-     */
-    protected double minSupRelative;
     /**
      * The absolute minimum support  threshold, i.e. the minimum number of
      * sequences where the patterns have to be
      */
     public double minSupAbsolute;
     /**
-     * Flag indicating if we want a depth-first search when true. Otherwise we
-     * say that we want a breadth-first search
-     */
-    protected boolean dfs;
-    /**
-     * Saver variable to decide where the user want to save the results, if it
-     * the case
-     */
-    Saver saver = null;
-    /**
      * Start and end points in order to calculate the overall time taken by the
      * algorithm
      */
     public long start, end;
     /**
+     * the minimum support threshold
+     */
+    protected double minSupRelative;
+    /**
+     * Flag indicating if we want a depth-first search when true. Otherwise we
+     * say that we want a breadth-first search
+     */
+    protected boolean dfs;
+    /**
      * Equivalence class whose class identifier is a frequent item
      */
     protected List<EquivalenceClass> frequentItems;
+    /**
+     * Saver variable to decide where the user want to save the results, if it
+     * the case
+     */
+    Saver saver = null;
+    private int intersectionCounter = 0;
     /**
      * Abstraction creator
      */
@@ -93,13 +93,13 @@ public class AlgoCMSPADE {
      */
     private int numberOfFrequentPatterns;
 
-    
+
     /**
      * Constructor of the class that calls SPADE algorithm.
      *
-     * @param support Minimum support (from 0 up to 1)
-     * @param dfs Flag for indicating if we want a depth first search. If false,
-     * we indicate that we want a breath-first search.
+     * @param support            Minimum support (from 0 up to 1)
+     * @param dfs                Flag for indicating if we want a depth first search. If false,
+     *                           we indicate that we want a breath-first search.
      * @param abstractionCreator An abstraction creator.
      */
     public AlgoCMSPADE(double support, boolean dfs, AbstractionCreator abstractionCreator) {
@@ -114,22 +114,22 @@ public class AlgoCMSPADE {
      * Whenever we choose to keep the patterns found, we can keep them in a file
      * or in the main memory
      *
-     * @param database Original database in where we want to search for the
-     * frequent patterns.
-     * @param candidateGenerator The candidate generator used by the algorithm
-     * SPADE
-     * @param keepPatterns Flag indicating if we want to keep the output or not
-     * @param verbose Flag for debugging purposes
-     * @param outputFilePath Path of the file in which we want to store the
-     * frequent patterns. If this value is null, we keep the patterns in the
-     * main memory. This argument is taken into account just when keepPatterns
-     * is activated.
+     * @param database                  Original database in where we want to search for the
+     *                                  frequent patterns.
+     * @param candidateGenerator        The candidate generator used by the algorithm
+     *                                  SPADE
+     * @param keepPatterns              Flag indicating if we want to keep the output or not
+     * @param verbose                   Flag for debugging purposes
+     * @param outputFilePath            Path of the file in which we want to store the
+     *                                  frequent patterns. If this value is null, we keep the patterns in the
+     *                                  main memory. This argument is taken into account just when keepPatterns
+     *                                  is activated.
      * @param outputSequenceIdentifiers if true, sequence identifiers will be output for each pattern
      * @throws IOException
      */
     public void runAlgorithm(SequenceDatabase database, CandidateGenerator candidateGenerator, boolean keepPatterns, boolean verbose, String outputFilePath, boolean outputSequenceIdentifiers) throws IOException {
-    	
-    	//If we do no have any file path
+
+        //If we do no have any file path
         if (outputFilePath == null) {
             //The user wants to save the results in memory
             saver = new SaverIntoMemory(outputSequenceIdentifiers);
@@ -162,28 +162,28 @@ public class AlgoCMSPADE {
      * Whenever we choose to keep the patterns found, we can keep them in a file
      * or in the main memory. The algorithm SPADE is executed in a parallel way.
      *
-     * @param database Original database in where we want to search for the
-     * frequent patterns.
-     * @param candidateGenerator The candidate generator used by the algorithm
-     * SPADE
-     * @param keepPatterns Flag indicating if we want to keep the output or not
-     * @param verbose Flag for debugging purposes
-     * @param outputFilePath Path of the file in which we want to store the
-     * frequent patterns. If this value is null, we keep the patterns in the
-     * main memory. This argument is taken into account just when keepPatterns
-     * is activated.
+     * @param database                  Original database in where we want to search for the
+     *                                  frequent patterns.
+     * @param candidateGenerator        The candidate generator used by the algorithm
+     *                                  SPADE
+     * @param keepPatterns              Flag indicating if we want to keep the output or not
+     * @param verbose                   Flag for debugging purposes
+     * @param outputFilePath            Path of the file in which we want to store the
+     *                                  frequent patterns. If this value is null, we keep the patterns in the
+     *                                  main memory. This argument is taken into account just when keepPatterns
+     *                                  is activated.
      * @param outputSequenceIdentifiers if true, sequence ids will be shown for each pattern
      * @throws IOException
      */
     public void runAlgorithmParallelized(SequenceDatabase database, CandidateGenerator candidateGenerator, boolean keepPatterns, boolean verbose, String outputFilePath, boolean outputSequenceIdentifiers) throws IOException {
 
-    	//If we do no have any file path
+        //If we do no have any file path
         if (outputFilePath == null) {
             //The user wants to save the results in memory
             saver = new SaverIntoMemory(outputSequenceIdentifiers);
         } else {
             //Otherwise, the user wants to save them in the given file
-            saver = new SaverIntoFile(outputFilePath,outputSequenceIdentifiers);
+            saver = new SaverIntoFile(outputFilePath, outputSequenceIdentifiers);
         }
         this.minSupAbsolute = (int) Math.ceil(minSupRelative * database.size());
         if (this.minSupAbsolute == 0) { // protection
@@ -206,18 +206,17 @@ public class AlgoCMSPADE {
     }
 
     /**
-     *
      * The actual method for extracting frequent sequences.
      *
-     * @param database The original database
+     * @param database           The original database
      * @param candidateGenerator The candidate generator used by the algorithm
-     * SPADE
-     * @param minSupportCount The absolute minimum support
-     * @param dfs Flag for indicating if we want a depth first search. If false,
-     * we indicate that we want a breath-first search.
-     * @param keepPatterns flag indicating if we are interested in keeping the
-     * output of the algorithm
-     * @param verbose Flag for debugging purposes
+     *                           SPADE
+     * @param minSupportCount    The absolute minimum support
+     * @param dfs                Flag for indicating if we want a depth first search. If false,
+     *                           we indicate that we want a breath-first search.
+     * @param keepPatterns       flag indicating if we are interested in keeping the
+     *                           output of the algorithm
+     * @param verbose            Flag for debugging purposes
      */
     protected void runSPADE(SequenceDatabase database, CandidateGenerator candidateGenerator, long minSupportCount, boolean dfs, boolean keepPatterns, boolean verbose) {
         //We get the equivalence classes formed by the frequent 1-patterns
@@ -283,7 +282,7 @@ public class AlgoCMSPADE {
                             } else {
                                 mapCoocItemEquals.put(itemB, frequency + 1);
                             }
-                            
+
                             equalSet.add(itemB);
                         }
                     }
@@ -335,8 +334,8 @@ public class AlgoCMSPADE {
 
         //We execute the search
         frequentPatternEnumeration.execute(rootClass, dfs, keepPatterns, verbose, coocMapAfter, coocMapEquals);
-     
-        /* Once we had finished, we keep the number of frequent patterns that we 
+
+        /* Once we had finished, we keep the number of frequent patterns that we
          * finally found
          */
         numberOfFrequentPatterns = frequentPatternEnumeration.getFrequentPatterns();
@@ -350,7 +349,7 @@ public class AlgoCMSPADE {
      * classes
      *
      * @param equivalenceClasses The set of equivalence classes from where we
-     * want to obtain their class identifiers
+     *                           want to obtain their class identifiers
      * @return
      */
     private Collection<Pattern> getPatterns(List<EquivalenceClass> equivalenceClasses) {
@@ -422,21 +421,20 @@ public class AlgoCMSPADE {
     }
 
     /**
-     *
      * The actual method for extracting frequent sequences. This method it
      * starts with both the frequent 1-patterns and 2-patterns already found.
      * Besides, it resolves each equivalence class formed by the 1-patterns
      * independently.
      *
-     * @param database The original database
+     * @param database           The original database
      * @param candidateGenerator The candidate generator used by the algorithm
-     * SPADE
-     * @param minSupportCount The absolute minimum support
-     * @param dfs Flag for indicating if we want a depth first search. If false,
-     * we indicate that we want a breath-first search.
-     * @param keepPatterns flag indicating if we are interested in keeping the
-     * output of the algorithm
-     * @param verbose Flag for debugging purposes
+     *                           SPADE
+     * @param minSupportCount    The absolute minimum support
+     * @param dfs                Flag for indicating if we want a depth first search. If false,
+     *                           we indicate that we want a breath-first search.
+     * @param keepPatterns       flag indicating if we are interested in keeping the
+     *                           output of the algorithm
+     * @param verbose            Flag for debugging purposes
      */
     protected void runSPADEFromSize2PatternsParallelized(SequenceDatabase database, CandidateGenerator candidateGenerator, long minSupportCount, boolean dfs, boolean keepPatterns, boolean verbose) {
 
@@ -502,21 +500,20 @@ public class AlgoCMSPADE {
     }
 
     /**
-     *
      * The actual method for extracting frequent sequences. This method it
      * starts with both the frequent 1-patterns and 2-patterns already found.
      * Besides, it resolves each equivalence class formed by the 1-patterns
      * independently.
      *
-     * @param database The original database
+     * @param database           The original database
      * @param candidateGenerator The candidate generator used by the algorithm
-     * SPADE
-     * @param minSupportCount The absolute minimum support
-     * @param dfs Flag for indicating if we want a depth first search. If false,
-     * we indicate that we want a breath-first search.
-     * @param keepPatterns flag indicating if we are interested in keeping the
-     * output of the algorithm
-     * @param verbose Flag for debugging purposes
+     *                           SPADE
+     * @param minSupportCount    The absolute minimum support
+     * @param dfs                Flag for indicating if we want a depth first search. If false,
+     *                           we indicate that we want a breath-first search.
+     * @param keepPatterns       flag indicating if we are interested in keeping the
+     *                           output of the algorithm
+     * @param verbose            Flag for debugging purposes
      */
     protected void runSPADEFromSize2PatternsParallelized2(SequenceDatabase database, CandidateGenerator candidateGenerator, long minSupportCount, boolean dfs, boolean keepPatterns, boolean verbose) {
         frequentItems = database.frequentItems();

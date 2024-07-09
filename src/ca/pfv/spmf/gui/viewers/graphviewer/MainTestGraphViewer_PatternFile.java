@@ -22,25 +22,26 @@ import java.net.URL;
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
+
 /**
  * This is an example of how to use the Graph Viewer to load a frequent subgraph file and display it.
+ *
  * @author Philippe Fournier-Viger
  */
 public class MainTestGraphViewer_PatternFile {
 
 
-
-	public static void main(String[] args) throws IOException {
-		boolean runAsStandalone = true;
-		boolean displayGraphStringRepresentation = true;
-		GraphViewer frame = new GraphViewer(runAsStandalone,displayGraphStringRepresentation);
+    public static void main(String[] args) throws IOException {
+        boolean runAsStandalone = true;
+        boolean displayGraphStringRepresentation = true;
+        GraphViewer frame = new GraphViewer(runAsStandalone, displayGraphStringRepresentation);
 //		frame.loadSampleGraph();
-		frame.loadFileGSPANFormat(fileToPath("patterns.txt"));
-	} 
-	
-	public static String fileToPath(String filename) throws UnsupportedEncodingException{
-		URL url = MainTestGraphViewer_PatternFile.class.getResource(filename);
-		 return java.net.URLDecoder.decode(url.getPath(),"UTF-8");
-	}   
-	
+        frame.loadFileGSPANFormat(fileToPath("patterns.txt"));
+    }
+
+    public static String fileToPath(String filename) throws UnsupportedEncodingException {
+        URL url = MainTestGraphViewer_PatternFile.class.getResource(filename);
+        return java.net.URLDecoder.decode(url.getPath(), "UTF-8");
+    }
+
 }

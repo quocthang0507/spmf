@@ -1,18 +1,18 @@
 /**
  * This file is part of Library for Associative Classification (LAC)
- *
+ * <p>
  * Copyright (C) 2019
- *   
+ * <p>
  * LAC is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- *
+ * <p>
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details. You should have 
- * received a copy of the GNU General Public License along with 
+ * GNU General Public License for more details. You should have
+ * received a copy of the GNU General Public License along with
  * this program.  If not, see http://www.gnu.org/licenses/
  */
 package ca.pfv.spmf.algorithms.classifiers.general;
@@ -33,16 +33,16 @@ import ca.pfv.spmf.algorithms.classifiers.data.StringDataset;
  * Class representing a rule-based classifier
  * @see Classifier
  */
-public class RuleClassifier extends Classifier implements Serializable{
-	
-    /**
-	 *  UID
-	 */
-	private static final long serialVersionUID = -3339753093228301309L;
+public class RuleClassifier extends Classifier implements Serializable {
 
-	/** Rules in this classifier */
+    /**
+     *  UID
+     */
+    private static final long serialVersionUID = -3339753093228301309L;
+
+    /** Rules in this classifier */
     protected List<Rule> rules;
-    
+
     /** Name of this classifier */
     protected String name;
 
@@ -53,14 +53,14 @@ public class RuleClassifier extends Classifier implements Serializable{
         this.rules = new ArrayList<Rule>();
         this.name = name;
     }
-    
+
     public String getName() {
-    	return name;
-    } 
+        return name;
+    }
 
     /**
      * Add a new rule to the classifier
-     * 
+     *
      * @param rule to be added in the classifier
      */
     public void add(Rule rule) {
@@ -69,7 +69,7 @@ public class RuleClassifier extends Classifier implements Serializable{
 
     /**
      * Return the rules forming the classifier
-     * 
+     *
      * @return rules forming the classifier
      */
     public List<Rule> getRules() {
@@ -79,7 +79,7 @@ public class RuleClassifier extends Classifier implements Serializable{
     /**
      * Performs a prediction on a instance. By default it iterates each rule and
      * assign the first fired rules class
-     * 
+     *
      * @param rawExample instance to perform prediction
      * @return the assigned class using the current classifier
      */
@@ -98,16 +98,16 @@ public class RuleClassifier extends Classifier implements Serializable{
 
     /**
      * Number of rules forming the classifier
-     * 
+     *
      * @return number of rules
      */
     public int getNumberRules() {
         return this.rules.size();
     }
-    
+
     /**
      * Get the average number of attributes in all the rules
-     * 
+     *
      * @return the average number of attributes in all the classifier
      */
     public double getAverageNumberAttributes() {
@@ -117,7 +117,7 @@ public class RuleClassifier extends Classifier implements Serializable{
         }
         return avg / getNumberRules();
     }
-    
+
     /*
      * Write to disk
      * @param classifier a rule-based classifier
@@ -130,29 +130,29 @@ public class RuleClassifier extends Classifier implements Serializable{
             for (Rule rule : rules) {
                 // Transform from rule codified with short to string values
                 int antecedentSize = rule.getAntecedent().size();
-       
-        		StringBuilder buffer = new StringBuilder();
-        		// write itemset 1
+
+                StringBuilder buffer = new StringBuilder();
+                // write itemset 1
                 for (int j = 0; j < antecedentSize; j++) {
-        			buffer.append(rule.getAntecedent().get(j));
-        			if(rule.isIthAntecedentItemNegative(j)) {
-                		buffer.append('-');
-                	}
-        			if (j != antecedentSize - 1) {
-        				buffer.append(" ");
-        			}
-        		}
-                
-                // if the antecedent is empty
-                if(antecedentSize == 0) {
-                	buffer.append("DEFAULT");
+                    buffer.append(rule.getAntecedent().get(j));
+                    if (rule.isIthAntecedentItemNegative(j)) {
+                        buffer.append('-');
+                    }
+                    if (j != antecedentSize - 1) {
+                        buffer.append(" ");
+                    }
                 }
-                
+
+                // if the antecedent is empty
+                if (antecedentSize == 0) {
+                    buffer.append("DEFAULT");
+                }
+
                 buffer.append(" ==> ");
                 buffer.append(rule.getKlass());
                 // if the antecedent is not empty
-                if(antecedentSize != 0) {
-                	buffer.append(rule.getMeasuresToString());
+                if (antecedentSize != 0) {
+                    buffer.append(rule.getMeasuresToString());
                 }
                 writer.println(buffer.toString());
             }
@@ -161,7 +161,7 @@ public class RuleClassifier extends Classifier implements Serializable{
             e.printStackTrace();
         }
     }
-    
+
     /*
      * Write to disk
      * @param classifier a rule-based classifier
@@ -174,30 +174,30 @@ public class RuleClassifier extends Classifier implements Serializable{
             for (Rule rule : rules) {
                 // Transform from rule codified with short to string values
                 int antecedentSize = rule.getAntecedent().size();
-       
-        		StringBuilder buffer = new StringBuilder();
-        		// write itemset 1
+
+                StringBuilder buffer = new StringBuilder();
+                // write itemset 1
                 for (int j = 0; j < antecedentSize; j++) {
-                	String item = dataset.getStringCorrespondingToItem(rule.getAntecedent().get(j));
-                	if(rule.isIthAntecedentItemNegative(j)) {
-                		buffer.append('-');
-                	}
-        			buffer.append(item);
-        			if (j != antecedentSize - 1) {
-        				buffer.append(" ");
-        			}
-        		}
-                
-                // if the antecedent is empty
-                if(antecedentSize == 0) {
-                	buffer.append("DEFAULT");
+                    String item = dataset.getStringCorrespondingToItem(rule.getAntecedent().get(j));
+                    if (rule.isIthAntecedentItemNegative(j)) {
+                        buffer.append('-');
+                    }
+                    buffer.append(item);
+                    if (j != antecedentSize - 1) {
+                        buffer.append(" ");
+                    }
                 }
-                
+
+                // if the antecedent is empty
+                if (antecedentSize == 0) {
+                    buffer.append("DEFAULT");
+                }
+
                 buffer.append(" ==> ");
                 buffer.append(dataset.getStringCorrespondingToItem(rule.getKlass()));
                 // if the antecedent is not empty
-                if(antecedentSize != 0) {
-                	buffer.append(rule.getMeasuresToString());
+                if (antecedentSize != 0) {
+                    buffer.append(rule.getMeasuresToString());
                 }
                 writer.println(buffer.toString());
             }
@@ -206,7 +206,7 @@ public class RuleClassifier extends Classifier implements Serializable{
             e.printStackTrace();
         }
     }
-    
+
 
     /*
      * Write to disk
@@ -217,12 +217,12 @@ public class RuleClassifier extends Classifier implements Serializable{
         try {
             PrintWriter writer = new PrintWriter(outputPath, "UTF-8");
 
-            for (Rule rule : rules){
+            for (Rule rule : rules) {
                 // Transform from rule codified with short to string values
                 String[] antecedent = new String[rule.getAntecedent().size()];
                 for (int j = 0; j < antecedent.length; j++) {
                     Short item = rule.getAntecedent().get(j);
-					Attribute attr = training.getAttributeOfItem(item);
+                    Attribute attr = training.getAttributeOfItem(item);
                     antecedent[j] = attr.getName() + "=" + training.getStringCorrespondingToItem(item);
                 }
 

@@ -20,27 +20,28 @@ import java.util.stream.Collectors;
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
+
 /**
  * This is the producer side of consumer/producer implementation of the iterator over all DFS code projections into the graphs database
- *  <br/><br/>
- *
+ * <br/><br/>
+ * <p>
  * The cgspan algorithm is described in : <br/>
  * <br/>
  * <p>
  * cgSpan: Closed Graph-Based Substructure Pattern Mining, by Zevin Shaul, Sheikh Naaz
  * IEEE BigData 2021 7th Special Session on Intelligent Data Mining
  * <p>
- *
+ * <p>
  * <br/>
- *
+ * <p>
  * The CGspan algorithm finds all the closed subgraphs and their support in a
  * graph provided by the user.
  * <br/><br/>
- *
+ * <p>
  * This implementation saves the result to a file
  *
- * @see ProjectedCompact
  * @author Shaul Zevin
+ * @see ProjectedCompact
  */
 public class ProjectedIteratorProducer implements Runnable {
     // projections compact memory representation
@@ -121,7 +122,7 @@ public class ProjectedIteratorProducer implements Runnable {
 
             ProjectedEdge firstEdge = firstEdges.get(firstEdgeIndex);
 
-            while(true) {
+            while (true) {
                 boolean canAdvance = true;
                 for (IProjectedIteratorCallback callback : callbacks) {
                     if (!callback.beforeAdvance(null, firstEdge)) {
@@ -136,8 +137,7 @@ public class ProjectedIteratorProducer implements Runnable {
                         return;
                     }
                     firstEdge = firstEdges.get(firstEdgeIndex);
-                }
-                else {
+                } else {
                     break;
                 }
             }
@@ -169,7 +169,7 @@ public class ProjectedIteratorProducer implements Runnable {
 
             ProjectedEdge firstEdge = firstEdges.get(firstEdgeIndex);
 
-            while(true) {
+            while (true) {
                 boolean canAdvance = true;
                 for (IProjectedIteratorCallback callback : callbacks) {
                     if (!callback.beforeAdvance(null, firstEdge)) {
@@ -184,8 +184,7 @@ public class ProjectedIteratorProducer implements Runnable {
                         return;
                     }
                     firstEdge = firstEdges.get(firstEdgeIndex);
-                }
-                else {
+                } else {
                     break;
                 }
             }
@@ -221,7 +220,7 @@ public class ProjectedIteratorProducer implements Runnable {
             Vertex v1 = vertices.elementAt(extendedEdge.v1);
             while (edgeIterator.hasNext()) {
                 ProjectedEdge nextEdge = edgeIterator.next();
-                int v2Id = nextEdge.isReversed()? nextEdge.getEdgeEnumeration().getEdge().v1 : nextEdge.getEdgeEnumeration().getEdge().v2;
+                int v2Id = nextEdge.isReversed() ? nextEdge.getEdgeEnumeration().getEdge().v1 : nextEdge.getEdgeEnumeration().getEdge().v2;
                 Vertex v2 = databaseGraph.vMap.get(v2Id);
 
                 // check that v2 was not projected yet
@@ -230,7 +229,7 @@ public class ProjectedIteratorProducer implements Runnable {
                 }
 
                 boolean canAdvance = true;
-                for (IProjectedIteratorCallback callback: callbacks) {
+                for (IProjectedIteratorCallback callback : callbacks) {
                     if (!callback.beforeAdvance(pdfs, nextEdge)) {
                         canAdvance = false;
                         break;
@@ -276,7 +275,7 @@ public class ProjectedIteratorProducer implements Runnable {
                 }
 
                 canAdvance = true;
-                for (IProjectedIteratorCallback callback: callbacks) {
+                for (IProjectedIteratorCallback callback : callbacks) {
                     if (!callback.afterAdvance(pdfs, nextEdge)) {
                         canAdvance = false;
                         break;
@@ -314,8 +313,8 @@ public class ProjectedIteratorProducer implements Runnable {
                 return;
             }
 
-            for (ProjectedEdge projectedEdge: projected.getProjected().get(pdfs.size()).get(databaseGraph.getId()).get(v1.getId())) {
-                int projectedV2 = projectedEdge.isReversed() ? projectedEdge.getEdgeEnumeration().getEdge().v1: projectedEdge.getEdgeEnumeration().getEdge().v2;
+            for (ProjectedEdge projectedEdge : projected.getProjected().get(pdfs.size()).get(databaseGraph.getId()).get(v1.getId())) {
+                int projectedV2 = projectedEdge.isReversed() ? projectedEdge.getEdgeEnumeration().getEdge().v1 : projectedEdge.getEdgeEnumeration().getEdge().v2;
                 if (projectedV2 == v2.getId()) {
                     nextEdge = projectedEdge;
                     break;
@@ -327,7 +326,7 @@ public class ProjectedIteratorProducer implements Runnable {
             }
 
             boolean canAdvance = true;
-            for (IProjectedIteratorCallback callback: callbacks) {
+            for (IProjectedIteratorCallback callback : callbacks) {
                 if (!callback.beforeAdvance(pdfs, nextEdge)) {
                     canAdvance = false;
                     break;
@@ -381,7 +380,7 @@ public class ProjectedIteratorProducer implements Runnable {
         // save last projection
         PDFSCompact previousPDFS = nextPDFS;
 
-        for (IProjectedIteratorCallback projectedIteratorCallback: callbacks) {
+        for (IProjectedIteratorCallback projectedIteratorCallback : callbacks) {
             previousPDFS = projectedIteratorCallback.beforeSubmit(previousPDFS);
         }
 
@@ -445,13 +444,12 @@ public class ProjectedIteratorProducer implements Runnable {
     @Override
     public void run() {
         advance();
-        while(true) {
+        while (true) {
             PDFSCompact pdfsCompact = next();
             try {
                 if (pdfsCompact == null) {
                     pdfsQueue.put(PDFSCompact.POISON_PDFSCompact);
-                }
-                else {
+                } else {
                     pdfsQueue.put(pdfsCompact);
                     if (!control.runFlag) {
                         pdfsQueue.put(PDFSCompact.POISON_PDFSCompact);

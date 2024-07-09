@@ -24,40 +24,44 @@ import ca.pfv.spmf.gui.patternvizualizer.filters.AbstractFilter;
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
+
 /**
  * This is a RowFilter subclass to filter patterns in the PatternTableModel used by the
  * pattern vizualizer window.
- * @author Philippe Fournier-Viger
  *
+ * @author Philippe Fournier-Viger
  */
 public class PatternTableRowFilters<PatternTableModel, Object> extends RowFilter<Object, Object> {
-	
-	/** the current list of filters */
-	public List<AbstractFilter> filters = new  ArrayList<AbstractFilter>();
-	
-	/**
-	 * Default constructor */
-	PatternTableRowFilters(){
-	}
- 
-	@Override
-	/** This method returns true if a given TableModel entry respects the filters. Otherwise,
-	 * it returns false.
-	 * @return true if a given TableModel entry respects the filters. Otherwise,
-	 * it returns false.
-	 */
-	public boolean include(Entry entry) {
 
-		// we apply each filter
-		for(AbstractFilter filter : filters){
-			// if the entry does not respect one of the filter, we reject it
-			int columnIndex = filter.getColumnID();
-			if(filter.isKept(entry.getValue(columnIndex))== false){
-				return false;
-			}
-			
-		}
-		// otherwise we will keep that entry
-		return true;
-	}
+    /**
+     * the current list of filters
+     */
+    public List<AbstractFilter> filters = new ArrayList<AbstractFilter>();
+
+    /**
+     * Default constructor
+     */
+    PatternTableRowFilters() {
+    }
+
+    @Override
+    /** This method returns true if a given TableModel entry respects the filters. Otherwise,
+     * it returns false.
+     * @return true if a given TableModel entry respects the filters. Otherwise,
+     * it returns false.
+     */
+    public boolean include(Entry entry) {
+
+        // we apply each filter
+        for (AbstractFilter filter : filters) {
+            // if the entry does not respect one of the filter, we reject it
+            int columnIndex = filter.getColumnID();
+            if (filter.isKept(entry.getValue(columnIndex)) == false) {
+                return false;
+            }
+
+        }
+        // otherwise we will keep that entry
+        return true;
+    }
 }

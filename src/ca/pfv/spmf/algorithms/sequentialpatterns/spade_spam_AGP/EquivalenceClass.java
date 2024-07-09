@@ -8,27 +8,27 @@ import ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP.idLists.IDList;
 
 /**
  * This is the definition of an equivalence class.
- * Each one is composed by a pattern that its the class identifier and the 
+ * Each one is composed by a pattern that its the class identifier and the
  * IdList associated with that pattern. Besides, it also contains all the
- * equivalence class children that are supersequences (by means i-extension 
+ * equivalence class children that are supersequences (by means i-extension
  * or s-extension) of the class identifier.
  * In this way a complete structure of classes can be created from the root class
  * to the longest ones.
- *
+ * <p>
  * Copyright Antonio Gomariz Peñalver 2013
- *
+ * <p>
  * This file is part of the SPMF DATA MINING SOFTWARE
  * (http://www.philippe-fournier-viger.com/spmf).
- *
+ * <p>
  * SPMF is free software: you can redistribute it and/or modify it under the
  * terms of the GNU General Public License as published by the Free Software
  * Foundation, either version 3 of the License, or (at your option) any later
  * version.
- *
+ * <p>
  * SPMF is distributed in the hope that it will be useful, but WITHOUT ANY
  * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
  * A PARTICULAR PURPOSE. See the GNU General Public License for more details.
- *
+ * <p>
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  *
@@ -39,19 +39,20 @@ public class EquivalenceClass implements Comparable<EquivalenceClass> {
     /**
      * Pattern that is the identifier of the equivalence class, the main representant.
      */
-    private Pattern classIdentifier;    
+    private Pattern classIdentifier;
     /**
      * IdList which corresponds to classIdentifier pattern.
      */
     private IDList idList;
     /**
-     * All the superpatterns of classIdentifier that are obtained by means of 
+     * All the superpatterns of classIdentifier that are obtained by means of
      * making either an i-extension or s-extension
      */
     private List<EquivalenceClass> classMembers;
 
     /**
      * Constructor from a pattern.
+     *
      * @param classIdentifier The pattern to be use as the equivalence class identifier
      */
     public EquivalenceClass(Pattern classIdentifier) {
@@ -61,8 +62,9 @@ public class EquivalenceClass implements Comparable<EquivalenceClass> {
 
     /**
      * Constructor from a pattern and an IdList.
+     *
      * @param classIdentifier The pattern to be use as the equivalence class identifier
-     * @param idList The idList that is associated to that the argument pattern
+     * @param idList          The idList that is associated to that the argument pattern
      */
     public EquivalenceClass(Pattern classIdentifier, IDList idList) {
         this.classIdentifier = classIdentifier;
@@ -72,9 +74,10 @@ public class EquivalenceClass implements Comparable<EquivalenceClass> {
 
     /**
      * Constructor from a pattern and a set of equivalence classes
+     *
      * @param classIdentifier The pattern to be use as the equivalence class identifier
-     * @param classMembers The equivalence classes that are to be the members of 
-     * the equivalence class (superpatterns of the pattern given as an argument)
+     * @param classMembers    The equivalence classes that are to be the members of
+     *                        the equivalence class (superpatterns of the pattern given as an argument)
      */
     public EquivalenceClass(Pattern classIdentifier, List<EquivalenceClass> classMembers) {
         this.classIdentifier = classIdentifier;
@@ -83,10 +86,11 @@ public class EquivalenceClass implements Comparable<EquivalenceClass> {
 
     /**
      * Constructor from a pattern, an IdList and a set of equivvalence classes
+     *
      * @param classIdentifier The pattern to be use as the equivalence class identifier
-     * @param classMembers The equivalence classes that are to be the members of 
-     * the equivalence class (superpatterns of the pattern given as an argument)
-     * @param idList The IdList associated with the pattern given as an argument
+     * @param classMembers    The equivalence classes that are to be the members of
+     *                        the equivalence class (superpatterns of the pattern given as an argument)
+     * @param idList          The IdList associated with the pattern given as an argument
      */
     public EquivalenceClass(Pattern classIdentifier, List<EquivalenceClass> classMembers, IDList idList) {
         this.classIdentifier = classIdentifier;
@@ -96,6 +100,7 @@ public class EquivalenceClass implements Comparable<EquivalenceClass> {
 
     /**
      * Get the members of the equivalence class
+     *
      * @return a list of equivalence classes
      */
     public List<EquivalenceClass> getClassMembers() {
@@ -104,6 +109,7 @@ public class EquivalenceClass implements Comparable<EquivalenceClass> {
 
     /**
      * Set the members of the equivalence class
+     *
      * @param classMembers Set of equivalence classes that are going to be the members
      */
     public void setClassMembers(List<EquivalenceClass> classMembers) {
@@ -112,7 +118,8 @@ public class EquivalenceClass implements Comparable<EquivalenceClass> {
 
     /**
      * Method to add an equivalence class as a new class' member.
-     * @param classMember 
+     *
+     * @param classMember
      */
     public void addClassMember(EquivalenceClass classMember) {
         this.classMembers.add(classMember);
@@ -120,6 +127,7 @@ public class EquivalenceClass implements Comparable<EquivalenceClass> {
 
     /**
      * It gets the ith member of the class.
+     *
      * @param i The index of the member in which we are interested
      * @return the ith member
      */
@@ -129,6 +137,7 @@ public class EquivalenceClass implements Comparable<EquivalenceClass> {
 
     /**
      * It gets the IdList of the Equivalence class' identifier
+     *
      * @return the idlist
      */
     public IDList getIdList() {
@@ -137,6 +146,7 @@ public class EquivalenceClass implements Comparable<EquivalenceClass> {
 
     /**
      * It sets the IdList of the Equivalence class' identifier
+     *
      * @param idList the idlist
      */
     public void setIdList(IDList idList) {
@@ -145,6 +155,7 @@ public class EquivalenceClass implements Comparable<EquivalenceClass> {
 
     /**
      * It gets the equivalence class identifier
+     *
      * @return the identifier
      */
     public Pattern getClassIdentifier() {
@@ -153,6 +164,7 @@ public class EquivalenceClass implements Comparable<EquivalenceClass> {
 
     /**
      * It sets the equivalence class identifier
+     *
      * @param classIdentifier the identifier
      */
     public void setClassIdentifier(Pattern classIdentifier) {
@@ -162,6 +174,7 @@ public class EquivalenceClass implements Comparable<EquivalenceClass> {
     /**
      * It makes the comparison between two classes. That comparison is exactly
      * as that one of their identifiers.
+     *
      * @param arg the other class
      * @return 0 if equals, -1 if this one is smaller, otherwise 1
      */
@@ -172,6 +185,7 @@ public class EquivalenceClass implements Comparable<EquivalenceClass> {
 
     /**
      * Get the string representation of this equivalence class.
+     *
      * @return the string representation
      */
     @Override
@@ -193,8 +207,8 @@ public class EquivalenceClass implements Comparable<EquivalenceClass> {
         /*classMembers.clear();
         idList.clear();
         classIdentifier.clear();*/
-        classMembers=null;
-        idList=null;
-        classIdentifier=null;
+        classMembers = null;
+        idList = null;
+        classIdentifier = null;
     }
 }

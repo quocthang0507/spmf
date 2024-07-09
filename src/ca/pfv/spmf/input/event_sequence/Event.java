@@ -17,54 +17,60 @@ package ca.pfv.spmf.input.event_sequence;
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
+
 /**
  * This class represent an event from an event sequence
+ *
  * @author Philippe Fournier-Viger
  */
 public class Event {
 
-	/** The item (event) value */
-	private int item;
-	/** The timestamp of the event */
-	private long timestamp;
+    /**
+     * The item (event) value
+     */
+    private int item;
+    /**
+     * The timestamp of the event
+     */
+    private long timestamp;
 
-	/**
-	 * The constructor that takes an item and a timestamp as parameters
-	 * 
-	 * @param item       item
-	 * @param timestamps timestamp
-	 */
-	public Event(int item, long timestamp) {
-		// Initialize the fields
-		this.item = item;
-		this.timestamp = timestamp;
-	}
+    /**
+     * The constructor that takes an item and a timestamp as parameters
+     *
+     * @param item       item
+     * @param timestamps timestamp
+     */
+    public Event(int item, long timestamp) {
+        // Initialize the fields
+        this.item = item;
+        this.timestamp = timestamp;
+    }
 
-	/**
-	 * The method that returns the item value
-	 * 
-	 * @return the item
-	 */
-	public int getItem() {
-		return item;
-	}
+    /**
+     * The method that returns the item value
+     *
+     * @return the item
+     */
+    public int getItem() {
+        return item;
+    }
 
-	/**
-	 * The method that returns the timestamp
-	 * 
-	 * @return the timestamp
-	 */
-	public long getTimestamp() {
-		return timestamp;
-	}
+    /**
+     * The method that returns the timestamp
+     *
+     * @return the timestamp
+     */
+    public long getTimestamp() {
+        return timestamp;
+    }
 
-	/**
-	 * The method that returns the string representation of the event
-	 * 
-	 * @return a string
-	 */
-	public String toString() {
-		// Return the item and the timestamp separated by a "|"
-		return item + "|" + timestamp;
-	}
+    /**
+     * The method that returns the string representation of the event
+     *
+     * @return a string
+     */
+    public String toString() {
+        // Return the item and the timestamp separated by a "|"
+        return item + "|" + timestamp;
+    }
 }

@@ -18,45 +18,46 @@ import ca.pfv.spmf.algorithms.sequenceprediction.ipredict.predictor.profile.Defa
  */
 public class MakeOfflinePrediction {
 
-	/**
-	 * Loads the model from disk
-	 * @return the model
-	 */
-	public static Predictor load(String filepath) throws IOException, ClassNotFoundException {
-		
-		ObjectInputStream stream = new ObjectInputStream(new FileInputStream(filepath));
-		Predictor model = (Predictor) stream.readObject();
-		stream.close();
-		
-		return model;
-	}
-	
-	
-	public static void main(String...args) throws ClassNotFoundException, IOException {
-		
-		//load the model from disk
-		MarkovAllKPredictor akom = (MarkovAllKPredictor) load("test.ser");
-		
-		//setting the experiment parameters
-		DefaultProfile profile = new DefaultProfile();
-		profile.Apply();
-		
-		Scanner sc = new Scanner(System.in);
-		
-		String line = sc.nextLine();
-		while(line.equals("exit") == false || line.equals("quit")) {
-			
-			Sequence sequence = Sequence.fromString(1, line);
-			
-			//make a prediction
-			Sequence predicted = akom.Predict(sequence);
-			 
-			//output result on STDOUT
-			System.out.println(predicted);
-			
-			//read and parse the line as a sequence
-			line = sc.nextLine();
-		}
-		
-	}
+    /**
+     * Loads the model from disk
+     *
+     * @return the model
+     */
+    public static Predictor load(String filepath) throws IOException, ClassNotFoundException {
+
+        ObjectInputStream stream = new ObjectInputStream(new FileInputStream(filepath));
+        Predictor model = (Predictor) stream.readObject();
+        stream.close();
+
+        return model;
+    }
+
+
+    public static void main(String... args) throws ClassNotFoundException, IOException {
+
+        //load the model from disk
+        MarkovAllKPredictor akom = (MarkovAllKPredictor) load("test.ser");
+
+        //setting the experiment parameters
+        DefaultProfile profile = new DefaultProfile();
+        profile.Apply();
+
+        Scanner sc = new Scanner(System.in);
+
+        String line = sc.nextLine();
+        while (line.equals("exit") == false || line.equals("quit")) {
+
+            Sequence sequence = Sequence.fromString(1, line);
+
+            //make a prediction
+            Sequence predicted = akom.Predict(sequence);
+
+            //output result on STDOUT
+            System.out.println(predicted);
+
+            //read and parse the line as a sequence
+            line = sc.nextLine();
+        }
+
+    }
 }

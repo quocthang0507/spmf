@@ -16,20 +16,21 @@ package ca.pfv.spmf.algorithms.sequentialpatterns.skopus;
 // * You should have received a copy of the GNU General Public License
 // * along with Skopus.  If not, see <http://www.gnu.org/licenses/>.
 // ******************************************************************************/
+
 import java.util.Comparator;
 
 @SuppressWarnings("rawtypes")
 public class SidSortByNumber implements Comparator {
 
-	public int compare(Object o1, Object o2) {
-		Sid s1 = (Sid) o1;
-		Sid s2 = (Sid) o2;
-		if (s1.getSidNumber() > s2.getSidNumber()) {
-			return 1;
-		} else if (s1.getSidNumber() == s2.getSidNumber()) {
-			return 0;
-		} else {
-			return -1;
-		}
-	}
+    public int compare(Object o1, Object o2) {
+        Sid s1 = (Sid) o1;
+        Sid s2 = (Sid) o2;
+        if (s1.getSidNumber() > s2.getSidNumber()) {
+            return 1;
+        } else if (s1.getSidNumber() == s2.getSidNumber()) {
+            return 0;
+        } else {
+            return -1;
+        }
+    }
 }

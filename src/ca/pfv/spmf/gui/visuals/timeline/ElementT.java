@@ -17,29 +17,33 @@ package ca.pfv.spmf.gui.visuals.timeline;
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
+
 /**
  * An element that can be either an event or a time interval.
  * Used by the Timeline Viewer of SPMF.
- * 
+ *
  * @author Philippe Fournier-Viger
  */
 public class ElementT {
-	/** A name given to this element */
-	private final String name;
+    /**
+     * A name given to this element
+     */
+    private final String name;
 
-	/**
-	 * The index of the layer on which this time element should be drawn by the
-	 * TimelineViewer
-	 */
-	int layerIndex = 0;
-	
-	public ElementT(String name) {
-		this.name = name;
-	}
-	
+    /**
+     * The index of the layer on which this time element should be drawn by the
+     * TimelineViewer
+     */
+    int layerIndex = 0;
+
+    public ElementT(String name) {
+        this.name = name;
+    }
+
 
     /**
      * Get the name
+     *
      * @return the event name
      */
     public String getName() {

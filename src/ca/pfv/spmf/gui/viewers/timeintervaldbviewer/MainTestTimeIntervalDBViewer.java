@@ -5,28 +5,27 @@ import java.io.UnsupportedEncodingException;
 import java.net.URL;
 
 /**
- * 
  * Example of how to use the Time Interval Sequence Database viewer
- * 
+ * <p>
  * algorithm from the source code.
- * 
+ *
  * @author Philippe Fournier-Viger (Copyright 2024)
  */
 public class MainTestTimeIntervalDBViewer {
 
-	public static void main(String[] arg) throws IOException {
+    public static void main(String[] arg) throws IOException {
 
-		// Input file path
-		String input = fileToPath("test2.csv");
+        // Input file path
+        String input = fileToPath("test2.csv");
 
-		// Applying the Sequence Database viewer
-		TimeIntervalDatabaseViewer algorithm = new TimeIntervalDatabaseViewer(false, input);
+        // Applying the Sequence Database viewer
+        TimeIntervalDatabaseViewer algorithm = new TimeIntervalDatabaseViewer(false, input);
 
-	}
+    }
 
-	public static String fileToPath(String filename) throws UnsupportedEncodingException {
-		System.out.println("filename : " + filename);
-		URL url = MainTestTimeIntervalDBViewer.class.getResource(filename);
-		return java.net.URLDecoder.decode(url.getPath(), "UTF-8");
-	}
+    public static String fileToPath(String filename) throws UnsupportedEncodingException {
+        System.out.println("filename : " + filename);
+        URL url = MainTestTimeIntervalDBViewer.class.getResource(filename);
+        return java.net.URLDecoder.decode(url.getPath(), "UTF-8");
+    }
 }

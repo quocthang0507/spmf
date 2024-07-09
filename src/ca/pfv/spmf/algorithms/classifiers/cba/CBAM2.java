@@ -1,19 +1,19 @@
 /**
  * This file is part of SPMF data mining library.
  * It is adapted from some GPL code obtained from the LAC library, which used some SPMF code.
- *
+ * <p>
  * Copyright (C) SPMF, LAC
- *   
+ * <p>
  * LAC is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- *
+ * <p>
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details. You should have 
- * received a copy of the GNU General Public License along with 
+ * GNU General Public License for more details. You should have
+ * received a copy of the GNU General Public License along with
  * this program.  If not, see http://www.gnu.org/licenses/
  */
 package ca.pfv.spmf.algorithms.classifiers.cba;
@@ -57,12 +57,12 @@ public class CBAM2 {
 
     /**
      * Constructor to post-process the rules
-     * 
+     *
      * @param dataset of the rules being processed
      * @param rules   being used as base for the classifier
      */
     public CBAM2(Dataset dataset, List<RuleCBA> rules) {
-    	this.dataset = dataset;
+        this.dataset = dataset;
         this.rules = rules;
 
         this.listU = new ArrayList<RuleCBA>();
@@ -90,8 +90,8 @@ public class CBAM2 {
 
         for (int i = 0; i < this.dataset.getInstances().size(); i++) {
             Instance instance = this.dataset.getInstances().get(i);
-            
-			items = instance.getItems();
+
+            items = instance.getItems();
             y = instance.getKlass();
 
             cRule = -1;
@@ -242,7 +242,7 @@ public class CBAM2 {
                 for (int j = 0; j < this.dataset.getInstances().size(); j++) {
                     if (exampleCovered[j] < 1) {
                         Instance instance = this.dataset.getInstances().get(j);
-						items = instance.getItems();
+                        items = instance.getItems();
 
                         if (rule.matching(items)) {
                             exampleCovered[j] = 1;
@@ -258,7 +258,7 @@ public class CBAM2 {
 
                 short defaultKlass = this.dataset.getKlassAt(0);
                 for (Entry<Short, Long> entry : compClassDistr.entrySet()) {
-                    if (compClassDistr.getOrDefault(defaultKlass,0L) < entry.getValue())
+                    if (compClassDistr.getOrDefault(defaultKlass, 0L) < entry.getValue())
                         defaultKlass = entry.getKey();
                 }
 
@@ -290,10 +290,10 @@ public class CBAM2 {
 
     /**
      * Returns the classifier
-     * 
+     *
      * @return Classifier with the whole of the classifier
      */
-    public RuleClassifier getClassifier(String name){
+    public RuleClassifier getClassifier(String name) {
         short defaultKlass;
         RuleClassifier rb = new RuleClassifier(name);
         SelectedRule sel;
@@ -301,7 +301,7 @@ public class CBAM2 {
         if (this.listC.size() > 0) {
             for (int i = 0; i < this.listC.size(); i++) {
                 sel = this.listC.get(i);
-                rb.add( new RuleCBA(sel.getRule()));
+                rb.add(new RuleCBA(sel.getRule()));
             }
 
             sel = this.listC.get(this.listC.size() - 1);
@@ -324,13 +324,13 @@ public class CBAM2 {
 
     /**
      * Check if the rule was contained in the set of rules
-     * 
+     *
      * @param rb   set of rules
      * @param rule to check if it was contained or not
      * @return true if rule was not contained
      */
     private boolean isNew(List<RuleCBA> rb, RuleCBA rule) {
-        for (RuleCBA r:  rb){
+        for (RuleCBA r : rb) {
             if (rule.equals(r)) {
                 return false;
             }

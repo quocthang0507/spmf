@@ -1,21 +1,21 @@
 /*
  * Copyright (c) 2005, University of Sydney
  * All rights reserved.
-* 
-* This file is part of the SPMF DATA MINING SOFTWARE
-* (http://www.philippe-fournier-viger.com/spmf).
-* 
-* SPMF is free software: you can redistribute it and/or modify it under the
-* terms of the GNU General Public License as published by the Free Software
-* Foundation, either version 3 of the License, or (at your option) any later
-* version.
-* 
-* SPMF is distributed in the hope that it will be useful, but WITHOUT ANY
-* WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
-* A PARTICULAR PURPOSE. See the GNU General Public License for more details.
-* You should have received a copy of the GNU General Public License along with
-* SPMF. If not, see <http://www.gnu.org/licenses/>.
-*/
+ *
+ * This file is part of the SPMF DATA MINING SOFTWARE
+ * (http://www.philippe-fournier-viger.com/spmf).
+ *
+ * SPMF is free software: you can redistribute it and/or modify it under the
+ * terms of the GNU General Public License as published by the Free Software
+ * Foundation, either version 3 of the License, or (at your option) any later
+ * version.
+ *
+ * SPMF is distributed in the hope that it will be useful, but WITHOUT ANY
+ * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
+ * A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+ * You should have received a copy of the GNU General Public License along with
+ * SPMF. If not, see <http://www.gnu.org/licenses/>.
+ */
 
 package ca.pfv.spmf.algorithms.sequentialpatterns.clofast.model;
 
@@ -37,13 +37,13 @@ public class Itemset implements Iterable<String>, Cloneable, Comparable<Itemset>
 
     protected final List<String> elements = new ArrayList<>();
 
-    public Itemset(String... items){
-        for (String i : items){
+    public Itemset(String... items) {
+        for (String i : items) {
             elements.add(i);
         }
     }
 
-    public Itemset(Collection<String> items){
+    public Itemset(Collection<String> items) {
         elements.addAll(items);
     }
 
@@ -105,7 +105,7 @@ public class Itemset implements Iterable<String>, Cloneable, Comparable<Itemset>
      * itemset
      */
     public String concatenate() {
-        return elements.stream().reduce("", (s1,s2) -> s1 + " " + s2).trim();
+        return elements.stream().reduce("", (s1, s2) -> s1 + " " + s2).trim();
     }
 
     /**
@@ -128,7 +128,6 @@ public class Itemset implements Iterable<String>, Cloneable, Comparable<Itemset>
     }
 
     /**
-     *
      * @param other
      * @return true if this containsItemset the other itemset
      */

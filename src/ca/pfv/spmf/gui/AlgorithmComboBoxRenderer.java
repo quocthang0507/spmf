@@ -28,73 +28,80 @@ import javax.swing.ListCellRenderer;
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
+
 /**
  * This class allows adding color to the JComboBox presenting the algorithms in
  * the SPMF GUI.
- * 
+ *
  * @author Philippe Fournier-Viger
  */
 public class AlgorithmComboBoxRenderer extends JPanel implements ListCellRenderer<Object> {
 
-	/** Serial UID */
-	private static final long serialVersionUID = 234234235L;
+    /**
+     * Serial UID
+     */
+    private static final long serialVersionUID = 234234235L;
 
-	/** Panel for the JComboBox */
-	JPanel panel;
-	
-	/** JLabel object to draw text */
-	JLabel textLabel;
+    /**
+     * Panel for the JComboBox
+     */
+    JPanel panel;
 
-	/**
-	 * Constructor
-	 * 
-	 * @param combo a JComboBox
-	 */
-	public AlgorithmComboBoxRenderer(JComboBox<?> combo) {
+    /**
+     * JLabel object to draw text
+     */
+    JLabel textLabel;
 
-		panel = new JPanel();
-		panel.add(this);
-		textLabel = new JLabel();
-		textLabel.setOpaque(true);
-		textLabel.setFont(combo.getFont());
-		panel.add(textLabel);
-	}
+    /**
+     * Constructor
+     *
+     * @param combo a JComboBox
+     */
+    public AlgorithmComboBoxRenderer(JComboBox<?> combo) {
 
-	@Override
-	public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected,
-			boolean cellHasFocus) {
+        panel = new JPanel();
+        panel.add(this);
+        textLabel = new JLabel();
+        textLabel.setOpaque(true);
+        textLabel.setFont(combo.getFont());
+        panel.add(textLabel);
+    }
 
-		// Set the background color for selection for the selected item
-		if (isSelected) {
-			setBackground(list.getSelectionBackground());
-		} else {
-			setBackground(Color.WHITE);
-		}
-		textLabel.setBackground(getBackground());
+    @Override
+    public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected,
+                                                  boolean cellHasFocus) {
 
-		// Get the selected text
-		String stringValue = value.toString();
+        // Set the background color for selection for the selected item
+        if (isSelected) {
+            setBackground(list.getSelectionBackground());
+        } else {
+            setBackground(Color.WHITE);
+        }
+        textLabel.setBackground(getBackground());
 
-		// Get the current font
-		Font f = textLabel.getFont();
+        // Get the selected text
+        String stringValue = value.toString();
 
-		// If it is a category of algorithm
-		// We will set the font to red and bold
-		if (index > 0 && stringValue.startsWith(" --")) {
-			textLabel.setForeground(Color.RED);
-			textLabel.setText(stringValue);
-			// Set bold
-			textLabel.setFont(f.deriveFont(f.getStyle() | Font.BOLD));
-		} else if ("".equals(stringValue)) {
-			// If it is empty, then just leave it like that
-			textLabel.setText(" ");
-		} else {
-			// Else, it is an algorithm name. We put it in black color without bold
-			textLabel.setForeground(Color.BLACK);
-			textLabel.setText("   " + stringValue);
-			// Unbold
-			textLabel.setFont(f.deriveFont(f.getStyle() & ~Font.BOLD));
-		}
-		return textLabel;
-	}
+        // Get the current font
+        Font f = textLabel.getFont();
+
+        // If it is a category of algorithm
+        // We will set the font to red and bold
+        if (index > 0 && stringValue.startsWith(" --")) {
+            textLabel.setForeground(Color.RED);
+            textLabel.setText(stringValue);
+            // Set bold
+            textLabel.setFont(f.deriveFont(f.getStyle() | Font.BOLD));
+        } else if ("".equals(stringValue)) {
+            // If it is empty, then just leave it like that
+            textLabel.setText(" ");
+        } else {
+            // Else, it is an algorithm name. We put it in black color without bold
+            textLabel.setForeground(Color.BLACK);
+            textLabel.setText("   " + stringValue);
+            // Unbold
+            textLabel.setFont(f.deriveFont(f.getStyle() & ~Font.BOLD));
+        }
+        return textLabel;
+    }
 }

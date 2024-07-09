@@ -18,23 +18,24 @@ package ca.pfv.spmf.datastructures.collections.comparators;
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
+
 /**
  * This class implements a simple comparators for double values.
- * 
+ *
  * @author Philippe Fournier-Viger
  * @see ListDouble
  */
 public class ComparatorDouble {
 
-	/**
-	 * Compare two doubles and return a value >0, =0 or <0 if the first double is
-	 * bigger, equal or smaller than the second double
-	 * 
-	 * @param num1 the first double
-	 * @param num2 the second double
-	 * @return the comparison value
-	 */
-	public double compare(double num1, double num2) {
-		return num1 - num2;
-	}
+    /**
+     * Compare two doubles and return a value >0, =0 or <0 if the first double is
+     * bigger, equal or smaller than the second double
+     *
+     * @param num1 the first double
+     * @param num2 the second double
+     * @return the comparison value
+     */
+    public double compare(double num1, double num2) {
+        return num1 - num2;
+    }
 }

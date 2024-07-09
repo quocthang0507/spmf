@@ -25,37 +25,30 @@ import java.util.*;
  */
 public class AlgoPPFP {
 
+    //Hashmap to store unique items and their coversets in database
+    //key = length-1 item; value = coverset
+    final Map<Integer, Set<Integer>> mapCoverset = new HashMap<>();
+    // This variable is used to determine the size of buffers to store itemsets.
+    // A value of 50 is enough because it allows up to 2^50 patterns!
+    final int BUFFERS_SIZE = 2000;
+    // parameters
+    public int minSupportRelative;// the relative minimum support
+    public double periodicity; //the user desired periodicity
+    public double difference;  //the user desired periodicity difference
+    //Hashmap to store the productive periodic frequent patterns
+    //key = item; value = list of information: coverset, periods, min period, max period, avg period, stdv in periods
+    //  public final Map<List<Integer>, List<Double>> PPFPs = new HashMap<>();
+    public double lowPeriodThresh; //acceptable lowest periodicity
+    public double highPeriodThresh; //acceptable highest periodicity
+    // The  patterns that are found
+    // (if the user wants to keep them into memory)
+    protected Itemsets patterns = null;
+    BufferedWriter writer = null; // object to write the output file
     // for statistics
     private long startTimestamp; // start time of the latest execution
     private long endTime; // end time of the latest execution
     private int transactionCount = 0; // transaction count in the database
     private int itemsetCount; // number of freq. itemsets found
-
-    //Hashmap to store unique items and their coversets in database
-    //key = length-1 item; value = coverset
-    final Map<Integer, Set<Integer>> mapCoverset = new HashMap<>();
-    //Hashmap to store the productive periodic frequent patterns
-    //key = item; value = list of information: coverset, periods, min period, max period, avg period, stdv in periods
-    //  public final Map<List<Integer>, List<Double>> PPFPs = new HashMap<>();
-
-
-    // parameters
-    public int minSupportRelative;// the relative minimum support
-    public double periodicity; //the user desired periodicity
-    public double difference;  //the user desired periodicity difference
-    public double lowPeriodThresh; //acceptable lowest periodicity
-    public double highPeriodThresh; //acceptable highest periodicity
-
-    BufferedWriter writer = null; // object to write the output file
-
-    // The  patterns that are found
-    // (if the user wants to keep them into memory)
-    protected Itemsets patterns = null;
-
-    // This variable is used to determine the size of buffers to store itemsets.
-    // A value of 50 is enough because it allows up to 2^50 patterns!
-    final int BUFFERS_SIZE = 2000;
-
     // buffer for storing the current itemset that is mined when performing mining
     // the idea is to always reuse the same buffer to reduce memory usage.
     private int[] itemsetBuffer = null;
@@ -660,10 +653,10 @@ public class AlgoPPFP {
 //                        PPFPs.put(SavedItem, details);
 
                         //begin writing itemset to text file with its details
-                		for (int i = 0; i < SavedItem.size(); i++) {
-                			buffer.append(SavedItem.get(i));
-                			buffer.append(' ');
-                		}
+                        for (int i = 0; i < SavedItem.size(); i++) {
+                            buffer.append(SavedItem.get(i));
+                            buffer.append(' ');
+                        }
                         buffer.append("#SUP: ");
                         buffer.append(support);
 //                         buffer.append(" Coverset ");
@@ -762,7 +755,6 @@ public class AlgoPPFP {
                     List<Integer> periodList = getPeriods(itemCovList, transactionCount);
 
 
-
                     //get minimum and maximum periods from set of periods
                     int minPeriod = Collections.min(periodList);
                     int maxPeriod = Collections.max(periodList);
@@ -794,10 +786,10 @@ public class AlgoPPFP {
 //                        PPFPs.put(SavedItem, details);
 
                         //begin writing itemset to text file with its details
-                		for (int i = 0; i < SavedItem.size(); i++) {
-                			buffer.append(SavedItem.get(i));
-                			buffer.append(' ');
-                		}
+                        for (int i = 0; i < SavedItem.size(); i++) {
+                            buffer.append(SavedItem.get(i));
+                            buffer.append(' ');
+                        }
                         buffer.append("#SUP: ");
                         buffer.append(support);
 //                         buffer.append(" Coverset ");
@@ -860,10 +852,10 @@ public class AlgoPPFP {
 //                   PPFPs.put(SavedItem, details);
 
                     //begin writing itemset to text file with its details
-            		for (int i = 0; i < SavedItem.size(); i++) {
-            			buffer.append(SavedItem.get(i));
-            			buffer.append(' ');
-            		}
+                    for (int i = 0; i < SavedItem.size(); i++) {
+                        buffer.append(SavedItem.get(i));
+                        buffer.append(' ');
+                    }
                     buffer.append("#SUP: ");
                     buffer.append(support);
 //                     buffer.append(" Coverset ");

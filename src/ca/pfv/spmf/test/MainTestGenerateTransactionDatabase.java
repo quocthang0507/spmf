@@ -12,14 +12,14 @@ import ca.pfv.spmf.tools.dataset_generator.TransactionDatabaseGenerator;
  */
 public class MainTestGenerateTransactionDatabase {
 
-	public static void main(String [] arg) throws IOException{
-		String outputFile = ".//output.txt";
-		TransactionDatabaseGenerator generator = new TransactionDatabaseGenerator();
-		generator.generateDatabase(5, 500, 4, outputFile);
-	}
+    public static void main(String[] arg) throws IOException {
+        String outputFile = ".//output.txt";
+        TransactionDatabaseGenerator generator = new TransactionDatabaseGenerator();
+        generator.generateDatabase(5, 500, 4, outputFile);
+    }
 
-	public static String fileToPath(String filename) throws UnsupportedEncodingException{
-		URL url = MainTestGenerateTransactionDatabase.class.getResource(filename);
-		 return java.net.URLDecoder.decode(url.getPath(),"UTF-8");
-	}
+    public static String fileToPath(String filename) throws UnsupportedEncodingException {
+        URL url = MainTestGenerateTransactionDatabase.class.getResource(filename);
+        return java.net.URLDecoder.decode(url.getPath(), "UTF-8");
+    }
 }

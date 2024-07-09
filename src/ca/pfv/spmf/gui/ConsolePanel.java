@@ -48,161 +48,183 @@ import ca.pfv.spmf.gui.preferences.PreferencesManager;
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
+
 /**
  * This is a console panel as used by the GUI of SPMF.
- * 
+ *
  * @author Philippe Fournier-Viger
  */
 public class ConsolePanel extends JPanel {
-	/**
-	 * serial UID
-	 */
-	private static final long serialVersionUID = 8344817215180749939L;
-	/** Color for status messages */
-	private static final Color STATUS_MESSAGE_COLOR = Color.GRAY;
-	/** Color for regular messages */
-	private static final Color REGULAR_MESSAGE_COLOR = Color.BLACK;
-	/** Text pane to show text */
-	private static  JTextPane textPaneConsoleOutput;
-	/** StyleDocument object */
-	private StyledDocument doc;
-	/** The clear button */
-	private JButton clearButton;
-	/** The scrollPane */
-	private JScrollPane scrollPane;
-	
-	/** line separator */
-	String newline = System.getProperty("line.separator");
+    /**
+     * serial UID
+     */
+    private static final long serialVersionUID = 8344817215180749939L;
+    /**
+     * Color for status messages
+     */
+    private static final Color STATUS_MESSAGE_COLOR = Color.GRAY;
+    /**
+     * Color for regular messages
+     */
+    private static final Color REGULAR_MESSAGE_COLOR = Color.BLACK;
+    /**
+     * Text pane to show text
+     */
+    private static JTextPane textPaneConsoleOutput;
+    /**
+     * line separator
+     */
+    String newline = System.getProperty("line.separator");
+    /**
+     * StyleDocument object
+     */
+    private StyledDocument doc;
+    /**
+     * The clear button
+     */
+    private JButton clearButton;
+    /**
+     * The scrollPane
+     */
+    private JScrollPane scrollPane;
 
-	/**
-	 * Constructs a new ConsolePanel, initializes components, sets up the layout and
-	 * actions, and redirects system streams to the text pane.
-	 */
-	public ConsolePanel(boolean showClearButton) {
-		initializeComponents();
-		setupLayout(showClearButton);
-		setupActions();
+    /**
+     * Constructs a new ConsolePanel, initializes components, sets up the layout and
+     * actions, and redirects system streams to the text pane.
+     */
+    public ConsolePanel(boolean showClearButton) {
+        initializeComponents();
+        setupLayout(showClearButton);
+        setupActions();
 
-		redirectOutputStream();
-	}
+        redirectOutputStream();
+    }
 
-	public void redirectOutputStream() {
-		// Redirects the standard output streams to the text pane console output.
-		System.setOut(new PrintStream(new TextPaneOutputStream(textPaneConsoleOutput)));
-	}
+    /**
+     * Test method
+     */
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> {
+            JFrame frame = new JFrame("ConsolePanel Test");
+            ConsolePanel consolePanel = new ConsolePanel(true);
 
-	/**
-	 * Initializes the components of the console panel.
-	 */
-	private void initializeComponents() {
-		textPaneConsoleOutput = new JTextPane();
-		textPaneConsoleOutput.setEditable(false);
-		textPaneConsoleOutput.setBackground(Color.WHITE);
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setLayout(new BorderLayout());
+            frame.add(consolePanel, BorderLayout.CENTER);
+            frame.setSize(600, 400);
+            frame.setVisible(true);
 
-		Integer fontSize = PreferencesManager.getInstance().getConsoleFontSize();
-		if (fontSize != null) {
-			java.awt.Font newFont = textPaneConsoleOutput.getFont().deriveFont((float) fontSize);
-			textPaneConsoleOutput.setFont(newFont);
-		}
+            // Example usage of postStatusMessage
+            consolePanel.postStatusMessage("Algorithm is running...");
+            System.out.println("test");
+            consolePanel.postStatusMessage("Algorithm stopped.");
 
-		doc = textPaneConsoleOutput.getStyledDocument();
-	}
+            System.out.println("test");
+        });
+    }
 
-	/**
-	 * Sets up the layout of the console panel with a scrollable text pane and a
-	 * clear button.
-	 * 
-	 * @param showClearButton if true, add a clear console button
-	 */
-	private void setupLayout(boolean showClearButton) {
-		setLayout(new BorderLayout());
-		scrollPane = new JScrollPane(textPaneConsoleOutput);
-		add(scrollPane, BorderLayout.CENTER);
-		if (showClearButton) {
-			add(createClearButton(), BorderLayout.SOUTH);
-		}
-		this.validate();
-	}
+    public void redirectOutputStream() {
+        // Redirects the standard output streams to the text pane console output.
+        System.setOut(new PrintStream(new TextPaneOutputStream(textPaneConsoleOutput)));
+    }
 
-	/**
-	 * Creates and returns a JButton that clears the console when clicked.
-	 * 
-	 * @return JButton to clear the console
-	 */
-	private JButton createClearButton() {
-		clearButton = new JButton("Clear Console");
-		clearButton.addActionListener(e -> clearConsole());
-		return clearButton;
-	}
+    /**
+     * Initializes the components of the console panel.
+     */
+    private void initializeComponents() {
+        textPaneConsoleOutput = new JTextPane();
+        textPaneConsoleOutput.setEditable(false);
+        textPaneConsoleOutput.setBackground(Color.WHITE);
 
-	/**
-	 * Sets up actions for the console panel, specifically the context menu for the
-	 * text pane.
-	 */
-	private void setupActions() {
-		JPopupMenu contextMenu = createContextMenu();
-		textPaneConsoleOutput.setComponentPopupMenu(contextMenu);
-	}
+        Integer fontSize = PreferencesManager.getInstance().getConsoleFontSize();
+        if (fontSize != null) {
+            java.awt.Font newFont = textPaneConsoleOutput.getFont().deriveFont((float) fontSize);
+            textPaneConsoleOutput.setFont(newFont);
+        }
 
-	/**
-	 * Creates and returns a JPopupMenu for the text pane with a clear console
-	 * option.
-	 * 
-	 * @return JPopupMenu with options for the console
-	 */
-	private JPopupMenu createContextMenu() {
-		JPopupMenu contextMenu = new JPopupMenu();
+        doc = textPaneConsoleOutput.getStyledDocument();
+    }
 
-		JMenuItem clearItem = new JMenuItem("Clear");
-		clearItem.addActionListener(e -> clearConsole());
-		contextMenu.add(clearItem);
+    /**
+     * Sets up the layout of the console panel with a scrollable text pane and a
+     * clear button.
+     *
+     * @param showClearButton if true, add a clear console button
+     */
+    private void setupLayout(boolean showClearButton) {
+        setLayout(new BorderLayout());
+        scrollPane = new JScrollPane(textPaneConsoleOutput);
+        add(scrollPane, BorderLayout.CENTER);
+        if (showClearButton) {
+            add(createClearButton(), BorderLayout.SOUTH);
+        }
+        this.validate();
+    }
+
+    /**
+     * Creates and returns a JButton that clears the console when clicked.
+     *
+     * @return JButton to clear the console
+     */
+    private JButton createClearButton() {
+        clearButton = new JButton("Clear Console");
+        clearButton.addActionListener(e -> clearConsole());
+        return clearButton;
+    }
+
+    /**
+     * Sets up actions for the console panel, specifically the context menu for the
+     * text pane.
+     */
+    private void setupActions() {
+        JPopupMenu contextMenu = createContextMenu();
+        textPaneConsoleOutput.setComponentPopupMenu(contextMenu);
+    }
+
+    /**
+     * Creates and returns a JPopupMenu for the text pane with a clear console
+     * option.
+     *
+     * @return JPopupMenu with options for the console
+     */
+    private JPopupMenu createContextMenu() {
+        JPopupMenu contextMenu = new JPopupMenu();
+
+        JMenuItem clearItem = new JMenuItem("Clear");
+        clearItem.addActionListener(e -> clearConsole());
+        contextMenu.add(clearItem);
 
 //		JMenuItem copyItem = new JMenuItem("Copy");
 //		copyItem.addActionListener(e -> copyText());
 //		contextMenu.add(copyItem);
 
-		JMenuItem saveLogItem = new JMenuItem("Save Log to File");
-		saveLogItem.addActionListener(e -> saveLog());
-		contextMenu.add(saveLogItem);
+        JMenuItem saveLogItem = new JMenuItem("Save Log to File");
+        saveLogItem.addActionListener(e -> saveLog());
+        contextMenu.add(saveLogItem);
 
-		contextMenu.addSeparator();
+        contextMenu.addSeparator();
 
-		JMenu fontSizeMenu = createFontSizeMenu();
-		contextMenu.add(fontSizeMenu);
+        JMenu fontSizeMenu = createFontSizeMenu();
+        contextMenu.add(fontSizeMenu);
 
 //		JMenuItem changeBgColorItem = new JMenuItem("Change Background Color");
 //		changeBgColorItem.addActionListener(e -> changeBackgroundColor());
 //		contextMenu.add(changeBgColorItem);
 
-		return contextMenu;
-	}
+        return contextMenu;
+    }
 
-	/**
-	 * Copy text from the console
-	 */
-	public void copyText() {
-		String text = textPaneConsoleOutput.getSelectedText();
-		if (text != null) {
-			StringSelection stringSelection = new StringSelection(text);
-			Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
-			clipboard.setContents(stringSelection, null);
-		}
-	}
-
-	/**
-	 * Save text from the console to a file
-	 */
-	private void saveLog() {
-		JFileChooser fileChooser = new JFileChooser();
-		if (fileChooser.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
-			File file = fileChooser.getSelectedFile();
-			try (PrintWriter out = new PrintWriter(new FileWriter(file))) {
-				out.println(textPaneConsoleOutput.getText());
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-	}
+    /**
+     * Copy text from the console
+     */
+    public void copyText() {
+        String text = textPaneConsoleOutput.getSelectedText();
+        if (text != null) {
+            StringSelection stringSelection = new StringSelection(text);
+            Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+            clipboard.setContents(stringSelection, null);
+        }
+    }
 
 //	/**
 //	 * Change the background color
@@ -215,119 +237,111 @@ public class ConsolePanel extends JPanel {
 //		}
 //	}
 
-	/**
-	 * Create font size menu
-	 */
-	private JMenu createFontSizeMenu() {
-		JMenu fontSizeMenu = new JMenu("Font Size");
-		JMenuItem increaseFontSize = new JMenuItem("Increase");
-		increaseFontSize.addActionListener(e -> changeFontSize(1));
-		fontSizeMenu.add(increaseFontSize);
+    /**
+     * Save text from the console to a file
+     */
+    private void saveLog() {
+        JFileChooser fileChooser = new JFileChooser();
+        if (fileChooser.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
+            File file = fileChooser.getSelectedFile();
+            try (PrintWriter out = new PrintWriter(new FileWriter(file))) {
+                out.println(textPaneConsoleOutput.getText());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
-		JMenuItem decreaseFontSize = new JMenuItem("Decrease");
-		decreaseFontSize.addActionListener(e -> changeFontSize(-1));
-		fontSizeMenu.add(decreaseFontSize);
+    /**
+     * Create font size menu
+     */
+    private JMenu createFontSizeMenu() {
+        JMenu fontSizeMenu = new JMenu("Font Size");
+        JMenuItem increaseFontSize = new JMenuItem("Increase");
+        increaseFontSize.addActionListener(e -> changeFontSize(1));
+        fontSizeMenu.add(increaseFontSize);
 
-		return fontSizeMenu;
-	}
+        JMenuItem decreaseFontSize = new JMenuItem("Decrease");
+        decreaseFontSize.addActionListener(e -> changeFontSize(-1));
+        fontSizeMenu.add(decreaseFontSize);
 
-	/**
-	 * Change the font size
-	 * 
-	 * @param delta by how much points the font size should be increased or reduced
-	 */
-	private void changeFontSize(int delta) {
-		Font currentFont = textPaneConsoleOutput.getFont();
-		float newSize = currentFont.getSize() + delta;
-		textPaneConsoleOutput.setFont(currentFont.deriveFont(newSize));
+        return fontSizeMenu;
+    }
+
+    /**
+     * Change the font size
+     *
+     * @param delta by how much points the font size should be increased or reduced
+     */
+    private void changeFontSize(int delta) {
+        Font currentFont = textPaneConsoleOutput.getFont();
+        float newSize = currentFont.getSize() + delta;
+        textPaneConsoleOutput.setFont(currentFont.deriveFont(newSize));
 
 //		System.out.println(PreferencesManager.getInstance().getConsoleFontSize());
-		PreferencesManager.getInstance().setConsoleFontSize((int) newSize);
+        PreferencesManager.getInstance().setConsoleFontSize((int) newSize);
 //		Systsem.out.println(PreferencesManager.getInstance().getConsoleFontSize());
-	}
+    }
 
-	/**
-	 * An OutputStream that writes to a JTextPane.
-	 */
-	public void postStatusMessage(String message) {
-		SwingUtilities.invokeLater(() -> {
-			try {
-				SimpleAttributeSet keyWord = new SimpleAttributeSet();
-				StyleConstants.setForeground(keyWord, STATUS_MESSAGE_COLOR);
-				doc.insertString(doc.getLength(), message + "\n", keyWord);
-			} catch (BadLocationException e) {
-				e.printStackTrace();
-			}
-		});
-	}
+    /**
+     * An OutputStream that writes to a JTextPane.
+     */
+    public void postStatusMessage(String message) {
+        SwingUtilities.invokeLater(() -> {
+            try {
+                SimpleAttributeSet keyWord = new SimpleAttributeSet();
+                StyleConstants.setForeground(keyWord, STATUS_MESSAGE_COLOR);
+                doc.insertString(doc.getLength(), message + "\n", keyWord);
+            } catch (BadLocationException e) {
+                e.printStackTrace();
+            }
+        });
+    }
 
-	/**
-	 * Clears the text from the console output.
-	 */
-	public void clearConsole() {
-		SwingUtilities.invokeLater(() -> textPaneConsoleOutput.setText(""));
-	}
+    /**
+     * Clears the text from the console output.
+     */
+    public void clearConsole() {
+        SwingUtilities.invokeLater(() -> textPaneConsoleOutput.setText(""));
+    }
 
-	/**
-	 * An OutputStream that writes to a JTextPane.
-	 */
-	private class TextPaneOutputStream extends OutputStream {
+    public void appendLine(String line) {
+        textPaneConsoleOutput.setText(textPaneConsoleOutput.getText() + newline + line);
+    }
+
+    /**
+     * An OutputStream that writes to a JTextPane.
+     */
+    private class TextPaneOutputStream extends OutputStream {
 //		private final JTextPane textPane;
 
-		/**
-		 * Constructs a new TextPaneOutputStream that writes to the given JTextPane.
-		 * 
-		 * @param textPane The JTextPane to write to
-		 */
-		public TextPaneOutputStream(JTextPane textPane) {
+        /**
+         * Constructs a new TextPaneOutputStream that writes to the given JTextPane.
+         *
+         * @param textPane The JTextPane to write to
+         */
+        public TextPaneOutputStream(JTextPane textPane) {
 //			this.textPane = textPane;
-		}
+        }
 
-		@Override
-		/**
-		 * Writes the specified byte to the text pane console output.
-		 * 
-		 * @param b The byte to be written
-		 */
-		public void write(int b) {
-			SwingUtilities.invokeLater(() -> {
-				try {
-					SimpleAttributeSet attributes = new SimpleAttributeSet();
-					StyleConstants.setForeground(attributes, REGULAR_MESSAGE_COLOR);
-					doc.insertString(doc.getLength(), String.valueOf((char) b), attributes);
-				} catch (BadLocationException e) {
-					e.printStackTrace();
-				}
-			});
-		}
-	}
-
-	/**
-	 * Test method
-	 */
-	public static void main(String[] args) {
-		SwingUtilities.invokeLater(() -> {
-			JFrame frame = new JFrame("ConsolePanel Test");
-			ConsolePanel consolePanel = new ConsolePanel(true);
-
-			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			frame.setLayout(new BorderLayout());
-			frame.add(consolePanel, BorderLayout.CENTER);
-			frame.setSize(600, 400);
-			frame.setVisible(true);
-
-			// Example usage of postStatusMessage
-			consolePanel.postStatusMessage("Algorithm is running...");
-			System.out.println("test");
-			consolePanel.postStatusMessage("Algorithm stopped.");
-
-			System.out.println("test");
-		});
-	}
-
-	public void appendLine(String line) {
-		textPaneConsoleOutput.setText(textPaneConsoleOutput.getText() + newline + line);
-	}
+        @Override
+        /**
+         * Writes the specified byte to the text pane console output.
+         *
+         * @param b The byte to be written
+         */
+        public void write(int b) {
+            SwingUtilities.invokeLater(() -> {
+                try {
+                    SimpleAttributeSet attributes = new SimpleAttributeSet();
+                    StyleConstants.setForeground(attributes, REGULAR_MESSAGE_COLOR);
+                    doc.insertString(doc.getLength(), String.valueOf((char) b), attributes);
+                } catch (BadLocationException e) {
+                    e.printStackTrace();
+                }
+            });
+        }
+    }
 
 //	public void appendLine(String line) {
 //		textPaneConsoleOutput.prin

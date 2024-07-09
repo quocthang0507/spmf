@@ -43,344 +43,341 @@ import ca.pfv.spmf.gui.MainWindow;
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
+
 /**
  * JTree that displays the algorithms offered in SPMF
- * 
+ *
  * @author Philippe Fournier-Viger
  */
 public class AlgorithmExplorer extends JFrame {
-	/** Serial UID */
-	private static final long serialVersionUID = 6208435839510050052L;
+    /**
+     * Serial UID
+     */
+    private static final long serialVersionUID = 6208435839510050052L;
+    DefaultListModel<String> listInputModel = new DefaultListModel<String>();
+    DefaultListModel<String> listOutputModel = new DefaultListModel<String>();
+    DefaultTableModel listParametersModel;
+    JButton buttonRemoveHighlight;
+    JButton buttonAddHighlightWithoutTheParams;
+    JButton buttonAddHighlightWithParams;
+    private JTextField fieldName;
+    private JTextField fieldAuthors;
+    private JTextField fieldCategory;
+    private JTextField fieldType;
+    private JTextField fieldDoc;
+    private JButton buttonWeb;
+    private JTable tableParameters;
+    private AlgorithmJTree treePanel;
 
-	private JTextField fieldName;
-	private JTextField fieldAuthors;
-	private JTextField fieldCategory;
-	private JTextField fieldType;
-	private JTextField fieldDoc;
+    public AlgorithmExplorer(boolean runAsStandalone) {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(MainWindow.class.getResource("/ca/pfv/spmf/gui/spmf.png")));
 
-	DefaultListModel<String> listInputModel = new DefaultListModel<String>();
-	DefaultListModel<String> listOutputModel = new DefaultListModel<String>();
-	DefaultTableModel listParametersModel;
+        treePanel = new AlgorithmJTree(true, true, true);
+        getContentPane().setLayout(null);
+        setResizable(false);
 
-	private JButton buttonWeb;
-	private JTable tableParameters;
+        JScrollPane scroll = new JScrollPane(treePanel);
+        getContentPane().add(scroll);
 
-	private AlgorithmJTree treePanel;
+        scroll.setBounds(20, 45, 276, 700);
 
-	JButton buttonRemoveHighlight;
+        JLabel lblNewLabel;
+        int algorithmCount = 0;
+        try {
+            algorithmCount = AlgorithmManager.getInstance().getListOfAlgorithmsAsString(true, true, true).size();
+        } catch (Exception e2) {
+            e2.printStackTrace();
+        }
+        lblNewLabel = new JLabel("Choose an algorithm (" + algorithmCount + "):");
 
-	JButton buttonAddHighlightWithoutTheParams;
-	JButton buttonAddHighlightWithParams;
+        lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
+        lblNewLabel.setBounds(10, 20, 278, 14);
+        getContentPane().add(lblNewLabel);
 
-	public AlgorithmExplorer(boolean runAsStandalone) {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(MainWindow.class.getResource("/ca/pfv/spmf/gui/spmf.png")));
+        JLabel labelName = new JLabel("Name");
+        labelName.setBounds(307, 70, 46, 14);
+        getContentPane().add(labelName);
 
-		treePanel = new AlgorithmJTree(true, true, true);
-		getContentPane().setLayout(null);
-		setResizable(false);
+        fieldName = new JTextField();
+        fieldName.setHorizontalAlignment(SwingConstants.LEFT);
+        fieldName.setEditable(false);
+        fieldName.setBounds(395, 67, 380, 20);
+        getContentPane().add(fieldName);
+        fieldName.setColumns(10);
 
-		JScrollPane scroll = new JScrollPane(treePanel);
-		getContentPane().add(scroll);
+        JLabel labelAuthor = new JLabel("Coded by:");
+        labelAuthor.setBounds(307, 151, 75, 14);
+        getContentPane().add(labelAuthor);
 
-		scroll.setBounds(20, 45, 276, 700);
+        fieldAuthors = new JTextField();
+        fieldAuthors.setHorizontalAlignment(SwingConstants.LEFT);
+        fieldAuthors.setEditable(false);
+        fieldAuthors.setColumns(10);
+        fieldAuthors.setBounds(395, 148, 380, 20);
+        getContentPane().add(fieldAuthors);
 
-		JLabel lblNewLabel;
-		int algorithmCount = 0;
-		try {
-			algorithmCount = AlgorithmManager.getInstance().getListOfAlgorithmsAsString(true, true, true).size();
-		} catch (Exception e2) {
-			e2.printStackTrace();
-		}
-		lblNewLabel = new JLabel("Choose an algorithm (" + algorithmCount + "):");
+        JLabel labelCategory = new JLabel("Category:");
+        labelCategory.setBounds(307, 101, 58, 14);
+        getContentPane().add(labelCategory);
 
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblNewLabel.setBounds(10, 20, 278, 14);
-		getContentPane().add(lblNewLabel);
+        fieldCategory = new JTextField();
+        fieldCategory.setHorizontalAlignment(SwingConstants.LEFT);
+        fieldCategory.setEditable(false);
+        fieldCategory.setColumns(10);
+        fieldCategory.setBounds(395, 95, 380, 20);
+        getContentPane().add(fieldCategory);
 
-		JLabel labelName = new JLabel("Name");
-		labelName.setBounds(307, 70, 46, 14);
-		getContentPane().add(labelName);
+        JLabel labelType = new JLabel("Type:");
+        labelType.setBounds(307, 126, 58, 14);
+        getContentPane().add(labelType);
 
-		fieldName = new JTextField();
-		fieldName.setHorizontalAlignment(SwingConstants.LEFT);
-		fieldName.setEditable(false);
-		fieldName.setBounds(395, 67, 380, 20);
-		getContentPane().add(fieldName);
-		fieldName.setColumns(10);
+        fieldType = new JTextField();
+        fieldType.setHorizontalAlignment(SwingConstants.LEFT);
+        fieldType.setEditable(false);
+        fieldType.setColumns(10);
+        fieldType.setBounds(395, 120, 380, 20);
+        getContentPane().add(fieldType);
 
-		JLabel labelAuthor = new JLabel("Coded by:");
-		labelAuthor.setBounds(307, 151, 75, 14);
-		getContentPane().add(labelAuthor);
+        JLabel lblNewLabel_1 = new JLabel("Algorithm information");
+        lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+        lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 12));
+        lblNewLabel_1.setBounds(306, 45, 469, 14);
+        getContentPane().add(lblNewLabel_1);
 
-		fieldAuthors = new JTextField();
-		fieldAuthors.setHorizontalAlignment(SwingConstants.LEFT);
-		fieldAuthors.setEditable(false);
-		fieldAuthors.setColumns(10);
-		fieldAuthors.setBounds(395, 148, 380, 20);
-		getContentPane().add(fieldAuthors);
+        JLabel labelDoc = new JLabel("Example:");
+        labelDoc.setBounds(307, 179, 100, 14);
+        getContentPane().add(labelDoc);
 
-		JLabel labelCategory = new JLabel("Category:");
-		labelCategory.setBounds(307, 101, 58, 14);
-		getContentPane().add(labelCategory);
+        fieldDoc = new JTextField();
+        fieldDoc.setHorizontalAlignment(SwingConstants.LEFT);
+        fieldDoc.setEditable(false);
+        fieldDoc.setColumns(10);
+        fieldDoc.setBounds(395, 176, 300, 20);
+        getContentPane().add(fieldDoc);
 
-		fieldCategory = new JTextField();
-		fieldCategory.setHorizontalAlignment(SwingConstants.LEFT);
-		fieldCategory.setEditable(false);
-		fieldCategory.setColumns(10);
-		fieldCategory.setBounds(395, 95, 380, 20);
-		getContentPane().add(fieldCategory);
+        buttonWeb = new JButton("Open");
+        buttonWeb.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                openWebPage(fieldDoc.getText());
+            }
+        });
+        buttonWeb.setBounds(702, 175, 73, 23);
+        getContentPane().add(buttonWeb);
 
-		JLabel labelType = new JLabel("Type:");
-		labelType.setBounds(307, 126, 58, 14);
-		getContentPane().add(labelType);
+        JLabel labelInput = new JLabel("Input type:");
+        labelInput.setBounds(307, 216, 100, 14);
+        getContentPane().add(labelInput);
 
-		fieldType = new JTextField();
-		fieldType.setHorizontalAlignment(SwingConstants.LEFT);
-		fieldType.setEditable(false);
-		fieldType.setColumns(10);
-		fieldType.setBounds(395, 120, 380, 20);
-		getContentPane().add(fieldType);
+        JLabel labelOutput = new JLabel("Output type:");
+        labelOutput.setBounds(307, 330, 100, 14);
+        getContentPane().add(labelOutput);
 
-		JLabel lblNewLabel_1 = new JLabel("Algorithm information");
-		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblNewLabel_1.setBounds(306, 45, 469, 14);
-		getContentPane().add(lblNewLabel_1);
+        JScrollPane scrollPane = new JScrollPane();
+        scrollPane.setBounds(395, 214, 380, 95);
+        getContentPane().add(scrollPane);
 
-		JLabel labelDoc = new JLabel("Example:");
-		labelDoc.setBounds(307, 179, 100, 14);
-		getContentPane().add(labelDoc);
+        JList<String> listInput = new JList<String>(listInputModel);
+        listInput.setBackground(getContentPane().getBackground());
+        scrollPane.setViewportView(listInput);
 
-		fieldDoc = new JTextField();
-		fieldDoc.setHorizontalAlignment(SwingConstants.LEFT);
-		fieldDoc.setEditable(false);
-		fieldDoc.setColumns(10);
-		fieldDoc.setBounds(395, 176, 300, 20);
-		getContentPane().add(fieldDoc);
+        JScrollPane scrollPane_1 = new JScrollPane();
+        scrollPane_1.setBounds(395, 328, 380, 95);
+        getContentPane().add(scrollPane_1);
 
-		buttonWeb = new JButton("Open");
-		buttonWeb.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				openWebPage(fieldDoc.getText());
-			}
-		});
-		buttonWeb.setBounds(702, 175, 73, 23);
-		getContentPane().add(buttonWeb);
+        JList<String> listOutput = new JList<String>(listOutputModel);
+        listOutput.setBackground(getContentPane().getBackground());
+        scrollPane_1.setViewportView(listOutput);
 
-		JLabel labelInput = new JLabel("Input type:");
-		labelInput.setBounds(307, 216, 100, 14);
-		getContentPane().add(labelInput);
+        JLabel labelParameters = new JLabel("Parameters:");
+        labelParameters.setBounds(307, 435, 100, 14);
+        getContentPane().add(labelParameters);
 
-		JLabel labelOutput = new JLabel("Output type:");
-		labelOutput.setBounds(307, 330, 100, 14);
-		getContentPane().add(labelOutput);
+        JScrollPane scrollPane_1_1 = new JScrollPane();
+        scrollPane_1_1.setBounds(395, 434, 380, 194);
+        getContentPane().add(scrollPane_1_1);
 
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(395, 214, 380, 95);
-		getContentPane().add(scrollPane);
+        tableParameters = new JTable();
+        listParametersModel = new DefaultTableModel(new Object[][]{}, new String[]{"Name", "Type", "Optional?"});
+        tableParameters.setModel(listParametersModel);
 
-		JList<String> listInput = new JList<String>(listInputModel);
-		listInput.setBackground(getContentPane().getBackground());
-		scrollPane.setViewportView(listInput);
+        scrollPane_1_1.setViewportView(tableParameters);
 
-		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(395, 328, 380, 95);
-		getContentPane().add(scrollPane_1);
+        buttonAddHighlightWithoutTheParams = new JButton("Highlight algorithms with same in/out");
+        buttonAddHighlightWithoutTheParams.setEnabled(false);
+        buttonAddHighlightWithoutTheParams.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                addHighlightWithoutParameters();
+            }
+        });
+        buttonAddHighlightWithoutTheParams.setBounds(364, 639, 411, 23);
+        getContentPane().add(buttonAddHighlightWithoutTheParams);
 
-		JList<String> listOutput = new JList<String>(listOutputModel);
-		listOutput.setBackground(getContentPane().getBackground());
-		scrollPane_1.setViewportView(listOutput);
+        buttonRemoveHighlight = new JButton("Remove highlight");
+        buttonRemoveHighlight.setEnabled(false);
+        buttonRemoveHighlight.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                removeHighlight();
+            }
+        });
+        buttonRemoveHighlight.setBounds(365, 696, 410, 23);
+        getContentPane().add(buttonRemoveHighlight);
 
-		JLabel labelParameters = new JLabel("Parameters:");
-		labelParameters.setBounds(307, 435, 100, 14);
-		getContentPane().add(labelParameters);
+        buttonAddHighlightWithParams = new JButton("Highlight algorithms with same in/out/mandatory parameters");
+        buttonAddHighlightWithParams.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                addHighlightWithParameters();
+            }
+        });
+        buttonAddHighlightWithParams.setEnabled(false);
+        buttonAddHighlightWithParams.setBounds(364, 668, 411, 23);
+        getContentPane().add(buttonAddHighlightWithParams);
+        this.setSize(800, 800);
+        if (runAsStandalone) {
+            this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        }
+        this.setTitle("Algorithm Explorer");
+        // Set the window in the center of the screen
+        this.setLocationRelativeTo(null);
+        this.setVisible(true);
 
-		JScrollPane scrollPane_1_1 = new JScrollPane();
-		scrollPane_1_1.setBounds(395, 434, 380, 194);
-		getContentPane().add(scrollPane_1_1);
+        // When the user select something in the tree, we need to load the data about
+        // the algorithm
+        treePanel.getSelectionModel().addTreeSelectionListener(new TreeSelectionListener() {
+            @Override
+            public void valueChanged(TreeSelectionEvent e) {
+                DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) treePanel.getLastSelectedPathComponent();
 
-		tableParameters = new JTable();
-		listParametersModel = new DefaultTableModel(new Object[][] {}, new String[] { "Name", "Type", "Optional?" });
-		tableParameters.setModel(listParametersModel);
+                boolean selectedSomething = false;
 
-		scrollPane_1_1.setViewportView(tableParameters);
-
-		buttonAddHighlightWithoutTheParams = new JButton("Highlight algorithms with same in/out");
-		buttonAddHighlightWithoutTheParams.setEnabled(false);
-		buttonAddHighlightWithoutTheParams.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				addHighlightWithoutParameters();
-			}
-		});
-		buttonAddHighlightWithoutTheParams.setBounds(364, 639, 411, 23);
-		getContentPane().add(buttonAddHighlightWithoutTheParams);
-
-		buttonRemoveHighlight = new JButton("Remove highlight");
-		buttonRemoveHighlight.setEnabled(false);
-		buttonRemoveHighlight.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				removeHighlight();
-			}
-		});
-		buttonRemoveHighlight.setBounds(365, 696, 410, 23);
-		getContentPane().add(buttonRemoveHighlight);
-
-		buttonAddHighlightWithParams = new JButton("Highlight algorithms with same in/out/mandatory parameters");
-		buttonAddHighlightWithParams.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				addHighlightWithParameters();
-			}
-		});
-		buttonAddHighlightWithParams.setEnabled(false);
-		buttonAddHighlightWithParams.setBounds(364, 668, 411, 23);
-		getContentPane().add(buttonAddHighlightWithParams);
-		this.setSize(800, 800);
-		if (runAsStandalone) {
-			this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		}
-		this.setTitle("Algorithm Explorer");
-		// Set the window in the center of the screen
-		this.setLocationRelativeTo(null);
-		this.setVisible(true);
-
-		// When the user select something in the tree, we need to load the data about
-		// the algorithm
-		treePanel.getSelectionModel().addTreeSelectionListener(new TreeSelectionListener() {
-			@Override
-			public void valueChanged(TreeSelectionEvent e) {
-				DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) treePanel.getLastSelectedPathComponent();
-
-				boolean selectedSomething = false;
-
-				if (selectedNode != null) {
-					String algoName = selectedNode.getUserObject().toString();
+                if (selectedNode != null) {
+                    String algoName = selectedNode.getUserObject().toString();
 //	                selectedLabel.setText(selectedNode.getUserObject().toString());
 
-					// Get the algorithm manager
-					AlgorithmManager manager = null;
-					try {
-						manager = AlgorithmManager.getInstance();
-					} catch (Exception e1) {
-						e1.printStackTrace();
-					}
-					DescriptionOfAlgorithm description = manager.getDescriptionOfAlgorithm(algoName);
+                    // Get the algorithm manager
+                    AlgorithmManager manager = null;
+                    try {
+                        manager = AlgorithmManager.getInstance();
+                    } catch (Exception e1) {
+                        e1.printStackTrace();
+                    }
+                    DescriptionOfAlgorithm description = manager.getDescriptionOfAlgorithm(algoName);
 
-					if (description != null) {
-						// Name
-						fieldName.setText(algoName);
-						fieldAuthors.setText(description.getImplementationAuthorNames());
-						fieldCategory.setText(description.getAlgorithmCategory());
-						fieldType.setText(description.getAlgorithmType().toString());
-						fieldDoc.setText(description.getURLOfDocumentation());
-						buttonWeb.setEnabled(true);
-						selectedSomething = true;
+                    if (description != null) {
+                        // Name
+                        fieldName.setText(algoName);
+                        fieldAuthors.setText(description.getImplementationAuthorNames());
+                        fieldCategory.setText(description.getAlgorithmCategory());
+                        fieldType.setText(description.getAlgorithmType().toString());
+                        fieldDoc.setText(description.getURLOfDocumentation());
+                        buttonWeb.setEnabled(true);
+                        selectedSomething = true;
 
-						listInputModel.clear();
-						String[] inputTypes = description.getInputFileTypes();
-						if (inputTypes != null) {
-							if (inputTypes != null) {
-								for (String type : inputTypes) {
-									listInputModel.addElement(type);
-								}
-							}
-							listInput.setBackground(Color.WHITE);
-							listInput.setForeground(Color.BLACK);
-						} else {
-							listInput.setBackground(getContentPane().getBackground());
-						}
+                        listInputModel.clear();
+                        String[] inputTypes = description.getInputFileTypes();
+                        if (inputTypes != null) {
+                            if (inputTypes != null) {
+                                for (String type : inputTypes) {
+                                    listInputModel.addElement(type);
+                                }
+                            }
+                            listInput.setBackground(Color.WHITE);
+                            listInput.setForeground(Color.BLACK);
+                        } else {
+                            listInput.setBackground(getContentPane().getBackground());
+                        }
 
-						listOutputModel.clear();
-						String[] outputTypes = description.getOutputFileTypes();
-						if (inputTypes != null) {
-							if (outputTypes != null) {
-								for (String type : outputTypes) {
-									listOutputModel.addElement(type);
-								}
-							}
-							listOutput.setBackground(Color.WHITE);
-							listInput.setForeground(Color.BLACK);
-						} else {
-							listOutput.setBackground(getContentPane().getBackground());
-						}
+                        listOutputModel.clear();
+                        String[] outputTypes = description.getOutputFileTypes();
+                        if (inputTypes != null) {
+                            if (outputTypes != null) {
+                                for (String type : outputTypes) {
+                                    listOutputModel.addElement(type);
+                                }
+                            }
+                            listOutput.setBackground(Color.WHITE);
+                            listInput.setForeground(Color.BLACK);
+                        } else {
+                            listOutput.setBackground(getContentPane().getBackground());
+                        }
 
 //						description.getNumberOfMandatoryParameters();
 //						description.getParametersDescription();
 //						listParametersModel.);
-						listParametersModel.setRowCount(0);
-						DescriptionOfParameter[] parameters = description.getParametersDescription();
-						if (parameters != null) {
-							for (DescriptionOfParameter parameter : parameters) {
-								listParametersModel.addRow(new String[] { parameter.getName(),
-										parameter.getParameterType().getSimpleName(),
-										Boolean.toString(parameter.isOptional()) });
-							}
-						}
+                        listParametersModel.setRowCount(0);
+                        DescriptionOfParameter[] parameters = description.getParametersDescription();
+                        if (parameters != null) {
+                            for (DescriptionOfParameter parameter : parameters) {
+                                listParametersModel.addRow(new String[]{parameter.getName(),
+                                        parameter.getParameterType().getSimpleName(),
+                                        Boolean.toString(parameter.isOptional())});
+                            }
+                        }
 
-					}
+                    }
 
-					if (treePanel.isActivatedHighlight() == false) {
-						buttonAddHighlightWithoutTheParams.setEnabled(true);
-						buttonAddHighlightWithParams.setEnabled(true);
-						buttonRemoveHighlight.setEnabled(false);
-					}
-				}
+                    if (treePanel.isActivatedHighlight() == false) {
+                        buttonAddHighlightWithoutTheParams.setEnabled(true);
+                        buttonAddHighlightWithParams.setEnabled(true);
+                        buttonRemoveHighlight.setEnabled(false);
+                    }
+                }
 
-				if (selectedSomething == false) {
-					// Name
-					fieldName.setText("");
-					fieldAuthors.setText("");
-					fieldCategory.setText("");
-					fieldType.setText("");
-					fieldDoc.setText("");
-					buttonWeb.setEnabled(false);
+                if (selectedSomething == false) {
+                    // Name
+                    fieldName.setText("");
+                    fieldAuthors.setText("");
+                    fieldCategory.setText("");
+                    fieldType.setText("");
+                    fieldDoc.setText("");
+                    buttonWeb.setEnabled(false);
 
-					listInputModel.clear();
-					listParametersModel.setRowCount(0);
-					listOutputModel.clear();
-					buttonAddHighlightWithoutTheParams.setEnabled(false);
-					buttonAddHighlightWithParams.setEnabled(false);
-					buttonRemoveHighlight.setEnabled(true);
+                    listInputModel.clear();
+                    listParametersModel.setRowCount(0);
+                    listOutputModel.clear();
+                    buttonAddHighlightWithoutTheParams.setEnabled(false);
+                    buttonAddHighlightWithParams.setEnabled(false);
+                    buttonRemoveHighlight.setEnabled(true);
 
 //					treePanel.setActivatedHighlight(false);
-				}
-			}
+                }
+            }
 
-		});
-	}
+        });
+    }
 
-	protected void removeHighlight() {
-		// TODO Auto-generated method stub
-		treePanel.setActivatedHighlight(false);
-		buttonAddHighlightWithoutTheParams.setEnabled(true);
-		buttonAddHighlightWithParams.setEnabled(true);
-		buttonRemoveHighlight.setEnabled(false);
+    protected void removeHighlight() {
+        // TODO Auto-generated method stub
+        treePanel.setActivatedHighlight(false);
+        buttonAddHighlightWithoutTheParams.setEnabled(true);
+        buttonAddHighlightWithParams.setEnabled(true);
+        buttonRemoveHighlight.setEnabled(false);
 
-	}
+    }
 
-	protected void addHighlightWithParameters() {
-		treePanel.highlightSimilarAlgorithmsToSelection(true);
-		buttonAddHighlightWithoutTheParams.setEnabled(false);
-		buttonAddHighlightWithParams.setEnabled(false);
-		buttonRemoveHighlight.setEnabled(true);
-	}
+    protected void addHighlightWithParameters() {
+        treePanel.highlightSimilarAlgorithmsToSelection(true);
+        buttonAddHighlightWithoutTheParams.setEnabled(false);
+        buttonAddHighlightWithParams.setEnabled(false);
+        buttonRemoveHighlight.setEnabled(true);
+    }
 
-	protected void addHighlightWithoutParameters() {
-		treePanel.highlightSimilarAlgorithmsToSelection(false);
-		buttonAddHighlightWithoutTheParams.setEnabled(false);
-		buttonAddHighlightWithParams.setEnabled(false);
-		buttonRemoveHighlight.setEnabled(true);
-	}
+    protected void addHighlightWithoutParameters() {
+        treePanel.highlightSimilarAlgorithmsToSelection(false);
+        buttonAddHighlightWithoutTheParams.setEnabled(false);
+        buttonAddHighlightWithParams.setEnabled(false);
+        buttonRemoveHighlight.setEnabled(true);
+    }
 
-	/**
-	 * This method open a URL in the default web browser.
-	 *
-	 * @param url : URL of the webpage
-	 */
-	private void openWebPage(String url) {
-		try {
-			java.awt.Desktop.getDesktop().browse(java.net.URI.create(url));
-		} catch (java.io.IOException e) {
-			System.out.println(e.getMessage());
-		}
-	} // openWebPage("http://www.philippe-fournier-viger.com/spmf/");
+    /**
+     * This method open a URL in the default web browser.
+     *
+     * @param url : URL of the webpage
+     */
+    private void openWebPage(String url) {
+        try {
+            java.awt.Desktop.getDesktop().browse(java.net.URI.create(url));
+        } catch (java.io.IOException e) {
+            System.out.println(e.getMessage());
+        }
+    } // openWebPage("http://www.philippe-fournier-viger.com/spmf/");
 }

@@ -17,62 +17,69 @@ import java.util.List;
  *
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  * Copyright Peng Yang  2019
  */
+
 /**
  * This class represents some time intervals.
- * 
+ *
  * @author Peng yang
  * @see AlgoLPPGrowth
  */
 public class TimeIntervals {
-	/** List of time intervals */
-	List<int[]> intervals = new ArrayList<>();
+    /**
+     * List of time intervals
+     */
+    List<int[]> intervals = new ArrayList<>();
 
-	/** start point of the current interval */
-	int left = -1;
+    /**
+     * start point of the current interval
+     */
+    int left = -1;
 
-	/** constructor */
-	TimeIntervals() {
-	}
+    /**
+     * constructor
+     */
+    TimeIntervals() {
+    }
 
-	/**
-	 * Add a time interval
-	 * 
-	 * @param right the end point of the current interval
-	 */
-	void addTimeInterval(int right) {
-		intervals.add(new int[] { left, right });
+    /**
+     * Add a time interval
+     *
+     * @param right the end point of the current interval
+     */
+    void addTimeInterval(int right) {
+        intervals.add(new int[]{left, right});
 //        totalDuration += (right - left );
-	}
+    }
 
-	/**
-	 * Check whether a timestamp is in the time-intervals
-	 * 
-	 * @param timestamp the timestamps
-	 * @return true if yes, otherwise false
-	 */
-	boolean isInside(int timestamp) {
-		for (int[] timeInterval : intervals) {
-			if (timeInterval[0] <= timestamp && timeInterval[1] >= timestamp) {
-				return true;
-			}
-		}
-		return false;
-	}
+    /**
+     * Check whether a timestamp is in the time-intervals
+     *
+     * @param timestamp the timestamps
+     * @return true if yes, otherwise false
+     */
+    boolean isInside(int timestamp) {
+        for (int[] timeInterval : intervals) {
+            if (timeInterval[0] <= timestamp && timeInterval[1] >= timestamp) {
+                return true;
+            }
+        }
+        return false;
+    }
 
-	/**
-	 * get total duration of this time-interval
-	 * 
-	 * @return the total duration
-	 */
-	int getTotalDuration() {
-		int totalDuration = 0;
-		for (int[] timeInterval : intervals) {
-			totalDuration += (timeInterval[1] - timeInterval[0]);
-		}
-		return totalDuration;
-	}
+    /**
+     * get total duration of this time-interval
+     *
+     * @return the total duration
+     */
+    int getTotalDuration() {
+        int totalDuration = 0;
+        for (int[] timeInterval : intervals) {
+            totalDuration += (timeInterval[1] - timeInterval[0]);
+        }
+        return totalDuration;
+    }
 
 }

@@ -22,25 +22,27 @@ import ca.pfv.spmf.algorithmmanager.DescriptionOfAlgorithm;
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
+
 /**
  * Class for testing the ParameterSelectionPanel
- * 
+ *
  * @author Philippe Fournier-Viger, 2024.
  */
 public class MainTestParameterSelectionPanel {
-	/**
-	 * Method for testing
-	 * @param args arguments
-	 * @throws Exception if some exception happens
-	 */
-	public static void main(String[] args) throws Exception {
-		JFrame frame = new JFrame("Parameter Selection Panel");
-		DescriptionOfAlgorithm description = AlgorithmManager.getInstance().getDescriptionOfAlgorithm("CM-SPAM");
-		ParameterSelectionPanel panel = new ParameterSelectionPanel(description);
-		frame.add(panel);
-		frame.pack();
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setLocationRelativeTo(null);
-		frame.setVisible(true);
-	}
+    /**
+     * Method for testing
+     *
+     * @param args arguments
+     * @throws Exception if some exception happens
+     */
+    public static void main(String[] args) throws Exception {
+        JFrame frame = new JFrame("Parameter Selection Panel");
+        DescriptionOfAlgorithm description = AlgorithmManager.getInstance().getDescriptionOfAlgorithm("CM-SPAM");
+        ParameterSelectionPanel panel = new ParameterSelectionPanel(description);
+        frame.add(panel);
+        frame.pack();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+    }
 }

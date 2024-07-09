@@ -8,6 +8,7 @@ import ca.pfv.spmf.algorithms.episodes.maxfem.AlgoMAXFEM;
 
 /**
  * This file shows how to run the MAXFEM algorithm on an input file.
+ *
  * @author Philippe Fournier-Viger
  */
 public class MainTestAFEM_Simple {
@@ -28,13 +29,13 @@ public class MainTestAFEM_Simple {
 
         // self-growth = flase only for online_minute.txt , others are true
         AlgoAFEM algo = new AlgoAFEM();
-        algo.runAlgorithm(inputFile, outputFile,minSup,maxWindow,selfIncrement);
+        algo.runAlgorithm(inputFile, outputFile, minSup, maxWindow, selfIncrement);
         algo.printStats();
-        
+
     }
 
     public static String fileToPath(String filename) throws UnsupportedEncodingException {
         URL url = MainTestAFEM_Simple.class.getResource(filename);
-        return java.net.URLDecoder.decode(url.getPath(),"UTF-8");
+        return java.net.URLDecoder.decode(url.getPath(), "UTF-8");
     }
 }

@@ -18,23 +18,24 @@ package ca.pfv.spmf.datastructures.collections.comparators;
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
+
 /**
  * This class implements a simple comparators for float values.
- * 
+ *
  * @author Philippe Fournier-Viger
  * @see ListFloat
  */
 public class ComparatorFloat {
 
-	/**
-	 * Compare two float values and return a value >0, =0 or <0 if the first float
-	 * is bigger, equal or smaller than the second float
-	 * 
-	 * @param num1 the first float
-	 * @param num2 the second float
-	 * @return the comparison value
-	 */
-	public float compare(float num1, float num2) {
-		return num1 - num2;
-	}
+    /**
+     * Compare two float values and return a value >0, =0 or <0 if the first float
+     * is bigger, equal or smaller than the second float
+     *
+     * @param num1 the first float
+     * @param num2 the second float
+     * @return the comparison value
+     */
+    public float compare(float num1, float num2) {
+        return num1 - num2;
+    }
 }

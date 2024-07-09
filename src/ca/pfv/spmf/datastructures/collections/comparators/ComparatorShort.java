@@ -18,23 +18,24 @@ package ca.pfv.spmf.datastructures.collections.comparators;
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
+
 /**
  * This class implements a simple comparators for short values.
- * 
+ *
  * @author Philippe Fournier-Viger
  * @see ListShort
  */
 public class ComparatorShort {
 
-	/**
-	 * Compare two short values and return a value >0, =0 or <0 if the first short
-	 * is bigger, equal or smaller than the second short
-	 * 
-	 * @param num1 the first short
-	 * @param num2 the second short
-	 * @return the comparison value
-	 */
-	public short compare(short num1, short num2) {
-		return (short) (num1 - num2);
-	}
+    /**
+     * Compare two short values and return a value >0, =0 or <0 if the first short
+     * is bigger, equal or smaller than the second short
+     *
+     * @param num1 the first short
+     * @param num2 the second short
+     * @return the comparison value
+     */
+    public short compare(short num1, short num2) {
+        return (short) (num1 - num2);
+    }
 }

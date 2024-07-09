@@ -11,17 +11,17 @@ import ca.pfv.spmf.algorithms.frequentpatterns.emsfui_d.AlgoEMSFUI_D;
  */
 public class MainTestEMSFUI_D {
 
-	public static void main(String [] arg) throws IOException{		
-		String input = fileToPath("contextHUIM.txt");
-		String output = ".output.txt";
-		// Applying the  algorithm
-		AlgoEMSFUI_D EMSFUI_D = new AlgoEMSFUI_D();
-		EMSFUI_D.runAlgorithm(input, output);
-		EMSFUI_D.printStats();
-	}
+    public static void main(String[] arg) throws IOException {
+        String input = fileToPath("contextHUIM.txt");
+        String output = ".output.txt";
+        // Applying the  algorithm
+        AlgoEMSFUI_D EMSFUI_D = new AlgoEMSFUI_D();
+        EMSFUI_D.runAlgorithm(input, output);
+        EMSFUI_D.printStats();
+    }
 
-	public static String fileToPath(String filename) throws UnsupportedEncodingException{
-		URL url = MainTestEMSFUI_D.class.getResource(filename);
-		 return java.net.URLDecoder.decode(url.getPath(),"UTF-8");
-	}
+    public static String fileToPath(String filename) throws UnsupportedEncodingException {
+        URL url = MainTestEMSFUI_D.class.getResource(filename);
+        return java.net.URLDecoder.decode(url.getPath(), "UTF-8");
+    }
 }

@@ -26,27 +26,27 @@ import ca.pfv.spmf.algorithms.sequentialpatterns.clasp_AGP.tries.TrieNode;
  * Inspired in SPMF. Implementation of a sequence database. Each sequence should
  * have a unique id. See examples in /test/ directory for the format of input
  * files.
- *
+ * <p>
  * Copyright Antonio Gomariz Peñalver 2013
- *
+ * <p>
  * This file is part of the SPMF DATA MINING SOFTWARE
  * (http://www.philippe-fournier-viger.com/spmf).
- *
+ * <p>
  * SPMF is free software: you can redistribute it and/or modify it under the
  * terms of the GNU General Public License as published by the Free Software
  * Foundation, either version 3 of the License, or (at your option) any later
  * version.
- *
+ * <p>
  * SPMF is distributed in the hope that it will be useful, but WITHOUT ANY
  * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
  * A PARTICULAR PURPOSE. See the GNU General Public License for more details.
- *
+ * <p>
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  *
  * @author agomariz
  */
-public class SequenceDatabase{
+public class SequenceDatabase {
 
     private AbstractionCreator abstractionCreator;
     private IdListCreator idListCreator;
@@ -59,7 +59,7 @@ public class SequenceDatabase{
      */
     private Map<Integer, Integer> sequencesLengths = new HashMap<Integer, Integer>();
     /**
-     * Map where, for each sequence, we have a list of integers corresponding 
+     * Map where, for each sequence, we have a list of integers corresponding
      * to all the sizes of all the itemsets that the sequence has
      */
     private Map<Integer, List<Integer>> sequenceItemsetSize = new HashMap<Integer, List<Integer>>();
@@ -71,8 +71,9 @@ public class SequenceDatabase{
 
     /**
      * Standard constructor
+     *
      * @param abstractionCreator
-     * @param IdListCreator 
+     * @param IdListCreator
      */
     public SequenceDatabase(AbstractionCreator abstractionCreator, IdListCreator IdListCreator) {
         this.abstractionCreator = abstractionCreator;
@@ -82,7 +83,7 @@ public class SequenceDatabase{
     /**
      * Method that load a database from a path file given as parameter
      *
-     * @param path Path file where the database is
+     * @param path       Path file where the database is
      * @param minSupport Minimum absolute support
      * @throws IOException
      */
@@ -95,8 +96,8 @@ public class SequenceDatabase{
             //For each line
             while ((thisLine = myInput.readLine()) != null) {
                 // If the line is not a comment line
-            	if (thisLine.charAt(0) != '#' && thisLine.charAt(0) != '%'
-						&& thisLine.charAt(0) != '@') {
+                if (thisLine.charAt(0) != '#' && thisLine.charAt(0) != '%'
+                        && thisLine.charAt(0) != '@') {
                     // we add a new sequence to the sequenceDatabase
                     addSequence(thisLine.split(" "));
                 }
@@ -114,8 +115,8 @@ public class SequenceDatabase{
                     nodo.getChild().getIdList().setAppearingIn(nodo.getChild());
                 }
             }
-            
-            for(Item item: itemsToRemove){
+
+            for (Item item : itemsToRemove) {
                 frequentItems.remove(item);
             }
             //And from the original database
@@ -135,7 +136,7 @@ public class SequenceDatabase{
         return -1;
 
     }
-    
+
     /**
      * Method that adds a sequence from a array of string
      *
@@ -201,6 +202,7 @@ public class SequenceDatabase{
 
     /**
      * Get the string representation of this SequenceDatabase
+     *
      * @return the string representation
      */
     @Override
@@ -226,6 +228,7 @@ public class SequenceDatabase{
     /**
      * Get the equivalence classes associated with the frequent items
      * that we have found.
+     *
      * @return the trie
      */
     public Trie frequentItems() {
@@ -237,8 +240,9 @@ public class SequenceDatabase{
     }
 
     /**
-     * Get the map that makes the matching between items and 
+     * Get the map that makes the matching between items and
      * equivalence classes
+     *
      * @return the map
      */
     public Map<Item, TrieNode> getFrequentItems() {
@@ -247,7 +251,8 @@ public class SequenceDatabase{
 
     /**
      * It reduces the original database to just frequent items
-     * @param keySet 
+     *
+     * @param keySet
      */
     private void reduceDatabase(Set<Item> keySet) {
         for (int k = 0; k < sequences.size(); k++) {

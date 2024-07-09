@@ -24,24 +24,24 @@ import ca.pfv.spmf.algorithms.sequentialpatterns.clasp_AGP.tries.TrieNode;
  * different kind of IdList although we only makes a implementation:
  * IDListStandard_Mapkeep. However, if we make another new IdList implementing
  * the IDList interface, we can define another different.
- *
+ * <p>
  * NOTE: This implementation saves the pattern to a file as soon as they are
  * found or can keep the pattern into memory, depending on what the user choose.
- *
+ * <p>
  * Copyright Antonio Gomariz Peñalver 2013
- *
+ * <p>
  * This file is part of the SPMF DATA MINING SOFTWARE
  * (http://www.philippe-fournier-viger.com/spmf).
- *
+ * <p>
  * SPMF is free software: you can redistribute it and/or modify it under the
  * terms of the GNU General Public License as published by the Free Software
  * Foundation, either version 3 of the License, or (at your option) any later
  * version.
- *
+ * <p>
  * SPMF is distributed in the hope that it will be useful, but WITHOUT ANY
  * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
  * A PARTICULAR PURPOSE. See the GNU General Public License for more details.
- *
+ * <p>
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  *
@@ -50,6 +50,10 @@ import ca.pfv.spmf.algorithms.sequentialpatterns.clasp_AGP.tries.TrieNode;
 public class FrequentPatternEnumeration_ClaSP {
 
     public long joinCount = 0;  // PFV 2013 - to count the number of intersections
+    /**
+     * Tin inserts:
+     */
+    protected List<TrieNode> firstSequenceExtensions;
     /**
      * The abstraction creator.
      */
@@ -85,19 +89,16 @@ public class FrequentPatternEnumeration_ClaSP {
      * sequence through the postprocessing step
      */
     private boolean executePruningMethods;
-/**
- * Tin inserts:
- */
-protected List<TrieNode>  firstSequenceExtensions;
+
     /**
      * Standard constructor
      *
      * @param abstractionCreator the abstraction creator
-     * @param minSupAbsolute The absolute minimum support
-     * @param saver The saver for correctly save the results where the user
-     * wants
+     * @param minSupAbsolute     The absolute minimum support
+     * @param saver              The saver for correctly save the results where the user
+     *                           wants
      * @param findClosedPatterns flag to indicate if we are interesting in only
-     * finding the closed sequences
+     *                           finding the closed sequences
      */
     public FrequentPatternEnumeration_ClaSP(AbstractionCreator abstractionCreator, double minSupAbsolute, Saver saver, boolean findClosedPatterns, boolean executePruningMethods) {
         this.abstractionCreator = abstractionCreator;
@@ -109,28 +110,66 @@ protected List<TrieNode>  firstSequenceExtensions;
     }
 
     /**
+     * One of the methods used by key2 in the method isAvoidable that return the
+     * number of elements that appear in the projected database
+     *
+     * @param idList IdList of the prefix to consider
+     * @return
+     */
+    private static int key_standard(IDList idList) {
+        return idList.getTotalElementsAfterPrefixes();
+    }
+
+    /**
+     * One of the methods used by key2 in the method isAvoidable that return the
+     * addition of the number of elements that appear in the projected database
+     * and the support of the related prefix
+     *
+     * @param idList IdList of the prefix to consider
+     * @param trie   Trie of the pattern to consider
+     * @return
+     */
+    private static int key_standardAndSupport(IDList projection, Trie trie) {
+        return projection.getTotalElementsAfterPrefixes() + trie.getSupport();
+    }
+
+    /**
+     * One of the methods used by key2 in the method isAvoidable that return the
+     * addition of the number of elements that appear after of each appearance
+     * of the pattern in the sequences and sum of the sequence identifiers where
+     * the given prefix appears
+     *
+     * @param idList IdList of the prefix to consider
+     * @param trie   Trie of the pattern to consider
+     * @return
+     */
+    private static int key_standardAndSumIDs(IDList idList, Trie trie) {
+        return (idList.getTotalElementsAfterPrefixes() + trie.getSumIdSequences());
+    }
+
+    /**
      * Execution of the search of frequent patterns.
      *
      * @param equivalenceClass The equivalence class from we start to search
-     * for.
-     * @param keepPatterns Flag to indicate if we want to keep the patterns
-     * found.
-     * @param verbose Flag for debugging purposes
+     *                         for.
+     * @param keepPatterns     Flag to indicate if we want to keep the patterns
+     *                         found.
+     * @param verbose          Flag for debugging purposes
      * @param coocMapBefore
      * @param
      */
-        
+
     public void dfsPruning(Pattern patron, Trie trie, boolean verbose, Map<Integer, Map<Integer, Integer>> coocMapAfter, Map<Integer, Map<Integer, Integer>> coocMapEquals) {
         int tam = trie.levelSize();
-/*
- * Tin inserts
- */
-firstSequenceExtensions = trie.getNodes();            
+        /*
+         * Tin inserts
+         */
+        firstSequenceExtensions = trie.getNodes();
         for (int i = 0; i < tam; i++) {
             //For each frequent item (the children of the root Trie)
             TrieNode eq = trie.getNode(i);
             /*
-             * We call to the main method of the algorithm for that Trie 
+             * We call to the main method of the algorithm for that Trie
              * associated with the frequent item
              */
             exploreChildren(new Pattern(eq.getPair()), eq, trie.getNodes(), trie.getNodes(), i + 1, coocMapAfter, coocMapEquals, eq.getPair().getItem());
@@ -143,17 +182,17 @@ firstSequenceExtensions = trie.getNodes();
         //We get the curretn trie
         Trie currentTrie = currentNode.getChild();
         /*
-         * And if we are interested in find the closed patterns, we check if the 
+         * And if we are interested in find the closed patterns, we check if the
          * generation of the Trie of the current pattern can be avoided
          */
-/*
- * Tin inserts:        
- */
-boolean isAvoidable = false;        
+        /*
+         * Tin inserts:
+         */
+        boolean isAvoidable = false;
         if (findClosedPatterns && executePruningMethods) {
-isAvoidable = isAvoidable(pattern, currentTrie);
+            isAvoidable = isAvoidable(pattern, currentTrie);
 //if (isAvoidable(pattern, currentTrie)) return; //Tin hide
-            
+
         }
 
         //We start increasing the number of frequent patterns
@@ -167,89 +206,89 @@ isAvoidable = isAvoidable(pattern, currentTrie);
 
         //Clone for the current pattern
         Pattern clone = pattern.clonePatron();
-/*
- * Tin inserts:        
- */
-if (!isAvoidable) {        
-        //For all the nodes of sequenceExtensions
-        loops:
-        for (TrieNode node : sequenceExtensions) {
-            //node.getPair().getItem();
-            //lastAppendedItem
-            // ====== PFV 2013 =========================
+        /*
+         * Tin inserts:
+         */
+        if (!isAvoidable) {
+            //For all the nodes of sequenceExtensions
+            loops:
+            for (TrieNode node : sequenceExtensions) {
+                //node.getPair().getItem();
+                //lastAppendedItem
+                // ====== PFV 2013 =========================
 
-            if (coocMapAfter != null) {
-                Map<Integer, Integer> map = coocMapAfter.get(lastAppendedItem.getId());
-                if (map != null) {
-                    Integer coocurenceCount = map.get(node.getPair().getItem().getId());
-                    if (coocurenceCount == null || coocurenceCount < minSupAbsolute) {
+                if (coocMapAfter != null) {
+                    Map<Integer, Integer> map = coocMapAfter.get(lastAppendedItem.getId());
+                    if (map != null) {
+                        Integer coocurenceCount = map.get(node.getPair().getItem().getId());
+                        if (coocurenceCount == null || coocurenceCount < minSupAbsolute) {
+                            continue loops;
+                        }
+                    } else {
                         continue loops;
                     }
-                } else {
-                    continue loops;
                 }
-            }
-            // ====== FIN PFV 2013 =========================
+                // ====== FIN PFV 2013 =========================
 
-            //We create a new pattern based in the elements of the clone
-            Pattern extension = new Pattern(new ArrayList<ItemAbstractionPair>(clone.getElements()));
-            //And we extend it with the only element of the eq class identifier
-            ItemAbstractionPair newPair = node.getPair();
-            extension.add(newPair);
-
-            /*
-             * We make the join operation between the tries of both patterns in 
-             * order to know the appearances of the new pattern and its support.
-             */
-            joinCount++;
-            IDList newIdList = currentTrie.getIdList().join(node.getChild().getIdList(), false, (int) minSupAbsolute);
-            //If the new pattern is frequent
-            if (newIdList.getSupport() >= minSupAbsolute) {
-                //We create a new trie for it
-                Trie newTrie = new Trie(null, newIdList);
-                //abd we insert it its appearances
-                newIdList.setAppearingIn(newTrie);
-
-                //we put in a TrieNode the new pair and the new Trie created
-                TrieNode newTrieNode = new TrieNode(newPair, newTrie);
-                //And we merge the new Trie with the current one
-                currentTrie.mergeWithTrie(newTrieNode);
+                //We create a new pattern based in the elements of the clone
+                Pattern extension = new Pattern(new ArrayList<ItemAbstractionPair>(clone.getElements()));
+                //And we extend it with the only element of the eq class identifier
+                ItemAbstractionPair newPair = node.getPair();
+                extension.add(newPair);
 
                 /*
-                 * Finally we add the new pattern and nodeTrie to the sets that 
-                 * are needed for future patterns
+                 * We make the join operation between the tries of both patterns in
+                 * order to know the appearances of the new pattern and its support.
                  */
-                newPatterns.add(extension);
-                newNodesToExtends.add(newTrieNode);
-                new_sequenceExtension.add(newTrieNode);
+                joinCount++;
+                IDList newIdList = currentTrie.getIdList().join(node.getChild().getIdList(), false, (int) minSupAbsolute);
+                //If the new pattern is frequent
+                if (newIdList.getSupport() >= minSupAbsolute) {
+                    //We create a new trie for it
+                    Trie newTrie = new Trie(null, newIdList);
+                    //abd we insert it its appearances
+                    newIdList.setAppearingIn(newTrie);
+
+                    //we put in a TrieNode the new pair and the new Trie created
+                    TrieNode newTrieNode = new TrieNode(newPair, newTrie);
+                    //And we merge the new Trie with the current one
+                    currentTrie.mergeWithTrie(newTrieNode);
+
+                    /*
+                     * Finally we add the new pattern and nodeTrie to the sets that
+                     * are needed for future patterns
+                     */
+                    newPatterns.add(extension);
+                    newNodesToExtends.add(newTrieNode);
+                    new_sequenceExtension.add(newTrieNode);
+                }
             }
-        }
 
-        int sequenceExtensionSize = new_sequenceExtension.size();
-        //For all the elements valuables as future s-extensions
-        for (int i = 0; i < sequenceExtensionSize; i++) {
-            //we get the new pattern and the nodeTrie associated with it
-            Pattern newPattern = newPatterns.get(i);
-            TrieNode nodeToExtend = newNodesToExtends.remove(0);
+            int sequenceExtensionSize = new_sequenceExtension.size();
+            //For all the elements valuables as future s-extensions
+            for (int i = 0; i < sequenceExtensionSize; i++) {
+                //we get the new pattern and the nodeTrie associated with it
+                Pattern newPattern = newPatterns.get(i);
+                TrieNode nodeToExtend = newNodesToExtends.remove(0);
 
-            Item last = newPattern.getIthElement(newPattern.size() - 1).getItem(); // PFV 2013
+                Item last = newPattern.getIthElement(newPattern.size() - 1).getItem(); // PFV 2013
 
-            /* And we make a recursive call to dfs_pruning with the new sequence 
-             * extension. Besides we establish the same set as the set which we will
-             * make the i-extensions, but beginning from the (i+1)-th element
-             */
-            exploreChildren(newPattern, nodeToExtend, new_sequenceExtension, new_sequenceExtension, i + 1, coocMapAfter, coocMapEquals, last);
-        }
-} // if (!isAvoidable) 
-        /* We clear the set of the new pattern and the nodes associated with 
-         * them since discovered since we need to store those that we will find 
+                /* And we make a recursive call to dfs_pruning with the new sequence
+                 * extension. Besides we establish the same set as the set which we will
+                 * make the i-extensions, but beginning from the (i+1)-th element
+                 */
+                exploreChildren(newPattern, nodeToExtend, new_sequenceExtension, new_sequenceExtension, i + 1, coocMapAfter, coocMapEquals, last);
+            }
+        } // if (!isAvoidable)
+        /* We clear the set of the new pattern and the nodes associated with
+         * them since discovered since we need to store those that we will find
          * making i-extensions
          */
         newPatterns.clear();
         newNodesToExtends.clear();
 
         /*
-         * From the beginning index to the last equivalence class appearing in 
+         * From the beginning index to the last equivalence class appearing in
          * the itemset extension set
          */
         loopi:
@@ -280,7 +319,7 @@ if (!isAvoidable) {
             extension.add(newPair);
 
             /*
-             * We make the join operation between the tries of both patterns in 
+             * We make the join operation between the tries of both patterns in
              * order to know the appearances of the new pattern and its support.
              */
             joinCount++;
@@ -295,15 +334,15 @@ if (!isAvoidable) {
                 //we put in a TrieNode the new pair and the new Trie created
                 TrieNode newTrieNode = new TrieNode(newPair, newTrie);
                 //And we merge the new Trie with the current one
-/*
- * Tin inserts:        
- */
-currentTrie.mergeWithTrie_i(newTrieNode);
+                /*
+                 * Tin inserts:
+                 */
+                currentTrie.mergeWithTrie_i(newTrieNode);
 //                currentTrie.mergeWithTrie(newTrieNode);
-                
+
 
                 /*
-                 * Finally we add the new pattern and nodeTrie to the sets that 
+                 * Finally we add the new pattern and nodeTrie to the sets that
                  * are needed for future patterns
                  */
                 newPatterns.add(extension);
@@ -322,19 +361,19 @@ currentTrie.mergeWithTrie_i(newTrieNode);
             Item last = newPattern.getIthElement(newPattern.size() - 1).getItem(); // PFV 2013
 
 
-            /* And we make a recursive call to dfs_pruning with the new itemset 
+            /* And we make a recursive call to dfs_pruning with the new itemset
              * extension. Besides we establish the same set as the set which we will
              * make the i-extensions, but beginning from the (i+1)-th element
              */
-/*
- * Tin inserts:        
- */
-if (isAvoidable) new_sequenceExtension = firstSequenceExtensions;             
+            /*
+             * Tin inserts:
+             */
+            if (isAvoidable) new_sequenceExtension = firstSequenceExtensions;
             exploreChildren(newPattern, nodeToExtend, new_sequenceExtension, new_itemsetExtension, i + 1, coocMapAfter, coocMapEquals, last);
             nodeToExtend.getChild().setIdList(null);
 
             /*
-             * If all the elements of itemsetExtensions have been used, we can 
+             * If all the elements of itemsetExtensions have been used, we can
              * clear the IdList of the current Node
              *
 //Tin hides:
@@ -345,7 +384,7 @@ if (isAvoidable) new_sequenceExtension = firstSequenceExtensions;
             }
             */
         }
-        
+
     }
 
     /**
@@ -372,12 +411,12 @@ if (isAvoidable) new_sequenceExtension = firstSequenceExtensions;
      * method uses a map where the different patterns are kept in order to check
      * both pruning methods. The hash keys used can vary, and we give some
      * aproaches by the methods:
-     *
+     * <p>
      * key_standard() key_standardAndSupport() key_standardAndSumIDs()
      * key_standardAndCumulativeSum() Key_standardAndElements()
      *
      * @param prefix Current pattern which is going to be checked
-     * @param trie Trie associated with prefix
+     * @param trie   Trie associated with prefix
      * @return
      */
     private boolean isAvoidable(Pattern prefix, Trie trie) {
@@ -385,8 +424,8 @@ if (isAvoidable) new_sequenceExtension = firstSequenceExtensions;
         int support = trie.getSupport();
         //We get the IdList of the pattern
         IDList idList = trie.getIdList();
-        /* 
-         * We get as a first key the sum of all sequences identifiers where the 
+        /*
+         * We get as a first key the sum of all sequences identifiers where the
          * current prefix appear
          */
         int key1 = trie.getSumIdSequences();
@@ -397,35 +436,35 @@ if (isAvoidable) new_sequenceExtension = firstSequenceExtensions;
          */
         int key2 = key2(idList, trie);
 
-        /* 
-         * We make a new entry associating the current prefix with its 
+        /*
+         * We make a new entry associating the current prefix with its
          * corresponding prefixTrie
          */
         Entry<Pattern, Trie> newEntry = new AbstractMap.SimpleEntry<Pattern, Trie>(prefix, trie);
 
-        /* 
-         * Map where there appear all the patterns with the same key1 of the 
+        /*
+         * Map where there appear all the patterns with the same key1 of the
          * current prefix, that makes a correspondence between a value given by
          * key2 and all the patterns that have it
          */
         Map<Integer, List<Entry<Pattern, Trie>>> associatedMap = matchingMap.get(key1);
-        /* 
+        /*
          * If there is not any pattern with the same key2 value, we add the current
          * prefix as a new entry, and we also insert it in the matching map
          */
         if (associatedMap == null) {
             associatedMap = new HashMap<Integer, List<Entry<Pattern, Trie>>>();
-/*
- * Tin modifies:        
- */
-List<Entry<Pattern, Trie>> entryList = new ArrayList<Entry<Pattern, Trie>>();            
+            /*
+             * Tin modifies:
+             */
+            List<Entry<Pattern, Trie>> entryList = new ArrayList<Entry<Pattern, Trie>>();
             //List entryList = new ArrayList<Pattern>();
             entryList.add(newEntry);
             associatedMap.put(key2, entryList);
             matchingMap.put(key1, associatedMap);
         } else {
-            /* 
-             * If, conversely, there are some patterns with the same key2 value 
+            /*
+             * If, conversely, there are some patterns with the same key2 value
              * (and extensively with the same key1 value) we check if we can apply
              * backward subpattern or backward superpattern pruning
              */
@@ -455,35 +494,33 @@ List<Entry<Pattern, Trie>> entryList = new ArrayList<Entry<Pattern, Trie>>();
                             if (prefixSize < pSize) {
                                 //and prefix is a subpattern of p
                                 if (prefix.isSubpattern(abstractionCreator, p)) {
-                                    /* 
-                                     * We dfsPruning backward subpattern pruning and 
+                                    /*
+                                     * We dfsPruning backward subpattern pruning and
                                      * establish as new nodes the nodes of the trie
                                      * of p
                                      */
                                     trie.setNodes(t.getNodes());
                                     /*
-                                     * We end the method since we have already 
+                                     * We end the method since we have already
                                      * done the prune
                                      */
                                     return true;
                                 }
-                            } 
-                            else
-                            	if (p.isSubpattern(abstractionCreator, prefix)) {
+                            } else if (p.isSubpattern(abstractionCreator, prefix)) {
                                 /*
-                                 * if, conversely, the prefix size is greater than 
+                                 * if, conversely, the prefix size is greater than
                                  * the size of p and prefix is a superpattern of p
                                  */
 
                                 //we update a counter of superpatterns
                                 superPattern++;
-                                /* 
+                                /*
                                  * and we make the prefix trie point to the nodes
                                  * of the trie of p
                                  */
                                 trie.setNodes(t.getNodes());
                                 /*
-                                 * and we make null the nodes of t since p is 
+                                 * and we make null the nodes of t since p is
                                  * included in prefix
                                  */
                                 //t.setNodes(null);
@@ -506,8 +543,8 @@ List<Entry<Pattern, Trie>> entryList = new ArrayList<Entry<Pattern, Trie>>();
                 }
             }
         }
-        /* 
-         * We did not find any subpattern or supperpattern in order to skip the 
+        /*
+         * We did not find any subpattern or supperpattern in order to skip the
          * generation of the current prefix
          */
         return false;
@@ -531,60 +568,22 @@ List<Entry<Pattern, Trie>> entryList = new ArrayList<Entry<Pattern, Trie>>();
     }
 
     /**
-     * One of the methods used by key2 in the method isAvoidable that return the
-     * number of elements that appear in the projected database
-     *
-     * @param idList IdList of the prefix to consider
-     * @return
-     */
-    private static int key_standard(IDList idList) {
-        return idList.getTotalElementsAfterPrefixes();
-    }
-
-    /**
-     * One of the methods used by key2 in the method isAvoidable that return the
-     * addition of the number of elements that appear in the projected database
-     * and the support of the related prefix
-     *
-     * @param idList IdList of the prefix to consider
-     * @param trie Trie of the pattern to consider
-     * @return
-     */
-    private static int key_standardAndSupport(IDList projection, Trie trie) {
-        return projection.getTotalElementsAfterPrefixes() + trie.getSupport();
-    }
-
-    /**
-     * One of the methods used by key2 in the method isAvoidable that return the
-     * addition of the number of elements that appear after of each appearance
-     * of the pattern in the sequences and sum of the sequence identifiers where
-     * the given prefix appears
-     *
-     * @param idList IdList of the prefix to consider
-     * @param trie Trie of the pattern to consider
-     * @return
-     */
-    private static int key_standardAndSumIDs(IDList idList, Trie trie) {
-        return (idList.getTotalElementsAfterPrefixes() + trie.getSumIdSequences());
-    }
-
-    /**
      * It removes the non closed patterns from the list of patterns given as
      * parameter
      *
      * @param frequentPatterns List of patterns from which we want to remove the
-     * non-closed patterns
-     * @param keepPatterns Flag indicating if we want to keep the final output
+     *                         non-closed patterns
+     * @param keepPatterns     Flag indicating if we want to keep the final output
      */
     void removeNonClosedPatterns(List<Entry<Pattern, Trie>> frequentPatterns, boolean keepPatterns) {
         System.err.println("Before removing NonClosed patterns there are " + numberOfFrequentPatterns + " patterns");
-/*
-* Tin modifies:        
-*/
-numberOfFrequentClosedPatterns = 0;
+        /*
+         * Tin modifies:
+         */
+        numberOfFrequentClosedPatterns = 0;
 
-        /* 
-         * We make a map to match group of patterns linked by their addition of 
+        /*
+         * We make a map to match group of patterns linked by their addition of
          * sequence identifiers
          */
         Map<Integer, List<Pattern>> totalPatterns = new HashMap<Integer, List<Pattern>>();
@@ -609,14 +608,14 @@ numberOfFrequentClosedPatterns = 0;
                     Pattern p1 = lista.get(i);
                     Pattern p2 = lista.get(j);
                     //If the patterns has the same support:
-/*
- * Tin modifies:        
- */
-if (p1.getAppearingIn().cardinality() == p2.getAppearingIn().cardinality()) {                    
-                    //if (p1.getAppearingIn().size() == p2.getAppearingIn().size()) {
+                    /*
+                     * Tin modifies:
+                     */
+                    if (p1.getAppearingIn().cardinality() == p2.getAppearingIn().cardinality()) {
+                        //if (p1.getAppearingIn().size() == p2.getAppearingIn().size()) {
                         if (p1.size() != p2.size()) {
-                            /* 
-                             * And one is subpattern of the other, we remove the 
+                            /*
+                             * And one is subpattern of the other, we remove the
                              * shorter pattern and keep the longer one
                              */
                             if (p1.size() < p2.size()) {
@@ -637,14 +636,14 @@ if (p1.getAppearingIn().cardinality() == p2.getAppearingIn().cardinality()) {
             }
         }
         /*
-         * We calcule the number of frequent patterns and we store in the chosen 
+         * We calcule the number of frequent patterns and we store in the chosen
          * output if the flag is activated
          */
         for (List<Pattern> list : totalPatterns.values()) {
-/*
- * Tin modifies:        
- */
-numberOfFrequentClosedPatterns += list.size();
+            /*
+             * Tin modifies:
+             */
+            numberOfFrequentClosedPatterns += list.size();
             if (keepPatterns) {
                 for (Pattern p : list) {
                     saver.savePattern(p);

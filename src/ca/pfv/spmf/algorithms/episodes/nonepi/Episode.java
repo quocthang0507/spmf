@@ -12,7 +12,7 @@
  *
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  * Copyright Oualid Ouarem et al.
  */
 package ca.pfv.spmf.algorithms.episodes.nonepi;
@@ -22,8 +22,9 @@ import java.util.List;
 
 /**
  * An episode as defined by the NONEPI algorithm
- * @see AlgoNONEPI
+ *
  * @author oualid
+ * @see AlgoNONEPI
  */
 public class Episode {
 
@@ -47,24 +48,24 @@ public class Episode {
         this.support++;
     }
 
-    public void setSupport(double support) {
-        this.support = support;
-    }
-
     public double getSupport() {
         return this.support;
+    }
+
+    public void setSupport(double support) {
+        this.support = support;
     }
 
     public void add(Occurrence _occurrences) {
         this.occurrences.add(_occurrences);
     }
 
-    public void setOccurrences(List<Occurrence> _occurrences) {
-        this.occurrences = _occurrences;
-    }
-
     public List<Occurrence> getOccurrences() {
         return this.occurrences;
+    }
+
+    public void setOccurrences(List<Occurrence> _occurrences) {
+        this.occurrences = _occurrences;
     }
 
     public List<String> getEvents() {
@@ -127,24 +128,24 @@ public class Episode {
     public int getSize() {
         return this.events.size();
     }
-    
+
     public boolean Equals(Episode epi) {
-    	int size = epi.getSize();
-    	if (this.getSize() != size)
-    		return false;
-    	boolean stop = false;
-    	int i=0;
-    	while(i<epi.getSize() && !stop) {
-    		if (!epi.getEvents().get(i).equals(this.getEvents().get(i))) {
-    			stop= true;
-    		}
-    		i++;
-    	}
-    	if (stop)
-    		return false;
-    	return true;
+        int size = epi.getSize();
+        if (this.getSize() != size)
+            return false;
+        boolean stop = false;
+        int i = 0;
+        while (i < epi.getSize() && !stop) {
+            if (!epi.getEvents().get(i).equals(this.getEvents().get(i))) {
+                stop = true;
+            }
+            i++;
+        }
+        if (stop)
+            return false;
+        return true;
     }
-    
+
 
     @Override
     public String toString() {
@@ -161,13 +162,13 @@ public class Episode {
         }
         return string;
     }
-    
+
     public String toSPMFString() {
         StringBuffer buffer = new StringBuffer();
         for (String event : this.events) {
-        	buffer.append('{');
-        	buffer.append(event);
-        	buffer.append('}');
+            buffer.append('{');
+            buffer.append(event);
+            buffer.append('}');
 
         }
         return buffer.toString();

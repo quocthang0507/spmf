@@ -9,6 +9,7 @@ import ca.pfv.spmf.algorithms.frequentpatterns.lppgrowth.AlgoLPPGrowth;
 
 /**
  * This file shows how to run the LPP_Growth algorithm on an input file.
+ *
  * @author Peng yang
  */
 public class MainTestLPPGrowth {
@@ -27,12 +28,12 @@ public class MainTestLPPGrowth {
         boolean self_increment = false;
 
         AlgoLPPGrowth algo = new AlgoLPPGrowth();
-        algo.runAlgorithm(inputFile,outputFile, maxPer,minDur,maxSoPer,self_increment);
+        algo.runAlgorithm(inputFile, outputFile, maxPer, minDur, maxSoPer, self_increment);
         algo.printStats();
     }
 
     public static String fileToPath(String filename) throws UnsupportedEncodingException {
         URL url = MainTestLPPGrowth.class.getResource(filename);
-        return java.net.URLDecoder.decode(url.getPath(),"UTF-8");
+        return java.net.URLDecoder.decode(url.getPath(), "UTF-8");
     }
 }

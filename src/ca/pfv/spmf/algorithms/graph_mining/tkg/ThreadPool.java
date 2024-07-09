@@ -19,37 +19,38 @@ import java.util.concurrent.Executors;
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
+
 /**
  * This is implementation CGspan thread pools.
- *  <br/><br/>
- *
+ * <br/><br/>
+ * <p>
  * The cgspan algorithm is described in : <br/>
  * <br/>
  * <p>
  * cgSpan: Closed Graph-Based Substructure Pattern Mining, by Zevin Shaul, Sheikh Naaz
  * IEEE BigData 2021 7th Special Session on Intelligent Data Mining
  * <p>
- *
+ * <p>
  * <br/>
- *
+ * <p>
  * The CGspan algorithm finds all the closed subgraphs and their support in a
  * graph provided by the user.
  * <br/><br/>
- *
+ * <p>
  * This implementation saves the result to a file
  *
  * @author Shaul Zevin
  */
 public final class ThreadPool {
 
-    // rightmost path extender threads pool singleton
-    private static ThreadPool RIGHT_MOST_EXTENDER_INSTANCE;
     // number rightmost path extender threads
     public static int RIGHT_MOST_EXTENDER_THREAD_COUNT = 4;
-    // projections producer threads pool singleton
-    private static ThreadPool PROJECTED_ITERATOR_PRODUCERS_INSTANCE;
     // number of extensions producer threads
     public static int PROJECTED_ITERATOR_PRODUCERS_THREAD_COUNT = 4;
+    // rightmost path extender threads pool singleton
+    private static ThreadPool RIGHT_MOST_EXTENDER_INSTANCE;
+    // projections producer threads pool singleton
+    private static ThreadPool PROJECTED_ITERATOR_PRODUCERS_INSTANCE;
     private ExecutorService executorService;
     private int threadCount;
 
@@ -59,11 +60,10 @@ public final class ThreadPool {
     }
 
     /**
-     *
      * @return rightmost path extender threads pool singleton
      */
     public static synchronized ThreadPool getRightMostExtenderInstance() {
-        if(RIGHT_MOST_EXTENDER_INSTANCE == null) {
+        if (RIGHT_MOST_EXTENDER_INSTANCE == null) {
             RIGHT_MOST_EXTENDER_INSTANCE = new ThreadPool(RIGHT_MOST_EXTENDER_THREAD_COUNT);
         }
 
@@ -71,11 +71,10 @@ public final class ThreadPool {
     }
 
     /**
-     *
      * @return projections producer threads pool singleton
      */
-    public static synchronized  ThreadPool getProjectedIteratorProducersInstance() {
-        if(PROJECTED_ITERATOR_PRODUCERS_INSTANCE == null) {
+    public static synchronized ThreadPool getProjectedIteratorProducersInstance() {
+        if (PROJECTED_ITERATOR_PRODUCERS_INSTANCE == null) {
             PROJECTED_ITERATOR_PRODUCERS_INSTANCE = new ThreadPool(PROJECTED_ITERATOR_PRODUCERS_THREAD_COUNT);
         }
 
@@ -83,6 +82,21 @@ public final class ThreadPool {
     }
 
     // getters and setters
+
+    /**
+     * thread pools shutdown
+     */
+    public static synchronized void shutdown() {
+        if (RIGHT_MOST_EXTENDER_INSTANCE != null) {
+            RIGHT_MOST_EXTENDER_INSTANCE.getExecutorService().shutdown();
+            RIGHT_MOST_EXTENDER_INSTANCE = null;
+        }
+
+        if (PROJECTED_ITERATOR_PRODUCERS_INSTANCE != null) {
+            PROJECTED_ITERATOR_PRODUCERS_INSTANCE.getExecutorService().shutdown();
+            PROJECTED_ITERATOR_PRODUCERS_INSTANCE = null;
+        }
+    }
 
     public ExecutorService getExecutorService() {
         return executorService;
@@ -98,20 +112,5 @@ public final class ThreadPool {
 
     public void setThreadCount(int threadCount) {
         this.threadCount = threadCount;
-    }
-
-    /**
-     * thread pools shutdown
-     */
-    public static synchronized void shutdown() {
-        if (RIGHT_MOST_EXTENDER_INSTANCE != null) {
-            RIGHT_MOST_EXTENDER_INSTANCE.getExecutorService().shutdown();
-            RIGHT_MOST_EXTENDER_INSTANCE = null;
-        }
-
-        if (PROJECTED_ITERATOR_PRODUCERS_INSTANCE != null) {
-            PROJECTED_ITERATOR_PRODUCERS_INSTANCE.getExecutorService().shutdown();
-            PROJECTED_ITERATOR_PRODUCERS_INSTANCE = null;
-        }
     }
 }

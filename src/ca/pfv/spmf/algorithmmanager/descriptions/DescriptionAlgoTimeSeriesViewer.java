@@ -12,77 +12,77 @@ import ca.pfv.spmf.gui.viewers.timeseriesviewer.TimeSeriesViewer;
 
 /**
  * This class describes the algorithm to visualize a time series.
- * 
- * @see TimeSeriesViewer
+ *
  * @author Philippe Fournier-Viger
+ * @see TimeSeriesViewer
  */
 public class DescriptionAlgoTimeSeriesViewer extends DescriptionOfAlgorithm {
 
-	/**
-	 * Default constructor
-	 */
-	public DescriptionAlgoTimeSeriesViewer(){
-	}
+    /**
+     * Default constructor
+     */
+    public DescriptionAlgoTimeSeriesViewer() {
+    }
 
-	@Override
-	public String getName() {
-		return "Vizualize_time_series";
-	}
+    @Override
+    public String getName() {
+        return "Vizualize_time_series";
+    }
 
-	@Override
-	public String getAlgorithmCategory() {
-		return "TIME SERIES MINING";
-	}
+    @Override
+    public String getAlgorithmCategory() {
+        return "TIME SERIES MINING";
+    }
 
-	@Override
-	public String getURLOfDocumentation() {
-		return "http://www.philippe-fournier-viger.com/spmf/TimeSeriesViewer.php";
-	}
+    @Override
+    public String getURLOfDocumentation() {
+        return "http://www.philippe-fournier-viger.com/spmf/TimeSeriesViewer.php";
+    }
 
-	@Override
-	public void runAlgorithm(String[] parameters, String inputFile, String outputFile) throws IOException {
+    @Override
+    public void runAlgorithm(String[] parameters, String inputFile, String outputFile) throws IOException {
 
-		String separator;
-		if (parameters.length > 0 && "".equals(parameters[0]) == false) {
-			separator = getParamAsString(parameters[0]);
-		}else{
-			separator = " ";
-		}
-		
-		AlgoTimeSeriesReader reader = new AlgoTimeSeriesReader();
-		List<TimeSeries> timeSeries = reader.runAlgorithm(inputFile, separator);
+        String separator;
+        if (parameters.length > 0 && "".equals(parameters[0]) == false) {
+            separator = getParamAsString(parameters[0]);
+        } else {
+            separator = " ";
+        }
 
-		TimeSeriesViewer viewer = new TimeSeriesViewer(timeSeries);
-		viewer.setVisible(true);
-	}
+        AlgoTimeSeriesReader reader = new AlgoTimeSeriesReader();
+        List<TimeSeries> timeSeries = reader.runAlgorithm(inputFile, separator);
 
-	@Override
-	public DescriptionOfParameter[] getParametersDescription() {
-        
-		DescriptionOfParameter[] parameters = new DescriptionOfParameter[1];
-		parameters[0] = new DescriptionOfParameter("separator", "(e.g. ',' , default: ' ')", String.class, true);
-		return parameters;
-	}
+        TimeSeriesViewer viewer = new TimeSeriesViewer(timeSeries);
+        viewer.setVisible(true);
+    }
 
-	@Override
-	public String getImplementationAuthorNames() {
-		return "Philippe Fournier-Viger";
-	}
+    @Override
+    public DescriptionOfParameter[] getParametersDescription() {
 
-	@Override
-	public String[] getInputFileTypes() {
-		return new String[]{"Time series database"};
-	}
+        DescriptionOfParameter[] parameters = new DescriptionOfParameter[1];
+        parameters[0] = new DescriptionOfParameter("separator", "(e.g. ',' , default: ' ')", String.class, true);
+        return parameters;
+    }
 
-	@Override
-	public String[] getOutputFileTypes() {
-		return null;
-	}
-	
-	@Override
-	public AlgorithmType getAlgorithmType() {
-		return AlgorithmType.DATA_VIEWER;
-	}
+    @Override
+    public String getImplementationAuthorNames() {
+        return "Philippe Fournier-Viger";
+    }
 
-	
+    @Override
+    public String[] getInputFileTypes() {
+        return new String[]{"Time series database"};
+    }
+
+    @Override
+    public String[] getOutputFileTypes() {
+        return null;
+    }
+
+    @Override
+    public AlgorithmType getAlgorithmType() {
+        return AlgorithmType.DATA_VIEWER;
+    }
+
+
 }

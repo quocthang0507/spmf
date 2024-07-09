@@ -6,28 +6,30 @@ import java.io.IOException;
 
 public class SPMFTextFileWriter extends AbstractSPMFWriter {
 
-	/** writer to write the output file **/
-	protected BufferedWriter writer = null;
-	
-
-	SPMFTextFileWriter(IOContext context, String output) throws IOException {
-		super(context);
-		// create a writer object to write results to file
-		writer = new BufferedWriter(new FileWriter(output));
-	}
+    /**
+     * writer to write the output file
+     **/
+    protected BufferedWriter writer = null;
 
 
-	protected void doClose() throws IOException {
-		writer.close();
-		System.out.println("writer close");
-	}
+    SPMFTextFileWriter(IOContext context, String output) throws IOException {
+        super(context);
+        // create a writer object to write results to file
+        writer = new BufferedWriter(new FileWriter(output));
+    }
 
-	public void write(String string) throws IOException {
-		writer.write(string);
-	}
 
-	public void newLine() throws IOException {
-		writer.newLine();
-	}
+    protected void doClose() throws IOException {
+        writer.close();
+        System.out.println("writer close");
+    }
+
+    public void write(String string) throws IOException {
+        writer.write(string);
+    }
+
+    public void newLine() throws IOException {
+        writer.newLine();
+    }
 
 }

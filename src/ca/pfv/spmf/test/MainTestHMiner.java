@@ -6,15 +6,15 @@ import java.net.URL;
 import ca.pfv.spmf.algorithms.frequentpatterns.hminer.AlgoHMiner;
 
 /* This file is copyright (c) 2018+  by Siddharth Dawar et al.
- * 
+ *
  * This file is part of the SPMF DATA MINING SOFTWARE
  * (http://www.philippe-fournier-viger.com/spmf).
- * 
+ *
  * SPMF is free software: you can redistribute it and/or modify it under the
  * terms of the GNU General Public License as published by the Free Software
  * Foundation, either version 3 of the License, or (at your option) any later
  * version.
- * 
+ *
  * SPMF is distributed in the hope that it will be useful, but WITHOUT ANY
  * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
  * A PARTICULAR PURPOSE. See the GNU General Public License for more details.
@@ -24,35 +24,34 @@ import ca.pfv.spmf.algorithms.frequentpatterns.hminer.AlgoHMiner;
 
 /**
  * Example of how to run the HMiner algorithm from the source code of SPMF
- *
  */
 public class MainTestHMiner {
 
-	public static void main(String[] args) {
-		try {
+    public static void main(String[] args) {
+        try {
 
-			String input = fileToPath("DB_Utility.txt");
-			String output = ".//output.txt";
+            String input = fileToPath("DB_Utility.txt");
+            String output = ".//output.txt";
 
-			long min_utility = 30; //
+            long min_utility = 30; //
 
-			AlgoHMiner algorithm = new AlgoHMiner();
+            AlgoHMiner algorithm = new AlgoHMiner();
 
-			boolean applyTransactionMergingOptimization = true;
-			boolean applyEUCSOptimization = true;
+            boolean applyTransactionMergingOptimization = true;
+            boolean applyEUCSOptimization = true;
 
-			algorithm.runAlgorithm(input, output, min_utility,
-					applyTransactionMergingOptimization, applyEUCSOptimization);
-			algorithm.printStats();
+            algorithm.runAlgorithm(input, output, min_utility,
+                    applyTransactionMergingOptimization, applyEUCSOptimization);
+            algorithm.printStats();
 
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
-	public static String fileToPath(String filename)
-			throws UnsupportedEncodingException {
-		URL url = MainTestFHM.class.getResource(filename);
-		return java.net.URLDecoder.decode(url.getPath(), "UTF-8");
-	}
+    public static String fileToPath(String filename)
+            throws UnsupportedEncodingException {
+        URL url = MainTestFHM.class.getResource(filename);
+        return java.net.URLDecoder.decode(url.getPath(), "UTF-8");
+    }
 }

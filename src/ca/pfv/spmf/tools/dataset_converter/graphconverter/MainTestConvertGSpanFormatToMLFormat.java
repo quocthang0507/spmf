@@ -16,23 +16,24 @@ import ca.pfv.spmf.gui.viewers.graphviewer.MainTestGraphViewer_PatternFile;
 
 /**
  * Test file to convert a graph file from the GSpan format to the ML format
+ *
  * @see GSPAN2GraphMLConverter
  */
-public class MainTestConvertGSpanFormatToMLFormat{
+public class MainTestConvertGSpanFormatToMLFormat {
 
-    public static void main(String [] arg) throws IOException, InterruptedException, TransformerConfigurationException, SAXException{
+    public static void main(String[] arg) throws IOException, InterruptedException, TransformerConfigurationException, SAXException {
 
         String input = fileToPath("patterns.txt");
         String output = "output.dot";
 
-       GSPAN2GraphMLConverter converter = new GSPAN2GraphMLConverter();
-       List<Graph> graphsDatabase = converter.readCGSPANGraphs(input);
-       converter.writeGraphMLGraphs(output, graphsDatabase);
-       
+        GSPAN2GraphMLConverter converter = new GSPAN2GraphMLConverter();
+        List<Graph> graphsDatabase = converter.readCGSPANGraphs(input);
+        converter.writeGraphMLGraphs(output, graphsDatabase);
+
     }
-    
-	public static String fileToPath(String filename) throws UnsupportedEncodingException{
-		URL url = MainTestGraphViewer_PatternFile.class.getResource(filename);
-		 return java.net.URLDecoder.decode(url.getPath(),"UTF-8");
-	}
+
+    public static String fileToPath(String filename) throws UnsupportedEncodingException {
+        URL url = MainTestGraphViewer_PatternFile.class.getResource(filename);
+        return java.net.URLDecoder.decode(url.getPath(), "UTF-8");
+    }
 }

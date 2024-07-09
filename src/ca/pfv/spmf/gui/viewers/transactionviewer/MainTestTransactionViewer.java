@@ -21,25 +21,27 @@ import java.net.URL;
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
+
 /**
  * Example of how to use Transaction Database viewer
- *  algorithm from the source code.
+ * algorithm from the source code.
+ *
  * @author Philippe Fournier-Viger (Copyright 2024)
  */
 public class MainTestTransactionViewer {
 
-	public static void main(String [] arg) throws IOException{
+    public static void main(String[] arg) throws IOException {
 
 //		String input = fileToPath("contextPasquierWithNames.txt");
-		String input = fileToPath("contextPasquier99.txt");
+        String input = fileToPath("contextPasquier99.txt");
 
-		// Applying the viewer
-		TransactionDatabaseViewer viewer = new TransactionDatabaseViewer(true, input);
-	}
-	
-	public static String fileToPath(String filename) throws UnsupportedEncodingException{
+        // Applying the viewer
+        TransactionDatabaseViewer viewer = new TransactionDatabaseViewer(true, input);
+    }
+
+    public static String fileToPath(String filename) throws UnsupportedEncodingException {
 //		System.out.println("filename : " + filename);
-		URL url = MainTestTransactionViewer.class.getResource(filename);
-		 return java.net.URLDecoder.decode(url.getPath(),"UTF-8");
-	}
+        URL url = MainTestTransactionViewer.class.getResource(filename);
+        return java.net.URLDecoder.decode(url.getPath(), "UTF-8");
+    }
 }

@@ -22,21 +22,21 @@ import ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP.idLists.creators
 
 /**
  * This class is the implementation of a creator of a qualitative abstraction.
- *
+ * <p>
  * Copyright Antonio Gomariz Peñalver 2013
- *
+ * <p>
  * This file is part of the SPMF DATA MINING SOFTWARE
  * (http://www.philippe-fournier-viger.com/spmf).
- *
+ * <p>
  * SPMF is free software: you can redistribute it and/or modify it under the
  * terms of the GNU General Public License as published by the Free Software
  * Foundation, either version 3 of the License, or (at your option) any later
  * version.
- *
+ * <p>
  * SPMF is distributed in the hope that it will be useful, but WITHOUT ANY
  * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
  * A PARTICULAR PURPOSE. See the GNU General Public License for more details.
- *
+ * <p>
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  *
@@ -46,11 +46,11 @@ public class AbstractionCreator_Qualitative extends AbstractionCreator {
 
     private static AbstractionCreator_Qualitative instance = null;
 
-    public static void sclear() {
-        instance=null;
+    private AbstractionCreator_Qualitative() {
     }
 
-    private AbstractionCreator_Qualitative() {
+    public static void sclear() {
+        instance = null;
     }
 
     public static AbstractionCreator_Qualitative getInstance() {
@@ -62,6 +62,7 @@ public class AbstractionCreator_Qualitative extends AbstractionCreator {
 
     /**
      * It creates an default abstraction. The abstraction is established to false
+     *
      * @return the created abstraction
      */
     @Override
@@ -71,8 +72,9 @@ public class AbstractionCreator_Qualitative extends AbstractionCreator {
 
     /**
      * It creates a relation with the given parameter.
-     * @param hasEqualRelation The boolean indicatin if the item has an equal 
-     * relation with the previous item in the pattern
+     *
+     * @param hasEqualRelation The boolean indicatin if the item has an equal
+     *                         relation with the previous item in the pattern
      * @return the created relation
      */
     public Abstraction_Generic createAbstraction(boolean hasEqualRelation) {
@@ -83,7 +85,8 @@ public class AbstractionCreator_Qualitative extends AbstractionCreator {
      * It finds all the frequent 2-patterns in the original database. This method
      * is specially useful if we think of parallelizing the execution of the Spade
      * algorithm.
-     * @param sequences the list of sequences
+     *
+     * @param sequences     the list of sequences
      * @param idListCreator the idlist creator for creating the idlists
      * @return the list of equivalence classes
      */
@@ -129,11 +132,12 @@ public class AbstractionCreator_Qualitative extends AbstractionCreator {
     /**
      * Helper method for getFrequentSize2Sequence, useful for making the pattern
      * and the IdList from two given pairs <item, abstraction>.
-     * @param totalMap Correspondences between patterns and equivalence classes
-     * @param pair1 First element of the pattern to create
-     * @param pair2 Second element of the pattern to create
-     * @param sid Sequence identifier
-     * @param tid Transaction timestamp
+     *
+     * @param totalMap      Correspondences between patterns and equivalence classes
+     * @param pair1         First element of the pattern to create
+     * @param pair2         Second element of the pattern to create
+     * @param sid           Sequence identifier
+     * @param tid           Transaction timestamp
      * @param idListCreator IdlistCreator
      */
     public void updateIdList(Map<Pattern, EquivalenceClass> totalMap, ItemAbstractionPair pair1, ItemAbstractionPair pair2, int sid, int tid, IdListCreator idListCreator) {
@@ -155,9 +159,10 @@ public class AbstractionCreator_Qualitative extends AbstractionCreator {
 
     /**
      * It obtains the subpattern that is derived from removing from the given
-     * pattern, the item specified in the position pointed out by the given index 
+     * pattern, the item specified in the position pointed out by the given index
+     *
      * @param extension a pattern
-     * @param index the position
+     * @param index     the position
      * @return the subpattern
      */
     @Override
@@ -181,7 +186,7 @@ public class AbstractionCreator_Qualitative extends AbstractionCreator {
                 if (index == 0) {
                     abstraction = createDefaultAbstraction();
                 } else {
-                    Abstraction_Qualitative abstractionOfRemovedPair = (Abstraction_Qualitative) extension.getIthElement(i).getAbstraction();                    
+                    Abstraction_Qualitative abstractionOfRemovedPair = (Abstraction_Qualitative) extension.getIthElement(i).getAbstraction();
                     if (!abstractionOfRemovedPair.hasEqualRelation()) {
                         abstraction = createAbstraction(false);
                     }
@@ -191,7 +196,7 @@ public class AbstractionCreator_Qualitative extends AbstractionCreator {
         return patternCreator.createPattern(subpatternElements);
     }
 
-    
+
     @Override
     public List<EquivalenceClass> getFrequentSize2Sequences(Map<Integer, Map<Item, List<Integer>>> database, Map<Item, EquivalenceClass> frequentItems, IdListCreator idListCreator) {
         Map<Pattern, EquivalenceClass> totalMap = new HashMap<Pattern, EquivalenceClass>();

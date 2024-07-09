@@ -3,7 +3,7 @@
  * It is adapted from some GPL code obtained from the LAC library, which used some SPMF code.
  *
  * Copyright (C) SPMF, LAC
- *   
+ *
  * LAC is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -12,8 +12,8 @@
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details. You should have 
- * received a copy of the GNU General Public License along with 
+ * GNU General Public License for more details. You should have
+ * received a copy of the GNU General Public License along with
  * this program.  If not, see http://www.gnu.org/licenses/
  */
 package ca.pfv.spmf.algorithms.classifiers.cmar;
@@ -29,224 +29,219 @@ import ca.pfv.spmf.algorithms.classifiers.general.Rule;
  * Class representing a CR-Tree. This is a data structure used by the CMAR
  * algorithm to search for class association rules. It is based on the concept
  * of FP-Tree used by the FP-Growth algorithm.
- * 
+ *
  * @see AlgoCMAR
  */
 class CRTree {
-	/**
-	 * Number of singletons (attribute values) in the training dataset
-	 */
-	protected static int NUMBER_SINGLETONS;
+    /**
+     * Critical threshold for 25% "significance" level (assuming "degree of freedom"
+     * equivalent to 1).
+     */
+    private static final double THRESHOLD_20 = 1.6424;
+    /**
+     * Critical threshold value for CHI_SQUARE
+     */
+    private static final double THRESHOLD_CHI_SQUARE = THRESHOLD_20; // Default
+    /**
+     * Number of singletons (attribute values) in the training dataset
+     */
+    protected static int NUMBER_SINGLETONS;
+    /**
+     * The training dataset used to create the CRTree
+     */
+    public final Dataset dataset;
+    /**
+     * Root node for the current tree
+     */
+    private CRNode rootNode = null;
+    /**
+     * Minimum times an instance need to be covered
+     */
+    private int minCover = 4;
 
-	/**
-	 * Root node for the current tree
-	 */
-	private CRNode rootNode = null;
+    /**
+     * Constructor
+     *
+     * @param dataset dataset used to generate CRTree
+     * @param delta   the delta value
+     */
+    CRTree(Dataset dataset, int delta) {
+        minCover = delta;
+        this.dataset = dataset;
+    }
 
-	/**
-	 * Minimum times an instance need to be covered
-	 */
-	private int minCover = 4;
+    /**
+     * Insert a rule in the tree
+     *
+     * @param baseRule a rule to be inserted into the CRTree
+     */
+    protected void insert(Rule baseRule) {
 
-	/**
-	 * Critical threshold for 25% "significance" level (assuming "degree of freedom"
-	 * equivalent to 1).
-	 */
-	private static final double THRESHOLD_20 = 1.6424;
+        RuleCMAR rule = (RuleCMAR) baseRule;
 
-	/**
-	 * Critical threshold value for CHI_SQUARE
-	 */
-	private static final double THRESHOLD_CHI_SQUARE = THRESHOLD_20; // Default
+        // If the rule fails the Chi-Squared test
+        if (rule.getChiSquare() <= THRESHOLD_CHI_SQUARE) {
+            // We dont add the rule
+            return;
+        }
 
-	/**
-	 * The training dataset used to create the CRTree
-	 */
-	public final Dataset dataset;
+        // Otherwise, we create a new node for this rule
+        CRNode newNode = new CRNode(rule);
 
-	/**
-	 * Constructor
-	 * 
-	 * @param dataset dataset used to generate CRTree
-	 * @param delta   the delta value
-	 */
-	CRTree(Dataset dataset, int delta) {
-		minCover = delta;
-		this.dataset = dataset;
-	}
+        // If it is the first rule, it will be added as the root of the tree.
+        if (rootNode == null) {
+            rootNode = newNode;
+            return;
+        }
 
-	/**
-	 * Insert a rule in the tree
-	 * 
-	 * @param baseRule a rule to be inserted into the CRTree
-	 */
-	protected void insert(Rule baseRule) {
+        // If more general rule with higher ranking exists, current rule will be
+        // discarded
+        if (isMoreGeneralNode(newNode)) {
+            return;
+        }
 
-		RuleCMAR rule = (RuleCMAR) baseRule;
+        // Add current node as the first node
+        if (newNode.rule.isGreater(rootNode.rule)) {
+            newNode.next = rootNode;
+            rootNode = newNode;
+            return;
+        }
 
-		// If the rule fails the Chi-Squared test
-		if (rule.getChiSquare() <= THRESHOLD_CHI_SQUARE) {
-			// We dont add the rule
-			return;
-		}
+        // Search for the position where
+        // the rule should be inserted in terms of rank
+        CRNode currentNode = rootNode;
+        CRNode nextNode = rootNode.next;
+        while (nextNode != null) {
+            if (newNode.rule.isGreater(nextNode.rule)) {
+                currentNode.next = newNode;
+                newNode.next = nextNode;
+                return;
+            }
+            currentNode = nextNode;
+            nextNode = nextNode.next;
+        }
 
-		// Otherwise, we create a new node for this rule
-		CRNode newNode = new CRNode(rule);
+        // Add new node at the very end
+        currentNode.next = newNode;
+    }
 
-		// If it is the first rule, it will be added as the root of the tree.
-		if (rootNode == null) {
-			rootNode = newNode;
-			return;
-		}
+    /**
+     * Checks whether there are a more general rule, with higher ranking in the
+     * current tree
+     *
+     * @param ruleNode a node to be inserted
+     * @return true if more general rule exists in the tree
+     */
+    private boolean isMoreGeneralNode(CRNode ruleNode) {
 
-		// If more general rule with higher ranking exists, current rule will be
-		// discarded
-		if (isMoreGeneralNode(newNode)) {
-			return;
-		}
+        CRNode currentNode = rootNode;
 
-		// Add current node as the first node
-		if (newNode.rule.isGreater(rootNode.rule)) {
-			newNode.next = rootNode;
-			rootNode = newNode;
-			return;
-		}
+        // Search in tree by follwing the "next" links between nodes
+        while (currentNode != null) {
+            if (ruleNode.rule.isMoreGeneral(currentNode.rule) && ruleNode.rule.isGreater(currentNode.rule))
+                return true;
+            currentNode = currentNode.next;
+        }
 
-		// Search for the position where
-		// the rule should be inserted in terms of rank
-		CRNode currentNode = rootNode;
-		CRNode nextNode = rootNode.next;
-		while (nextNode != null) {
-			if (newNode.rule.isGreater(nextNode.rule)) {
-				currentNode.next = newNode;
-				newNode.next = nextNode;
-				return;
-			}
-			currentNode = nextNode;
-			nextNode = nextNode.next;
-		}
+        return false;
+    }
 
-		// Add new node at the very end
-		currentNode.next = newNode;
-	}
+    /**
+     * Prunes this CRTree using the cover principle
+     */
+    protected void pruneUsingCover() {
+        // Create a two-dimensional array that will store the instances
+        Short[][] datasetArray = new Short[this.dataset.getInstances().size()][];
 
-	/**
-	 * Checks whether there are a more general rule, with higher ranking in the
-	 * current tree
-	 * 
-	 * @param ruleNode a node to be inserted
-	 * @return true if more general rule exists in the tree
-	 */
-	private boolean isMoreGeneralNode(CRNode ruleNode) {
-		
-		CRNode currentNode = rootNode;
+        // Copy the i-th instance in the i-th position of the array
+        List<Instance> instances = this.dataset.getInstances();
+        for (int i = 0; i < instances.size(); i++) {
+            datasetArray[i] = instances.get(i).getItems();
+        }
 
-		// Search in tree by follwing the "next" links between nodes
-		while (currentNode != null) {
-			if (ruleNode.rule.isMoreGeneral(currentNode.rule) && ruleNode.rule.isGreater(currentNode.rule))
-				return true;
-			currentNode = currentNode.next;
-		}
+        // Create an array to count how many times each instance is covered
+        int[] numberTimesCovered = new int[this.dataset.getInstances().size()];
 
-		return false;
-	}
+        // Define rule list references
+        CRNode newStart = null;
+        CRNode markerRef = null;
+        CRNode currentNode = rootNode;
 
-	/**
-	 * Prunes this CRTree using the cover principle
-	 */
-	protected void pruneUsingCover() {
-		// Create a two-dimensional array that will store the instances
-		Short[][] datasetArray = new Short[this.dataset.getInstances().size()][];
+        // Browse through the nodes by following the "next" pointers
+        while (currentNode != null) {
+            // If dataset is empty, there are no need to continue pruning
+            if (isEmptyDataSet(datasetArray))
+                break;
 
-		// Copy the i-th instance in the i-th position of the array
-		List<Instance> instances = this.dataset.getInstances();
-		for (int i = 0; i < instances.size(); i++) {
-			datasetArray[i] = instances.get(i).getItems();
-		}
+            boolean coveredFlag = false;
+            // For each record
+            for (int m = 0; m < datasetArray.length; m++) {
+                // Increment the counter for each instance being covered
+                if (currentNode.rule.matching(datasetArray[m])) {
+                    numberTimesCovered[m]++;
+                    coveredFlag = true;
+                }
+            }
 
-		// Create an array to count how many times each instance is covered
-		int[] numberTimesCovered = new int[this.dataset.getInstances().size()];
+            // If current rule has covered at least one instance
+            if (coveredFlag) {
+                if (newStart == null)
+                    newStart = currentNode;
+                else
+                    markerRef.next = currentNode;
 
-		// Define rule list references
-		CRNode newStart = null;
-		CRNode markerRef = null;
-		CRNode currentNode = rootNode;
+                markerRef = currentNode;
+                currentNode = currentNode.next;
+                markerRef.next = null;
+            } else {
+                // Otherwise, go to the next node
+                currentNode = currentNode.next;
+            }
 
-		// Browse through the nodes by following the "next" pointers
-		while (currentNode != null) {
-			// If dataset is empty, there are no need to continue pruning
-			if (isEmptyDataSet(datasetArray))
-				break;
+            // Remove instances that were already covered enough times
+            for (int n = 0; n < numberTimesCovered.length; n++) {
+                if (numberTimesCovered[n] > minCover)
+                    datasetArray[n] = null;
+            }
+        }
 
-			boolean coveredFlag = false;
-			// For each record
-			for (int m = 0; m < datasetArray.length; m++) {
-				// Increment the counter for each instance being covered
-				if (currentNode.rule.matching(datasetArray[m])) {
-					numberTimesCovered[m]++;
-					coveredFlag = true;
-				}
-			}
+        // Update the root of the tree
+        rootNode = newStart;
+    }
 
-			// If current rule has covered at least one instance
-			if (coveredFlag) {
-				if (newStart == null)
-					newStart = currentNode;
-				else
-					markerRef.next = currentNode;
+    /**
+     * Check if a specified dataset is empty
+     *
+     * @param dataset a dataset
+     * @return true if it is empty, or false otherwise
+     */
+    private boolean isEmptyDataSet(Short[][] dataset) {
+        for (Short[] instances : dataset) {
+            if (instances != null)
+                return false;
+        }
+        return true;
+    }
 
-				markerRef = currentNode;
-				currentNode = currentNode.next;
-				markerRef.next = null;
-			} else {
-				// Otherwise, go to the next node
-				currentNode = currentNode.next;
-			}
+    /**
+     * Returns the number of generated classification rules
+     *
+     * @return array of rules
+     */
+    public List<Rule> getRules() {
+        // Create a list of rules
+        List<Rule> rules = new ArrayList<Rule>();
 
-			// Remove instances that were already covered enough times
-			for (int n = 0; n < numberTimesCovered.length; n++) {
-				if (numberTimesCovered[n] > minCover)
-					datasetArray[n] = null;
-			}
-		}
+        // Browse through the nodes by following the "next" pointers.
+        CRNode currentNode = rootNode;
+        while (currentNode != null) {
+            // Add the rule of the current node
+            rules.add(currentNode.rule);
+            // Move to next node
+            currentNode = currentNode.next;
+        }
 
-		// Update the root of the tree
-		rootNode = newStart;
-	}
-
-	/**
-	 * Check if a specified dataset is empty
-	 * 
-	 * @param dataset a dataset
-	 * @return true if it is empty, or false otherwise
-	 */
-	private boolean isEmptyDataSet(Short[][] dataset) {
-		for (Short[] instances : dataset) {
-			if (instances != null)
-				return false;
-		}
-		return true;
-	}
-
-	/**
-	 * Returns the number of generated classification rules
-	 * 
-	 * @return array of rules
-	 */
-	public List<Rule> getRules() {
-		// Create a list of rules
-		List<Rule> rules = new ArrayList<Rule>();
-		
-		// Browse through the nodes by following the "next" pointers.
-		CRNode currentNode = rootNode;
-		while (currentNode != null) {
-			// Add the rule of the current node
-			rules.add(currentNode.rule);
-			// Move to next node
-			currentNode = currentNode.next;
-		}
-		
-		// Return the list of rules
-		return rules;
-	}
+        // Return the list of rules
+        return rules;
+    }
 }

@@ -21,7 +21,7 @@ import ca.pfv.spmf.tools.MemoryLogger;
  * Mining as described in the conference paper : <br/>
  * <br/>
  * <p>
- * Nguyen L T T, Vu V V, Lam M T H, et al. An efficient method for mining high utility 
+ * Nguyen L T T, Vu V V, Lam M T H, et al. An efficient method for mining high utility
  * closed itemsets[J]. Information Sciences, 2019, 495: 78-99., https://doi.org/10.1016/j.ins.2019.05.006.
  * <br/>
  * <br/>
@@ -36,36 +36,38 @@ public class AlgoHMiner_Closed {
 
     // variable for statistics
     /**
+     * indicate to activate the merging optimization
+     */
+    public static boolean merging_flag;
+    /**
+     * indicate to activate the EUCS optimization of FHM
+     */
+    public static boolean eucs_flag;
+    /**
      * the maximum memory usage
      */
     public double maxMemory = 0;
-
     /**
      * the time the algorithm started
      */
     public long startTimestamp = 0; //
-
     /**
      * the time the algorithm ended
      */
     public long endTimestamp = 0;
-
     /**
      * the time for constructing
      */
     public long construct_time = 0;
-
     /**
      * the number of HUI generated
      */
     public long huiCount = 0;
-
     /* Variables used for statistics */
     public long candidateCount = 0, construct_calls = 0, numberRecursions = 0;
     public long closure_time = 0, temp_closure_time = 0, p_laprune = 0,
             p_cprune = 0;
     public long recursive_calls = 0, merging_time = 0, temp_merging_time = 0;
-
     /**
      * Map to remember the TWU of each item
      */
@@ -85,21 +87,10 @@ public class AlgoHMiner_Closed {
      * Output file path
      */
     String outputFile;
-
     /**
      * EUCS map of the FHM algorithm (item -->  item --> twu
      */
     Map<Integer, Map<Integer, Long>> mapFMAP;
-    /**
-     * indicate to activate the merging optimization
-     */
-    public static boolean merging_flag;
-
-    /**
-     * indicate to activate the EUCS optimization of FHM
-     */
-    public static boolean eucs_flag;
-
     /**
      * activate the debug mode
      */
@@ -111,15 +102,10 @@ public class AlgoHMiner_Closed {
     long stats_time = 0;
 
     /**
-     * this class represent an item and its utility in a transaction
+     * Default constructor
      */
-    class Pair {
-        int item = 0;
-        long utility = 0;
+    public AlgoHMiner_Closed() {
 
-        public String toString() {
-            return "[" + item + "," + utility + "]";
-        }
     }
 
     /**
@@ -161,13 +147,6 @@ public class AlgoHMiner_Closed {
         }
         // close the file
         writer.close();
-    }
-
-    /**
-     * Default constructor
-     */
-    public AlgoHMiner_Closed() {
-
     }
 
     /**
@@ -341,7 +320,7 @@ public class AlgoHMiner_Closed {
                             temp_merging_time = System.currentTimeMillis();
                             HT.put(tx_key,
                                     mapItemToCULList.get(revisedTransaction
-                                            .get(revisedTransaction.size() - 1).item).elements
+                                                    .get(revisedTransaction.size() - 1).item).elements
                                             .size());
                             merging_time += System.currentTimeMillis()
                                     - temp_merging_time;
@@ -530,6 +509,21 @@ public class AlgoHMiner_Closed {
 
     }
 
+    /**
+     * 每次插入项集后，对该项集所在的list按照支持度从小到大进行排序
+     *
+     * @param level
+     */
+    public void sortCHUIs(List<Itemset> level) {
+        // SORT THE LIST OF HIGH TWU ITEMS IN ASCENDING ORDER
+        Collections.sort(level, new Comparator<Itemset>() {
+            public int compare(Itemset o1, Itemset o2) {
+                // compare the TWU of the items
+                return compareItemsbysupport(o1, o2);
+            }
+        });
+    }
+
     /*
      * public void readUtilityFile(String utilityFileName) throws
      * FileNotFoundException, IOException { // read the file BufferedReader
@@ -546,21 +540,6 @@ public class AlgoHMiner_Closed {
      * Long.parseLong(utilityString); utilityMap.put(item, utility); } // close
      * the input file reader.close(); // Read the utility file }
      */
-
-    /**
-     * 每次插入项集后，对该项集所在的list按照支持度从小到大进行排序
-     *
-     * @param level
-     */
-    public void sortCHUIs(List<Itemset> level) {
-        // SORT THE LIST OF HIGH TWU ITEMS IN ASCENDING ORDER
-        Collections.sort(level, new Comparator<Itemset>() {
-            public int compare(Itemset o1, Itemset o2) {
-                // compare the TWU of the items
-                return compareItemsbysupport(o1, o2);
-            }
-        });
-    }
 
     /**
      * Method to compare items by their Support
@@ -1132,7 +1111,6 @@ public class AlgoHMiner_Closed {
         }
     }
 
-
     /**
      * Method to check the memory usage and keep the maximum memory usage.
      */
@@ -1166,6 +1144,18 @@ public class AlgoHMiner_Closed {
         System.out.println(" Test time taken before mining: " + time_Test);
         System.out.println(" jump1 || jump2 || nojump: " + jumpnum1 + "||" + jumpnum2 + "||" + nojumpnum);
         System.out.println("================================================");
+    }
+
+    /**
+     * this class represent an item and its utility in a transaction
+     */
+    class Pair {
+        int item = 0;
+        long utility = 0;
+
+        public String toString() {
+            return "[" + item + "," + utility + "]";
+        }
     }
 
 }

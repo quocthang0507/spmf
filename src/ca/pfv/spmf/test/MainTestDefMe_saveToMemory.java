@@ -14,40 +14,41 @@ import ca.pfv.spmf.patterns.itemset_array_integers_with_tids_bitset.Itemsets;
 
 /**
  * Example of how to use DefMe algorithm from the source code.
+ *
  * @author Philippe Fournier-Viger - 2009
  */
 public class MainTestDefMe_saveToMemory {
 
-	public static void main(String [] arg) throws IOException{
-		// Loading the binary context
-		String input = fileToPath("contextZart.txt");  // the database
-		
-		double minsup = 0.4; // means a minsup of 2 transaction (we used a relative support)
-		
-		TransactionDatabase database = new TransactionDatabase();
-		try {
-			database.loadFile(input);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		// Applying the DefMe algorithm
-		AlgoDefMe algo = new AlgoDefMe();
-		
-		// Uncomment the following line to set the maximum pattern length (number of items per itemset)
+    public static void main(String[] arg) throws IOException {
+        // Loading the binary context
+        String input = fileToPath("contextZart.txt");  // the database
+
+        double minsup = 0.4; // means a minsup of 2 transaction (we used a relative support)
+
+        TransactionDatabase database = new TransactionDatabase();
+        try {
+            database.loadFile(input);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // Applying the DefMe algorithm
+        AlgoDefMe algo = new AlgoDefMe();
+
+        // Uncomment the following line to set the maximum pattern length (number of items per itemset)
 //		algo.setMaximumPatternLength(2);
-		
-		Itemsets generators = algo.runAlgorithm(null, database, minsup);
-		algo.printStats();
-		for(List<Itemset> genSizeK : generators.getLevels()) {
-			for(Itemset itemset : genSizeK) {
-				System.out.println(Arrays.toString(itemset.getItems()) + " #SUP: " + itemset.getAbsoluteSupport());
-			}
-		}
-	}
-	
-	public static String fileToPath(String filename) throws UnsupportedEncodingException{
-		URL url = MainTestDefMe_saveToMemory.class.getResource(filename);
-		 return java.net.URLDecoder.decode(url.getPath(),"UTF-8");
-	}
+
+        Itemsets generators = algo.runAlgorithm(null, database, minsup);
+        algo.printStats();
+        for (List<Itemset> genSizeK : generators.getLevels()) {
+            for (Itemset itemset : genSizeK) {
+                System.out.println(Arrays.toString(itemset.getItems()) + " #SUP: " + itemset.getAbsoluteSupport());
+            }
+        }
+    }
+
+    public static String fileToPath(String filename) throws UnsupportedEncodingException {
+        URL url = MainTestDefMe_saveToMemory.class.getResource(filename);
+        return java.net.URLDecoder.decode(url.getPath(), "UTF-8");
+    }
 }

@@ -13,9 +13,9 @@ import ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP.idLists.creators
 import ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP.idLists.creators.IdListCreator_Bitmap;
 
 /**
- * Example of how to use the algorithm SPAM, saving the results in the 
+ * Example of how to use the algorithm SPAM, saving the results in the
  * main  memory
- * 
+ *
  * @author agomariz
  */
 public class MainTestSPAM_AGP_BitMap_saveToMemory {
@@ -29,27 +29,27 @@ public class MainTestSPAM_AGP_BitMap_saveToMemory {
 
         boolean keepPatterns = true;
         boolean verbose = false;
-        
+
         // if you set the following parameter to true, the sequence ids of the sequences where
         // each pattern appears will be shown in the result
-        boolean outputSequenceIdentifiers = false; 
+        boolean outputSequenceIdentifiers = false;
 
         AbstractionCreator abstractionCreator = AbstractionCreator_Qualitative.getInstance();
-        
+
         IdListCreator idListCreator = IdListCreator_Bitmap.getInstance();
-        
+
         SequenceDatabase sequenceDatabase = new SequenceDatabase(abstractionCreator, idListCreator);
 
         sequenceDatabase.loadFile(fileToPath("contextPrefixSpan.txt"), support);
-        
+
         System.out.println(sequenceDatabase.toString());
 
         AlgoSPAM_AGP algorithm = new AlgoSPAM_AGP(support);
-        
-        algorithm.runAlgorithm(sequenceDatabase, keepPatterns,verbose,null,outputSequenceIdentifiers);
-        System.out.println("Minimum support (relative) = "+support);
-        System.out.println(algorithm.getNumberOfFrequentPatterns()+ " frequent patterns.");
-        
+
+        algorithm.runAlgorithm(sequenceDatabase, keepPatterns, verbose, null, outputSequenceIdentifiers);
+        System.out.println("Minimum support (relative) = " + support);
+        System.out.println(algorithm.getNumberOfFrequentPatterns() + " frequent patterns.");
+
         System.out.println(algorithm.printStatistics());
     }
 

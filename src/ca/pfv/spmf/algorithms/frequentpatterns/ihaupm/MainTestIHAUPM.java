@@ -27,11 +27,12 @@ import ca.pfv.spmf.test.MainTestMEMU;
  * This is an implementation of the "IHAUPM" algorithm for High-Average-Utility
  * Itemsets Mining as described in the conference paper : <br/>
  * <br/>
- *
+ * <p>
  * Jerry Chun-Wei Lin, Shifeng Ren, and Philippe Fournier-Viger. Efficiently
  * Updating the Discovered High Average-Utility Itemsets with Transaction
  * Insertion. EAAI (unpublished, minor revision)
  *
+ * @author Shi-Feng Ren
  * @see IHAUPM.HAUPGrowth
  * @see tree.IAUTree
  * @see tree.IAUNode
@@ -39,50 +40,49 @@ import ca.pfv.spmf.test.MainTestMEMU;
  * @see ItemTHUI.Item
  * @see Pattern.Itemset
  * @see util.StackElement
- * @author Shi-Feng Ren
  */
 
 public class MainTestIHAUPM {
 
 
-	public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception {
 
-		String increResultFolder = "\\increResult\\";
-		String batchResultFolder = "\\batchResult\\";
+        String increResultFolder = "\\increResult\\";
+        String batchResultFolder = "\\batchResult\\";
 
-		String dataFileName = fileToPath("UtilityDB.txt"); // specify dataset
-															// name
-		String profitsFile = fileToPath("UtilityDB_profit.txt");
+        String dataFileName = fileToPath("UtilityDB.txt"); // specify dataset
+        // name
+        String profitsFile = fileToPath("UtilityDB_profit.txt");
 
-		String outputFile = "output.txt";
+        String outputFile = "output.txt";
 
-		// the number of transactions of the specified dataset
-		int numOfTrancsInDB = 4;
+        // the number of transactions of the specified dataset
+        int numOfTrancsInDB = 4;
 
-		// specify threshold (%)
-		double threshold = 0.2;
+        // specify threshold (%)
+        double threshold = 0.2;
 
-		// true: insert mode; false: batch mode
-		boolean isInsertMode = true;
+        // true: insert mode; false: batch mode
+        boolean isInsertMode = true;
 
-		// specify the number of inserted transactions
-		int numOfInsertedTransactions = 2;
+        // specify the number of inserted transactions
+        int numOfInsertedTransactions = 2;
 
-		// the number of insertion in an experiment
-		int numOfInsert = 2;
+        // the number of insertion in an experiment
+        int numOfInsert = 2;
 
-		AlgoIHAUPM algo = new AlgoIHAUPM();
-		
-		algo.runAlgorithm(profitsFile, dataFileName, numOfTrancsInDB, threshold,
-				isInsertMode, numOfInsertedTransactions, numOfInsert,
-				increResultFolder, batchResultFolder, outputFile);
-	}
+        AlgoIHAUPM algo = new AlgoIHAUPM();
+
+        algo.runAlgorithm(profitsFile, dataFileName, numOfTrancsInDB, threshold,
+                isInsertMode, numOfInsertedTransactions, numOfInsert,
+                increResultFolder, batchResultFolder, outputFile);
+    }
 
 
-	public static String fileToPath(String filename)
-			throws UnsupportedEncodingException {
-		URL url = MainTestMEMU.class.getResource(filename);
-		return java.net.URLDecoder.decode(url.getPath(), "UTF-8");
-	}
+    public static String fileToPath(String filename)
+            throws UnsupportedEncodingException {
+        URL url = MainTestMEMU.class.getResource(filename);
+        return java.net.URLDecoder.decode(url.getPath(), "UTF-8");
+    }
 
 }

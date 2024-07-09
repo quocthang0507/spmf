@@ -17,21 +17,21 @@ import java.util.Set;
  * Inspired in SPMF. Implementation of a sequence database. Each sequence should
  * have a unique id. See examples in /test/ directory for the format of input
  * files.
- *
+ * <p>
  * Copyright Antonio Gomariz Peñalver 2013
- *
+ * <p>
  * This file is part of the SPMF DATA MINING SOFTWARE
  * (http://www.philippe-fournier-viger.com/spmf).
- *
+ * <p>
  * SPMF is free software: you can redistribute it and/or modify it under the
  * terms of the GNU General Public License as published by the Free Software
  * Foundation, either version 3 of the License, or (at your option) any later
  * version.
- *
+ * <p>
  * SPMF is distributed in the hope that it will be useful, but WITHOUT ANY
  * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
  * A PARTICULAR PURPOSE. See the GNU General Public License for more details.
- *
+ * <p>
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  *
@@ -42,12 +42,12 @@ public class SequenceDatabase {
     private Map<Item, BitSet> frequentItems = new HashMap<Item, BitSet>();
     private List<Sequence> sequences = new LinkedList<Sequence>();
     private ItemFactory<Integer> itemFactory = new ItemFactory<Integer>();
-    
+
     /**
      * From a file located at the given string path, we create a database
      * composed of a list of sequences
      *
-     * @param path File path where we have the database
+     * @param path           File path where we have the database
      * @param minSupRelative relative Minimum  support
      * @throws IOException
      */
@@ -57,14 +57,14 @@ public class SequenceDatabase {
         try {
             FileInputStream fin = new FileInputStream(new File(path));
             myInput = new BufferedReader(new InputStreamReader(fin));
-            int sequenceID=1;
+            int sequenceID = 1;
             //For each line
             while ((thisLine = myInput.readLine()) != null) {
                 // If the line is not a comment line
-            	if (thisLine.charAt(0) != '#' && thisLine.charAt(0) != '%'
-						&& thisLine.charAt(0) != '@') {
+                if (thisLine.charAt(0) != '#' && thisLine.charAt(0) != '%'
+                        && thisLine.charAt(0) != '@') {
                     // we read it and add it as a sequence
-                    addSequence(thisLine.split(" "),sequenceID);
+                    addSequence(thisLine.split(" "), sequenceID);
                     sequenceID++;
                 }
             }
@@ -79,7 +79,7 @@ public class SequenceDatabase {
                 }
             }
             //We remove from the original set those non frequent items
-            for(Item removedItem:toRemove){
+            for (Item removedItem : toRemove) {
                 frequentItems.remove(removedItem);
             }
         } catch (Exception e) {
@@ -92,17 +92,18 @@ public class SequenceDatabase {
 
     /**
      * It adds a sequence from an array of string that we have to interpret
+     *
      * @param integers
-     * @param sequenceID 
+     * @param sequenceID
      */
-    public void addSequence(String[] integers,int sequenceID) {
+    public void addSequence(String[] integers, int sequenceID) {
         long timestamp = -1;
         Sequence sequence = new Sequence(sequences.size());
         sequence.setID(sequenceID);
         Itemset itemset = new Itemset();
         int inicio = 0;
         Map<Item, Boolean> counted = new HashMap<Item, Boolean>();
-        
+
         for (int i = inicio; i < integers.length; i++) {
             if (integers[i].codePointAt(0) == '<') {  // Timestamp
                 String value = integers[i].substring(1, integers[i].length() - 1);
@@ -116,24 +117,25 @@ public class SequenceDatabase {
             } else if (integers[i].equals("-2")) { // end of a sequence
                 sequences.add(sequence);
             } else {
-                    // extract the value for an item
-                    Item item = itemFactory.getItem(Integer.parseInt(integers[i]));
-                    if (counted.get(item) == null) {
-                        counted.put(item, Boolean.TRUE);
-                        BitSet appearances = frequentItems.get(item);
-                        if (appearances == null) {
-                            appearances = new BitSet();
-                            frequentItems.put(item, appearances);
-                        }
-                        appearances.set(sequence.getId());
+                // extract the value for an item
+                Item item = itemFactory.getItem(Integer.parseInt(integers[i]));
+                if (counted.get(item) == null) {
+                    counted.put(item, Boolean.TRUE);
+                    BitSet appearances = frequentItems.get(item);
+                    if (appearances == null) {
+                        appearances = new BitSet();
+                        frequentItems.put(item, appearances);
                     }
-                    itemset.addItem(item);
+                    appearances.set(sequence.getId());
+                }
+                itemset.addItem(item);
             }
         }
     }
 
     /**
      * Get a string representation of this sequence database
+     *
      * @return the string representation
      */
     @Override
@@ -150,6 +152,7 @@ public class SequenceDatabase {
 
     /**
      * It returns the number of sequences of the sequence database
+     *
      * @return the number of sequenes
      */
     public int size() {
@@ -158,6 +161,7 @@ public class SequenceDatabase {
 
     /**
      * It return the list of sequences of this sequence database
+     *
      * @return the list of sequences
      */
     public List<Sequence> getSequences() {
@@ -166,6 +170,7 @@ public class SequenceDatabase {
 
     /**
      * Get the list of ids of sequences in this sequence database
+     *
      * @return the list of sequence ids.
      */
     public Set<Integer> getSequenceIDs() {
@@ -178,6 +183,7 @@ public class SequenceDatabase {
 
     /**
      * It return the frequent items
+     *
      * @return the list of frequent items and the bitsets representing their sequence IDs.
      */
     public Map<Item, BitSet> getFrequentItems() {

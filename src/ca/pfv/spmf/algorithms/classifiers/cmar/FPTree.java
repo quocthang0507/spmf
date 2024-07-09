@@ -3,7 +3,7 @@
  * It is adapted from some GPL code obtained from the LAC library, which used some SPMF code.
  *
  * Copyright (C) SPMF, LAC
- *   
+ *
  * LAC is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -12,8 +12,8 @@
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details. You should have 
- * received a copy of the GNU General Public License along with 
+ * GNU General Public License for more details. You should have
+ * received a copy of the GNU General Public License along with
  * this program.  If not, see http://www.gnu.org/licenses/
  */
 package ca.pfv.spmf.algorithms.classifiers.cmar;
@@ -30,7 +30,7 @@ import java.util.Map.Entry;
  * Class representing an FP-Tree, used to obtain classification rules.
  * This is a modification of the typical FP-Tree structure, to be used
  * by the CMAR algorithm.
- * 
+ *
  * @see AlgoCMAR
  */
 public class FPTree {
@@ -62,7 +62,7 @@ public class FPTree {
 
     /**
      * Adds a transaction to the FP-Tree being created
-     * 
+     *
      * @param transaction a list of transactions to be added in the FP-Tree
      * @param klass       the class value of the current transaction
      */
@@ -89,7 +89,7 @@ public class FPTree {
                 // update header table
                 updateHeaderTable(item, newNode);
             } else {
-            	// Otherwise, update the support of the current node
+                // Otherwise, update the support of the current node
                 child.support++;
 
                 Long counterByKlass = child.supportByklass.getOrDefault(klass, 0L);
@@ -103,7 +103,7 @@ public class FPTree {
     /**
      * Method to update header table after inserting a new node link,
      * so as to consider all the leaf nodes
-     * 
+     *
      * @param item    An item to be added to the current FP-Tree
      * @param newNode The new node containing the item
      */
@@ -127,9 +127,9 @@ public class FPTree {
 
     /**
      * Add a new prefixPath to the current FP-Tree
-     * 
+     *
      * @param prefixPath      The path to be added to the tree
-     * @param mapSupportBeta  A map indicating the support of attribute values 
+     * @param mapSupportBeta  A map indicating the support of attribute values
      * @param relativeMinsupp The minimum support threshold
      */
     @SuppressWarnings("unchecked")
@@ -141,7 +141,7 @@ public class FPTree {
         FPNode currentNode = root;
         for (int i = prefixPath.size() - 1; i >= 1; i--) {
             FPNode pathItem = prefixPath.get(i);
-            
+
             // If the item is frequent
             if (mapSupportBeta.get(pathItem.item) >= relativeMinsupp) {
                 // Check if this node is in the current FP-Tree
@@ -180,15 +180,15 @@ public class FPTree {
 
     /**
      * Create the header table in descending order of support
-     * 
+     *
      * @param mapSupport the frequencies of each item
      */
     void createHeaderList(final Map<Short, Long> mapSupport) {
 
-    	// Copy all the keys from the map into the header table list
+        // Copy all the keys from the map into the header table list
         headerList = new ArrayList<Short>(mapItemNodes.size());
-        for(Entry<Short, FPNode> entry:  mapItemNodes.entrySet()) {
-        	headerList.add(entry.getKey());
+        for (Entry<Short, FPNode> entry : mapItemNodes.entrySet()) {
+            headerList.add(entry.getKey());
         }
         // Sort the header table list by descending order of support
         Collections.sort(headerList, new Comparator<Short>() {

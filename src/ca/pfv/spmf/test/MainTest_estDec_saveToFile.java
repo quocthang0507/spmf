@@ -12,31 +12,31 @@ import ca.pfv.spmf.algorithms.frequentpatterns.estDec.Algo_estDec;
  */
 public class MainTest_estDec_saveToFile {
 
-	public static void main(String [] arg) throws FileNotFoundException, IOException{
-		
-		String database = fileToPath("contextIGB.txt");
-		String  output = "output"; 
+    public static void main(String[] arg) throws FileNotFoundException, IOException {
 
-        if (arg.length!=0)
-          database=arg[0];
-        
+        String database = fileToPath("contextIGB.txt");
+        String output = "output";
+
+        if (arg.length != 0)
+            database = arg[0];
+
         double minsup = 0.1;
-        double minsig = 0.4*minsup;
+        double minsig = 0.4 * minsup;
 
-		Algo_estDec algo = new Algo_estDec(minsup,minsig);
-		
-		// process a set of transactions from a file
-		algo.processTransactionFromFile(database);
-		
-		// perform mining and save the result to a file
-		algo.performMining_saveResultToFile(output);
-		
-		// print statistics
-		algo.printStats();
-	}
-	
-	public static String fileToPath(String filename) throws UnsupportedEncodingException{
-		URL url = MainTest_estDec_saveToFile.class.getResource(filename);
-		 return java.net.URLDecoder.decode(url.getPath(),"UTF-8");
-	}
+        Algo_estDec algo = new Algo_estDec(minsup, minsig);
+
+        // process a set of transactions from a file
+        algo.processTransactionFromFile(database);
+
+        // perform mining and save the result to a file
+        algo.performMining_saveResultToFile(output);
+
+        // print statistics
+        algo.printStats();
+    }
+
+    public static String fileToPath(String filename) throws UnsupportedEncodingException {
+        URL url = MainTest_estDec_saveToFile.class.getResource(filename);
+        return java.net.URLDecoder.decode(url.getPath(), "UTF-8");
+    }
 }

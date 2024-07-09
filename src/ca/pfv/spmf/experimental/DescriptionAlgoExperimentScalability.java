@@ -25,71 +25,72 @@ import ca.pfv.spmf.gui.experiments.ExperimenterScalabilityWindow;
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
+
 /**
  * This class describes the algorithm to compare algorithms when
  * one parameter is varied
- * 
- * @see ExperimenterForParameterChange
+ *
  * @author Philippe Fournier-Viger
+ * @see ExperimenterForParameterChange
  */
 public class DescriptionAlgoExperimentScalability extends DescriptionOfAlgorithm {
 
-	/**
-	 * Default constructor
-	 */
-	public DescriptionAlgoExperimentScalability(){
-	}
+    /**
+     * Default constructor
+     */
+    public DescriptionAlgoExperimentScalability() {
+    }
 
-	@Override
-	public String getName() {
-		return "Performance_experiment_scalability";
-	}
+    @Override
+    public String getName() {
+        return "Performance_experiment_scalability";
+    }
 
-	@Override
-	public String getAlgorithmCategory() {
-		return "EXPERIMENTS";
-	}
+    @Override
+    public String getAlgorithmCategory() {
+        return "EXPERIMENTS";
+    }
 
-	@Override
-	public String getURLOfDocumentation() {
-		return "http://www.philippe-fournier-viger.com/spmf/ExperimenterPerformance_Scalability.php";
-	}
+    @Override
+    public String getURLOfDocumentation() {
+        return "http://www.philippe-fournier-viger.com/spmf/ExperimenterPerformance_Scalability.php";
+    }
 
-	@Override
-	public void runAlgorithm(String[] parameters, String inputFile, String outputFile) throws IOException {
+    @Override
+    public void runAlgorithm(String[] parameters, String inputFile, String outputFile) throws IOException {
 
-		ExperimenterScalabilityWindow experimenter = new ExperimenterScalabilityWindow();
-		experimenter.setVisible(true);
-		experimenter.setTitle("Run an experiment to test the performance of algorithm(s) when dataset size is varied.");
-	}
+        ExperimenterScalabilityWindow experimenter = new ExperimenterScalabilityWindow();
+        experimenter.setVisible(true);
+        experimenter.setTitle("Run an experiment to test the performance of algorithm(s) when dataset size is varied.");
+    }
 
-	@Override
-	public DescriptionOfParameter[] getParametersDescription() {
-        
-		DescriptionOfParameter[] parameters = new DescriptionOfParameter[0];
-		return parameters;
-	}
+    @Override
+    public DescriptionOfParameter[] getParametersDescription() {
 
-	@Override
-	public String getImplementationAuthorNames() {
-		return "Philippe Fournier-Viger";
-	}
+        DescriptionOfParameter[] parameters = new DescriptionOfParameter[0];
+        return parameters;
+    }
 
-	@Override
-	public String[] getInputFileTypes() {
-		return null;
-	}
+    @Override
+    public String getImplementationAuthorNames() {
+        return "Philippe Fournier-Viger";
+    }
 
-	@Override
-	public String[] getOutputFileTypes() {
-		return null;
-	}
-	
+    @Override
+    public String[] getInputFileTypes() {
+        return null;
+    }
 
-	@Override
-	public AlgorithmType getAlgorithmType() {
-		return AlgorithmType.EXPERIMENT_TOOL;
-	}
+    @Override
+    public String[] getOutputFileTypes() {
+        return null;
+    }
 
-	
+
+    @Override
+    public AlgorithmType getAlgorithmType() {
+        return AlgorithmType.EXPERIMENT_TOOL;
+    }
+
+
 }

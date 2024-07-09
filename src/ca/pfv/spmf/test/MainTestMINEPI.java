@@ -1,4 +1,5 @@
 package ca.pfv.spmf.test;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
@@ -7,6 +8,7 @@ import ca.pfv.spmf.algorithms.episodes.minepi.AlgoMINEPI;
 
 /**
  * This file shows how to run the MINEPI algorithm on an input file.
+ *
  * @author Peng yang
  */
 public class MainTestMINEPI {
@@ -26,12 +28,12 @@ public class MainTestMINEPI {
 
         // self-growth = flase only for online_minute.txt , others are true
         AlgoMINEPI algo = new AlgoMINEPI();
-        algo.runAlgorithm(inputFile, outputFile,minSup,maxWindow,selfIncrement);
+        algo.runAlgorithm(inputFile, outputFile, minSup, maxWindow, selfIncrement);
         algo.printStats();
     }
 
-    public static String fileToPath(String filename) throws UnsupportedEncodingException{
+    public static String fileToPath(String filename) throws UnsupportedEncodingException {
         URL url = MainTestMINEPI.class.getResource(filename);
-        return java.net.URLDecoder.decode(url.getPath(),"UTF-8");
+        return java.net.URLDecoder.decode(url.getPath(), "UTF-8");
     }
 }

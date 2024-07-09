@@ -13,21 +13,21 @@ import ca.pfv.spmf.algorithms.sequentialpatterns.clasp_AGP.tries.TrieNode;
 
 /**
  * Creator of a IdList based on a hashmap of arraylists.
- *
+ * <p>
  * Copyright Antonio Gomariz Peñalver 2013
- *
+ * <p>
  * This file is part of the SPMF DATA MINING SOFTWARE
  * (http://www.philippe-fournier-viger.com/spmf).
- *
+ * <p>
  * SPMF is free software: you can redistribute it and/or modify it under the
  * terms of the GNU General Public License as published by the Free Software
  * Foundation, either version 3 of the License, or (at your option) any later
  * version.
- *
+ * <p>
  * SPMF is distributed in the hope that it will be useful, but WITHOUT ANY
  * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
  * A PARTICULAR PURPOSE. See the GNU General Public License for more details.
- *
+ * <p>
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  *
@@ -41,6 +41,12 @@ public class IdListCreatorStandard_Map implements IdListCreator {
     private static IdListCreatorStandard_Map instance = null;
 
     /**
+     * Standard Constructor.
+     */
+    private IdListCreatorStandard_Map() {
+    }
+
+    /**
      * It removes the static fields.
      */
     public static void clear() {
@@ -48,14 +54,9 @@ public class IdListCreatorStandard_Map implements IdListCreator {
     }
 
     /**
-     * Standard Constructor.
-     */
-    private IdListCreatorStandard_Map() {
-    }
-
-    /**
-     * Get the static reference of the singleton IdList based on entries of 
+     * Get the static reference of the singleton IdList based on entries of
      * arraylists.
+     *
      * @return the instance of this singleton
      */
     public static IdListCreator getInstance() {
@@ -67,6 +68,7 @@ public class IdListCreatorStandard_Map implements IdListCreator {
 
     /**
      * It creates an empty IdList of entries of arraylists.
+     *
      * @return the idlist
      */
     public IDList create() {
@@ -93,23 +95,23 @@ public class IdListCreatorStandard_Map implements IdListCreator {
     }
 
     @Override
-    public void initializeMaps(Map<Item, TrieNode> frequentItems, Map<Item, Map<Integer, List<Integer>>> projectingDistance, 
-    		Map<Integer, Integer> sequenceSize, Map<Integer, List<Integer>> sequenceItemsetsSize) {
+    public void initializeMaps(Map<Item, TrieNode> frequentItems, Map<Item, Map<Integer, List<Integer>>> projectingDistance,
+                               Map<Integer, Integer> sequenceSize, Map<Integer, List<Integer>> sequenceItemsetsSize) {
         for (Item frecuente : frequentItems.keySet()) {
             TrieNode node = frequentItems.get(frecuente);
             Map<Integer, List<Integer>> sequenceElementsProjectingByItemMap = projectingDistance.get(frecuente);
             int totalNumberOfProjectedElements = 0;
             for (Integer s : sequenceElementsProjectingByItemMap.keySet()) {
                 List<Integer> elementsProjectedByPatternInSequence = sequenceElementsProjectingByItemMap.get(s);
-/*
- * Tin modifies:        
- */
-totalNumberOfProjectedElements += sequenceSize.get(s) - elementsProjectedByPatternInSequence.get(0);
+                /*
+                 * Tin modifies:
+                 */
+                totalNumberOfProjectedElements += sequenceSize.get(s) - elementsProjectedByPatternInSequence.get(0);
 /*                
                 for (int x : elementsProjectedByPatternInSequence) {
                     totalNumberOfProjectedElements += sequenceSize.get(s) - x;
                 }
-*/                
+*/
             }
             node.getChild().getIdList().setTotalElementsAfterPrefixes(totalNumberOfProjectedElements);
         }
@@ -126,7 +128,7 @@ totalNumberOfProjectedElements += sequenceSize.get(s) - elementsProjectedByPatte
         }
         List<Integer> itemscount = associatedMap.get(id);
         if (itemscount == null) {
-            itemscount=new ArrayList<Integer>();
+            itemscount = new ArrayList<Integer>();
             associatedMap.put(id, itemscount);
         }
         itemscount.add(itemsCount);

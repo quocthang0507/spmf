@@ -16,7 +16,7 @@ import java.util.Set;
  *
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  * Copyright Peng Yang  2019
  */
 
@@ -24,73 +24,83 @@ import java.util.Set;
  * This class represents a simultaneous event set. It is used by the MINEPI
  * algorithm.
  *
- * @see AlgoMINEPI
  * @author Peng yang
+ * @see AlgoMINEPI
  */
 public class Event {
-	/** a set of events */
-	Set<Integer> events = new HashSet<>();
-	/** the time */
-	int time;
+    /**
+     * a set of events
+     */
+    Set<Integer> events = new HashSet<>();
+    /**
+     * the time
+     */
+    int time;
 
-	/** constructor */
-	Event() {
+    /**
+     * constructor
+     */
+    Event() {
 
-	}
+    }
 
-	/**
-	 * Constructor
-	 * 
-	 * @param events a set of events
-	 * @param time   the time
-	 */
-	Event(String[] events, int time) {
-		for (String e : events) {
-			this.events.add(Integer.parseInt(e));
-		}
-	}
+    /**
+     * Constructor
+     *
+     * @param events a set of events
+     * @param time   the time
+     */
+    Event(String[] events, int time) {
+        for (String e : events) {
+            this.events.add(Integer.parseInt(e));
+        }
+    }
 
-	/**
-	 * Constructor
-	 * 
-	 * @param event a single event
-	 * @param time  the time
-	 */
-	Event(int event, int time) {
-		events.add(event);
-		this.time = time;
-	}
+    /**
+     * Constructor
+     *
+     * @param event a single event
+     * @param time  the time
+     */
+    Event(int event, int time) {
+        events.add(event);
+        this.time = time;
+    }
 
-	/**
-	 * Set the time
-	 * @param time the time
-	 */
-	public void setTime(int time) {
-		this.time = time;
-	}
+    /**
+     * Add an event
+     *
+     * @param event the event
+     */
+    public void addEvent(Integer event) {
+        this.events.add(event);
+    }
 
-	/**
-	 * Add an event
-	 * @param event the event
-	 */
-	public void addEvent(Integer event) {
-		this.events.add(event);
-	}
+    /**
+     * Check if this event set contains an event
+     *
+     * @param event the event
+     * @return true if the event appears. Otherwise, false
+     */
+    public boolean contains(Integer event) {
+        return this.events.contains(event);
+    }
 
-	/** 
-	 * Check if this event set contains an event
-	 * @param event the event
-	 * @return true if the event appears. Otherwise, false
-	 */
-	public boolean contains(Integer event) {
-		return this.events.contains(event);
-	}
+    /**
+     * Get the time
+     *
+     * @return the time
+     */
+    public int getTime() {
+        return this.time;
+    }
 
-	/**
-	 * Get the time
-	 * @return the time
-	 */
-	public int getTime() {
-		return this.time;
-	}
+    /**
+     * Set the time
+     *
+     * @param time the time
+     */
+    public void setTime(int time) {
+        this.time = time;
+    }
 }

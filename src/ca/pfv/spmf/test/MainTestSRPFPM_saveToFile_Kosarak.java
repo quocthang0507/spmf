@@ -33,8 +33,8 @@ public class MainTestSRPFPM_saveToFile_Kosarak {
  		*/
         double minAverage = 1.6;
         double maxAverage = 14.5;
-        double minPeriod =0;
-        double maxPeriod =139;
+        double minPeriod = 0;
+        double maxPeriod = 139;
 
         // Applying the FPGROWTH algorithmMainTestFPGrowth.java
         AlgoSRPFPM algo = new AlgoSRPFPM();

@@ -23,8 +23,8 @@ import java.util.*;
  * Contains projections of isomorphic subgraphs
  * Rightmost path edges may belong to isomorphic subgraph. In such case projections are indexed to provide efficient forward and backward extensions.
  *
- * @see IsomorphicSubgraph
  * @author Shaul Zevin
+ * @see IsomorphicSubgraph
  */
 public class IsomorphicSubgraphProjections extends PDFSCompact {
     // projections which have particular database vertex on a rightmost path index
@@ -112,6 +112,7 @@ public class IsomorphicSubgraphProjections extends PDFSCompact {
 
     /**
      * adds a single projection
+     *
      * @param projection projection to be added
      */
     public void addProjection(List<ProjectedEdge> projection) {
@@ -130,9 +131,10 @@ public class IsomorphicSubgraphProjections extends PDFSCompact {
 
     /**
      * adds a single projection which exists when database vertex is projected from a rightmost path position specified by index
-     * @param vertex projected vertex
+     *
+     * @param vertex             projected vertex
      * @param rightMostPathIndex rightmost path position
-     * @param projection projection to add
+     * @param projection         projection to add
      */
     public void addVertexRightMostPathIndexProjection(int vertex, int rightMostPathIndex, List<ProjectedEdge> projection) {
         if (!vertexRightMostPathIndexProjections.containsKey(vertex)) {
@@ -161,10 +163,11 @@ public class IsomorphicSubgraphProjections extends PDFSCompact {
     /**
      * adds a single projection which exists when rightMostVertex database vertex is projected from the rightmost position
      * and database vertex is projected from a rightmost path position specified by index
-     * @param rightMostVertex vertex projected from the rightmost position
-     * @param vertex vertex projected from rightMostPathIndex position
+     *
+     * @param rightMostVertex    vertex projected from the rightmost position
+     * @param vertex             vertex projected from rightMostPathIndex position
      * @param rightMostPathIndex rightmost path position
-     * @param projection projection to add
+     * @param projection         projection to add
      */
     public void addRightMostVertexVertexRightMostPathIndexProjection(int rightMostVertex, int vertex, int rightMostPathIndex, List<ProjectedEdge> projection) {
         if (!rightMostVertexVertexRightMostPathIndexProjections.containsKey(rightMostVertex)) {
@@ -197,7 +200,8 @@ public class IsomorphicSubgraphProjections extends PDFSCompact {
 
     /**
      * merges projections from two isomorphic graphs
-     * @param other isomorphic projections to be merged with this isomorphic projections
+     *
+     * @param other          isomorphic projections to be merged with this isomorphic projections
      * @param rightMostIndex index of the rightmost vertex
      * @return merged projections
      */
@@ -212,12 +216,10 @@ public class IsomorphicSubgraphProjections extends PDFSCompact {
             Set<ProjectedEdge> mergedProjection = new HashSet<ProjectedEdge>();
             if (isomorphismEdgesIndices.contains(i)) {
                 mergedProjection.addAll(projections.get(i));
-            }
-            else {
+            } else {
                 if (other.getIsomorphismEdgesIndices().contains(i)) {
                     mergedProjection.addAll(other.getProjections().get(i));
-                }
-                else {
+                } else {
                     mergedProjection.add(projectedEdges.get(i));
                 }
             }
@@ -240,8 +242,7 @@ public class IsomorphicSubgraphProjections extends PDFSCompact {
                         Set<ProjectedEdge> mergedProjection = new HashSet<ProjectedEdge>();
                         if (isomorphismEdgesIndices.contains(i)) {
                             mergedProjection.addAll(vertexRightMostPathIndexProjections.get(vertex).get(rightMostPathIndex).get(i));
-                        }
-                        else {
+                        } else {
                             if (other.getIsomorphismEdgesIndices().contains(i)) {
                                 mergedProjection.addAll(other.vertexRightMostPathIndexProjections.get(vertex).get(rightMostPathIndex).get(i));
                             } else {
@@ -257,8 +258,7 @@ public class IsomorphicSubgraphProjections extends PDFSCompact {
                         Set<ProjectedEdge> mergedProjection = new HashSet<ProjectedEdge>();
                         if (isomorphismEdgesIndices.contains(i)) {
                             mergedProjection.addAll(vertexRightMostPathIndexProjections.get(vertex).get(rightMostPathIndex).get(i));
-                        }
-                        else {
+                        } else {
                             if (other.getIsomorphismEdgesIndices().contains(i)) {
                                 mergedProjection.addAll(other.projections.get(i));
                             } else {
@@ -288,8 +288,7 @@ public class IsomorphicSubgraphProjections extends PDFSCompact {
                     Set<ProjectedEdge> mergedProjection = new HashSet<ProjectedEdge>();
                     if (isomorphismEdgesIndices.contains(i)) {
                         mergedProjection.addAll(projections.get(i));
-                    }
-                    else {
+                    } else {
                         if (other.getIsomorphismEdgesIndices().contains(i)) {
                             mergedProjection.addAll(other.vertexRightMostPathIndexProjections.get(vertex).get(rightMostPathIndex).get(i));
                         } else {
@@ -317,8 +316,7 @@ public class IsomorphicSubgraphProjections extends PDFSCompact {
                         Set<ProjectedEdge> mergedProjection = new HashSet<ProjectedEdge>();
                         if (isomorphismEdgesIndices.contains(i)) {
                             mergedProjection.addAll(rightMostVertexVertexRightMostPathIndexProjections.get(rightMostVertex).get(vertex).get(rightMostPathIndex).get(i));
-                        }
-                        else {
+                        } else {
                             if (other.getIsomorphismEdgesIndices().contains(i)) {
                                 mergedProjection.addAll(other.projections.get(i));
                             } else {
@@ -333,10 +331,10 @@ public class IsomorphicSubgraphProjections extends PDFSCompact {
 
             // backward projections to other
             List<Set<ProjectedEdge>> rightMostProjections = vertexRightMostPathIndexProjections.get(rightMostVertex).get(rightMostIndex);
-            for (int otherVertex: other.vertexRightMostPathIndexProjections.keySet()) {
+            for (int otherVertex : other.vertexRightMostPathIndexProjections.keySet()) {
                 merged.rightMostVertexVertexRightMostPathIndexProjections.get(rightMostVertex).put(otherVertex, new HashMap<Integer, List<Set<ProjectedEdge>>>());
                 merged.rightMostVertexVertexRightMostPathIndexProjectionsCount.get(rightMostVertex).put(otherVertex, new HashMap<Integer, Integer>());
-                for (int otherIndex: other.vertexRightMostPathIndexProjections.get(otherVertex).keySet()) {
+                for (int otherIndex : other.vertexRightMostPathIndexProjections.get(otherVertex).keySet()) {
                     merged.rightMostVertexVertexRightMostPathIndexProjections.get(rightMostVertex).get(otherVertex).put(otherIndex, new ArrayList<Set<ProjectedEdge>>());
                     merged.rightMostVertexVertexRightMostPathIndexProjectionsCount.get(rightMostVertex).get(otherVertex).put(otherIndex, vertexRightMostPathIndexProjectionsCount.get(rightMostVertex).get(rightMostIndex) * other.vertexRightMostPathIndexProjectionsCount.get(otherVertex).get(otherIndex));
                     for (int i = 0; i < projections.size(); i++) {
@@ -344,8 +342,7 @@ public class IsomorphicSubgraphProjections extends PDFSCompact {
 
                         if (isomorphismEdgesIndices.contains(i)) {
                             mergedProjection.addAll(vertexRightMostPathIndexProjections.get(rightMostVertex).get(rightMostIndex).get(i));
-                        }
-                        else {
+                        } else {
                             if (other.getIsomorphismEdgesIndices().contains(i)) {
                                 mergedProjection.addAll(other.vertexRightMostPathIndexProjections.get(otherVertex).get(otherIndex).get(i));
                             } else {
@@ -377,8 +374,7 @@ public class IsomorphicSubgraphProjections extends PDFSCompact {
 
                         if (isomorphismEdgesIndices.contains(i)) {
                             mergedProjection.addAll(projections.get(i));
-                        }
-                        else {
+                        } else {
                             if (other.getIsomorphismEdgesIndices().contains(i)) {
                                 mergedProjection.addAll(other.rightMostVertexVertexRightMostPathIndexProjections.get(rightMostVertex).get(vertex).get(rightMostPathIndex).get(i));
                             } else {
@@ -393,13 +389,13 @@ public class IsomorphicSubgraphProjections extends PDFSCompact {
 
             // backward projections to other
             List<Set<ProjectedEdge>> rightMostProjections = other.vertexRightMostPathIndexProjections.get(rightMostVertex).get(rightMostIndex);
-            for (int myVertex: vertexRightMostPathIndexProjections.keySet()) {
+            for (int myVertex : vertexRightMostPathIndexProjections.keySet()) {
                 if (other.rightMostVertexVertexRightMostPathIndexProjections != null && other.rightMostVertexVertexRightMostPathIndexProjections.containsKey(myVertex)) {
                     continue;
                 }
                 merged.rightMostVertexVertexRightMostPathIndexProjections.get(rightMostVertex).put(myVertex, new HashMap<Integer, List<Set<ProjectedEdge>>>());
                 merged.rightMostVertexVertexRightMostPathIndexProjectionsCount.get(rightMostVertex).put(myVertex, new HashMap<Integer, Integer>());
-                for (int myIndex: vertexRightMostPathIndexProjections.get(myVertex).keySet()) {
+                for (int myIndex : vertexRightMostPathIndexProjections.get(myVertex).keySet()) {
                     merged.rightMostVertexVertexRightMostPathIndexProjections.get(rightMostVertex).get(myVertex).put(myIndex, new ArrayList<Set<ProjectedEdge>>());
                     merged.rightMostVertexVertexRightMostPathIndexProjectionsCount.get(rightMostVertex).get(myVertex).put(myIndex, other.vertexRightMostPathIndexProjectionsCount.get(rightMostVertex).get(rightMostIndex) * vertexRightMostPathIndexProjectionsCount.get(myVertex).get(myIndex));
                     for (int i = 0; i < projections.size(); i++) {
@@ -409,8 +405,7 @@ public class IsomorphicSubgraphProjections extends PDFSCompact {
 
                         if (isomorphismEdgesIndices.contains(i)) {
                             mergedProjection.addAll(vertexRightMostPathIndexProjections.get(myVertex).get(myIndex).get(i));
-                        }
-                        else {
+                        } else {
                             if (other.getIsomorphismEdgesIndices().contains(i)) {
                                 mergedProjection.addAll(other.vertexRightMostPathIndexProjections.get(rightMostVertex).get(rightMostIndex).get(i));
                             } else {
@@ -429,11 +424,12 @@ public class IsomorphicSubgraphProjections extends PDFSCompact {
 
     /**
      * checks if isomorphic projections include rightmost vertex
+     *
      * @param rightMost rightmost vertex index
      * @return true if rightmost vertex is included, false otherwise
      */
     public boolean containsRightmost(int rightMost) {
-        for (int v: vertexRightMostPathIndexProjections.keySet()) {
+        for (int v : vertexRightMostPathIndexProjections.keySet()) {
             if (vertexRightMostPathIndexProjections.get(v).containsKey(rightMost)) {
                 return true;
             }

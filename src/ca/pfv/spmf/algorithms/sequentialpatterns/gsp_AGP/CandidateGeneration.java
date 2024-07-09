@@ -9,43 +9,44 @@ import ca.pfv.spmf.algorithms.sequentialpatterns.gsp_AGP.items.Item;
 import ca.pfv.spmf.algorithms.sequentialpatterns.gsp_AGP.items.creators.AbstractionCreator;
 import ca.pfv.spmf.algorithms.sequentialpatterns.gsp_AGP.items.patterns.Pattern;
 
-/** 
+/**
  * This is an implementation of the candidate generation addressed in GSP algorithm.
  * This class is one of the two method continuously repeated by means of the GSP's main loop.
  * Here, from a set of frequent candidates k-sequences we generate a set of possible (k+1)-supersequences.
- *
+ * <p>
  * Copyright Antonio Gomariz Peñalver 2013
- * 
+ * <p>
  * This file is part of the SPMF DATA MINING SOFTWARE
  * (http://www.philippe-fournier-viger.com/spmf).
- *
+ * <p>
  * SPMF is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- *
+ * <p>
  * SPMF is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- *
+ * <p>
  * You should have received a copy of the GNU General Public License
  * along with SPMF.  If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  * @author agomariz
  */
- class CandidateGeneration {
+class CandidateGeneration {
 
     /**
      * Main method that creates, from frequent (k-1)-sequence set (aka L(k-1))
-     * the new set of (k)-sequences candidates. Before returning the 
+     * the new set of (k)-sequences candidates. Before returning the
      * candidate set, the algorithm prunes those canidates that cannot be frequent
      * at all
-     * @param frequentSet the frequent (k-1)-sequence set, L(k-1)
+     *
+     * @param frequentSet        the frequent (k-1)-sequence set, L(k-1)
      * @param abstractionCreator the abstraction creator
-     * @param indexationMap a map where the frequent sequences are indexed by 
-     * their first item
-     * @param k the number that corresponds to the current level
+     * @param indexationMap      a map where the frequent sequences are indexed by
+     *                           their first item
+     * @param k                  the number that corresponds to the current level
      * @param minSupportAbsolute the absolute minimum  support
      * @return the final k-candidate set
      */
@@ -108,10 +109,11 @@ import ca.pfv.spmf.algorithms.sequentialpatterns.gsp_AGP.items.patterns.Pattern;
 
     /**
      * Return the pruned k-candidate set of candidates.
-     * @param candidateSet the candidate k-sequence set
-     * @param frequentSet the frequent (k-1)-sequence set
+     *
+     * @param candidateSet       the candidate k-sequence set
+     * @param frequentSet        the frequent (k-1)-sequence set
      * @param abstractionCreator
-     * @return 
+     * @return
      */
     private List<Pattern> prunedSubset(List<Pattern> candidateSet, Set<Pattern> frequentSet, AbstractionCreator abstractionCreator) {
         List<Pattern> candidatePatterns = new ArrayList<Pattern>();

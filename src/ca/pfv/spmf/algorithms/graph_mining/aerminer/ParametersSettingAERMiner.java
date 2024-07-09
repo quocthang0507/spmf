@@ -1,55 +1,68 @@
 package ca.pfv.spmf.algorithms.graph_mining.aerminer;
 /* This file is copyright (c) 2020 by Ganghuan He
-* 
-* This file is part of the SPMF DATA MINING SOFTWARE
-* (http://www.philippe-fournier-viger.com/spmf).
-* 
-* SPMF is free software: you can redistribute it and/or modify it under the
-* terms of the GNU General Public License as published by the Free Software
-* Foundation, either version 3 of the License, or (at your option) any later
-* version.
-* 
-* SPMF is distributed in the hope that it will be useful, but WITHOUT ANY
-* WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
-* A PARTICULAR PURPOSE. See the GNU General Public License for more details.
-* You should have received a copy of the GNU General Public License along with
-* SPMF. If not, see <http://www.gnu.org/licenses/>.
-*/
+ *
+ * This file is part of the SPMF DATA MINING SOFTWARE
+ * (http://www.philippe-fournier-viger.com/spmf).
+ *
+ * SPMF is free software: you can redistribute it and/or modify it under the
+ * terms of the GNU General Public License as published by the Free Software
+ * Foundation, either version 3 of the License, or (at your option) any later
+ * version.
+ *
+ * SPMF is distributed in the hope that it will be useful, but WITHOUT ANY
+ * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
+ * A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+ * You should have received a copy of the GNU General Public License along with
+ * SPMF. If not, see <http://www.gnu.org/licenses/>.
+ */
+
 /**
  * Parameter settings of the AER Miner algorithm
- * @see AERMiner
+ *
  * @author Ganghuan He 2020
+ * @see AERMiner
  */
 public class ParametersSettingAERMiner {
 
-	
-	/** This flag specify different dataset
-     *  case 0: DBLP
-     *  case 1: USA flight
+
+    /**
+     * This flag specify different dataset
+     * case 0: DBLP
+     * case 1: USA flight
      */
 //    public static int TASK_FLAG = 0;
     public static String projectPath = System.getProperty("user.dir");
-    
+
     //follow parameters are specific for different datasets
     // main parameters
-    /** minimal support ratio */
-    public static double MINSUP ;
+    /**
+     * minimal support ratio
+     */
+    public static double MINSUP;
 
     public static double MINCONF;
 
     public static double MINLIFT;
 
     //input and output file path
-    /** path of file recording attribute mapping */
+    /**
+     * path of file recording attribute mapping
+     */
 
     public static String ATTRI_MAPPING_PATH;
-    /** path of file describing attributes of vertices*/
+    /**
+     * path of file describing attributes of vertices
+     */
     public static String OLD_ATTR_FILE_PATH;
     public static String ATTR_FILE_PATH;
-    /** path of file describing edges of vertices */
+    /**
+     * path of file describing edges of vertices
+     */
     public static String OLD_EDGE_FILE_PATH;
     public static String EDGE_FILE_PATH;
-    /** path of file recording mined patterns */
+    /**
+     * path of file recording mined patterns
+     */
     public static String PATTERN_PATH;
 
     public static String OLD_VERTEX_MAP_NAME_PATH;

@@ -23,8 +23,9 @@ package ca.pfv.spmf.algorithms.frequentpatterns.HMiner_CLosed;
  * <br/>
  * The code was obtained from Github repository of user "limuhangk" under the GPL license (since
  * the code is derived from GPL code from SPMF).
- * @see AlgoHMiner_Closed
+ *
  * @author Siddharth Dawar et al.
+ * @see AlgoHMiner_Closed
  * @see MCUL_List
  */
 class Element_MCUL_List {
@@ -61,7 +62,7 @@ class Element_MCUL_List {
      * @param tid  transaction id
      * @param nu   itemset utility
      * @param nru  remaining utility
-     * @param Npu   prefix utility
+     * @param Npu  prefix utility
      * @param ppos
      */
     public Element_MCUL_List(int tid, long nu, long nru, long Npu, int ppos) {
@@ -74,7 +75,6 @@ class Element_MCUL_List {
 
 
     /**
-     *
      * Constructor
      * Each transaction contains sextuple <Tj,NU,NPU,NRU,W,PPOS>
      *
@@ -84,7 +84,6 @@ class Element_MCUL_List {
      * @param Npu
      * @param WXTj
      * @param ppos
-     *
      */
     public Element_MCUL_List(int tid, long nu, long nru, long Npu, long WXTj, int ppos) {
         this.tid = tid;

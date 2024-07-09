@@ -27,72 +27,80 @@ import ca.pfv.spmf.algorithms.sequentialpatterns.clofast.model.tree.ItemsetNodeT
 import ca.pfv.spmf.algorithms.sequentialpatterns.clofast.model.tree.NodeType;
 import ca.pfv.spmf.tools.MemoryLogger;
 
-/* 
-* This file is part of the SPMF DATA MINING SOFTWARE
-* (http://www.philippe-fournier-viger.com/spmf).
-* 
-* SPMF is free software: you can redistribute it and/or modify it under the
-* terms of the GNU General Public License as published by the Free Software
-* Foundation, either version 3 of the License, or (at your option) any later
-* version.
-* 
-* SPMF is distributed in the hope that it will be useful, but WITHOUT ANY
-* WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
-* A PARTICULAR PURPOSE. See the GNU General Public License for more details.
-* You should have received a copy of the GNU General Public License along with
-* SPMF. If not, see <http://www.gnu.org/licenses/>.
-*/
+/*
+ * This file is part of the SPMF DATA MINING SOFTWARE
+ * (http://www.philippe-fournier-viger.com/spmf).
+ *
+ * SPMF is free software: you can redistribute it and/or modify it under the
+ * terms of the GNU General Public License as published by the Free Software
+ * Foundation, either version 3 of the License, or (at your option) any later
+ * version.
+ *
+ * SPMF is distributed in the hope that it will be useful, but WITHOUT ANY
+ * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
+ * A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+ * You should have received a copy of the GNU General Public License along with
+ * SPMF. If not, see <http://www.gnu.org/licenses/>.
+ */
 
 /**
  * This is an implementation of the CloFast algorithm. Fast was proposed in the following paper
- *<br/><br/>
- *
- *Fumarola, F., Lanotte, P. F., Ceci, M., & Malerba, D. (2016).
- * CloFAST: closed sequential pattern mining using sparse and vertical 
+ * <br/><br/>
+ * <p>
+ * Fumarola, F., Lanotte, P. F., Ceci, M., & Malerba, D. (2016).
+ * CloFAST: closed sequential pattern mining using sparse and vertical
  * id-lists. Knowledge and Information Systems, 48(2), 429-463.<br/><br/>
- * 
+ *
  * @author Fabiana Lanotte, Fabio Fumarola, M. Ceci,  D. Malerba et al.
  */
 
 public class AlgoCloFast {
 
-	/** The dataset */
+    /**
+     * the time the algorithm started
+     */
+    long startTimestamp = 0;
+    /**
+     * the time the algorithm terminated
+     */
+    long endTimestamp = 0;
+    /**
+     * the number of patterns generated
+     */
+    int patternCount = 0;
+    /**
+     * the number of closed patterns generated
+     */
+    int closedPatternCount = 0;
+    /**
+     * the number of patterns pruned
+     */
+    int prunedPatternCount = 0;
+    /**
+     * The dataset
+     */
     private FastDataset ds;
-
-    /** The sequence tree **/
+    /**
+     * The sequence tree
+     **/
     private ClosedSequenceTree outputTree;
-    
-	/** the time the algorithm started */
-	long startTimestamp = 0; 
-	
-	/** the time the algorithm terminated */
-	long endTimestamp = 0;  
-	
-	/** the number of patterns generated */
-	int patternCount = 0;  
-	
-	/** the number of closed patterns generated */
-	int closedPatternCount = 0;  
-	
-	/** the number of patterns pruned */
-	int prunedPatternCount = 0;  
 
     /**
      * Constructor
      */
     public AlgoCloFast() {
-    	
+
     }
 
-    /** 
+    /**
      * Run the algorithm
      */
-    private void run(){
+    private void run() {
 
         List<ClosedItemsetNode> closedNodes = generateClosedItemsets();
 
         MemoryLogger.getInstance().checkMemory();
-        
+
         outputTree = generateClosedSequences(closedNodes);
     }
 
@@ -113,7 +121,7 @@ public class AlgoCloFast {
             node = queue.remove();
             closedItemsetExtension(tree, node, closedTable);
             queue.addAll(node.getChildren());
-            
+
         }
 
         final List<ClosedItemsetNode> result = new ArrayList<>();
@@ -329,7 +337,7 @@ public class AlgoCloFast {
             for (ClosedSequenceNode betweenNode : betweenNodes) {
 
                 //it is useless to analyze pruned nodes
-                if(betweenNode.getType()==NodeType.pruned)
+                if (betweenNode.getType() == NodeType.pruned)
                     continue;
 
                 // remove current node because it has not be considered for self
@@ -559,12 +567,12 @@ public class AlgoCloFast {
         closedPatternCount = countClosed;
         prunedPatternCount = countPruned;
         patternCount = nodes.size();
-        
+
 //        statistics.setNumClosedFrequentSequences(countClosed);
 //        statistics.setNumSequencesPruned(countPruned);
 //        statistics.setNumFrequentSequenceGenerated(nodes.size());
-        
-        
+
+
     }
 
 //    private void writeStatistic(String datasetName, float minSupp, int absMinSup, String statisticsFile) throws IOException {
@@ -602,75 +610,77 @@ public class AlgoCloFast {
 
     /**
      * Run the algorithm
+     *
      * @param inputFile  an input file path in SPMF format
-     * @param outputPath  an output file path
-     * @param minsup  the minimum suppor threshold
-     * @throws IOException   if error reading or writing to file
+     * @param outputPath an output file path
+     * @param minsup     the minimum suppor threshold
+     * @throws IOException if error reading or writing to file
      */
-	public void runAlgorithm(String inputFile, String outputPath, float minsup) throws IOException {
-		// read the dataset
-		
-		startTimestamp = System.currentTimeMillis();
-		MemoryLogger.getInstance().reset();
+    public void runAlgorithm(String inputFile, String outputPath, float minsup) throws IOException {
+        // read the dataset
+
+        startTimestamp = System.currentTimeMillis();
+        MemoryLogger.getInstance().reset();
 
         this.ds = FastDataset.fromPrefixspanSource(inputFile, minsup, Float.MAX_VALUE);
-        
+
         // run the algoritm
         run();
 
         //save patterns to the output file
         writePatterns(Paths.get(outputPath));
-        
+
         MemoryLogger.getInstance().checkMemory();
         endTimestamp = System.currentTimeMillis();
-	}
-	
+    }
+
     /**
      * Run the algorithm
+     *
      * @param FastDataset dataset  a dataset already loaded in memory
      * @param outputPath  an output file path
-     * @param minsup  the minimum suppor threshold
-     * @throws IOException   if error reading or writing to file
+     * @param minsup      the minimum suppor threshold
+     * @throws IOException if error reading or writing to file
      */
-	public void runAlgorithm(FastDataset dataset, String outputPath, float minsup) throws IOException {
+    public void runAlgorithm(FastDataset dataset, String outputPath, float minsup) throws IOException {
 
-		startTimestamp = System.currentTimeMillis();
-		MemoryLogger.getInstance().reset();
-		
-		this.ds = dataset;
-        
+        startTimestamp = System.currentTimeMillis();
+        MemoryLogger.getInstance().reset();
+
+        this.ds = dataset;
+
         // run the algoritm
         run();
 
         //save patterns to the output file
         writePatterns(Paths.get(outputPath));
-        
+
         MemoryLogger.getInstance().checkMemory();
         endTimestamp = System.currentTimeMillis();
-	}
+    }
 
-	/**
-	 * Print the statistics of the algorithm execution to System.out.
-	 */
-	public void printStatistics() {
-		StringBuilder r = new StringBuilder(200);
-		r.append("=============  Algorithm CloFast v2.29 - STATISTICS =============\n");
-		r.append("Number of closed Patterns found : ");
-		r.append(closedPatternCount);
-		r.append('\n');
-		r.append("  Pattern count : ");
-		r.append(patternCount);
-		r.append('\n');
-		r.append("  Pruned Pattern count : ");
-		r.append(prunedPatternCount);
-		r.append('\n');
-		r.append("Total time: ");
-		r.append((endTimestamp - startTimestamp) / 1000f );
-		r.append(" s \n");
-		r.append("Max memory (mb) : " );
-		r.append( MemoryLogger.getInstance().getMaxMemory());
-		r.append('\n');
-		r.append("===================================================\n");
-		System.out.println(r.toString());
-	}
+    /**
+     * Print the statistics of the algorithm execution to System.out.
+     */
+    public void printStatistics() {
+        StringBuilder r = new StringBuilder(200);
+        r.append("=============  Algorithm CloFast v2.29 - STATISTICS =============\n");
+        r.append("Number of closed Patterns found : ");
+        r.append(closedPatternCount);
+        r.append('\n');
+        r.append("  Pattern count : ");
+        r.append(patternCount);
+        r.append('\n');
+        r.append("  Pruned Pattern count : ");
+        r.append(prunedPatternCount);
+        r.append('\n');
+        r.append("Total time: ");
+        r.append((endTimestamp - startTimestamp) / 1000f);
+        r.append(" s \n");
+        r.append("Max memory (mb) : ");
+        r.append(MemoryLogger.getInstance().getMaxMemory());
+        r.append('\n');
+        r.append("===================================================\n");
+        System.out.println(r.toString());
+    }
 }

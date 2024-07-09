@@ -1,16 +1,19 @@
 package ca.pfv.spmf.test;
+
+import ca.pfv.spmf.algorithms.frequentpatterns.lppm.AlgoLPPMBreadth1;
+import ca.pfv.spmf.algorithms.frequentpatterns.lppm.AlgoLPPMBreadth2;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
 
-import ca.pfv.spmf.algorithms.frequentpatterns.lppm.AlgoLPPMBreadth1;
-import ca.pfv.spmf.algorithms.frequentpatterns.lppm.AlgoLPPMBreadth2;
 public class MainTestLPPM_breadth {
 
-	/**
-	 * This file shows how to run the LPPM_Breadth algorithm on an input file.
-	 * @author Peng yang
-	 */
+    /**
+     * This file shows how to run the LPPM_Breadth algorithm on an input file.
+     *
+     * @author Peng yang
+     */
     public static void main(String[] args) throws IOException {
         // the Input and output files
         String inputFile = fileToPath("contextLPP.txt");
@@ -29,19 +32,19 @@ public class MainTestLPPM_breadth {
         // whether use the SPM strategy ( share prefix of patterns)
         boolean useSPM = true;
 
-        if(useSPM){
+        if (useSPM) {
             AlgoLPPMBreadth2 algo = new AlgoLPPMBreadth2();
-            algo.runAlgorithm(inputFile, outputFile,maxPer,minDur,maxSoPer,self_increment);
+            algo.runAlgorithm(inputFile, outputFile, maxPer, minDur, maxSoPer, self_increment);
             algo.printStats();
-        }else {
+        } else {
             AlgoLPPMBreadth1 algo = new AlgoLPPMBreadth1();
-            algo.runAlgorithm(inputFile, outputFile,maxPer,minDur,maxSoPer,self_increment);
+            algo.runAlgorithm(inputFile, outputFile, maxPer, minDur, maxSoPer, self_increment);
             algo.printStats();
         }
     }
 
-    public static String fileToPath(String filename) throws UnsupportedEncodingException{
+    public static String fileToPath(String filename) throws UnsupportedEncodingException {
         URL url = MainTestLPPM_breadth.class.getResource(filename);
-        return java.net.URLDecoder.decode(url.getPath(),"UTF-8");
+        return java.net.URLDecoder.decode(url.getPath(), "UTF-8");
     }
 }

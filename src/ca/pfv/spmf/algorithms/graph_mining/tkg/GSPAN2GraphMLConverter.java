@@ -16,6 +16,15 @@ import java.util.Map;
 
 public class GSPAN2GraphMLConverter {
 
+    public static void main(String[] args) throws IOException, TransformerConfigurationException, SAXException {
+        GSPAN2GraphMLConverter gspan2GraphMLConverter = new GSPAN2GraphMLConverter();
+
+        String inputPath = "./ca/pfv/spmf/test/mico.lg.txt";
+        String outputPath = "./ca/pfv/spmf/test/mico.lg.graphml";
+        List<Graph> graphsDatabase = gspan2GraphMLConverter.readCGSPANGraphs(inputPath);
+        gspan2GraphMLConverter.writeGraphMLGraphs(outputPath, graphsDatabase);
+    }
+
     public List<Graph> readCGSPANGraphs(String path) throws IOException {
         BufferedReader br = new BufferedReader(new FileReader(new File(path)));
         List<Graph> graphDatabase = new ArrayList<>();
@@ -77,11 +86,11 @@ public class GSPAN2GraphMLConverter {
 
         AttributesImpl headerAttribute = new AttributesImpl();
         headerAttribute.addAttribute("", "", "xsi:schemaLocation", "CDATA",
-                        "http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd");
+                "http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd");
         handler.startElement("http://graphml.graphdrawing.org/xmlns", "", "graphml", headerAttribute);
 
 
-        AttributesImpl vertexLabelAttribute  = new AttributesImpl();
+        AttributesImpl vertexLabelAttribute = new AttributesImpl();
         vertexLabelAttribute.addAttribute("", "", "id", "CDATA", "vertex_label");
         vertexLabelAttribute.addAttribute("", "", "for", "CDATA", "node");
         vertexLabelAttribute.addAttribute("", "", "attr.name", "CDATA", "vertex_label");
@@ -89,7 +98,7 @@ public class GSPAN2GraphMLConverter {
         handler.startElement("", "", "key", vertexLabelAttribute);
         handler.endElement("", "", "key");
 
-        AttributesImpl edgeLabelAttribute  = new AttributesImpl();
+        AttributesImpl edgeLabelAttribute = new AttributesImpl();
         edgeLabelAttribute.addAttribute("", "", "id", "CDATA", "edge_label");
         edgeLabelAttribute.addAttribute("", "", "for", "CDATA", "edge");
         edgeLabelAttribute.addAttribute("", "", "attr.name", "CDATA", "edge_label");
@@ -97,12 +106,12 @@ public class GSPAN2GraphMLConverter {
         handler.startElement("", "", "key", edgeLabelAttribute);
         handler.endElement("", "", "key");
 
-        for (Graph graph: graphDatabase) {
+        for (Graph graph : graphDatabase) {
             AttributesImpl graphAttribute = new AttributesImpl();
             graphAttribute.addAttribute("", "", "edgedefault", "CDATA", "undirected");
             handler.startElement("", "", "graph", graphAttribute);
 
-            for (Vertex vertex: graph.vertices) {
+            for (Vertex vertex : graph.vertices) {
                 AttributesImpl vertexAttribute = new AttributesImpl();
                 vertexAttribute.addAttribute("", "", "id", "CDATA", String.valueOf(vertex.getId()));
                 handler.startElement("", "", "node", vertexAttribute);
@@ -116,7 +125,7 @@ public class GSPAN2GraphMLConverter {
                 handler.endElement("", "", "node");
             }
 
-            for (Edge edge: graph.getAllEdges()) {
+            for (Edge edge : graph.getAllEdges()) {
                 AttributesImpl edgeAttribute = new AttributesImpl();
                 edgeAttribute.addAttribute("", "", "source", "CDATA", String.valueOf(graph.vMap.get(edge.v1).getId()));
                 edgeAttribute.addAttribute("", "", "target", "CDATA", String.valueOf(graph.vMap.get(edge.v2).getId()));
@@ -142,14 +151,5 @@ public class GSPAN2GraphMLConverter {
         writer.flush();
 
         writer.close();
-    }
-
-    public static void main(String[] args) throws IOException, TransformerConfigurationException, SAXException {
-        GSPAN2GraphMLConverter gspan2GraphMLConverter = new GSPAN2GraphMLConverter();
-
-        String inputPath = "./ca/pfv/spmf/test/mico.lg.txt"  ;
-        String outputPath = "./ca/pfv/spmf/test/mico.lg.graphml";
-        List<Graph> graphsDatabase = gspan2GraphMLConverter.readCGSPANGraphs(inputPath);
-        gspan2GraphMLConverter.writeGraphMLGraphs(outputPath, graphsDatabase);
     }
 }

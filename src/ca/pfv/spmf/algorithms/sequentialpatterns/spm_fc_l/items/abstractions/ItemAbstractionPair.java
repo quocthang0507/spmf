@@ -7,26 +7,26 @@ package ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_l.items.abstractions;
 import ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_l.items.Item;
 
 /**
- * Class that represents a pair <item,abstraction>. 
- * 
+ * Class that represents a pair <item,abstraction>.
+ * <p>
  * Copyright Antonio Gomariz Peñalver 2013
- * 
+ * <p>
  * This file is part of the SPMF DATA MINING SOFTWARE
  * (http://www.philippe-fournier-viger.com/spmf).
- *
+ * <p>
  * SPMF is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- *
+ * <p>
  * SPMF is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- *
+ * <p>
  * You should have received a copy of the GNU General Public License
  * along with SPMF.  If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  * @author agomariz
  */
 public class ItemAbstractionPair implements Comparable<ItemAbstractionPair> {
@@ -42,8 +42,9 @@ public class ItemAbstractionPair implements Comparable<ItemAbstractionPair> {
 
     /**
      * Standard constructor
+     *
      * @param item
-     * @param abstraction 
+     * @param abstraction
      */
     public ItemAbstractionPair(Item item, Abstraction_Generic abstraction) {
         this.item = item;
@@ -53,8 +54,9 @@ public class ItemAbstractionPair implements Comparable<ItemAbstractionPair> {
     /**
      * Check if this item is equal to another by checking if
      * both item and abstraction are identical.
+     *
      * @param arg the other item
-     * @return  true if equal, otherwise false
+     * @return true if equal, otherwise false
      */
     @Override
     public boolean equals(Object arg) {
@@ -88,6 +90,7 @@ public class ItemAbstractionPair implements Comparable<ItemAbstractionPair> {
 
     /**
      * Get the string representation of this object
+     *
      * @return the string representation.
      */
     @Override
@@ -97,9 +100,10 @@ public class ItemAbstractionPair implements Comparable<ItemAbstractionPair> {
         }
         return (getItem().toString() + getAbstraction().toString() + " ");
     }
-    
+
     /**
      * Get the string representation of this item. Adjusted to SPMF format.
+     *
      * @return the string representation
      */
     public String toStringToFile() {
@@ -111,6 +115,7 @@ public class ItemAbstractionPair implements Comparable<ItemAbstractionPair> {
 
     /**
      * It compares this item with another and then, if they are equals, their abstractions.
+     *
      * @param arg the other item
      * @return true if equal, otherwise false
      */

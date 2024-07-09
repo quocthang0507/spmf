@@ -12,17 +12,17 @@ import ca.pfv.spmf.tools.other_dataset_tools.FixTransactionDatabaseTool;
  */
 public class MainTestFixTransactionDatabase {
 
-	public static void main(String [] arg) throws IOException{
-		
-		String inputFile = fileToPath("contextIncorrect.txt");
-		String outputFile = ".//output.txt";
+    public static void main(String[] arg) throws IOException {
 
-		FixTransactionDatabaseTool tool = new FixTransactionDatabaseTool();
-		tool.convert(inputFile, outputFile);
-	}
+        String inputFile = fileToPath("contextIncorrect.txt");
+        String outputFile = ".//output.txt";
 
-	public static String fileToPath(String filename) throws UnsupportedEncodingException{
-		URL url = MainTestFixTransactionDatabase.class.getResource(filename);
-		 return java.net.URLDecoder.decode(url.getPath(),"UTF-8");
-	}
+        FixTransactionDatabaseTool tool = new FixTransactionDatabaseTool();
+        tool.convert(inputFile, outputFile);
+    }
+
+    public static String fileToPath(String filename) throws UnsupportedEncodingException {
+        URL url = MainTestFixTransactionDatabase.class.getResource(filename);
+        return java.net.URLDecoder.decode(url.getPath(), "UTF-8");
+    }
 }

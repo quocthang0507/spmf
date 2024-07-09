@@ -19,33 +19,36 @@ package ca.pfv.spmf.datastructures.collections.automatic_test;
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
+
 /**
  * Class that provides a function for testing. The function checkResult verify
  * if a condition is true. If false, it throws an error.
- * 
+ *
  * @author Philippe Fournier-Viger, copyright 2023.
  */
 
 class CheckResults {
-	/** The number of tests that was done until now */
-	private static long testCount = 0;
+    /**
+     * The number of tests that was done until now
+     */
+    private static long testCount = 0;
 
-	/**
-	 * Check if a condition is met. Throw an exception if the value is false.
-	 */
-	static void checkResult(boolean value) {
-		testCount++;
-		if (value == false) {
-			throw new RuntimeException("Failed");
-		}
-	}
+    /**
+     * Check if a condition is met. Throw an exception if the value is false.
+     */
+    static void checkResult(boolean value) {
+        testCount++;
+        if (value == false) {
+            throw new RuntimeException("Failed");
+        }
+    }
 
-	/**
-	 * Get the number of tests that was done
-	 * 
-	 * @return the number of tests
-	 */
-	public static long getTestDoneCount() {
-		return testCount;
-	}
+    /**
+     * Get the number of tests that was done
+     *
+     * @return the number of tests
+     */
+    public static long getTestDoneCount() {
+        return testCount;
+    }
 }

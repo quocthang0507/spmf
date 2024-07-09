@@ -16,28 +16,35 @@ package ca.pfv.spmf.algorithms.frequentpatterns.lhui;
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
+
 /**
  * This is an implementation of a utility list element as used by LHUI-Miner and
  * PHUI-Miner.
- * 
+ *
  * @author Yimin Zhang, Philippe Fournier-Viger
  * @see AlgoLHUIMiner
  * @see AlgoPHUIMiner
  */
 public class Element {
-	/** transaction id */
-	final int tid;
-	
-	/** itemset utility in transaction */
-	final long iutils;
-	
-	/** sum utility of items after utilitylist_item */
-	long rutils;
+    /**
+     * transaction id
+     */
+    final int tid;
 
-	public Element(int tid, long iutil, long rutil) {
-		this.tid = tid;
-		this.iutils = iutil;
-		this.rutils = rutil;
-	}
+    /**
+     * itemset utility in transaction
+     */
+    final long iutils;
+
+    /**
+     * sum utility of items after utilitylist_item
+     */
+    long rutils;
+
+    public Element(int tid, long iutil, long rutil) {
+        this.tid = tid;
+        this.iutils = iutil;
+        this.rutils = rutil;
+    }
 
 }

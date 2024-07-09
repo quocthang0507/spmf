@@ -21,21 +21,21 @@ import ca.pfv.spmf.algorithms.sequentialpatterns.prefixSpan_AGP.items.patterns.P
  * Inspired in SPMF. Implementation of a sequence database. Each sequence should
  * have a unique id. See examples in /test/ directory for the format of input
  * files.
- *
+ * <p>
  * Copyright Antonio Gomariz Peñalver 2013
- *
+ * <p>
  * This file is part of the SPMF DATA MINING SOFTWARE
  * (http://www.philippe-fournier-viger.com/spmf).
- *
+ * <p>
  * SPMF is free software: you can redistribute it and/or modify it under the
  * terms of the GNU General Public License as published by the Free Software
  * Foundation, either version 3 of the License, or (at your option) any later
  * version.
- *
+ * <p>
  * SPMF is distributed in the hope that it will be useful, but WITHOUT ANY
  * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
  * A PARTICULAR PURPOSE. See the GNU General Public License for more details.
- *
+ * <p>
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  *
@@ -57,7 +57,7 @@ public class SequenceDatabase {
      * From a file located at the given string path, we create a database
      * composed of a list of sequences
      *
-     * @param path File path where we have the database
+     * @param path               File path where we have the database
      * @param minSupportRelative Minimum absolute support
      * @throws IOException
      */
@@ -71,8 +71,8 @@ public class SequenceDatabase {
             //For each line
             while ((thisLine = myInput.readLine()) != null) {
                 // If the line is not a comment line
-            	if (thisLine.charAt(0) != '#' && thisLine.charAt(0) != '%'
-						&& thisLine.charAt(0) != '@') {
+                if (thisLine.charAt(0) != '#' && thisLine.charAt(0) != '%'
+                        && thisLine.charAt(0) != '@') {
                     // we read it and add it as a sequence
                     addSequence(thisLine.split(" "), sequenceID);
                     sequenceID++;
@@ -102,8 +102,9 @@ public class SequenceDatabase {
 
     /**
      * It adds a sequence from an array of string that we have to interpret
+     *
      * @param integers
-     * @param sequenceID 
+     * @param sequenceID
      */
     public void addSequence(String[] integers, int sequenceID) {
         long timestamp = -1;
@@ -147,6 +148,7 @@ public class SequenceDatabase {
 
     /**
      * String representation of the SecuenceDatabase
+     *
      * @return the string
      */
     @Override
@@ -163,6 +165,7 @@ public class SequenceDatabase {
 
     /**
      * It returns the number of sequences of the sequence database
+     *
      * @return the number of sequences
      */
     public int size() {
@@ -171,6 +174,7 @@ public class SequenceDatabase {
 
     /**
      * It return the list of sequences in this sequence database
+     *
      * @return the list of sequences
      */
     public List<Sequence> getSequences() {
@@ -179,6 +183,7 @@ public class SequenceDatabase {
 
     /**
      * It return the frequent items
+     *
      * @return a map of entries where key = item and value = its bitset.
      */
     public Map<Item, BitSet> getFrequentItems() {

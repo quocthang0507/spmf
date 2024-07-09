@@ -1,22 +1,22 @@
 /* This file is part of the SPMF DATA MINING SOFTWARE
-* (http://www.philippe-fournier-viger.com/spmf).
-* It was obtained from the LAC library under the GNU GPL license and adapted for SPMF.
-* @Copyright original version LAC 2019   @copyright of modifications SPMF 2021
-*
-* SPMF is free software: you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation, either version 3 of the License, or
-* (at your option) any later version.
-*
-* SPMF is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-* GNU General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License
-* along with SPMF.  If not, see <http://www.gnu.org/licenses/>.
-* 
-*/
+ * (http://www.philippe-fournier-viger.com/spmf).
+ * It was obtained from the LAC library under the GNU GPL license and adapted for SPMF.
+ * @Copyright original version LAC 2019   @copyright of modifications SPMF 2021
+ *
+ * SPMF is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * SPMF is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with SPMF.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
 package ca.pfv.spmf.algorithms.classifiers.acac;
 
 import java.io.Serializable;
@@ -51,113 +51,113 @@ import ca.pfv.spmf.algorithms.classifiers.general.RuleClassifier;
  * <li>Finally, ACAC assigns the class label of the group with maximum strength
  * to the new object.</li>
  * </ul>
- * 
+ * <p>
  * This implementation was obtained under the GPL license from the LAC library and adapted
  * for the SPMF library.
- * 
+ *
  * @see AlgoACAC
  */
-public class ClassifierACAC extends RuleClassifier implements Serializable{
-	/**
-	 * UID for serialization
-	 */
-	private static final long serialVersionUID = -8555494816204669319L;
+public class ClassifierACAC extends RuleClassifier implements Serializable {
+    /**
+     * UID for serialization
+     */
+    private static final long serialVersionUID = -8555494816204669319L;
 
-	/**
-	 * Default constructor
-	 * 
-	 * @param rules forming the classifier
-	 */
-	public ClassifierACAC(List<RuleACAC> rules) {
-		super("ACAC");
-		this.rules.addAll(rules);
-	}
+    /**
+     * Default constructor
+     *
+     * @param rules forming the classifier
+     */
+    public ClassifierACAC(List<RuleACAC> rules) {
+        super("ACAC");
+        this.rules.addAll(rules);
+    }
 
-	@Override
-	public short predict(ca.pfv.spmf.algorithms.classifiers.data.Instance rawInstance) {
-		// The current record (instance)
-		Short[] instance = rawInstance.getItems();
+    @Override
+    public short predict(ca.pfv.spmf.algorithms.classifiers.data.Instance rawInstance) {
+        // The current record (instance)
+        Short[] instance = rawInstance.getItems();
 
-		// Find the rules that are fired, i.e. that match with this instance
-		List<RuleACAC> firedRules = new ArrayList<RuleACAC>();
-		for (int i = 0; i < rules.size(); i++) {
-			RuleACAC rule = (RuleACAC) rules.get(i);
+        // Find the rules that are fired, i.e. that match with this instance
+        List<RuleACAC> firedRules = new ArrayList<RuleACAC>();
+        for (int i = 0; i < rules.size(); i++) {
+            RuleACAC rule = (RuleACAC) rules.get(i);
 
-			if (rule.matching(instance)) {
-				firedRules.add(rule);
-			}
-		}
+            if (rule.matching(instance)) {
+                firedRules.add(rule);
+            }
+        }
 
-		// When no rule is fired, classifier is not able to perform a prediction
-		if (firedRules.isEmpty()) {
-			return NOPREDICTION;
-		}
+        // When no rule is fired, classifier is not able to perform a prediction
+        if (firedRules.isEmpty()) {
+            return NOPREDICTION;
+        }
 
-		Map<Short, Double> mapStrengths = new HashMap<Short, Double>();
-		Map<Short, List<RuleACAC>> rulesPerKlass = new HashMap<Short, List<RuleACAC>>();
+        Map<Short, Double> mapStrengths = new HashMap<Short, Double>();
+        Map<Short, List<RuleACAC>> rulesPerKlass = new HashMap<Short, List<RuleACAC>>();
 
-		Short klass = firedRules.get(0).getKlass();
-		for (RuleACAC firedRule : firedRules) {
-			// Calculate strength of firedRules by klass
-			short ruleKlass = firedRule.getKlass();
-			Double val = mapStrengths.get(ruleKlass);
-			
-			// ==== CODE BELOW IS OPTIMIZED BY PHILIPPE ====
-			if (val == null) {
-				mapStrengths.put(ruleKlass, 0.0);
-				List<RuleACAC> list = new ArrayList<RuleACAC>();
-				rulesPerKlass.put(ruleKlass, list);
-				list.add(firedRule);
-			}else{
-				rulesPerKlass.get(ruleKlass).add(firedRule);
-			}
-		}
+        Short klass = firedRules.get(0).getKlass();
+        for (RuleACAC firedRule : firedRules) {
+            // Calculate strength of firedRules by klass
+            short ruleKlass = firedRule.getKlass();
+            Double val = mapStrengths.get(ruleKlass);
 
-		// When all the firedRules have the same class, we use directly that
-		if (rulesPerKlass.size() == 1) {
-			return klass;
-		}
+            // ==== CODE BELOW IS OPTIMIZED BY PHILIPPE ====
+            if (val == null) {
+                mapStrengths.put(ruleKlass, 0.0);
+                List<RuleACAC> list = new ArrayList<RuleACAC>();
+                rulesPerKlass.put(ruleKlass, list);
+                list.add(firedRule);
+            } else {
+                rulesPerKlass.get(ruleKlass).add(firedRule);
+            }
+        }
 
-		double numberKlasses = rulesPerKlass.size();   // PHIL: fixed 
+        // When all the firedRules have the same class, we use directly that
+        if (rulesPerKlass.size() == 1) {
+            return klass;
+        }
 
-		// Calculate information gain for each group of rule per class
-		for (Entry<Short, List<RuleACAC>> entry : rulesPerKlass.entrySet()) {
-			klass = entry.getKey();
-			List<RuleACAC> rules = entry.getValue();
-			double n = rules.size();
+        double numberKlasses = rulesPerKlass.size();   // PHIL: fixed
 
-			double supAcc = 0.0;
-			double numerator = 0.0;
+        // Calculate information gain for each group of rule per class
+        for (Entry<Short, List<RuleACAC>> entry : rulesPerKlass.entrySet()) {
+            klass = entry.getKey();
+            List<RuleACAC> rules = entry.getValue();
+            double n = rules.size();
 
-			for (RuleACAC rule : rules) {
-				double informationGain = -1.0 / (Math.log(numberKlasses) / Math.log(2.0));
+            double supAcc = 0.0;
+            double numerator = 0.0;
 
-				if (Double.isInfinite(informationGain))
-					informationGain = 0.0;
+            for (RuleACAC rule : rules) {
+                double informationGain = -1.0 / (Math.log(numberKlasses) / Math.log(2.0));
 
-				for (Entry<Short, List<RuleACAC>> perKlass : rulesPerKlass.entrySet()) {
-					short klassI = perKlass.getKey();
+                if (Double.isInfinite(informationGain))
+                    informationGain = 0.0;
 
-					double ruleSup = rule.getSupportByKlass(klassI);
-					double condsup = rule.getSupportAntecedent();
+                for (Entry<Short, List<RuleACAC>> perKlass : rulesPerKlass.entrySet()) {
+                    short klassI = perKlass.getKey();
 
-					double pCiX = (ruleSup + 1) / (condsup + numberKlasses);
+                    double ruleSup = rule.getSupportByKlass(klassI);
+                    double condsup = rule.getSupportAntecedent();
 
-					informationGain += pCiX * (Math.log(pCiX) / Math.log(2.0));
-				}
-				supAcc += rule.getSupportAntecedent();
+                    double pCiX = (ruleSup + 1) / (condsup + numberKlasses);
 
-				numerator += rule.getSupportAntecedent() * informationGain;
+                    informationGain += pCiX * (Math.log(pCiX) / Math.log(2.0));
+                }
+                supAcc += rule.getSupportAntecedent();
 
-			}
-			double strength = 0.9 * (1.0 - numerator / supAcc) + 0.1 * n / firedRules.size();
+                numerator += rule.getSupportAntecedent() * informationGain;
 
-			mapStrengths.put(klass, strength);
-		}
+            }
+            double strength = 0.9 * (1.0 - numerator / supAcc) + 0.1 * n / firedRules.size();
 
-		// Get the class with the highest value of information gain
-		return Collections
-				.max(mapStrengths.entrySet(), (entry1, entry2) -> entry1.getValue().compareTo(entry2.getValue()))
-				.getKey();
-	}
+            mapStrengths.put(klass, strength);
+        }
+
+        // Get the class with the highest value of information gain
+        return Collections
+                .max(mapStrengths.entrySet(), (entry1, entry2) -> entry1.getValue().compareTo(entry2.getValue()))
+                .getKey();
+    }
 }

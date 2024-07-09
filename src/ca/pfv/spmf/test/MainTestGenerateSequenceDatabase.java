@@ -12,18 +12,17 @@ import ca.pfv.spmf.tools.dataset_generator.SequenceDatabaseGenerator;
  */
 public class MainTestGenerateSequenceDatabase {
 
-	public static void main(String [] arg) throws IOException{
+    public static void main(String[] arg) throws IOException {
 
-		String outputFile = ".//output.txt";
-		
-		SequenceDatabaseGenerator generator = new SequenceDatabaseGenerator();
-		generator.generateDatabase(5, 500, 2, 8, outputFile, false);
-	}
+        String outputFile = ".//output.txt";
 
-	
+        SequenceDatabaseGenerator generator = new SequenceDatabaseGenerator();
+        generator.generateDatabase(5, 500, 2, 8, outputFile, false);
+    }
 
-	public static String fileToPath(String filename) throws UnsupportedEncodingException{
-		URL url = MainTestGenerateSequenceDatabase.class.getResource(filename);
-		 return java.net.URLDecoder.decode(url.getPath(),"UTF-8");
-	}
+
+    public static String fileToPath(String filename) throws UnsupportedEncodingException {
+        URL url = MainTestGenerateSequenceDatabase.class.getResource(filename);
+        return java.net.URLDecoder.decode(url.getPath(), "UTF-8");
+    }
 }

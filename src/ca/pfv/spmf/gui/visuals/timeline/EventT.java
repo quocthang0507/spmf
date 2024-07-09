@@ -17,17 +17,21 @@ package ca.pfv.spmf.gui.visuals.timeline;
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
+
 /**
  * Represents an event as used by the TimelineViewer of SPMF
- * 
+ *
  * @author Philippe Fournier-Viger
  */
-public class EventT extends ElementT{
-    /** The timestamp of the event **/
-    private final long time; 
+public class EventT extends ElementT {
+    /**
+     * The timestamp of the event
+     **/
+    private final long time;
 
     /**
      * Constructor
+     *
      * @param name the event name
      * @param time the timestamp
      */
@@ -38,6 +42,7 @@ public class EventT extends ElementT{
 
     /**
      * Get the timestamp of the event
+     *
      * @return the timestamp
      */
     public long getTime() {

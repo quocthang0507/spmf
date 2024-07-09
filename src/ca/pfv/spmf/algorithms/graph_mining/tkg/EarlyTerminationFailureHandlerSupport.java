@@ -22,8 +22,8 @@ import java.util.stream.Collectors;
 /**
  * This is the implementation of early termination failure handling when closed subgraph frequency is defined by support
  *
- * @see EarlyTerminationFailureHandlerAbstract
  * @author Shaul Zevin
+ * @see EarlyTerminationFailureHandlerAbstract
  */
 public class EarlyTerminationFailureHandlerSupport extends EarlyTerminationFailureHandlerAbstract {
     /**

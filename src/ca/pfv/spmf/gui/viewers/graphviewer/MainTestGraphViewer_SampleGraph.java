@@ -22,26 +22,27 @@ import java.net.URL;
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
+
 /**
  * This example shows how to display an example subgraph using the GraphViewer tool of SPMF
- * @author Philippe Fournier-Viger
  *
+ * @author Philippe Fournier-Viger
  */
 public class MainTestGraphViewer_SampleGraph {
 
 
-	public static void main(String[] args) throws IOException {
-		boolean runAsStandalone = true;
-		boolean displayGraphStringRepresentation = false;
-		GraphViewer frame = new GraphViewer(runAsStandalone, displayGraphStringRepresentation);
-		frame.loadSampleGraph();
+    public static void main(String[] args) throws IOException {
+        boolean runAsStandalone = true;
+        boolean displayGraphStringRepresentation = false;
+        GraphViewer frame = new GraphViewer(runAsStandalone, displayGraphStringRepresentation);
+        frame.loadSampleGraph();
 //		frame.loadFileGSPANFormat(fileToPath("contextTKG.txt"));
 
-	}
-	
-	public static String fileToPath(String filename) throws UnsupportedEncodingException{
-		URL url = MainTestGraphViewer_SampleGraph.class.getResource(filename);
-		 return java.net.URLDecoder.decode(url.getPath(),"UTF-8");
-	}
-	
+    }
+
+    public static String fileToPath(String filename) throws UnsupportedEncodingException {
+        URL url = MainTestGraphViewer_SampleGraph.class.getResource(filename);
+        return java.net.URLDecoder.decode(url.getPath(), "UTF-8");
+    }
+
 }

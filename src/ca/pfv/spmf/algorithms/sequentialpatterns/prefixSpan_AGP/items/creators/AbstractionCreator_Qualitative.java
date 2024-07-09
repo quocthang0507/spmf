@@ -18,21 +18,21 @@ import ca.pfv.spmf.algorithms.sequentialpatterns.prefixSpan_AGP.items.patterns.P
 
 /**
  * This class is the implementation of a creator of a qualitative abstraction.
- *
+ * <p>
  * Copyright Antonio Gomariz Peñalver 2013
- *
+ * <p>
  * This file is part of the SPMF DATA MINING SOFTWARE
  * (http://www.philippe-fournier-viger.com/spmf).
- *
+ * <p>
  * SPMF is free software: you can redistribute it and/or modify it under the
  * terms of the GNU General Public License as published by the Free Software
  * Foundation, either version 3 of the License, or (at your option) any later
  * version.
- *
+ * <p>
  * SPMF is distributed in the hope that it will be useful, but WITHOUT ANY
  * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
  * A PARTICULAR PURPOSE. See the GNU General Public License for more details.
- *
+ * <p>
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  *
@@ -44,12 +44,13 @@ public class AbstractionCreator_Qualitative extends AbstractionCreator {
      * Static reference to make this class singleton
      */
     private static AbstractionCreator_Qualitative instance = null;
-    
+
     private AbstractionCreator_Qualitative() {
     }
-    
+
     /**
      * Get the static reference of this singleton class
+     *
      * @return the static reference
      */
     public static AbstractionCreator_Qualitative getInstance() {
@@ -58,9 +59,10 @@ public class AbstractionCreator_Qualitative extends AbstractionCreator {
         }
         return instance;
     }
-    
+
     /**
      * It creates a default abstraction. The abstraction is established to false
+     *
      * @return the abstraction
      */
     @Override
@@ -70,8 +72,9 @@ public class AbstractionCreator_Qualitative extends AbstractionCreator {
 
     /**
      * It creates a relation with the given parameter.
-     * @param equalRelation The boolean indicatin if the item has an equal 
-     * relation with the previous item in the pattern
+     *
+     * @param equalRelation The boolean indicatin if the item has an equal
+     *                      relation with the previous item in the pattern
      * @return the created relation
      */
     public Abstraction_Generic createAbstraction(boolean equalRelation) {
@@ -81,13 +84,14 @@ public class AbstractionCreator_Qualitative extends AbstractionCreator {
     /**
      * It adds a Pair object to one list when we keep the sequences counted for
      * that pair. If the pair has not been previously kept, we keep the sequenceID
+     *
      * @param pairMap
      * @param alreadyCountedForSequenceID
      * @param sequenceId
      * @param item
-     * @param postfix 
+     * @param postfix
      */
-    private void addPair(Map<Pair, Pair> pairMap,Set<Pair> alreadyCountedForSequenceID, int sequenceId, Item item, boolean postfix) {
+    private void addPair(Map<Pair, Pair> pairMap, Set<Pair> alreadyCountedForSequenceID, int sequenceId, Item item, boolean postfix) {
         /*
          * We create a new Pair object from the given item and the postfix flag
          */
@@ -110,6 +114,7 @@ public class AbstractionCreator_Qualitative extends AbstractionCreator {
     /**
      * Method to find all frequent items in a database.
      * This is for k> 1.
+     *
      * @param sequences the sequences from the database
      * @return the set of frequent items
      */
@@ -132,7 +137,7 @@ public class AbstractionCreator_Qualitative extends AbstractionCreator {
                         continue loop1;
                     }
                     //we get the original itemset
-                    Itemset itemset = sequence.getItemset(i,k);
+                    Itemset itemset = sequence.getItemset(i, k);
                     //We obtain the beginning of that itemset for our projection
                     int beginning = sequence.getBeginningOfItemset(k, i);
                     /*And for each item from the beginning we add a new Pair in
@@ -141,7 +146,7 @@ public class AbstractionCreator_Qualitative extends AbstractionCreator {
                     for (int j = beginning; j < itemset.size(); j++) {
                         Item item = itemset.get(j);
                         boolean postfix = sequence.isPostfix(k, i);
-                        addPair(pairMap, alreadyCountedForSequenceID,sequence.getId(), item, postfix);
+                        addPair(pairMap, alreadyCountedForSequenceID, sequence.getId(), item, postfix);
                     }
                 }
             }
@@ -150,10 +155,11 @@ public class AbstractionCreator_Qualitative extends AbstractionCreator {
     }
 
     /**
-     * Convert  a Map<Item, Set<Abstraction_Generic>> to  Map<Item, Set<Abstraction_Generic>> 
-     * @param sequence a sequence (not used)
+     * Convert  a Map<Item, Set<Abstraction_Generic>> to  Map<Item, Set<Abstraction_Generic>>
+     *
+     * @param sequence      a sequence (not used)
      * @param frequentItems a set of frequent items
-     * @return the Map<Item, Set<Abstraction_Generic>> 
+     * @return the Map<Item, Set<Abstraction_Generic>>
      */
     @Override
     public Map<Item, Set<Abstraction_Generic>> createAbstractions(Sequence sequence, Map<Item, BitSet> frequentItems) {

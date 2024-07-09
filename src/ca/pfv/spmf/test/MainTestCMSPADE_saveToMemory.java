@@ -15,9 +15,9 @@ import ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP.idLists.creators
 import ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP.idLists.creators.IdListCreator_FatBitmap;
 
 /**
- * Example of how to use the algorithm CMSPADE, saving the results in the 
+ * Example of how to use the algorithm CMSPADE, saving the results in the
  * main  memory
- * 
+ *
  * @author Philippe Fournier-Viger
  */
 public class MainTestCMSPADE_saveToMemory {
@@ -33,28 +33,28 @@ public class MainTestCMSPADE_saveToMemory {
         boolean verbose = false;
 
         AbstractionCreator abstractionCreator = AbstractionCreator_Qualitative.getInstance();
-        boolean dfs=true;
-        
-     // if you set the following parameter to true, the sequence ids of the sequences where
+        boolean dfs = true;
+
+        // if you set the following parameter to true, the sequence ids of the sequences where
         // each pattern appears will be shown in the result
-        boolean outputSequenceIdentifiers = false; 
+        boolean outputSequenceIdentifiers = false;
 
         IdListCreator idListCreator = IdListCreator_FatBitmap.getInstance();
-                
+
         CandidateGenerator candidateGenerator = CandidateGenerator_Qualitative.getInstance();
-        
+
         SequenceDatabase sequenceDatabase = new SequenceDatabase(abstractionCreator, idListCreator);
 
         sequenceDatabase.loadFile(fileToPath("contextPrefixSpan.txt"), support);
-        
+
         System.out.println(sequenceDatabase.toString());
 
-        AlgoCMSPADE algorithm = new AlgoCMSPADE(support,dfs,abstractionCreator);
-        
-        algorithm.runAlgorithm(sequenceDatabase, candidateGenerator,keepPatterns,verbose,null, outputSequenceIdentifiers);
-        System.out.println("Minimum relative support = "+ support + "  minimum absolute support: " + algorithm.minSupAbsolute);
-        System.out.println(algorithm.getNumberOfFrequentPatterns()+ " frequent patterns.");
-        
+        AlgoCMSPADE algorithm = new AlgoCMSPADE(support, dfs, abstractionCreator);
+
+        algorithm.runAlgorithm(sequenceDatabase, candidateGenerator, keepPatterns, verbose, null, outputSequenceIdentifiers);
+        System.out.println("Minimum relative support = " + support + "  minimum absolute support: " + algorithm.minSupAbsolute);
+        System.out.println(algorithm.getNumberOfFrequentPatterns() + " frequent patterns.");
+
         System.out.println(algorithm.printStatistics());
     }
 

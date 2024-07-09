@@ -25,7 +25,7 @@ import java.awt.event.ActionListener;
  */
 /**
  * JFrame to download an offline copy of the SPMF documentation.
- * 
+ *
  * @author Philippe Fournier-Viger
  *
  */
@@ -55,69 +55,69 @@ import ca.pfv.spmf.tools.documentation_downloader.AlgoSPMFDownloadDoc;
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
+
 /**
  * JFrame to download an offline copy of the SPMF documentation
- * 
- * @author Philippe Fournier-Viger
  *
+ * @author Philippe Fournier-Viger
  */
 public class DocumentationDownloaderWindow {
 
-	private static JButton btnDownload;
-	private static JProgressBar progressBar;
+    private static JButton btnDownload;
+    private static JProgressBar progressBar;
 
-	public void createAndShowGUI() {
-		JFrame frame = new JFrame("SPMF Documentation Downloader");
+    public void createAndShowGUI() {
+        JFrame frame = new JFrame("SPMF Documentation Downloader");
 //		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(600, 150);
-		frame.setLayout(new FlowLayout());
-		frame.setLocationRelativeTo(null);
+        frame.setSize(600, 150);
+        frame.setLayout(new FlowLayout());
+        frame.setLocationRelativeTo(null);
 
-		btnDownload = new JButton("Download Documentation");
-		btnDownload.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// Disable the button
-				btnDownload.setEnabled(false);
+        btnDownload = new JButton("Download Documentation");
+        btnDownload.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Disable the button
+                btnDownload.setEnabled(false);
 
-				// Set up the progress bar
-				progressBar.setIndeterminate(true);
+                // Set up the progress bar
+                progressBar.setIndeterminate(true);
 
-				// Run the download algorithm in a separate thread to keep the GUI responsive
-				new Thread(new Runnable() {
-					@Override
-					public void run() {
-						AlgoSPMFDownloadDoc downloader = new AlgoSPMFDownloadDoc();
-						downloader.runAlgorithm();
+                // Run the download algorithm in a separate thread to keep the GUI responsive
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        AlgoSPMFDownloadDoc downloader = new AlgoSPMFDownloadDoc();
+                        downloader.runAlgorithm();
 
-						// After downloading, stop the progress bar and enable the button
-						SwingUtilities.invokeLater(new Runnable() {
-							@Override
-							public void run() {
-								progressBar.setIndeterminate(false);
-								btnDownload.setEnabled(true);
-							}
-						});
-					}
-				}).start();
-			}
-		});
+                        // After downloading, stop the progress bar and enable the button
+                        SwingUtilities.invokeLater(new Runnable() {
+                            @Override
+                            public void run() {
+                                progressBar.setIndeterminate(false);
+                                btnDownload.setEnabled(true);
+                            }
+                        });
+                    }
+                }).start();
+            }
+        });
 
-		progressBar = new JProgressBar();
+        progressBar = new JProgressBar();
 //        progressBar.setPreferredSize(new Dimension(100, 30));
-		progressBar.setStringPainted(false);
+        progressBar.setStringPainted(false);
 
-		JTextArea area = new JTextArea();
-		area.setLineWrap(true);
-		area.setText(
-				"This tool allows to download an offline copy of the SPMF documentation on your computer. The tool creates a /doc/ folder and download all the webpages. The file documentation.html is the index page of the documentation. Click the button below to run this algorithm.");
+        JTextArea area = new JTextArea();
+        area.setLineWrap(true);
+        area.setText(
+                "This tool allows to download an offline copy of the SPMF documentation on your computer. The tool creates a /doc/ folder and download all the webpages. The file documentation.html is the index page of the documentation. Click the button below to run this algorithm.");
 
-		area.setEditable(false);
+        area.setEditable(false);
 
-		frame.getContentPane().setLayout(new BorderLayout());
-		frame.getContentPane().add(area, BorderLayout.NORTH);
-		frame.getContentPane().add(btnDownload, BorderLayout.CENTER);
-		frame.getContentPane().add(progressBar, BorderLayout.SOUTH);
-		frame.setVisible(true);
-	}
+        frame.getContentPane().setLayout(new BorderLayout());
+        frame.getContentPane().add(area, BorderLayout.NORTH);
+        frame.getContentPane().add(btnDownload, BorderLayout.CENTER);
+        frame.getContentPane().add(progressBar, BorderLayout.SOUTH);
+        frame.setVisible(true);
+    }
 }

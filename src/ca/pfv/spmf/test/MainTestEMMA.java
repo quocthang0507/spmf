@@ -1,13 +1,14 @@
 package ca.pfv.spmf.test;
 
+import ca.pfv.spmf.algorithms.episodes.emma.AlgoEMMA;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
 
-import ca.pfv.spmf.algorithms.episodes.emma.AlgoEMMA;
-
 /**
  * This file shows how to run the EMMA algorithm on an input file.
+ *
  * @author Peng yang
  */
 public class MainTestEMMA {
@@ -27,14 +28,14 @@ public class MainTestEMMA {
 
         // self-growth = flase only for online_minute.txt , others are true
         AlgoEMMA algo = new AlgoEMMA();
-        algo.runAlgorithm(inputFile, outputFile,minSup,maxWindow,selfIncrement);
+        algo.runAlgorithm(inputFile, outputFile, minSup, maxWindow, selfIncrement);
         algo.printStats();
-        
-        
+
+
     }
 
     public static String fileToPath(String filename) throws UnsupportedEncodingException {
         URL url = MainTestEMMA.class.getResource(filename);
-        return java.net.URLDecoder.decode(url.getPath(),"UTF-8");
+        return java.net.URLDecoder.decode(url.getPath(), "UTF-8");
     }
 }

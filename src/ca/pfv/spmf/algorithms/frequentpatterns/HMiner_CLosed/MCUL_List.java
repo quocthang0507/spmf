@@ -26,8 +26,9 @@ import java.util.List;
  * <br/>
  * The code was obtained from Github repository of user "limuhangk" under the GPL license (since
  * the code is derived from GPL code from SPMF).
- * @see AlgoHMiner_Closed
+ *
  * @author Siddharth Dawar et al.
+ * @see AlgoHMiner_Closed
  * @see Element_MCUL_List
  */
 class MCUL_List {
@@ -78,7 +79,8 @@ class MCUL_List {
     public MCUL_List(int item) {
         this.item = item;
     }
-    public MCUL_List(MCUL_List mculList){
+
+    public MCUL_List(MCUL_List mculList) {
         this.item = mculList.item;
         this.sumNu = mculList.sumNu;
         this.sumCu = mculList.sumCu;
@@ -87,6 +89,7 @@ class MCUL_List {
         this.NSupport = mculList.NSupport;
         this.CSupport = mculList.CSupport;
     }
+
     /**
      * Method to add an element to this utility list and update the sums at the same time.
      */

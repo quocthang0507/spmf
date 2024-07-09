@@ -16,89 +16,90 @@ package ca.pfv.spmf.algorithms.sequentialpatterns.skopus;
 // * You should have received a copy of the GNU General Public License
 // * along with Skopus.  If not, see <http://www.gnu.org/licenses/>.
 // ******************************************************************************/
+
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class Sid extends ArrayList<Integer>{
-	private int nSidNumber;
+public class Sid extends ArrayList<Integer> {
+    private int nSidNumber;
 
-	public Sid() {
-		super(20);
-		//this.clear();
-	}
+    public Sid() {
+        super(20);
+        //this.clear();
+    }
 
-	public Sid(int n) {
-		super(20);
-		nSidNumber = n;
-	}
-	
-	//current Sid, and current position value
-	public Sid(int nSid, int val){
-		super(1);
-		nSidNumber = nSid;
-		this.add(val);
-	}
+    public Sid(int n) {
+        super(20);
+        nSidNumber = n;
+    }
 
-	public Sid(Sid copy){
-		super(copy.size());
-		this.nSidNumber = copy.nSidNumber;
-		this.addAll(copy);
-		return;
-	}
+    //current Sid, and current position value
+    public Sid(int nSid, int val) {
+        super(1);
+        nSidNumber = nSid;
+        this.add(val);
+    }
 
-	public int getSidNumber(){
-		return this.nSidNumber;
-	}
-	
-	public void addPosition(int sno, int pos) {
-		if (sno == nSidNumber) {
-			if (this.isEmpty()) {
-				this.add(pos);
-			} else {
-				if (this.indexOf(pos) < 0) {
-					// û�ҵ�
-					this.add(pos);
-					// sort
-					Collections.sort(this);
-				} else {
-					// �ҵ���
-				}
-			}
-		}// if (sno == nSidNumber)
+    public Sid(Sid copy) {
+        super(copy.size());
+        this.nSidNumber = copy.nSidNumber;
+        this.addAll(copy);
+        return;
+    }
 
-	}
+    public int getSidNumber() {
+        return this.nSidNumber;
+    }
 
-	// �ҵ���һ��λ�ã�������λ���±ꣻδ�ҵ����򷵻�-1
-	public int getNextPosition(Sid s) {
-		int pos = -1;
-		if (this.nSidNumber != s.nSidNumber) {
-			return -1;
-		}
-		if (this.size() < 1) {
-			return -1;
-		}
-		for (int i = 0; i < s.size(); i++) {
-			if (this.get(0) < s.get(i)) {
-				pos = s.get(i);
-				break;
-			}
-		}
-		return pos;
-	}
+    public void addPosition(int sno, int pos) {
+        if (sno == nSidNumber) {
+            if (this.isEmpty()) {
+                this.add(pos);
+            } else {
+                if (this.indexOf(pos) < 0) {
+                    // û�ҵ�
+                    this.add(pos);
+                    // sort
+                    Collections.sort(this);
+                } else {
+                    // �ҵ���
+                }
+            }
+        }// if (sno == nSidNumber)
 
-	public boolean lessThan(final Sid s) {
-		return nSidNumber < s.nSidNumber;
-	}
+    }
 
-	public boolean isEqual(final Sid s) {
-		return nSidNumber == s.nSidNumber;
-	}
+    // �ҵ���һ��λ�ã�������λ���±ꣻδ�ҵ����򷵻�-1
+    public int getNextPosition(Sid s) {
+        int pos = -1;
+        if (this.nSidNumber != s.nSidNumber) {
+            return -1;
+        }
+        if (this.size() < 1) {
+            return -1;
+        }
+        for (int i = 0; i < s.size(); i++) {
+            if (this.get(0) < s.get(i)) {
+                pos = s.get(i);
+                break;
+            }
+        }
+        return pos;
+    }
 
-	// destructively update Position
+    public boolean lessThan(final Sid s) {
+        return nSidNumber < s.nSidNumber;
+    }
+
+    public boolean isEqual(final Sid s) {
+        return nSidNumber == s.nSidNumber;
+    }
+
+    // destructively update Position
 //	public void updatePosition(int pos) {
 //		this.clear();
 //		this.add(pos);
 //	}
 
-	
+
 }

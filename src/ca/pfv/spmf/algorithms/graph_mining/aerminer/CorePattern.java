@@ -4,27 +4,29 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 /* This file is copyright (c) 2020 by Ganghuan He
-* 
-* This file is part of the SPMF DATA MINING SOFTWARE
-* (http://www.philippe-fournier-viger.com/spmf).
-* 
-* SPMF is free software: you can redistribute it and/or modify it under the
-* terms of the GNU General Public License as published by the Free Software
-* Foundation, either version 3 of the License, or (at your option) any later
-* version.
-* 
-* SPMF is distributed in the hope that it will be useful, but WITHOUT ANY
-* WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
-* A PARTICULAR PURPOSE. See the GNU General Public License for more details.
-* You should have received a copy of the GNU General Public License along with
-* SPMF. If not, see <http://www.gnu.org/licenses/>.
-*/
+ *
+ * This file is part of the SPMF DATA MINING SOFTWARE
+ * (http://www.philippe-fournier-viger.com/spmf).
+ *
+ * SPMF is free software: you can redistribute it and/or modify it under the
+ * terms of the GNU General Public License as published by the Free Software
+ * Foundation, either version 3 of the License, or (at your option) any later
+ * version.
+ *
+ * SPMF is distributed in the hope that it will be useful, but WITHOUT ANY
+ * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
+ * A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+ * You should have received a copy of the GNU General Public License along with
+ * SPMF. If not, see <http://www.gnu.org/licenses/>.
+ */
+
 /**
  * A core pattern as used by the AER Miner algorithm
- * @see AERMiner
+ *
  * @author Ganghuan He 2020
+ * @see AERMiner
  */
-public class CorePattern implements Cloneable{
+public class CorePattern implements Cloneable {
     // pattern size
     private int size;
     // the resulted trend attribute
@@ -35,9 +37,10 @@ public class CorePattern implements Cloneable{
 
     /**
      * This method construct core pattern using resulted trend attribute(in the next timestamp of causing)
+     *
      * @param attribute resulted trend attribute
      */
-    public CorePattern(int attribute){
+    public CorePattern(int attribute) {
         childAttr = attribute;
 
         size = 1;
@@ -45,9 +48,10 @@ public class CorePattern implements Cloneable{
 
     /**
      * This method is used for growing core pattern by try to adding causing attribute
+     *
      * @param attr causing attribute
      */
-    public void growParentAttr(int attr){
+    public void growParentAttr(int attr) {
         parentAttr.add(attr);
         size++;
     }
@@ -56,17 +60,18 @@ public class CorePattern implements Cloneable{
     /**
      * delete last attribute of parent list.
      */
-    public void deleteLastAttr(){
-        if(parentAttr.size()>0) {
+    public void deleteLastAttr() {
+        if (parentAttr.size() > 0) {
             parentAttr.remove(parentAttr.size() - 1);
             size--;
         }
     }
 
     // return last attribute of parent list.
-    public int getLastAttr(){
-        return parentAttr.size()==0?0:parentAttr.get(parentAttr.size()-1);
+    public int getLastAttr() {
+        return parentAttr.size() == 0 ? 0 : parentAttr.get(parentAttr.size() - 1);
     }
+
     public int getSize() {
         return size;
     }
@@ -103,12 +108,11 @@ public class CorePattern implements Cloneable{
     }
 
 
-
     // deep clone for Core pattern
-    public CorePattern clone(){
+    public CorePattern clone() {
         CorePattern p = new CorePattern(this.getChildAttr());
         if (this.getParentAttr() == null) parentAttr = new ArrayList<>();
-        for(int attr:this.getParentAttr()){
+        for (int attr : this.getParentAttr()) {
             p.growParentAttr(attr);
         }
         return p;

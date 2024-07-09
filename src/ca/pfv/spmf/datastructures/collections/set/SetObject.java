@@ -18,115 +18,118 @@ package ca.pfv.spmf.datastructures.collections.set;
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
+
 /**
  * Abstract class defining the operations that a hashset of objects should have.
- * 
+ *
  * @author Philippe Fournier-Viger
  */
 public abstract class SetObject<T> {
 
-	/**
-	 * Clear the set
-	 */
-	public abstract void clear();
+    /**
+     * Clear the set
+     */
+    public abstract void clear();
 
-	/**
-	 * Get the number of elements in the set
-	 * 
-	 * @return the number
-	 */
-	public abstract int size();
+    /**
+     * Get the number of elements in the set
+     *
+     * @return the number
+     */
+    public abstract int size();
 
-	/**
-	 * Check if this set is empty
-	 * 
-	 * @return true if empty. Otherwise, false
-	 */
-	public abstract boolean isEmpty();
+    /**
+     * Check if this set is empty
+     *
+     * @return true if empty. Otherwise, false
+     */
+    public abstract boolean isEmpty();
 
-	/**
-	 * Calculate the hash value of a key
-	 * 
-	 * @param key the key
-	 * @return the hash value
-	 */
-	protected abstract int hash(T key);
+    /**
+     * Calculate the hash value of a key
+     *
+     * @param key the key
+     * @return the hash value
+     */
+    protected abstract int hash(T key);
 
-	/**
-	 * Check if a value is in the structure
-	 * 
-	 * @param key the key
-	 * @return true if it is contained. Otherwise, false
-	 */
-	public abstract boolean contains(T key);
+    /**
+     * Check if a value is in the structure
+     *
+     * @param key the key
+     * @return true if it is contained. Otherwise, false
+     */
+    public abstract boolean contains(T key);
 
-	/**
-	 * Put a new value in the structure
-	 * 
-	 * @param key the key
-	 */
-	public abstract void add(T key);
+    /**
+     * Put a new value in the structure
+     *
+     * @param key the key
+     */
+    public abstract void add(T key);
 
-	/**
-	 * Remove a key from the hash table
-	 * 
-	 * @param key the key
-	 * @return true if removed, false if not found
-	 */
-	public abstract boolean remove(T key);
-	
-	
-	/** Add all Objects from a set
-	 * @param set a set*/
-	public abstract void addAll(SetObject<T> set);
-	
+    /**
+     * Remove a key from the hash table
+     *
+     * @param key the key
+     * @return true if removed, false if not found
+     */
+    public abstract boolean remove(T key);
 
-	// ================= ITERATOR
-	// =======================================================
 
-	/**
-	 * Get an iterator on this map
-	 * 
-	 * @return an iterator
-	 */
-	public abstract AEntryIterator iterator();
+    /**
+     * Add all Objects from a set
+     *
+     * @param set a set
+     */
+    public abstract void addAll(SetObject<T> set);
 
-	/**
-	 * Abstract iterator for a set of objects. <br/>
-	 * <br/>
-	 * Note that the iterator does not check for concurrent modifications and is not
-	 * synchronized. It is designed to be used by a single thread, and the map
-	 * should not be modified while using the iterator except by calling the
-	 * remove() method provided by the iterator. If the map would be modified by
-	 * using other methods such as using add() or removeAt(), then the iterator will
-	 * not work properly.
-	 * 
-	 * @author Philippe Fournier-Viger 2023
-	 *
-	 */
-	public abstract class AEntryIterator {
 
-		/**
-		 * Get the next entry
-		 * 
-		 * @return the next entry or throws NoSuchElementException if there are no next
-		 *         entry
-		 */
-		public abstract T next();
+    // ================= ITERATOR
+    // =======================================================
 
-		/**
-		 * Check if there is a next entry
-		 * 
-		 * @return true if there is. Otherwise, false.
-		 */
-		public abstract boolean hasNext();
+    /**
+     * Get an iterator on this map
+     *
+     * @return an iterator
+     */
+    public abstract AEntryIterator iterator();
 
-		/**
-		 * Remove the current entry
-		 * 
-		 * @return the entry or throw IllegalStateException if there is no current
-		 *         entry.
-		 */
-		public abstract void remove();
-	}
+    /**
+     * Abstract iterator for a set of objects. <br/>
+     * <br/>
+     * Note that the iterator does not check for concurrent modifications and is not
+     * synchronized. It is designed to be used by a single thread, and the map
+     * should not be modified while using the iterator except by calling the
+     * remove() method provided by the iterator. If the map would be modified by
+     * using other methods such as using add() or removeAt(), then the iterator will
+     * not work properly.
+     *
+     * @author Philippe Fournier-Viger 2023
+     */
+    public abstract class AEntryIterator {
+
+        /**
+         * Get the next entry
+         *
+         * @return the next entry or throws NoSuchElementException if there are no next
+         * entry
+         */
+        public abstract T next();
+
+        /**
+         * Check if there is a next entry
+         *
+         * @return true if there is. Otherwise, false.
+         */
+        public abstract boolean hasNext();
+
+        /**
+         * Remove the current entry
+         *
+         * @return the entry or throw IllegalStateException if there is no current
+         * entry.
+         */
+        public abstract void remove();
+    }
 }

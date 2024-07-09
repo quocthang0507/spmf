@@ -29,21 +29,21 @@ import ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP.idLists.creators
  * Inspired in SPMF. Implementation of a sequence database. Each sequence should
  * have a unique id. See examples in /test/ directory for the format of input
  * files.
- *
+ * <p>
  * Copyright Antonio Gomariz Peñalver 2013
- *
+ * <p>
  * This file is part of the SPMF DATA MINING SOFTWARE
  * (http://www.philippe-fournier-viger.com/spmf).
- *
+ * <p>
  * SPMF is free software: you can redistribute it and/or modify it under the
  * terms of the GNU General Public License as published by the Free Software
  * Foundation, either version 3 of the License, or (at your option) any later
  * version.
- *
+ * <p>
  * SPMF is distributed in the hope that it will be useful, but WITHOUT ANY
  * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
  * A PARTICULAR PURPOSE. See the GNU General Public License for more details.
- *
+ * <p>
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  *
@@ -67,7 +67,7 @@ public class SequenceDatabase {
     /**
      * Method that load a database from a path file given as parameter
      *
-     * @param path Path file where the database is
+     * @param path       Path file where the database is
      * @param minSupport Minimum absolute support
      * @throws IOException
      */
@@ -80,8 +80,8 @@ public class SequenceDatabase {
             //For each line
             while ((thisLine = myInput.readLine()) != null) {
                 // If the line is not a comment line
-            	if (thisLine.charAt(0) != '#' && thisLine.charAt(0) != '%'
-						&& thisLine.charAt(0) != '@') {
+                if (thisLine.charAt(0) != '#' && thisLine.charAt(0) != '%'
+                        && thisLine.charAt(0) != '@') {
                     // we add a new sequence to the sequenceDatabase
                     addSequence(thisLine.split(" "));
                 }
@@ -105,7 +105,7 @@ public class SequenceDatabase {
             //And from the original database
             reduceDatabase(frequentItems.keySet());
         } catch (Exception e) {
-        	e.printStackTrace();
+            e.printStackTrace();
         } finally {
             if (myInput != null) {
                 myInput.close();
@@ -163,6 +163,7 @@ public class SequenceDatabase {
 
     /**
      * Get the string representation of this SequenceDatabase
+     *
      * @return the string representation
      */
     @Override
@@ -179,6 +180,7 @@ public class SequenceDatabase {
 
     /**
      * It returns the final number of sequences
+     *
      * @return the number of sequences
      */
     public int size() {
@@ -187,6 +189,7 @@ public class SequenceDatabase {
 
     /**
      * It returns the sequences of the database in a list
+     *
      * @return the list of sequences.
      */
     public List<Sequence> getSequences() {
@@ -196,6 +199,7 @@ public class SequenceDatabase {
     /**
      * It returns the equivalence classes associated with the frequent items
      * that we have found
+     *
      * @return the list of equivalence classes
      */
     public List<EquivalenceClass> frequentItems() {
@@ -205,8 +209,9 @@ public class SequenceDatabase {
     }
 
     /**
-     * It returns the map that makes the matching between items and 
+     * It returns the map that makes the matching between items and
      * equivalence classes.
+     *
      * @return the map
      */
     public Map<Item, EquivalenceClass> getFrequentItems() {
@@ -214,8 +219,9 @@ public class SequenceDatabase {
     }
 
     /**
-     * It return the equivalence classes associated with the frequent 
+     * It return the equivalence classes associated with the frequent
      * 2-Patterns that we have found
+     *
      * @param minSupport Minimum absolute support
      * @return the list of equivalence classes
      */
@@ -255,6 +261,7 @@ public class SequenceDatabase {
 
     /**
      * It reduces the original database to just frequent items.
+     *
      * @param keySet the set of frequent items that should be kept.
      */
     private void reduceDatabase(Set<Item> keySet) {

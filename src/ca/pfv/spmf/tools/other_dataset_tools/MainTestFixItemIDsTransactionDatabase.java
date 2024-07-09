@@ -10,22 +10,22 @@ import java.net.URL;
  */
 public class MainTestFixItemIDsTransactionDatabase {
 
-	public static void main(String [] arg) throws IOException{
-		
-		String inputFile = fileToPath("retail_negative.txt");
-		String outputFile = "retail_negative2.txt";
-		
-		// This is a parameter that indicates that we want to increase the item ids by 1
-		int increment = 1;
+    public static void main(String[] arg) throws IOException {
 
-		FixItemIDsTransactionDatabaseTool tool = new FixItemIDsTransactionDatabaseTool();
-		tool.convert(inputFile, outputFile, increment);
-		
+        String inputFile = fileToPath("retail_negative.txt");
+        String outputFile = "retail_negative2.txt";
 
-	}
+        // This is a parameter that indicates that we want to increase the item ids by 1
+        int increment = 1;
 
-	public static String fileToPath(String filename) throws UnsupportedEncodingException{
-		URL url = MainTestFixItemIDsTransactionDatabase.class.getResource(filename);
-		 return java.net.URLDecoder.decode(url.getPath(),"UTF-8");
-	}
+        FixItemIDsTransactionDatabaseTool tool = new FixItemIDsTransactionDatabaseTool();
+        tool.convert(inputFile, outputFile, increment);
+
+
+    }
+
+    public static String fileToPath(String filename) throws UnsupportedEncodingException {
+        URL url = MainTestFixItemIDsTransactionDatabase.class.getResource(filename);
+        return java.net.URLDecoder.decode(url.getPath(), "UTF-8");
+    }
 }

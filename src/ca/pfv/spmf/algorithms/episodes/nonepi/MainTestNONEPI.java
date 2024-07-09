@@ -12,7 +12,7 @@
  *
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  * Copyright Oualid Ouarem et al.
  */
 package ca.pfv.spmf.algorithms.episodes.nonepi;
@@ -24,25 +24,26 @@ import java.util.List;
 
 /**
  * Example of how to run the NONEPI algorithm from the source code.
- * @see AlgoNONEPI
+ *
  * @author oualid
+ * @see AlgoNONEPI
  */
 public class MainTestNONEPI {
 
     public static void main(String[] args) throws IOException {
-    	String dataset="contextNONEPI.txt";
+        String dataset = "contextNONEPI.txt";
         // Input file path
-    	String inputPath = fileToPath(dataset);
-    	
-    	// Output file path
-    	String outputPath = "output_"+dataset+".txt";
-    	
-    	// Minimum support (an integer representing a number of occurrences)
-    	int minsup = 1;
-        
+        String inputPath = fileToPath(dataset);
+
+        // Output file path
+        String outputPath = "output_" + dataset + ".txt";
+
+        // Minimum support (an integer representing a number of occurrences)
+        int minsup = 1;
+
         // Minimum confidence (represents a percentage)
         float minconf = 0.1f;
-        
+
         // (1) First extracts frequent episodes with NONEPI
         AlgoNONEPI algo = new AlgoNONEPI();
         List<Episode> frequentEpisodes = algo.findFrequentEpisodes(inputPath, minsup);
@@ -52,9 +53,9 @@ public class MainTestNONEPI {
         algo.printStats();
         algo.saveRulesToFile(outputPath);
     }
-    
-	public static String fileToPath(String filename) throws UnsupportedEncodingException{
-		URL url = MainTestNONEPI.class.getResource(filename);
-		 return java.net.URLDecoder.decode(url.getPath(),"UTF-8");
-	}
+
+    public static String fileToPath(String filename) throws UnsupportedEncodingException {
+        URL url = MainTestNONEPI.class.getResource(filename);
+        return java.net.URLDecoder.decode(url.getPath(), "UTF-8");
+    }
 }

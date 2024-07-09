@@ -18,27 +18,28 @@ import java.util.*;
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
+
 /**
  * This is implementation of the iterator over all DFS code projections into the graphs database
- *  <br/><br/>
- *
+ * <br/><br/>
+ * <p>
  * The cgspan algorithm is described in : <br/>
  * <br/>
  * <p>
  * cgSpan: Closed Graph-Based Substructure Pattern Mining, by Zevin Shaul, Sheikh Naaz
  * IEEE BigData 2021 7th Special Session on Intelligent Data Mining
  * <p>
- *
+ * <p>
  * <br/>
- *
+ * <p>
  * The CGspan algorithm finds all the closed subgraphs and their support in a
  * graph provided by the user.
  * <br/><br/>
- *
+ * <p>
  * This implementation saves the result to a file
  *
- * @see ProjectedCompact
  * @author Shaul Zevin
+ * @see ProjectedCompact
  */
 public class ProjectedPrefixIterator implements Iterator<PDFSCompact> {
     // projections compact memory representation
@@ -67,8 +68,8 @@ public class ProjectedPrefixIterator implements Iterator<PDFSCompact> {
         this.projected = projected;
         this.prefixLength = prefixLength;
         firstEdges = new ArrayList<ProjectedEdge>();
-        for (Map<Integer, Set<ProjectedEdge>> vertexEdges: projected.getProjected().get(0).values()) {
-            for (Set<ProjectedEdge> edges: vertexEdges.values()) {
+        for (Map<Integer, Set<ProjectedEdge>> vertexEdges : projected.getProjected().get(0).values()) {
+            for (Set<ProjectedEdge> edges : vertexEdges.values()) {
                 firstEdges.addAll(edges);
             }
         }
@@ -81,13 +82,13 @@ public class ProjectedPrefixIterator implements Iterator<PDFSCompact> {
         this.projected = projected;
         this.prefixLength = prefixLength;
         firstEdges = new ArrayList<ProjectedEdge>();
-        for (Integer vertexEdgesGid: projected.getProjected().get(0).keySet()) {
+        for (Integer vertexEdgesGid : projected.getProjected().get(0).keySet()) {
             if (vertexEdgesGid != gid) {
                 continue;
             }
 
             Map<Integer, Set<ProjectedEdge>> vertexEdges = projected.getProjected().get(0).get(vertexEdgesGid);
-            for (Set<ProjectedEdge> edges: vertexEdges.values()) {
+            for (Set<ProjectedEdge> edges : vertexEdges.values()) {
                 firstEdges.addAll(edges);
             }
         }
@@ -167,7 +168,7 @@ public class ProjectedPrefixIterator implements Iterator<PDFSCompact> {
             Vertex v1 = vertices.elementAt(extendedEdge.v1);
             while (edgeIterator.hasNext()) {
                 ProjectedEdge nextEdge = edgeIterator.next();
-                int v2Id = nextEdge.isReversed()? nextEdge.getEdgeEnumeration().getEdge().v1 : nextEdge.getEdgeEnumeration().getEdge().v2;
+                int v2Id = nextEdge.isReversed() ? nextEdge.getEdgeEnumeration().getEdge().v1 : nextEdge.getEdgeEnumeration().getEdge().v2;
                 Vertex v2 = databaseGraph.vMap.get(v2Id);
 
                 // check that v2 was not projected yet
@@ -235,8 +236,8 @@ public class ProjectedPrefixIterator implements Iterator<PDFSCompact> {
                 return;
             }
 
-            for (ProjectedEdge projectedEdge: projected.getProjected().get(pdfs.size()).get(databaseGraph.getId()).get(v1.getId())) {
-                int projectedV2 = projectedEdge.isReversed() ? projectedEdge.getEdgeEnumeration().getEdge().v1: projectedEdge.getEdgeEnumeration().getEdge().v2;
+            for (ProjectedEdge projectedEdge : projected.getProjected().get(pdfs.size()).get(databaseGraph.getId()).get(v1.getId())) {
+                int projectedV2 = projectedEdge.isReversed() ? projectedEdge.getEdgeEnumeration().getEdge().v1 : projectedEdge.getEdgeEnumeration().getEdge().v2;
                 if (projectedV2 == v2.getId()) {
                     nextEdge = projectedEdge;
                     break;

@@ -11,19 +11,19 @@ import ca.pfv.spmf.tools.dataset_stats.GraphStatsGenerator;
  */
 public class MainTestGenerateGraphDatabaseStats {
 
-	public static void main(String[] arg) throws IOException {
+    public static void main(String[] arg) throws IOException {
 
-		String inputFile = fileToPath("contextTKG.txt");
-		try {
-			GraphStatsGenerator graphDatabase = new GraphStatsGenerator();
-			graphDatabase.getStats(inputFile);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+        String inputFile = fileToPath("contextTKG.txt");
+        try {
+            GraphStatsGenerator graphDatabase = new GraphStatsGenerator();
+            graphDatabase.getStats(inputFile);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
-	public static String fileToPath(String filename) throws UnsupportedEncodingException {
-		URL url = MainTestGenerateGraphDatabaseStats.class.getResource(filename);
-		return java.net.URLDecoder.decode(url.getPath(), "UTF-8");
-	}
+    public static String fileToPath(String filename) throws UnsupportedEncodingException {
+        URL url = MainTestGenerateGraphDatabaseStats.class.getResource(filename);
+        return java.net.URLDecoder.decode(url.getPath(), "UTF-8");
+    }
 }

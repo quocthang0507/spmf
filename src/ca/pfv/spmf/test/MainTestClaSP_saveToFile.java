@@ -45,7 +45,7 @@ public class MainTestClaSP_saveToFile {
 
 
         //System.out.println(sequenceDatabase.toString());
-        algorithm.runAlgorithm(sequenceDatabase, keepPatterns, verbose, ".//output.txt",outputSequenceIdentifiers);
+        algorithm.runAlgorithm(sequenceDatabase, keepPatterns, verbose, ".//output.txt", outputSequenceIdentifiers);
         System.out.println("Minsup (relative) : " + support);
         System.out.println(algorithm.getNumberOfFrequentPatterns() + " patterns found.");
 

@@ -18,55 +18,63 @@ import ca.pfv.spmf.algorithms.episodes.emma.AlgoEMMA;
  *
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  * Copyright Peng Yang, Philippe Fournier-Viger, 2019
  */
+
 /**
  * A list of frequent episode of a given level k.
- * 
+ *
  * @author Peng Yang
  * @see AlgoEMMA
  */
 
 public class Level {
 
-	/** the frequent episodes */
-	List<AbstractEpisode> kFrequentEpisodes;
+    /**
+     * the frequent episodes
+     */
+    List<AbstractEpisode> kFrequentEpisodes;
 
-	/** the number of episodes */
-	int episodeCount = 0;
+    /**
+     * the number of episodes
+     */
+    int episodeCount = 0;
 
-	/**
-	 * Constructor
-	 */
-	Level() {
-		this.kFrequentEpisodes = new ArrayList<>();
-	}
+    /**
+     * Constructor
+     */
+    Level() {
+        this.kFrequentEpisodes = new ArrayList<>();
+    }
 
 
-	/**
-	 * Add a frequent episode
-	 * @param episode the episode
-	 */
-	public void addFreEpisode(AbstractEpisode episode) {
-		this.kFrequentEpisodes.add(episode);
-		episodeCount++;
-	}
+    /**
+     * Add a frequent episode
+     *
+     * @param episode the episode
+     */
+    public void addFreEpisode(AbstractEpisode episode) {
+        this.kFrequentEpisodes.add(episode);
+        episodeCount++;
+    }
 
-	/**
-	 * Get the number of episode
-	 * @return the episode count
-	 */
-	public int getEpisodeCount() {
-		return this.episodeCount;
-	}
+    /**
+     * Get the number of episode
+     *
+     * @return the episode count
+     */
+    public int getEpisodeCount() {
+        return this.episodeCount;
+    }
 
-	/**
-	 * Get the episodes of size k
-	 * @return the episodes
-	 */
-	public List<AbstractEpisode> getKFrequentEpisodes() {
-		return this.kFrequentEpisodes;
-	}
+    /**
+     * Get the episodes of size k
+     *
+     * @return the episodes
+     */
+    public List<AbstractEpisode> getKFrequentEpisodes() {
+        return this.kFrequentEpisodes;
+    }
 
 }

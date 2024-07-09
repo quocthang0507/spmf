@@ -17,33 +17,35 @@ package ca.pfv.spmf.gui.viewers.graphviewer.graphlayout;
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
-import java.util.List;
 
 import ca.pfv.spmf.gui.viewers.graphviewer.graphmodel.GEdge;
 import ca.pfv.spmf.gui.viewers.graphviewer.graphmodel.GNode;
 
+import java.util.List;
+
 /**
  * Interface to implement a graph layout generator
- * 
- * @see GraphLayoutFruchtermanReingold
+ *
  * @author Philippe Fournier-Viger
+ * @see GraphLayoutFruchtermanReingold
  */
 public abstract class AbstractGraphLayout {
 
-	/**
-	 * Calculate the layout of the graph
-	 * 
-	 * @param edges        a list of edges
-	 * @param nodes        a list of nodes
-	 * @param canvasWidth  the width of the canvas
-	 * @param canvasHeight the height of the canvas
-	 */
-	public abstract void autoLayout(List<GEdge> edges, List<GNode> nodes, int canvasWidth, int canvasHeight);
-	
-	/**
-	 * Get the name of this generator
-	 * @return name
-	 */
-	public  abstract String getGeneratorName();
-		
+    /**
+     * Calculate the layout of the graph
+     *
+     * @param edges        a list of edges
+     * @param nodes        a list of nodes
+     * @param canvasWidth  the width of the canvas
+     * @param canvasHeight the height of the canvas
+     */
+    public abstract void autoLayout(List<GEdge> edges, List<GNode> nodes, int canvasWidth, int canvasHeight);
+
+    /**
+     * Get the name of this generator
+     *
+     * @return name
+     */
+    public abstract String getGeneratorName();
+
 }

@@ -26,143 +26,157 @@ import ca.pfv.spmf.algorithmmanager.DescriptionOfParameter;
  */
 public class Plugin implements Serializable {
 
-	/** Serial ID */
-	private static final long serialVersionUID = 8961825827831257902L;
+    /**
+     * Serial ID
+     */
+    private static final long serialVersionUID = 8961825827831257902L;
+    /**
+     * number of parameters
+     */
+    int parameterCount = 0;
+    /**
+     * the plugin name
+     */
+    private String name;
+    /**
+     * the plugin description
+     */
+    private String description;
+    /**
+     * the author of the plugin
+     */
+    private String author;
+    /**
+     * the category of plugin
+     */
+    private String category;
+    /**
+     * the plugin version
+     */
+    private String version;
+    /**
+     * the url of the documentation
+     **/
+    private String urlOfDocumentation;
+    /**
+     * the repository from where the plugin was downloaded from
+     **/
+    private String repositoryURL;
 
-	/** the plugin name */
-	private String name;
+    // ----------------------------------------------
+    /**
+     * the url of the plugin in the repository
+     */
+    private String repositoryPluginFolder;
+    /**
+     * Input file types
+     */
+    private List<String> inputFileTypes = new ArrayList<String>();
+    /**
+     * Output file types
+     */
+    private List<String> outputFileTypes = new ArrayList<String>();
+    /**
+     * parameters
+     */
+    private List<DescriptionOfParameter> parameters = new ArrayList<DescriptionOfParameter>();
 
-	/** the plugin description */
-	private String description;
+    // ===============================================================
 
-	/** the author of the plugin */
-	private String author;
+    public String getRepositoryURL() {
+        return repositoryURL;
+    }
 
-	/** the category of plugin */
-	private String category;
+    public void setRepositoryURL(String repositoryURL) {
+        this.repositoryURL = repositoryURL;
+    }
 
-	/** the plugin version */
-	private String version;
+    public String getUrlOfDocumentation() {
+        return urlOfDocumentation;
+    }
 
-	/** the url of the documentation **/
-	private String urlOfDocumentation;
+    public void setUrlOfDocumentation(String urlOfDocumentation) {
+        this.urlOfDocumentation = urlOfDocumentation;
+    }
 
-	/** the repository from where the plugin was downloaded from **/
-	private String repositoryURL;
+    public String getName() {
+        return name;
+    }
 
-	/** the url of the plugin in the repository */
-	private String repositoryPluginFolder;
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	// ----------------------------------------------
+    public String getAuthor() {
+        return author;
+    }
 
-	/** Input file types */
-	private List<String> inputFileTypes = new ArrayList<String>();
+    public void setAuthor(String author) {
+        this.author = author;
+    }
 
-	/** Output file types */
-	private List<String> outputFileTypes = new ArrayList<String>();
+    public String getCategory() {
+        return category;
+    }
 
-	/** number of parameters */
-	int parameterCount = 0;
+    public void setCategory(String category) {
+        this.category = category;
+    }
 
-	/** parameters */
-	private List<DescriptionOfParameter> parameters = new ArrayList<DescriptionOfParameter>();
+    public String getVersion() {
+        return version;
+    }
 
-	// ===============================================================
+    public void setVersion(String version) {
+        this.version = version;
+    }
 
-	public String getRepositoryURL() {
-		return repositoryURL;
-	}
+    public String getDescription() {
+        return description;
+    }
 
-	public void setRepositoryURL(String repositoryURL) {
-		this.repositoryURL = repositoryURL;
-	}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-	public void setUrlOfDocumentation(String urlOfDocumentation) {
-		this.urlOfDocumentation = urlOfDocumentation;
-	}
+    public String getRepositoryPluginFolder() {
+        return repositoryPluginFolder;
+    }
 
-	public String getUrlOfDocumentation() {
-		return urlOfDocumentation;
-	}
+    public void setRepositoryPluginFolder(String folderName) {
+        repositoryPluginFolder = folderName;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public List<String> getInputFileTypes() {
+        return inputFileTypes;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setInputFileTypes(List<String> inputFileTypes) {
+        this.inputFileTypes = inputFileTypes;
+    }
 
-	public String getAuthor() {
-		return author;
-	}
+    public int getParameterCount() {
+        return parameterCount;
+    }
 
-	public void setAuthor(String author) {
-		this.author = author;
-	}
+    public void setParameterCount(int parameterCount) {
+        this.parameterCount = parameterCount;
+    }
 
-	public String getCategory() {
-		return category;
-	}
+    public List<DescriptionOfParameter> getParameters() {
+        return parameters;
+    }
 
-	public void setCategory(String category) {
-		this.category = category;
-	}
+    public void setParameters(List<DescriptionOfParameter> parameters) {
+        this.parameters = parameters;
+    }
 
-	public String getVersion() {
-		return version;
-	}
+    public List<String> getOutputFileTypes() {
+        return outputFileTypes;
+    }
 
-	public void setVersion(String version) {
-		this.version = version;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public void setRepositoryPluginFolder(String folderName) {
-		repositoryPluginFolder = folderName;
-	}
-
-	public String getRepositoryPluginFolder() {
-		return repositoryPluginFolder;
-	}
-
-	public List<String> getInputFileTypes() {
-		return inputFileTypes;
-	}
-
-	public void setInputFileTypes(List<String> inputFileTypes) {
-		this.inputFileTypes = inputFileTypes;
-	}
-
-	public int getParameterCount() {
-		return parameterCount;
-	}
-
-	public void setParameterCount(int parameterCount) {
-		this.parameterCount = parameterCount;
-	}
-
-	public List<DescriptionOfParameter> getParameters() {
-		return parameters;
-	}
-
-	public void setParameters(List<DescriptionOfParameter> parameters) {
-		this.parameters = parameters;
-	}
-
-	public List<String> getOutputFileTypes() {
-		return outputFileTypes;
-	}
-
-	public void setOutputFileTypes(List<String> outputFileTypes) {
-		this.outputFileTypes = outputFileTypes;
-	}
+    public void setOutputFileTypes(List<String> outputFileTypes) {
+        this.outputFileTypes = outputFileTypes;
+    }
 
 }

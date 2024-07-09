@@ -23,147 +23,159 @@ import java.awt.Rectangle;
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
+
 /**
  * A class that represents a node with a label and a position, to be drawn on
  * the DrawPanel of the Workflow Editor
- * 
+ *
  * @author Philippe Fournier-Viger
  * @see WorkflowEditorWindow
  */
 abstract class Node {
-	/** The padding for the text in this node */
-	final int TEXT_PADDING = 5;
+    /**
+     * The padding for the text in this node
+     */
+    final int TEXT_PADDING = 5;
+    /**
+     * The X and Y positions of this node
+     */
+    protected int x, y;
+    /**
+     * The name of this node
+     */
+    String name;
+    /**
+     * The rectangle of this node (for click detection
+     */
+    Rectangle rectangle = null;
 
-	/** The name of this node */
-	String name;
+    /**
+     * The width of the text displayed in this node
+     */
+    int textWidth;
 
-	/** The X and Y positions of this node */
-	protected int x, y;
+    /**
+     * The height of the text displayed in this node
+     */
+    int textHeight;
 
-	/** The rectangle of this node (for click detection */
-	Rectangle rectangle = null;
+    /**
+     * The group that this node belongs to
+     */
+    GroupOfNodes group = null;
 
-	/** The width of the text displayed in this node */
-	int textWidth;
+    /**
+     * Constructor
+     *
+     * @param label the name of the node
+     * @param x     the X position
+     * @param y     the Y position
+     */
+    public Node(String label, int x, int y) {
+        this.name = label;
+        this.x = x;
+        this.y = y;
+    }
 
-	/** The height of the text displayed in this node */
-	int textHeight;
+    /**
+     * Get the X position
+     *
+     * @return the position as an integer
+     */
+    public int getX() {
+        return x;
+    }
 
-	/** The group that this node belongs to */
-	GroupOfNodes group = null;
+    /**
+     * Get the Y position
+     *
+     * @return the position as an integer
+     */
+    public int getY() {
+        return y;
+    }
 
-	/**
-	 * Constructor
-	 * 
-	 * @param label the name of the node
-	 * @param x     the X position
-	 * @param y     the Y position
-	 */
-	public Node(String label, int x, int y) {
-		this.name = label;
-		this.x = x;
-		this.y = y;
-	}
+    /**
+     * Method to paint this node on a Panel
+     *
+     * @param g          the Graphics object on which the node should be drawn
+     * @param isSelected whether the node is selected or not
+     */
+    void paintNode(Graphics g, boolean isSelected) {
+        // If the node is selected, draw a red border around it
+        if (isSelected) {
+            g.setColor(Color.RED);
+            g.fillOval(x - 15, y - 15, 30, 30);
+        } else {
+            g.setColor(Color.BLUE);
+            g.fillOval(x - 15, y - 15, 30, 30);
+        }
+        g.setColor(Color.WHITE);
+        g.drawString(name, x - 5, y + 5);
+    }
 
-	/**
-	 * Get the X position
-	 * 
-	 * @return the position as an integer
-	 */
-	public int getX() {
-		return x;
-	}
+    /**
+     * Get the type of this node
+     *
+     * @return a String
+     */
+    public abstract String getType();
 
-	/**
-	 * Get the Y position
-	 * 
-	 * @return the position as an integer
-	 */
-	public int getY() {
-		return y;
-	}
+    /**
+     * Set the group corresponding to this node
+     *
+     * @param group the group
+     */
+    public void setGroup(GroupOfNodes group) {
+        this.group = group;
+    }
 
-	/**
-	 * Method to paint this node on a Panel
-	 * 
-	 * @param g          the Graphics object on which the node should be drawn
-	 * @param isSelected whether the node is selected or not
-	 */
-	void paintNode(Graphics g, boolean isSelected) {
-		// If the node is selected, draw a red border around it
-		if (isSelected) {
-			g.setColor(Color.RED);
-			g.fillOval(x - 15, y - 15, 30, 30);
-		} else {
-			g.setColor(Color.BLUE);
-			g.fillOval(x - 15, y - 15, 30, 30);
-		}
-		g.setColor(Color.WHITE);
-		g.drawString(name, x - 5, y + 5);
-	}
+    /**
+     * Recalculate the rectangle that is used for detecting mouse clicks for this
+     * node
+     *
+     * @param g the Graphics object used for drawing the node
+     */
+    void recalculateRectangle(Graphics g) {
+        // Get the font metrics for the current font
+        FontMetrics fm = g.getFontMetrics();
 
-	/**
-	 * Get the type of this node
-	 * 
-	 * @return a String
-	 */
-	public abstract String getType();
+        // Calculate the width and height of the text
+        textWidth = fm.stringWidth(name);
+        textHeight = fm.getHeight();
 
-	/**
-	 * Set the group corresponding to this node
-	 * 
-	 * @param group the group
-	 */
-	public void setGroup(GroupOfNodes group) {
-		this.group = group;
-	}
+        // Calculate the rectangle size
+        int rectWidth = textWidth + TEXT_PADDING * 2;
+        int rectHeight = textHeight + TEXT_PADDING / 2;
 
-	/**
-	 * Recalculate the rectangle that is used for detecting mouse clicks for this
-	 * node
-	 * 
-	 * @param g the Graphics object used for drawing the node
-	 */
-	void recalculateRectangle(Graphics g) {
-		// Get the font metrics for the current font
-		FontMetrics fm = g.getFontMetrics();
+        rectangle = new Rectangle(x - rectWidth / 2 - (TEXT_PADDING / 2), y - rectHeight / 2 - (TEXT_PADDING / 2),
+                rectWidth + (TEXT_PADDING), rectHeight + (TEXT_PADDING));
+    }
 
-		// Calculate the width and height of the text
-		textWidth = fm.stringWidth(name);
-		textHeight = fm.getHeight();
+    /**
+     * Check if a point is inside this node for mouse click detection
+     *
+     * @param x the point X value
+     * @param y the point Y value
+     * @resturn true if inside. false if outside
+     */
+    public boolean contains(int x, int y) {
+        if (rectangle == null) {
+            return false;
+        }
+        return rectangle.contains(x, y);
+    }
 
-		// Calculate the rectangle size
-		int rectWidth = textWidth + TEXT_PADDING * 2;
-		int rectHeight = textHeight + TEXT_PADDING / 2;
-
-		rectangle = new Rectangle(x - rectWidth / 2 - (TEXT_PADDING / 2), y - rectHeight / 2 - (TEXT_PADDING / 2),
-				rectWidth + (TEXT_PADDING), rectHeight + (TEXT_PADDING));
-	}
-
-	/**
-	 * Check if a point is inside this node for mouse click detection
-	 * 
-	 * @param x the point X value
-	 * @param y the point Y value
-	 * @resturn true if inside. false if outside
-	 */
-	public boolean contains(int x, int y) {
-		if (rectangle == null) {
-			return false;
-		}
-		return rectangle.contains(x, y);
-	}
-
-	/**
-	 * Change the position of this node
-	 * 
-	 * @param x the new X position
-	 * @param y the new Y position
-	 */
-	public void updatePosition(int x, int y) {
-		this.x = x;
-		this.y = y;
-		rectangle = null;
-	}
+    /**
+     * Change the position of this node
+     *
+     * @param x the new X position
+     * @param y the new Y position
+     */
+    public void updatePosition(int x, int y) {
+        this.x = x;
+        this.y = y;
+        rectangle = null;
+    }
 
 }

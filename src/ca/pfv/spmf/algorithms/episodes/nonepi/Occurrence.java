@@ -12,21 +12,23 @@
  *
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  * Copyright Oualid Ouarem et al.
  */
 package ca.pfv.spmf.algorithms.episodes.nonepi;
 
 /**
  * An occurrence of an episode as defined by the NONEPI algorithm
- * @see AlgoNONEPI
+ *
  * @author oualid
+ * @see AlgoNONEPI
  */
 public class Occurrence {
 
     protected long start;
     protected long end;
     protected double prob;
+
     public Occurrence(long _start, long _end) {
         this.start = _start;
         this.end = _end;
@@ -41,16 +43,17 @@ public class Occurrence {
         return this.end;
     }
 
-    public void setProb(double _p){
+    public double getProb() {
+        return this.prob;
+    }
+
+    public void setProb(double _p) {
         this.prob *= _p;
     }
 
-    public double getProb(){
-        return this.prob;
-    }
     @Override
     public String toString() {
-        return "[" + this.start + "," + this.end + "] , "+this.prob;
+        return "[" + this.start + "," + this.end + "] , " + this.prob;
     }
 
 }

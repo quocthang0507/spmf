@@ -3,7 +3,7 @@ package ca.pfv.spmf.algorithms.sequenceprediction.ipredict.predictor.DG;
 import java.io.Serializable;
 
 /*
- * This file is copyright (c) Ted Gueniche 
+ * This file is copyright (c) Ted Gueniche
  * <ted.gueniche@gmail.com>
  *
  * This file is part of the IPredict project
@@ -11,22 +11,23 @@ import java.io.Serializable;
  *
  * IPredict is distributed under The MIT License (MIT).
  * You may obtain a copy of the License at
- * https://opensource.org/licenses/MIT 
+ * https://opensource.org/licenses/MIT
  */
+
 /**
  * Represents an arc in a DG
  */
-public class DGArc implements Serializable{
+public class DGArc implements Serializable {
 
-	public int dest; //Destination of this arc
-	public int support; //Support for this arc
+    public int dest; //Destination of this arc
+    public int support; //Support for this arc
 
-	/**
-	 * Initialize a new arc to the destination with a support of 1
-	 */
-	public DGArc(int destination) {
-		dest = destination;
-		support = 1;
-	}
-	
+    /**
+     * Initialize a new arc to the destination with a support of 1
+     */
+    public DGArc(int destination) {
+        dest = destination;
+        support = 1;
+    }
+
 }

@@ -21,40 +21,40 @@ import ca.pfv.spmf.tools.dataset_generator.ClusteringDataGenerator.UniformDistri
  */
 public class MainTestGenerateClusteringData {
 
-	public static void main(String[] arg) throws IOException {
-		String outputFile = ".//output.txt";
-		
-		int attributeCount = 2;
-		
-		// We want to generate two clusters, one with 100 points and one with 50 points
-		List<Integer> clusterSizes = Arrays.asList(300, 300, 300);
+    public static void main(String[] arg) throws IOException {
+        String outputFile = ".//output.txt";
 
-		// We want to use different distributions for each cluster
-		// For the first cluster, we use a normal distribution with mean 0 and std 1 for both attributes
-		// For the second cluster, we use a uniform distribution in the range [-5, 5] for both attributes
-		List<Distribution[]> clusterDistributions = new ArrayList<>();
-		clusterDistributions.add(new Distribution[] {new NormalDistribution(10, 3), new NormalDistribution(20, 3)});
-		clusterDistributions.add(new Distribution[] {new UniformDistribution(-5, 5), new UniformDistribution(-5, 5)});
-		clusterDistributions.add(new Distribution[] {new NormalDistribution(20, 2), new NormalDistribution(0, 2)});
+        int attributeCount = 2;
 
-		// We generate the dataset and write it to a file
-		ClusteringDataGenerator.generateDataset(clusterSizes, attributeCount, clusterDistributions, "output.txt");
-		
-		// ==================== CODE TO VISUALIZE THE GENERATED DATA =================
-		// Parameters of the algorithm
-		String separator = " ";
+        // We want to generate two clusters, one with 100 points and one with 50 points
+        List<Integer> clusterSizes = Arrays.asList(300, 300, 300);
 
-		// Applying the algorithm
-		AlgoInstanceFileReader algorithm = new AlgoInstanceFileReader();
-		List<DoubleArray> instances = algorithm.runAlgorithm(outputFile, separator);
-		List<String> attributeNames = algorithm.getAttributeNames();
+        // We want to use different distributions for each cluster
+        // For the first cluster, we use a normal distribution with mean 0 and std 1 for both attributes
+        // For the second cluster, we use a uniform distribution in the range [-5, 5] for both attributes
+        List<Distribution[]> clusterDistributions = new ArrayList<>();
+        clusterDistributions.add(new Distribution[]{new NormalDistribution(10, 3), new NormalDistribution(20, 3)});
+        clusterDistributions.add(new Distribution[]{new UniformDistribution(-5, 5), new UniformDistribution(-5, 5)});
+        clusterDistributions.add(new Distribution[]{new NormalDistribution(20, 2), new NormalDistribution(0, 2)});
 
-		InstanceViewer viewer = new InstanceViewer(instances, attributeNames);
-		viewer.setVisible(true);
-	}
+        // We generate the dataset and write it to a file
+        ClusteringDataGenerator.generateDataset(clusterSizes, attributeCount, clusterDistributions, "output.txt");
 
-	public static String fileToPath(String filename) throws UnsupportedEncodingException {
-		URL url = MainTestGenerateClusteringData.class.getResource(filename);
-		return java.net.URLDecoder.decode(url.getPath(), "UTF-8");
-	}
+        // ==================== CODE TO VISUALIZE THE GENERATED DATA =================
+        // Parameters of the algorithm
+        String separator = " ";
+
+        // Applying the algorithm
+        AlgoInstanceFileReader algorithm = new AlgoInstanceFileReader();
+        List<DoubleArray> instances = algorithm.runAlgorithm(outputFile, separator);
+        List<String> attributeNames = algorithm.getAttributeNames();
+
+        InstanceViewer viewer = new InstanceViewer(instances, attributeNames);
+        viewer.setVisible(true);
+    }
+
+    public static String fileToPath(String filename) throws UnsupportedEncodingException {
+        URL url = MainTestGenerateClusteringData.class.getResource(filename);
+        return java.net.URLDecoder.decode(url.getPath(), "UTF-8");
+    }
 }

@@ -7,39 +7,32 @@ import ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP.idLists.IDListFa
 
 /**
  * Creator of a IdList based on bitmaps.
- *
+ * <p>
  * Copyright Antonio Gomariz Peñalver 2013
- *
+ * <p>
  * This file is part of the SPMF DATA MINING SOFTWARE
  * (http://www.philippe-fournier-viger.com/spmf).
- *
+ * <p>
  * SPMF is free software: you can redistribute it and/or modify it under the
  * terms of the GNU General Public License as published by the Free Software
  * Foundation, either version 3 of the License, or (at your option) any later
  * version.
- *
+ * <p>
  * SPMF is distributed in the hope that it will be useful, but WITHOUT ANY
  * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
  * A PARTICULAR PURPOSE. See the GNU General Public License for more details.
- *
+ * <p>
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  *
  * @author agomariz
  */
-public class IdListCreator_FatBitmap implements IdListCreator{
-    
+public class IdListCreator_FatBitmap implements IdListCreator {
+
     /**
      * Static reference in order to make the class singleton.
      */
     private static IdListCreator_FatBitmap instance = null;
-
-    /**
-     * It removes the static fields.
-     */
-    public static void clear() {
-        instance=null;
-    }
 
     /**
      * Standard Constructor.
@@ -48,7 +41,15 @@ public class IdListCreator_FatBitmap implements IdListCreator{
     }
 
     /**
+     * It removes the static fields.
+     */
+    public static void clear() {
+        instance = null;
+    }
+
+    /**
      * Get the static reference of the singleton IdList based on bitmaps.
+     *
      * @return the static reference
      */
     public static IdListCreator getInstance() {
@@ -60,7 +61,8 @@ public class IdListCreator_FatBitmap implements IdListCreator{
 
     /**
      * It creates an empty IdList of bitmaps.
-     * @return  the empty idlist that is created.
+     *
+     * @return the empty idlist that is created.
      */
     @Override
     public IDList create() {
@@ -69,11 +71,11 @@ public class IdListCreator_FatBitmap implements IdListCreator{
     }
 
     /**
-     * It adds an appearance <sid,tid> to an Idlist of bitmaps 
+     * It adds an appearance <sid,tid> to an Idlist of bitmaps
      */
     @Override
     public void addAppearance(IDList idlist, Integer sequence, Integer timestamp) {
-        IDListFatBitmap id = (IDListFatBitmap)idlist;
+        IDListFatBitmap id = (IDListFatBitmap) idlist;
         id.registerBit(sequence, timestamp);
     }
 
@@ -86,5 +88,5 @@ public class IdListCreator_FatBitmap implements IdListCreator{
         IDListFatBitmap id = (IDListFatBitmap) idlist;
         id.addAppearancesInSequence(sequence, itemsets);
     }
-    
+
 }

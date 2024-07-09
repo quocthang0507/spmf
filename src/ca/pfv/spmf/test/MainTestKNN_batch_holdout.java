@@ -1,21 +1,21 @@
 package ca.pfv.spmf.test;
 
 /* This file is copyright (c) 2021 Philippe Fournier-Viger
-* 
-* This file is part of the SPMF DATA MINING SOFTWARE
-* (http://www.philippe-fournier-viger.com/spmf).
-* 
-* SPMF is free software: you can redistribute it and/or modify it under the
-* terms of the GNU General Public License as published by the Free Software
-* Foundation, either version 3 of the License, or (at your option) any later
-* version.
-* 
-* SPMF is distributed in the hope that it will be useful, but WITHOUT ANY
-* WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
-* A PARTICULAR PURPOSE. See the GNU General Public License for more details.
-* You should have received a copy of the GNU General Public License along with
-* SPMF. If not, see <http://www.gnu.org/licenses/>.
-*/
+ *
+ * This file is part of the SPMF DATA MINING SOFTWARE
+ * (http://www.philippe-fournier-viger.com/spmf).
+ *
+ * SPMF is free software: you can redistribute it and/or modify it under the
+ * terms of the GNU General Public License as published by the Free Software
+ * Foundation, either version 3 of the License, or (at your option) any later
+ * version.
+ *
+ * SPMF is distributed in the hope that it will be useful, but WITHOUT ANY
+ * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
+ * A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+ * You should have received a copy of the GNU General Public License along with
+ * SPMF. If not, see <http://www.gnu.org/licenses/>.
+ */
 
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
@@ -28,71 +28,70 @@ import ca.pfv.spmf.algorithms.classifiers.knn.AlgoKNN;
 
 /**
  * Example of how to run the KNN algorithm
- * 
- * @author Philippe Fournier-Viger, 2021
  *
+ * @author Philippe Fournier-Viger, 2021
  */
 public class MainTestKNN_batch_holdout {
 
-	public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception {
 
-		System.out.println("========= Step 1: Read the dataset ==========");
+        System.out.println("========= Step 1: Read the dataset ==========");
 
-		// We choose "play" as the target attribute that we want to predict using other
-		// attributes
-		String targetClassName = "play";
+        // We choose "play" as the target attribute that we want to predict using other
+        // attributes
+        String targetClassName = "play";
 
-		// Load the dataset
-		String datasetPath = fileToPath("tennisExtended.txt");
-		StringDataset dataset = new StringDataset(datasetPath, targetClassName);
+        // Load the dataset
+        String datasetPath = fileToPath("tennisExtended.txt");
+        StringDataset dataset = new StringDataset(datasetPath, targetClassName);
 
-		// If the dataset is in ARFF format, then use these lines instead:
+        // If the dataset is in ARFF format, then use these lines instead:
 //		String datasetPath = fileToPath("weather-train.arff");
 //		ARFFDataset dataset = new ARFFDataset(datasetPath, targetClassName);
-		
-		// If the dataset is in CSV format, then use these lines instead:
+
+        // If the dataset is in CSV format, then use these lines instead:
 //		String datasetPath = fileToPath("tennisExtendedCSV.txt");
 //		CSVDataset dataset = new CSVDataset(datasetPath, targetClassName);
-		
-		// Print stats about the dataset
-		dataset.printStats();
 
-		// For debugging (optional)
+        // Print stats about the dataset
+        dataset.printStats();
+
+        // For debugging (optional)
 //		dataset.printInternalRepresentation();
 //		dataset.printStringRepresentation();
 
-		System.out.println("==== Step 2: Training:  Apply the algorithm to build a model ===");
-		// Parameter 
-		int k = 3;
-		
-		// Create the algorithm
-		ClassificationAlgorithm algorithmKNN = new AlgoKNN(k);
+        System.out.println("==== Step 2: Training:  Apply the algorithm to build a model ===");
+        // Parameter
+        int k = 3;
 
-		// We create an object Evaluator to run the experiment using k-fold cross
-		// validation
-		Evaluator experiment1 = new Evaluator();
+        // Create the algorithm
+        ClassificationAlgorithm algorithmKNN = new AlgoKNN(k);
 
-		// The following line indicates that 50% of the dataset will be used for
-		// training.
-		// The rest of the dataset will be used for testing.
-		double percentage = 0.5;
+        // We create an object Evaluator to run the experiment using k-fold cross
+        // validation
+        Evaluator experiment1 = new Evaluator();
 
-		// We run the experiment
-		ClassificationAlgorithm[] algorithms = new ClassificationAlgorithm[] { algorithmKNN };
-		OverallResults allResults = experiment1.trainAndRunClassifiersHoldout(algorithms, dataset, percentage);
+        // The following line indicates that 50% of the dataset will be used for
+        // training.
+        // The rest of the dataset will be used for testing.
+        double percentage = 0.5;
 
-		// Save statistics about the execution to files (optional)
-		String forTrainingPath = "outputReportForTraining.txt";
-		String onTrainingPath = "outputReportOnTraining.txt";
-		String onTrestingPath = "outputReportOnTesting.txt";
-		allResults.saveMetricsResultsToFile(forTrainingPath, onTrainingPath, onTrestingPath);
+        // We run the experiment
+        ClassificationAlgorithm[] algorithms = new ClassificationAlgorithm[]{algorithmKNN};
+        OverallResults allResults = experiment1.trainAndRunClassifiersHoldout(algorithms, dataset, percentage);
 
-		// Print statistics to the console (optional)
-		allResults.printStats();
-	}
+        // Save statistics about the execution to files (optional)
+        String forTrainingPath = "outputReportForTraining.txt";
+        String onTrainingPath = "outputReportOnTraining.txt";
+        String onTrestingPath = "outputReportOnTesting.txt";
+        allResults.saveMetricsResultsToFile(forTrainingPath, onTrainingPath, onTrestingPath);
 
-	public static String fileToPath(String filename) throws UnsupportedEncodingException {
-		URL url = MainTestKNN_batch_holdout.class.getResource(filename);
-		return java.net.URLDecoder.decode(url.getPath(), "UTF-8");
-	}
+        // Print statistics to the console (optional)
+        allResults.printStats();
+    }
+
+    public static String fileToPath(String filename) throws UnsupportedEncodingException {
+        URL url = MainTestKNN_batch_holdout.class.getResource(filename);
+        return java.net.URLDecoder.decode(url.getPath(), "UTF-8");
+    }
 }

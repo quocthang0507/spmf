@@ -13,6 +13,7 @@ import ca.pfv.spmf.algorithms.sequentialpatterns.clospan_AGP.items.creators.Abst
 /**
  * Example of how to use the algorithm CloSpan, saving the results in a given
  * file
+ *
  * @author agomariz
  */
 public class MainTestCloSpan_saveToFile {
@@ -28,7 +29,7 @@ public class MainTestCloSpan_saveToFile {
         boolean verbose = false;
         boolean findClosedPatterns = true;
         boolean executePruningMethods = true;
-        
+
         // if you set the following parameter to true, the sequence ids of the sequences where
         // each pattern appears will be shown in the result
         boolean outputSequenceIdentifiers = false;
@@ -42,7 +43,7 @@ public class MainTestCloSpan_saveToFile {
 
         //System.out.println(sequenceDatabase.toString());
 
-        AlgoCloSpan algorithm = new AlgoCloSpan(support, abstractionCreator, findClosedPatterns,executePruningMethods);
+        AlgoCloSpan algorithm = new AlgoCloSpan(support, abstractionCreator, findClosedPatterns, executePruningMethods);
 
         algorithm.runAlgorithm(sequenceDatabase, keepPatterns, verbose, ".//output.txt", outputSequenceIdentifiers);
         System.out.println(algorithm.getNumberOfFrequentPatterns() + " pattern found.");

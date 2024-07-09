@@ -18,54 +18,55 @@ package ca.pfv.spmf.datastructures.collections.automatic_test;
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
+
 /**
  * Class to automatically run some tests from this package for testing the
  * primitive data structures of SPMF
- * 
+ *
  * @author Philippe Fournier-Viger, copyright 2023.
  */
 public class RunAllTests {
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
 
-		// Run all the tests.
-		// If no error is thrown, then the test have completed
-		// correctly.
+        // Run all the tests.
+        // If no error is thrown, then the test have completed
+        // correctly.
 
-		// Tests for LHashSet___
-		MainTestLHashSetInt.main(null);
-		MainTestLHashSetObject.main(null);
+        // Tests for LHashSet___
+        MainTestLHashSetInt.main(null);
+        MainTestLHashSetObject.main(null);
 
-		// Tests for AHashSet___
-		MainTestAHashSetInt.main(null);
-		MainTestAHashSetObject.main(null);
+        // Tests for AHashSet___
+        MainTestAHashSetInt.main(null);
+        MainTestAHashSetObject.main(null);
 
-		// Tests for ArrayList___
-		MainTestLinkedListInt.main(null);
-		MainTestArrayListInt.main(null);
-		MainTestArrayListObject.main(null);
-		MainTestArrayListDouble.main(null);
-		MainTestArrayListLong.main(null);
-		MainTestArrayListFloat.main(null);
-		MainTestArrayListShort.main(null);
+        // Tests for ArrayList___
+        MainTestLinkedListInt.main(null);
+        MainTestArrayListInt.main(null);
+        MainTestArrayListObject.main(null);
+        MainTestArrayListDouble.main(null);
+        MainTestArrayListLong.main(null);
+        MainTestArrayListFloat.main(null);
+        MainTestArrayListShort.main(null);
 
-		// Tests for AMap______
-		MainTestAMapIntToInt.main(null);
-		MainTestAMapIntToLong.main(null);
-		MainTestAMapIntToDouble.main(null);
-		MainTestAMapIntToObject.main(null);
-		MainTestAMapIntToFloat.main(null);
-		MainTestAMapIntToShort.main(null);
+        // Tests for AMap______
+        MainTestAMapIntToInt.main(null);
+        MainTestAMapIntToLong.main(null);
+        MainTestAMapIntToDouble.main(null);
+        MainTestAMapIntToObject.main(null);
+        MainTestAMapIntToFloat.main(null);
+        MainTestAMapIntToShort.main(null);
 
-		// Tests for LMap______
-		MainTestLMapIntToDouble.main(null);
-		MainTestLMapIntToInt.main(null);
-		MainTestLMapIntToLong.main(null);
-		MainTestLMapIntToObject.main(null);
-		MainTestLMapIntToFloat.main(null);
-		MainTestLMapIntToShort.main(null);
-		System.out.println("==== All " + CheckResults.getTestDoneCount() + " tests completed successfully! ===");
+        // Tests for LMap______
+        MainTestLMapIntToDouble.main(null);
+        MainTestLMapIntToInt.main(null);
+        MainTestLMapIntToLong.main(null);
+        MainTestLMapIntToObject.main(null);
+        MainTestLMapIntToFloat.main(null);
+        MainTestLMapIntToShort.main(null);
+        System.out.println("==== All " + CheckResults.getTestDoneCount() + " tests completed successfully! ===");
 
-	}
+    }
 
 }

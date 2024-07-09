@@ -23,29 +23,29 @@ import ca.pfv.spmf.tools.dataset_stats.EventSequenceStats;
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
+
 /**
- * 
  * Example of how to calculate stats for a file containing an event sequence in SPMF format
  * from the source code.
- * 
+ *
  * @author Philippe Fournier-Viger (Copyright 2024)
  */
 public class MainTestStatsEventSequence {
 
-	public static void main(String[] arg) throws IOException {
+    public static void main(String[] arg) throws IOException {
 
-		// Input file path
-		String input = fileToPath("contextEMMA.txt");
+        // Input file path
+        String input = fileToPath("contextEMMA.txt");
 
-		// Applying the algorithm
-		EventSequenceStats algorithm = new EventSequenceStats();
-		algorithm.runAlgorithm(input);
+        // Applying the algorithm
+        EventSequenceStats algorithm = new EventSequenceStats();
+        algorithm.runAlgorithm(input);
 
-	}
+    }
 
-	public static String fileToPath(String filename) throws UnsupportedEncodingException {
-		System.out.println("filename : " + filename);
-		URL url = MainTestStatsEventSequence.class.getResource(filename);
-		return java.net.URLDecoder.decode(url.getPath(), "UTF-8");
-	}
+    public static String fileToPath(String filename) throws UnsupportedEncodingException {
+        System.out.println("filename : " + filename);
+        URL url = MainTestStatsEventSequence.class.getResource(filename);
+        return java.net.URLDecoder.decode(url.getPath(), "UTF-8");
+    }
 }

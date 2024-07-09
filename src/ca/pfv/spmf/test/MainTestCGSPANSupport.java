@@ -14,7 +14,7 @@ import ca.pfv.spmf.algorithms.graph_mining.tkg.AlgoCGSPANSupport;
  */
 public class MainTestCGSPANSupport {
 
-    public static void main(String [] arg) throws IOException, ClassNotFoundException, InterruptedException {
+    public static void main(String[] arg) throws IOException, ClassNotFoundException, InterruptedException {
 
         // set the input path
         String input = fileToPath("contextTKG.txt");
@@ -52,8 +52,8 @@ public class MainTestCGSPANSupport {
         algo.printStats();
     }
 
-    public static String fileToPath(String filename) throws UnsupportedEncodingException{
+    public static String fileToPath(String filename) throws UnsupportedEncodingException {
         URL url = MainTestGSPAN.class.getResource(filename);
-        return java.net.URLDecoder.decode(url.getPath(),"UTF-8");
+        return java.net.URLDecoder.decode(url.getPath(), "UTF-8");
     }
 }

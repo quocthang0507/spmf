@@ -18,43 +18,50 @@ package ca.pfv.spmf.gui.viewers.timeintervaldbviewer;
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
+
 /**
  * A symbolic time interval as used by algorithms like FastTIRP and VertTIRP
- * 
+ *
  * @author Philippe Fournier-Viger, 2024
  */
 public class SymbolicTimeInterval {
 
-	/** symbol */
-	public final int symbol;
+    /**
+     * symbol
+     */
+    public final int symbol;
 
-	/** start time */
-	public final int start;
-	/** end time */
-	public final int end;
+    /**
+     * start time
+     */
+    public final int start;
+    /**
+     * end time
+     */
+    public final int end;
 
-	/**
-	 * Constructor
-	 * 
-	 * @param symbol the symbol
-	 * @param start  the start time
-	 * @param end    the end time
-	 */
-	public SymbolicTimeInterval(int symbol, int start, int end) {
-		this.symbol = symbol;
-		this.start = start;
-		this.end = end;
-	}
+    /**
+     * Constructor
+     *
+     * @param symbol the symbol
+     * @param start  the start time
+     * @param end    the end time
+     */
+    public SymbolicTimeInterval(int symbol, int start, int end) {
+        this.symbol = symbol;
+        this.start = start;
+        this.end = end;
+    }
 
-	/**
-	 * Get a string representation of this time interval
-	 * 
-	 * @return the string
-	 */
-	public String toString() {
-		final StringBuffer buffer = new StringBuffer();
-		buffer.append(symbol).append(' ');
-		buffer.append('[').append(start).append(',').append(end).append(']');
-		return buffer.toString();
-	}
+    /**
+     * Get a string representation of this time interval
+     *
+     * @return the string
+     */
+    public String toString() {
+        final StringBuffer buffer = new StringBuffer();
+        buffer.append(symbol).append(' ');
+        buffer.append('[').append(start).append(',').append(end).append(']');
+        return buffer.toString();
+    }
 }

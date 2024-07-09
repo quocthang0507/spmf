@@ -22,50 +22,47 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class GlobalOper {
-	private static ArrayList<Double> lf = new ArrayList<Double>(); 
+    private static ArrayList<Double> lf = new ArrayList<Double>();
 
-	private static double logfact(final int n) {
-		//static std::vector<double> lf;
+    private static double logfact(final int n) {
+        //static std::vector<double> lf;
 
-		int i;
+        int i;
 
-		for (i = lf.size(); i <= n; i++) 
-		{
-			if (i == 0)
-				lf.add(.0);
-			else
-				lf.add(lf.get(i-1) + Math.log((double)(i)));
-		}
+        for (i = lf.size(); i <= n; i++) {
+            if (i == 0)
+                lf.add(.0);
+            else
+                lf.add(lf.get(i - 1) + Math.log((double) (i)));
+        }
 
-		return lf.get(n);
-	}
+        return lf.get(n);
+    }
 
-	// ����n��ѡk��������Ķ���?
-	public static double log_combin(final int n, final int k) {
-		return logfact(n) - logfact(k) - logfact(n - k);
-	}
-	
-	public static double computeSupport(int nCoverCount){
-		if(GlobalData.bSmoothedValue){
-			return Double.valueOf(nCoverCount + GlobalData.dSmoothCoefficient) 
-					/ Double.valueOf(GlobalData.nNumOfSequence + GlobalData.dSmoothCoefficient);
-		}
-		else{
-			return Double.valueOf(nCoverCount) 
-					/ Double.valueOf(GlobalData.nNumOfSequence);	
-		}
-	}
-	
-	public static double computeCoverCount(double nCoverCount){
-		if(GlobalData.bSmoothedValue){
-			return Double.valueOf(nCoverCount + GlobalData.dSmoothCoefficient);
-		}
-		else{
-			return Double.valueOf(nCoverCount);	
-		}
-	}
+    // ����n��ѡk��������Ķ���?
+    public static double log_combin(final int n, final int k) {
+        return logfact(n) - logfact(k) - logfact(n - k);
+    }
 
-	 /**
+    public static double computeSupport(int nCoverCount) {
+        if (GlobalData.bSmoothedValue) {
+            return Double.valueOf(nCoverCount + GlobalData.dSmoothCoefficient)
+                    / Double.valueOf(GlobalData.nNumOfSequence + GlobalData.dSmoothCoefficient);
+        } else {
+            return Double.valueOf(nCoverCount)
+                    / Double.valueOf(GlobalData.nNumOfSequence);
+        }
+    }
+
+    public static double computeCoverCount(double nCoverCount) {
+        if (GlobalData.bSmoothedValue) {
+            return Double.valueOf(nCoverCount + GlobalData.dSmoothCoefficient);
+        } else {
+            return Double.valueOf(nCoverCount);
+        }
+    }
+
+    /**
      * Append content string in the file
      *
      * @param fileName

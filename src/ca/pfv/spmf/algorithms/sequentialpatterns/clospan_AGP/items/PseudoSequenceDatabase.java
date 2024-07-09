@@ -10,23 +10,23 @@ import java.util.Set;
  * explained in the paper of PrefixSpan Algorithm. By means of this class, we
  * convert a usual sequence in a pseudosequence, where we can point out the
  * different projection points that we have in every database projection.
- *
+ * <p>
  * This class is inspired in SPMF PrefixSpan implementation.
- *
+ * <p>
  * Copyright Antonio Gomariz Peñalver 2013
- *
+ * <p>
  * This file is part of the SPMF DATA MINING SOFTWARE
  * (http://www.philippe-fournier-viger.com/spmf).
- *
+ * <p>
  * SPMF is free software: you can redistribute it and/or modify it under the
  * terms of the GNU General Public License as published by the Free Software
  * Foundation, either version 3 of the License, or (at your option) any later
  * version.
- *
+ * <p>
  * SPMF is distributed in the hope that it will be useful, but WITHOUT ANY
  * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
  * A PARTICULAR PURPOSE. See the GNU General Public License for more details.
- *
+ * <p>
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  *
@@ -134,12 +134,12 @@ public class PseudoSequenceDatabase {
         }
     }
 
-    public void setCumulativeSum(int cumulativeSum) {
-        this.cumulativeSum = cumulativeSum;
-    }
-
     public int getCumulativeSum() {
         return this.cumulativeSum;
+    }
+
+    public void setCumulativeSum(int cumulativeSum) {
+        this.cumulativeSum = cumulativeSum;
     }
 
     public int getCumulativeSumNumberOfProjections() {
@@ -157,8 +157,8 @@ public class PseudoSequenceDatabase {
     public void setElementsProjectedDatabase(String string) {
         if (string.length() > 0) {
             //this.elementsProjectedDatabase = Integer.valueOf(string);
-        }else{
-            this.elementsProjectedDatabase=0;
+        } else {
+            this.elementsProjectedDatabase = 0;
         }
     }
 }

@@ -18,20 +18,21 @@ package ca.pfv.spmf.gui.workflow_editor;
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
+
 /**
  * Class for testing the workflow editor of SPMF
  */
 public class MainTestWorkflowEditor {
-	/**
-	 * The main method
-	 * 
-	 * @param args the parameters of the method
-	 * @throws Exception if something bad happen
-	 */
-	@SuppressWarnings("unused")
-	public static void main(String[] args) throws Exception {
-		boolean runAsStandalone = true;
-		// Create an instance of the draw frame
-		WorkflowEditorWindow drawFrame = new WorkflowEditorWindow(runAsStandalone);
-	}
+    /**
+     * The main method
+     *
+     * @param args the parameters of the method
+     * @throws Exception if something bad happen
+     */
+    @SuppressWarnings("unused")
+    public static void main(String[] args) throws Exception {
+        boolean runAsStandalone = true;
+        // Create an instance of the draw frame
+        WorkflowEditorWindow drawFrame = new WorkflowEditorWindow(runAsStandalone);
+    }
 }

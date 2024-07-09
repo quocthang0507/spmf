@@ -32,103 +32,110 @@ import ca.pfv.spmf.algorithmmanager.DescriptionOfParameter;
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
+
 /**
  * JPanel that let the user enter parameter values for an algorithm. It is used
  * by the graphical user interface of SPMF.
- * 
+ *
  * @author Philippe Fournier-Viger, 2024.
  */
 
 public class ParameterSelectionPanel extends JPanel {
 
-	/** Serial version UID */
-	private static final long serialVersionUID = 1L;
+    /**
+     * Serial version UID
+     */
+    private static final long serialVersionUID = 1L;
 
-	/** The table to display the parameters */
-	private JTable parameterTable;
-	
-	/** The custom table model used to display parameters */
-	private ParameterSelectionTableModel tableModel; 
-	
+    /**
+     * The table to display the parameters
+     */
+    private JTable parameterTable;
 
-	/**
-	 * Constructor
-	 * 
-	 * @param descriptionOfAlgorithm The algorithm for which the parameters will be displayed
-	 * @param width the desired width of the panel
-	 * @param height the desired heigth of the panel
-	 */
-	public ParameterSelectionPanel(DescriptionOfAlgorithm descriptionOfAlgorithm) {
-		super(new BorderLayout()); // Use a BorderLayout for the panel
-		setBorder(null);
-		update(descriptionOfAlgorithm);
+    /**
+     * The custom table model used to display parameters
+     */
+    private ParameterSelectionTableModel tableModel;
 
-        setPreferredSize(new Dimension(500, 200));  
-        setMinimumSize(new Dimension(500, 200));  
-	}
 
-	@SuppressWarnings("serial")
-	/**
-	 * Method to refresh the panel to display a different algorithm's parameter
-	 * @param descriptionOfAlgorithm the description of the algorithm
-	 */
-	public void update(DescriptionOfAlgorithm descriptionOfAlgorithm) {
+    /**
+     * Constructor
+     *
+     * @param descriptionOfAlgorithm The algorithm for which the parameters will be displayed
+     * @param width                  the desired width of the panel
+     * @param height                 the desired heigth of the panel
+     */
+    public ParameterSelectionPanel(DescriptionOfAlgorithm descriptionOfAlgorithm) {
+        super(new BorderLayout()); // Use a BorderLayout for the panel
+        setBorder(null);
+        update(descriptionOfAlgorithm);
 
-		// Initialize on first call
-		if (tableModel == null) { 
-			
-			// Create the table model
-			tableModel = new ParameterSelectionTableModel(descriptionOfAlgorithm);
-			
-			// Create the table
-			parameterTable = new JTable(tableModel) {
-				@Override
-				public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {
-					Component c = super.prepareRenderer(renderer, row, column);
-					if (column != 1) { // Highlight non-editable columns
-						c.setBackground(new Color(245, 245, 245));
-					} else {
-						c.setBackground(Color.WHITE);
-					}
-					return c;
-				}
-			};
-			parameterTable.putClientProperty("terminateEditOnFocusLost", Boolean.TRUE);
-			JScrollPane scrollPane = new JScrollPane(parameterTable);
-			scrollPane.setBorder(BorderFactory.createEmptyBorder());
-			
-			// Set the size of the columns
-			parameterTable.getColumnModel().getColumn(0).setPreferredWidth(200);
-			parameterTable.getColumnModel().getColumn(1).setPreferredWidth(150);
-			parameterTable.getColumnModel().getColumn(2).setPreferredWidth(150);
-			add(scrollPane, BorderLayout.CENTER); 
-			
-		} else {
-			
-			// Update existing table model
-			if(descriptionOfAlgorithm != null) {
-				tableModel.setData(descriptionOfAlgorithm.getParametersDescription());
-			}else {
-				tableModel.setData(new DescriptionOfParameter[0]);
-			}
-			tableModel.fireTableDataChanged(); // Trigger table update
-		}
-		
-		// Load the data
-		
-		
+        setPreferredSize(new Dimension(500, 200));
+        setMinimumSize(new Dimension(500, 200));
+    }
 
-	}
+    @SuppressWarnings("serial")
+    /**
+     * Method to refresh the panel to display a different algorithm's parameter
+     * @param descriptionOfAlgorithm the description of the algorithm
+     */
+    public void update(DescriptionOfAlgorithm descriptionOfAlgorithm) {
 
-	/**
-	 * Get the values for parameters that have been entered by the user
-	 * @return the values as an array of String objects
-	 */
-	public String[] getParameterValues() {
-		return tableModel.getParameterValues();
-	}
+        // Initialize on first call
+        if (tableModel == null) {
 
-	public void setParameterValues(String[] parameters) {
-		tableModel.setParameterValues(parameters);
-	}
+            // Create the table model
+            tableModel = new ParameterSelectionTableModel(descriptionOfAlgorithm);
+
+            // Create the table
+            parameterTable = new JTable(tableModel) {
+                @Override
+                public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {
+                    Component c = super.prepareRenderer(renderer, row, column);
+                    if (column != 1) { // Highlight non-editable columns
+                        c.setBackground(new Color(245, 245, 245));
+                    } else {
+                        c.setBackground(Color.WHITE);
+                    }
+                    return c;
+                }
+            };
+            parameterTable.putClientProperty("terminateEditOnFocusLost", Boolean.TRUE);
+            JScrollPane scrollPane = new JScrollPane(parameterTable);
+            scrollPane.setBorder(BorderFactory.createEmptyBorder());
+
+            // Set the size of the columns
+            parameterTable.getColumnModel().getColumn(0).setPreferredWidth(200);
+            parameterTable.getColumnModel().getColumn(1).setPreferredWidth(150);
+            parameterTable.getColumnModel().getColumn(2).setPreferredWidth(150);
+            add(scrollPane, BorderLayout.CENTER);
+
+        } else {
+
+            // Update existing table model
+            if (descriptionOfAlgorithm != null) {
+                tableModel.setData(descriptionOfAlgorithm.getParametersDescription());
+            } else {
+                tableModel.setData(new DescriptionOfParameter[0]);
+            }
+            tableModel.fireTableDataChanged(); // Trigger table update
+        }
+
+        // Load the data
+
+
+    }
+
+    /**
+     * Get the values for parameters that have been entered by the user
+     *
+     * @return the values as an array of String objects
+     */
+    public String[] getParameterValues() {
+        return tableModel.getParameterValues();
+    }
+
+    public void setParameterValues(String[] parameters) {
+        tableModel.setParameterValues(parameters);
+    }
 }

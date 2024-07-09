@@ -27,24 +27,31 @@ import javax.swing.Timer;
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
+
 /**
  * This class is a custom JProgress bar that displays the time that an algorithm has been running in seconds
  * using the intedeterminate types of display. It has two main methods: startAlgorithm and endAlgorithm that
  * should be called when an algorithm starts to run and terminates, respectively.
- * 
+ *
  * @author Philippe Fournier-Viger, 2024
  */
 public class AlgorithmProgressBar extends JProgressBar {
     /**
-	 * serial UID
-	 */
-	private static final long serialVersionUID = -3266198875763956855L;
-	/** A timer thread */
-	private Timer timer;
-	/** the start time */
+     * serial UID
+     */
+    private static final long serialVersionUID = -3266198875763956855L;
+    /**
+     * A timer thread
+     */
+    private Timer timer;
+    /**
+     * the start time
+     */
     private long startTime;
 
-    /** The constructor */
+    /**
+     * The constructor
+     */
     public AlgorithmProgressBar() {
         super();
         setStringPainted(true);
@@ -52,11 +59,11 @@ public class AlgorithmProgressBar extends JProgressBar {
     }
 
     /**
-     *  Call this method to start the timer and progress bar
+     * Call this method to start the timer and progress bar
      */
     public void startAlgorithm() {
         startTime = System.currentTimeMillis();
-        setIndeterminate(true); 
+        setIndeterminate(true);
         if (timer != null) {
             timer.stop(); // Stop any existing timer
         }
@@ -83,13 +90,14 @@ public class AlgorithmProgressBar extends JProgressBar {
 
     /**
      * Helper method to format the elapsed time in hours, minutes, and seconds
-     * @param elapsedTime  the elapsed time
+     *
+     * @param elapsedTime the elapsed time
      * @return a string displaying the elapsed time
      */
     private String formatElapsedTime(long elapsedTime) {
-        int seconds = (int) (elapsedTime / 1000) % 60 ;
-        int minutes = (int) ((elapsedTime / (1000*60)) % 60);
-        int hours   = (int) ((elapsedTime / (1000*60*60)) % 24);
+        int seconds = (int) (elapsedTime / 1000) % 60;
+        int minutes = (int) ((elapsedTime / (1000 * 60)) % 60);
+        int hours = (int) ((elapsedTime / (1000 * 60 * 60)) % 24);
         return String.format("%02d:%02d:%02d", hours, minutes, seconds);
     }
 

@@ -13,21 +13,21 @@ import ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP.dataStructures.p
  * of all the sequences where the pattern appears. For each sequence we have an
  * itemset. Therefore, if we have a bitset with 512 bits, we also have a list of
  * 512 bitsets, where each bitset codes an itemset.
- *
+ * <p>
  * Copyright Antonio Gomariz Peñalver 2013
- *
+ * <p>
  * This file is part of the SPMF DATA MINING SOFTWARE
  * (http://www.philippe-fournier-viger.com/spmf).
- *
+ * <p>
  * SPMF is free software: you can redistribute it and/or modify it under the
  * terms of the GNU General Public License as published by the Free Software
  * Foundation, either version 3 of the License, or (at your option) any later
  * version.
- *
+ * <p>
  * SPMF is distributed in the hope that it will be useful, but WITHOUT ANY
  * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
  * A PARTICULAR PURPOSE. See the GNU General Public License for more details.
- *
+ * <p>
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  *
@@ -101,7 +101,7 @@ public class IDListFatBitmap implements IDList {
      * It adds all the appearances of the pattern in the sequence, denoted by
      * sid, and all the itemset apperances, denoted by tids
      *
-     * @param sid The sequence identifier where the pattern appears
+     * @param sid  The sequence identifier where the pattern appears
      * @param tids The itemsets where the pattern appears
      */
     public void registerNBits(int sid, List<Integer> tids) {
@@ -133,6 +133,10 @@ public class IDListFatBitmap implements IDList {
         return support;
     }
 
+    private void setSupport(int support) {
+        this.support = support;
+    }
+
     /**
      * Get the string representation of this IdList
      *
@@ -157,9 +161,9 @@ public class IDListFatBitmap implements IDList {
      * It return the intersection IdList that results from the current object
      * and the IdList given as an argument.
      *
-     * @param idList IdList with which we join the current IdList.
-     * @param equals Flag indicating if we want a intersection for equal
-     * relation, or, if it is false, an after relation.
+     * @param idList     IdList with which we join the current IdList.
+     * @param equals     Flag indicating if we want a intersection for equal
+     *                   relation, or, if it is false, an after relation.
      * @param minSupport Minimum relative support.
      * @return the intersection
      */
@@ -213,7 +217,7 @@ public class IDListFatBitmap implements IDList {
      * It executes a join operation under the equal relation for a two sets of
      * appearances that correspond to a same sequence in two different patterns
      *
-     * @param thisBitmap Set of appearances of the the current IdList
+     * @param thisBitmap  Set of appearances of the the current IdList
      * @param otherBitmap Set of appearances of the given IdList
      * @return The resulting bitmap
      */
@@ -235,7 +239,7 @@ public class IDListFatBitmap implements IDList {
      * It executes a join operation under the after relation for a two sets of
      * appearances that correspond to a same sequence in two different patterns
      *
-     * @param thisBitmap Set of appearances of the the current IdList
+     * @param thisBitmap  Set of appearances of the the current IdList
      * @param otherBitmap Set of appearances of the given IdList
      * @return The resulting bitmap
      */
@@ -275,13 +279,13 @@ public class IDListFatBitmap implements IDList {
     /**
      * Method to do the join operation under equal relation.
      *
-     * @param newIdList Map where we put the new elements resulting from the
-     * join method
+     * @param newIdList           Map where we put the new elements resulting from the
+     *                            join method
      * @param sequencesFromIdList Sequence bitset with which we are going to
-     * join the current IdList.
-     * @param itemsetsFromIdList Itemsets bitset with which we are going to join
-     * the current IdList.
-     * @param minSupport Mininum relative support
+     *                            join the current IdList.
+     * @param itemsetsFromIdList  Itemsets bitset with which we are going to join
+     *                            the current IdList.
+     * @param minSupport          Mininum relative support
      */
     private void equalLoop(IDListFatBitmap newIdList, BitSet sequencesFromIdList, List<BitSet> itemsetsFromIdList, int minSupport) {
         List<BitSet> itemsetIntersection = (ArrayList<BitSet>) newIdList.getItemsets();
@@ -326,13 +330,13 @@ public class IDListFatBitmap implements IDList {
     /**
      * Method to do the join operation under an after relation.
      *
-     * @param newIdList Map where we put the new elements resulting from the
-     * join method
+     * @param newIdList           Map where we put the new elements resulting from the
+     *                            join method
      * @param sequencesFromIdList Sequence bitset with which we are going to
-     * join the current IdList.
-     * @param itemsetsFromIdList Itemsets bitset with which we are going to join
-     * the current IdList.
-     * @param minSupport Mininum relative support
+     *                            join the current IdList.
+     * @param itemsetsFromIdList  Itemsets bitset with which we are going to join
+     *                            the current IdList.
+     * @param minSupport          Mininum relative support
      */
     private void laterLoop(IDListFatBitmap newIdList, BitSet sequencesFromIdList, List<BitSet> itemsetsFromIdList, int minSupport) {
         List<BitSet> itemsetIntersection = (ArrayList<BitSet>) newIdList.getItemsets();
@@ -384,10 +388,6 @@ public class IDListFatBitmap implements IDList {
         return this.itemsetsOfSequences;
     }
 
-    private void setSupport(int support) {
-        this.support = support;
-    }
-
     /**
      * It decreases the support associated with the IdList
      */
@@ -434,7 +434,7 @@ public class IDListFatBitmap implements IDList {
      * It adjust the list of itemsets bitset to the same size given by the
      * length parameter
      *
-     * @param list list of itemsets bitset to adjust
+     * @param list   list of itemsets bitset to adjust
      * @param length size that the list should have
      */
     private void setSize(List<BitSet> list, int length) {

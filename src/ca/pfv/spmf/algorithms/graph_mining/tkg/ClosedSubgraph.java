@@ -18,29 +18,37 @@ import java.util.*;
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
+
 /**
  * This is a closed subgraph. It stores (1) closed subgraph projections into database graphs
  * (2) list of closed subgraph projections into database graphs mapped by database graph id
  * (3) id of the database graph with minimum number of projections.
  * (4)the MNI of the subgraph
  *
- * @see AlgoCGSPANAbstract
  * @author Shaul Zevin
+ * @see AlgoCGSPANAbstract
  */
 public class ClosedSubgraph extends FrequentSubgraph {
 
-    /** list of closed subgraph projections into database graphs */
+    /**
+     * list of closed subgraph projections into database graphs
+     */
     private ProjectedCompact projected;
 
-    /** set of closed subgraph projections into database graphs in a form of set of projected edges mapped by database graph id
-     *  this data structure maps internally isomorphic projections in a database graph into a single set of edges
-     * */
+    /**
+     * set of closed subgraph projections into database graphs in a form of set of projected edges mapped by database graph id
+     * this data structure maps internally isomorphic projections in a database graph into a single set of edges
+     */
     private Map<Integer, Set<Set<EdgeEnumeration>>> projectionsSetsInDatabaseGraph = null;
 
-    /** id of the database graph with minimum number of projections */
+    /**
+     * id of the database graph with minimum number of projections
+     */
     private Integer exampleGid;
 
-    /** support or MNI */
+    /**
+     * support or MNI
+     */
     private int thresholdValue;
 
 
@@ -66,7 +74,7 @@ public class ClosedSubgraph extends FrequentSubgraph {
         Map<Integer, Integer> graphProjectionsCount = new HashMap<Integer, Integer>();
 
         Set<ProjectedEdge> edges = projected.getProjections(0);
-        for (ProjectedEdge edge: edges) {
+        for (ProjectedEdge edge : edges) {
             if (!graphProjectionsCount.containsKey(edge.getEdgeEnumeration().getGid())) {
                 graphProjectionsCount.put(edge.getEdgeEnumeration().getGid(), 0);
             }
@@ -78,7 +86,7 @@ public class ClosedSubgraph extends FrequentSubgraph {
             edges = projected.getProjections(i);
             Map<Integer, Integer> tempGraphProjectionsCount = new HashMap<Integer, Integer>();
 
-            for (ProjectedEdge edge: edges) {
+            for (ProjectedEdge edge : edges) {
                 if (!tempGraphProjectionsCount.containsKey(edge.getEdgeEnumeration().getGid())) {
                     tempGraphProjectionsCount.put(edge.getEdgeEnumeration().getGid(), 0);
                 }
@@ -86,7 +94,7 @@ public class ClosedSubgraph extends FrequentSubgraph {
                 tempGraphProjectionsCount.put(edge.getEdgeEnumeration().getGid(), tempGraphProjectionsCount.get(edge.getEdgeEnumeration().getGid()) + 1);
             }
 
-            for (int gid: graphProjectionsCount.keySet()) {
+            for (int gid : graphProjectionsCount.keySet()) {
                 if (tempGraphProjectionsCount.get(gid) > graphProjectionsCount.get(gid)) {
                     graphProjectionsCount.put(gid, tempGraphProjectionsCount.get(gid));
                 }
@@ -95,7 +103,7 @@ public class ClosedSubgraph extends FrequentSubgraph {
 
         exampleGid = null;
         int minProjections = 0;
-        for (int gid: graphProjectionsCount.keySet()) {
+        for (int gid : graphProjectionsCount.keySet()) {
             if (exampleGid == null) {
                 exampleGid = gid;
                 minProjections = graphProjectionsCount.get(gid);
@@ -112,6 +120,7 @@ public class ClosedSubgraph extends FrequentSubgraph {
 
     /**
      * builds set of projected edges enumerations for each edge in the closed subgraph
+     *
      * @return list of sets of projected edges enumerations
      */
     public List<Set<EdgeEnumeration>> getKeys() {
@@ -120,9 +129,10 @@ public class ClosedSubgraph extends FrequentSubgraph {
 
     /**
      * checks if frequent subgraph with projections has equivalent occurrence with this closed subgraph
+     *
      * @param otherSetOfGraphsIDs ids of database graphs where other subgraph has projection
-     * @param otherSupport support of other subgraph
-     * @param otherProjected projections of the other subgraph
+     * @param otherSupport        support of other subgraph
+     * @param otherProjected      projections of the other subgraph
      * @return isomorphism of frequent subgraph into this closed subgraph if equivalent occurrence exists, null otherwise
      */
     public Map<Integer, Integer> checkEquivalentOccurrence(Set<Integer> otherSetOfGraphsIDs, int otherSupport, ProjectedCompact otherProjected) {
@@ -149,9 +159,9 @@ public class ClosedSubgraph extends FrequentSubgraph {
         boolean isomorphismFound = false;
 
         // check if one possible isomorphism is valid for projections in the rest of database graphs
-        for (Map<Integer, Integer> possibleIsomorphism: possibleIsomorphisms) {
+        for (Map<Integer, Integer> possibleIsomorphism : possibleIsomorphisms) {
             isomorphismFound = true;
-            for (int gid:  otherProjected.getGraphIds()) {
+            for (int gid : otherProjected.getGraphIds()) {
                 ProjectedIteratorConsumer otherIterator = otherProjected.iterator(ThreadPool.getProjectedIteratorProducersInstance().getThreadCount() * 2, ThreadPool.getProjectedIteratorProducersInstance().getThreadCount(), gid);
                 while (otherIterator.hasNext()) {
                     List<ProjectedEdge> otherProjectedEdges = otherIterator.next().getProjectedEdges();
@@ -161,7 +171,7 @@ public class ClosedSubgraph extends FrequentSubgraph {
                     for (int i = 0; i < projected.getProjected().size(); i++) {
                         filter.add(null);
                     }
-                    for (int otherIndex: possibleIsomorphism.keySet()) {
+                    for (int otherIndex : possibleIsomorphism.keySet()) {
                         int myIndex = possibleIsomorphism.get(otherIndex);
                         filter.set(myIndex, otherProjectedEdges.get(otherIndex).getEdgeEnumeration());
                     }
@@ -172,8 +182,7 @@ public class ClosedSubgraph extends FrequentSubgraph {
                     ProjectedIterator myIterator = projected.iterator(gid, callbacks);
                     if (myIterator.hasNext()) {
                         isomorphismFound = true;
-                    }
-                    else {
+                    } else {
                         isomorphismFound = false;
                     }
 
@@ -200,6 +209,7 @@ public class ClosedSubgraph extends FrequentSubgraph {
 
     /**
      * finds all possible isomorphisms from projections passed in the parameter into this closed subgraph projections in database graph with id exampleGid
+     *
      * @param edgesProjectionListIterator projections to be checked for isomorphism(s)
      * @return list of isomorphisms
      */
@@ -238,10 +248,10 @@ public class ClosedSubgraph extends FrequentSubgraph {
 
         LinkedList<Map<Integer, Integer>> uniqueIsomorphisms = new LinkedList<Map<Integer, Integer>>();
 
-        for (Map<Integer, Integer> isomorphism: isomorphisms) {
+        for (Map<Integer, Integer> isomorphism : isomorphisms) {
             boolean unique = true;
 
-            for (Map<Integer, Integer> uniqueIsomorphism: uniqueIsomorphisms) {
+            for (Map<Integer, Integer> uniqueIsomorphism : uniqueIsomorphisms) {
                 Set<Integer> isomorphismValues = new HashSet<Integer>(isomorphism.values());
                 Set<Integer> uniqueIsomorphismValues = new HashSet<Integer>(uniqueIsomorphism.values());
                 if (isomorphismValues.equals(uniqueIsomorphismValues)) {
@@ -266,7 +276,6 @@ public class ClosedSubgraph extends FrequentSubgraph {
         });
 
 
-
         edgesProjectionListIterator.stop();
 
         return uniqueIsomorphisms;
@@ -279,21 +288,21 @@ public class ClosedSubgraph extends FrequentSubgraph {
 
         projectionsSetsInDatabaseGraph = new HashMap<Integer, Set<Set<EdgeEnumeration>>>();
 
-        for (Integer gid: projected.getGraphIds()) {
+        for (Integer gid : projected.getGraphIds()) {
             projectionsSetsInDatabaseGraph.put(gid, new HashSet<Set<EdgeEnumeration>>());
         }
 
         for (int i = 0; i < projected.getProjected().size(); i++) {
             Set<ProjectedEdge> edges = projected.getProjections(i);
             Map<Integer, Set<EdgeEnumeration>> graphEdgeProjections = new HashMap<Integer, Set<EdgeEnumeration>>();
-            for (Integer gid: projected.getGraphIds()) {
+            for (Integer gid : projected.getGraphIds()) {
                 graphEdgeProjections.put(gid, new HashSet<EdgeEnumeration>());
             }
-            for (ProjectedEdge edge: edges) {
+            for (ProjectedEdge edge : edges) {
                 graphEdgeProjections.get(edge.getEdgeEnumeration().getGid()).add(edge.getEdgeEnumeration());
             }
 
-            for (Integer gid: projected.getGraphIds()) {
+            for (Integer gid : projected.getGraphIds()) {
                 projectionsSetsInDatabaseGraph.get(gid).add(graphEdgeProjections.get(gid));
             }
         }
@@ -320,10 +329,10 @@ public class ClosedSubgraph extends FrequentSubgraph {
         projectionsSetsInDatabaseGraph = getProjectionsSetsInDatabaseGraph();
         Map<Integer, Set<Set<EdgeEnumeration>>> otherProjectionsSetsInDatabaseGraph = otherClosedSubgraph.getProjectionsSetsInDatabaseGraph();
 
-        for (Integer gid: projectionsSetsInDatabaseGraph.keySet()) {
-            for (Set<EdgeEnumeration> projection: projectionsSetsInDatabaseGraph.get(gid)) {
+        for (Integer gid : projectionsSetsInDatabaseGraph.keySet()) {
+            for (Set<EdgeEnumeration> projection : projectionsSetsInDatabaseGraph.get(gid)) {
                 boolean extendable = false;
-                for (Set<EdgeEnumeration> otherProjection: otherProjectionsSetsInDatabaseGraph.get(gid)) {
+                for (Set<EdgeEnumeration> otherProjection : otherProjectionsSetsInDatabaseGraph.get(gid)) {
                     if (otherProjection.containsAll(projection)) {
                         extendable = true;
                         break;

@@ -17,6 +17,7 @@ package ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_l;
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -35,13 +36,13 @@ import ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_l.items.patterns.Pattern
 import ca.pfv.spmf.tools.MemoryLogger;
 
 /**
- * This is an implementation of the SPMF-FC_L algorithm proposed by Wei Song 
+ * This is an implementation of the SPMF-FC_L algorithm proposed by Wei Song
  * al. in this paper: <br/>
  * <br/>
  * Song, W., Ye, W., Fournier-Viger, P. (2022). Mining sequential patterns with
  * flexible constraints from MOOC data. Applied Intelligence, to appear. DOI :
  * 10.1007/s10489-021-03122-7
- *
+ * <p>
  * NOTE: This implementation saves the patterns to a file as soon as a level of
  * patterns is found or can keep the patterns into memory if no output path is provided by the user.
  */
@@ -69,51 +70,52 @@ public class AlgoSPM_FC_L {
     protected long start, end;
     //List with the frequent 1-sequences, i.e. the frequent items.
     protected List<Pattern> frequentItems;
+    // writer to write output file
+    BufferedWriter writer = null;
+    // save sequence identifiers to file
+    boolean outputSequenceIdentifiers = false;
     private AbstractionCreator abstractionCreator;
     //Flag indicanting if the output is sorted or not
     private boolean isSorted;
     //counter for the frequent patterns already found
     private int numberOfFrequentPatterns;
-    // writer to write output file
-    BufferedWriter writer = null;
-    
-    // save sequence identifiers to file
-    boolean outputSequenceIdentifiers = false;
-    
+
 
     /**
      * Constructor for GSP algorithm. It initializes most of the class'
      * attributes.
-     * @param gramma1 
-     * @param beta 
-     * @param alpha 
+     *
+     * @param gramma1
+     * @param beta
+     * @param alpha
      */
     public AlgoSPM_FC_L(double minSupRelative, double mingap, double maxgap, double windowSize, AbstractionCreator abstractionCreator) {
         this.minSupRelative = minSupRelative;
         this.minGap = mingap;
         this.maxGap = maxgap;
         this.windowSize = windowSize;
-        this.abstractionCreator = abstractionCreator; 
+        this.abstractionCreator = abstractionCreator;
     }
+
     /**
      * Method that runs the GSP algorithm in the database given as parameter.
      *
-     * @param database a sequence database
-     * @param keepPatterns flag activated if we want to keep the resulting
-     * patterns or not
-     * @param verbose flat activated for debugging purposes
-     * @param outputFilePath an output file path
+     * @param database                  a sequence database
+     * @param keepPatterns              flag activated if we want to keep the resulting
+     *                                  patterns or not
+     * @param verbose                   flat activated for debugging purposes
+     * @param outputFilePath            an output file path
      * @param outputSequenceIdentifiers if true output sequence identifiers with each pattern
-     * @param gramma1 
-     * @param beta1 
-     * @param alpha1 
+     * @param gramma1
+     * @param beta1
+     * @param alpha1
      * @return the frequent sequences found in the original database
      * @throws IOException
      */
     public Sequences runAlgorithm(SequenceDatabase database, boolean keepPatterns, boolean verbose, String outputFilePath, boolean outputSequenceIdentifiers, double alpha1, double beta1, double gramma1) throws IOException {
         this.outputSequenceIdentifiers = outputSequenceIdentifiers;
-    	
-    	patterns = new Sequences("FREQUENT SEQUENTIAL PATTERNS");
+
+        patterns = new Sequences("FREQUENT SEQUENTIAL PATTERNS");
         // if the user want to keep the result into memory
         if (outputFilePath == null) {
             writer = null;
@@ -133,7 +135,7 @@ public class AlgoSPM_FC_L {
 
         // reset the stats about memory usage
         MemoryLogger.getInstance().reset();
-        
+
         start = System.currentTimeMillis();
         runGsp(database, candidateGenerator, supportCounter, keepPatterns, verbose);
         end = System.currentTimeMillis();
@@ -150,12 +152,12 @@ public class AlgoSPM_FC_L {
      * The actual method that executes GSP. It start from the frequent
      * 1-sequences level
      *
-     * @param database a sequence database
+     * @param database           a sequence database
      * @param candidateGenerator a CandidateGenerator
-     * @param supportCounter a supportCounting element
-     * @param keepPatterns flag activated if we want to keep the resulting
-     * patterns or not
-     * @param verbose flat activated for debugging purposes
+     * @param supportCounter     a supportCounting element
+     * @param keepPatterns       flag activated if we want to keep the resulting
+     *                           patterns or not
+     * @param verbose            flat activated for debugging purposes
      * @throws IOException
      */
     protected void runGsp(SequenceDatabase database, CandidateGeneration candidateGenerator, SupportCounting supportCounter, boolean keepPatterns, boolean verbose) throws IOException {
@@ -174,8 +176,8 @@ public class AlgoSPM_FC_L {
         //We define a candidate set
         List<Pattern> candidateSet;
         /*And we put all those frequent 1-sequences indexed by their first item,
-        * the pattern itself, for this case
-        */
+         * the pattern itself, for this case
+         */
         Map<Item, Set<Pattern>> indexationMap = new HashMap<Item, Set<Pattern>>();
 
         //Updating the number of frequent candidates adding the number of frequent items
@@ -202,20 +204,20 @@ public class AlgoSPM_FC_L {
                 System.out.println(candidateSet.size() + "  Candidates have been created!");
                 System.out.println("checking frequency...");
             }
-            
+
             // check the memory usage for statistics
             MemoryLogger.getInstance().checkMemory();
-            
+
             frequentSet = supportCounter.countSupport(candidateSet, k, minSupAbsolute);
             if (verbose) {
                 System.out.println(frequentSet.size() + " frequent patterns\n");
             }
-            
-            
+
+
             // check the memory usage for statistics
             MemoryLogger.getInstance().checkMemory();
 
-           //We update the number of frequent patterns, adding the number (k+1)-frequent patterns found
+            //We update the number of frequent patterns, adding the number (k+1)-frequent patterns found
             numberOfFrequentPatterns += frequentSet.size();
             /*And we prepare the next iteration, updating the indexation map and
              * the frequent level capable of generating the new candidates
@@ -226,15 +228,15 @@ public class AlgoSPM_FC_L {
             /*Finally, we remove the previous level if we are not interested in
              * keeping the frequent patterns in memory
              */
-            int level = k - 1;  
+            int level = k - 1;
             if (!keepPatterns) {
                 if (!frequentSet.isEmpty()) {
                     patterns.delete(level);
                 }
                 /*Or even if we are interested in, but we want to keep them in
-                 * a file 
+                 * a file
                  */
-            }else if (writer != null) {
+            } else if (writer != null) {
                 if (!frequentSet.isEmpty()) {
                     for (Pattern seq : patterns.getLevel(level)) {
                         writer.write(seq.toStringToFile(outputSequenceIdentifiers));
@@ -247,7 +249,7 @@ public class AlgoSPM_FC_L {
         /*When the loop is over, if we were interested in keeping the output in
          * a file, we store the last level found.
          */
-        
+
         if (keepPatterns) {
             if (writer != null) {
                 int level = patterns.getLevelCount();
@@ -259,7 +261,7 @@ public class AlgoSPM_FC_L {
             }
         }
         // check the memory usage for statistics
-	MemoryLogger.getInstance().checkMemory();
+        MemoryLogger.getInstance().checkMemory();
     }
 
     /**
@@ -274,18 +276,18 @@ public class AlgoSPM_FC_L {
             isSorted = true;
         }
         StringBuilder sb = new StringBuilder(200);
-        sb.append("=============  SPM_FC_L v.2.58 - STATISTICS =============" + System.lineSeparator() +" Total time ~ ");
+        sb.append("=============  SPM_FC_L v.2.58 - STATISTICS =============" + System.lineSeparator() + " Total time ~ ");
         sb.append(runningTime());
         sb.append(" ms" + System.lineSeparator());
         sb.append(" Frequent sequences count : ");
         sb.append(numberOfFrequentPatterns);
         sb.append(System.lineSeparator());
         sb.append(" Max memory (mb):");
-	    sb.append(MemoryLogger.getInstance().getMaxMemory());
+        sb.append(MemoryLogger.getInstance().getMaxMemory());
         sb.append(System.lineSeparator());
         sb.append("===================================================\n");
         /// spmf
-        
+
         if (writer == null) {
             sb.append(patterns.toStringToFile(false));
         }
@@ -309,7 +311,6 @@ public class AlgoSPM_FC_L {
     }
 
     /**
-     * 
      * @return The number of frequent sequences found by GSP in the last
      * execution
      */
@@ -318,7 +319,6 @@ public class AlgoSPM_FC_L {
     }
 
     /**
-     * 
      * @return the frequent patterns found by the last execution of GSP. It only
      * works under a Save_To_Memory option.
      */
@@ -332,6 +332,7 @@ public class AlgoSPM_FC_L {
 
     /**
      * Time that GSP takes completing the execution
+     *
      * @return the runtime as a long
      */
     public long runningTime() {
@@ -341,6 +342,7 @@ public class AlgoSPM_FC_L {
     /**
      * Return the absolute minimum support, i.e. the minimum number of sequences
      * where a patter must appear
+     *
      * @return the minsup value
      */
     public double getMinSupAbsolut() {

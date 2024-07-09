@@ -21,30 +21,30 @@ import java.net.URL;
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
+
 /**
- * 
  * Example of how to use Sequence Cost Utility Database viewer
- * 
+ * <p>
  * algorithm from the source code.
- * 
+ *
  * @author Philippe Fournier-Viger (Copyright 2024)
  */
 public class MainTestSequenceCostUtilityDatabaseViewer {
 
-	public static void main(String[] arg) throws IOException {
+    public static void main(String[] arg) throws IOException {
 
-		// Input file path
+        // Input file path
 //		String input = fileToPath("example_CorCEPB.txt");
 //		String input = fileToPath("example_CEPB.txt");
-		String input = fileToPath("example_CEPN.txt");
+        String input = fileToPath("example_CEPN.txt");
 //
-		// Applying the Sequence Database viewer
-		SequenceCostUtilityDatabaseViewer algorithm = new SequenceCostUtilityDatabaseViewer(false, input);
-	}
+        // Applying the Sequence Database viewer
+        SequenceCostUtilityDatabaseViewer algorithm = new SequenceCostUtilityDatabaseViewer(false, input);
+    }
 
-	public static String fileToPath(String filename) throws UnsupportedEncodingException {
-		System.out.println("filename : " + filename);
-		URL url = MainTestSequenceCostUtilityDatabaseViewer.class.getResource(filename);
-		return java.net.URLDecoder.decode(url.getPath(), "UTF-8");
-	}
+    public static String fileToPath(String filename) throws UnsupportedEncodingException {
+        System.out.println("filename : " + filename);
+        URL url = MainTestSequenceCostUtilityDatabaseViewer.class.getResource(filename);
+        return java.net.URLDecoder.decode(url.getPath(), "UTF-8");
+    }
 }

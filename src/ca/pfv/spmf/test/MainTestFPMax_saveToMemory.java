@@ -11,30 +11,31 @@ import ca.pfv.spmf.patterns.itemset_array_integers_with_count.Itemsets;
 
 /**
  * Example of how to use FPMax from the source code.
+ *
  * @author Philippe Fournier-Viger (Copyright 2008)
  */
 public class MainTestFPMax_saveToMemory {
 
-	public static void main(String [] arg) throws FileNotFoundException, IOException{
-		// Loading the transaction database
-		String input = fileToPath("contextPasquier99.txt");  // the database
+    public static void main(String[] arg) throws FileNotFoundException, IOException {
+        // Loading the transaction database
+        String input = fileToPath("contextPasquier99.txt");  // the database
 
-		// the minimum support threshold
-		double minsup = 0.4; // means a minsup of 2 transaction (we used a relative support)
+        // the minimum support threshold
+        double minsup = 0.4; // means a minsup of 2 transaction (we used a relative support)
 
-		// Applying the FPMax algorithm
-		AlgoFPMax algo = new AlgoFPMax();
-		// Run the algorithm
-		// Note that here we use "null" as output file path because we want to keep the results into memory instead of saving to a file
-		Itemsets patterns = algo.runAlgorithm(input, null, minsup);  
-		
-		// Show the MFI-Tree for debugging!
+        // Applying the FPMax algorithm
+        AlgoFPMax algo = new AlgoFPMax();
+        // Run the algorithm
+        // Note that here we use "null" as output file path because we want to keep the results into memory instead of saving to a file
+        Itemsets patterns = algo.runAlgorithm(input, null, minsup);
+
+        // Show the MFI-Tree for debugging!
 //		System.out.println(algo.mfiTree);
-		
-		// show the execution time and other statistics
-		algo.printStats();
-		// print the patterns to System.out
-		patterns.printItemsets(algo.getDatabaseSize());
+
+        // show the execution time and other statistics
+        algo.printStats();
+        // print the patterns to System.out
+        patterns.printItemsets(algo.getDatabaseSize());
 //		System.out.println("$$$$$$$$$$$");
 
 //		//===============================================================
@@ -70,10 +71,10 @@ public class MainTestFPMax_saveToMemory {
 //		
 //		// Print statistics about the algorithm execution
 //		algo2.printStats(database.size());
-	}
-	
-	public static String fileToPath(String filename) throws UnsupportedEncodingException{
-		URL url = MainTestFPMax_saveToMemory.class.getResource(filename);
-		 return java.net.URLDecoder.decode(url.getPath(),"UTF-8");
-	}
+    }
+
+    public static String fileToPath(String filename) throws UnsupportedEncodingException {
+        URL url = MainTestFPMax_saveToMemory.class.getResource(filename);
+        return java.net.URLDecoder.decode(url.getPath(), "UTF-8");
+    }
 }

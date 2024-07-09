@@ -16,70 +16,70 @@ package ca.pfv.spmf.algorithms.sequentialpatterns.skopus;
 // * You should have received a copy of the GNU General Public License
 // * along with Skopus.  If not, see <http://www.gnu.org/licenses/>.
 // ******************************************************************************/
+
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class SidSet extends ArrayList<Sid>{
+public class SidSet extends ArrayList<Sid> {
 
-	public SidSet() {
-		super(20);
-	}
+    public SidSet() {
+        super(20);
+    }
 
-	public SidSet(int nSize){
-		super(nSize);
-	}
-	
-	public SidSet(SidSet copy){
-		super(copy.size());
-		//this.clear();
-		this.addAll(copy);
-		return;
-	}
-	
-	public void copyFrom(SidSet copy){
-		this.clear();
-		this.ensureCapacity(copy.size());
-		this.addAll(copy);
-		return;
-	}
-	
-	@SuppressWarnings("unchecked")
- 	public void addItem(int sidNum, int p) {
-		if (this.isEmpty()) // if there is no sid, insert this one
-		{
-			Sid c = new Sid(sidNum);
-			c.addPosition(sidNum, p);
-			this.add(c);
-		} else // if there are any sid, find it and insert this one
-		{
-			int ix = getIndex(sidNum);
+    public SidSet(int nSize) {
+        super(nSize);
+    }
 
-			if (ix < 0) // not found
-			{
-				Sid c = new Sid(sidNum);
-				c.addPosition(sidNum, p);
-				this.add(c);
-			} else // found
-			{
-				this.get(ix).addPosition(sidNum, p);
-			}
-			Collections.sort(this, new SidSortByNumber());
-		}
+    public SidSet(SidSet copy) {
+        super(copy.size());
+        //this.clear();
+        this.addAll(copy);
+        return;
+    }
 
-	}
+    public void copyFrom(SidSet copy) {
+        this.clear();
+        this.ensureCapacity(copy.size());
+        this.addAll(copy);
+        return;
+    }
 
-	//����sid�ı�ţ��ҵ�����sidset�е��±�λ��
-	public int getIndex(int sidNum){
-		int ix = -1;
-		for(int i = 0; i <this.size(); i++){
-			if(this.get(i).getSidNumber() == sidNum)
-			{
-				ix = i;
-				break;
-			}
-		}
-		return ix;
-		
-	}
+    @SuppressWarnings("unchecked")
+    public void addItem(int sidNum, int p) {
+        if (this.isEmpty()) // if there is no sid, insert this one
+        {
+            Sid c = new Sid(sidNum);
+            c.addPosition(sidNum, p);
+            this.add(c);
+        } else // if there are any sid, find it and insert this one
+        {
+            int ix = getIndex(sidNum);
+
+            if (ix < 0) // not found
+            {
+                Sid c = new Sid(sidNum);
+                c.addPosition(sidNum, p);
+                this.add(c);
+            } else // found
+            {
+                this.get(ix).addPosition(sidNum, p);
+            }
+            Collections.sort(this, new SidSortByNumber());
+        }
+
+    }
+
+    //����sid�ı�ţ��ҵ�����sidset�е��±�λ��
+    public int getIndex(int sidNum) {
+        int ix = -1;
+        for (int i = 0; i < this.size(); i++) {
+            if (this.get(i).getSidNumber() == sidNum) {
+                ix = i;
+                break;
+            }
+        }
+        return ix;
+
+    }
 
 }

@@ -42,266 +42,266 @@ import ca.pfv.spmf.algorithmmanager.DescriptionOfAlgorithm;
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
+
 /**
  * A class for developers that display the whole list of algorithms and allow to
  * export to HTML and CSV
- * 
- * @author Philippe Fournier-Viger, 2023
  *
+ * @author Philippe Fournier-Viger, 2023
  */
 public class AlgorithmListExporterWindow {
 
-	public AlgorithmListExporterWindow(boolean runAsStandalone) throws Exception {
+    public AlgorithmListExporterWindow(boolean runAsStandalone) throws Exception {
 
-		displayAlgorithms(AlgorithmManager.getInstance().getListOfAlgorithmsAsString(true, true, true), runAsStandalone);
-	}
+        displayAlgorithms(AlgorithmManager.getInstance().getListOfAlgorithmsAsString(true, true, true), runAsStandalone);
+    }
 
-// Define the method
-	public static void displayAlgorithms(List<String> algorithms, boolean runAsStandalone) throws Exception {
-		// Create a new frame
-		JFrame frame = new JFrame("Algorithm List Exporter");
-		if(runAsStandalone) {
-			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		}
-		frame.setSize(800, 600);
+    // Define the method
+    public static void displayAlgorithms(List<String> algorithms, boolean runAsStandalone) throws Exception {
+        // Create a new frame
+        JFrame frame = new JFrame("Algorithm List Exporter");
+        if (runAsStandalone) {
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        }
+        frame.setSize(800, 600);
 
-		// Create a table model with six columns
-		DefaultTableModel model = new DefaultTableModel();
-		model.addColumn("Name");
-		model.addColumn("Category");
-		model.addColumn("Type");
-		model.addColumn("Author");
-		model.addColumn("Documentation");
-		model.addColumn("Parameters");
-		model.addColumn("Input File Types");
-		model.addColumn("Output File Types");
+        // Create a table model with six columns
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("Name");
+        model.addColumn("Category");
+        model.addColumn("Type");
+        model.addColumn("Author");
+        model.addColumn("Documentation");
+        model.addColumn("Parameters");
+        model.addColumn("Input File Types");
+        model.addColumn("Output File Types");
 
-		// Loop through the list of algorithms and add them as rows to the table model
-		for (String algorithmName : algorithms) {
+        // Loop through the list of algorithms and add them as rows to the table model
+        for (String algorithmName : algorithms) {
 //			System.out.println(algorithmName);
-			if (algorithmName.contains("---")) {
-				continue;
-			}
-			DescriptionOfAlgorithm algorithm = AlgorithmManager.getInstance().getDescriptionOfAlgorithm(algorithmName);
-			model.addRow(new Object[] { algorithm.getName(), algorithm.getAlgorithmCategory(), algorithm.getAlgorithmType().toString(),
-					algorithm.getImplementationAuthorNames(), algorithm.getURLOfDocumentation(),
-					arrayToString(algorithm.getParametersDescription()), arrayToString(algorithm.getInputFileTypes()),  arrayToString(algorithm.getOutputFileTypes()) });
-		}
+            if (algorithmName.contains("---")) {
+                continue;
+            }
+            DescriptionOfAlgorithm algorithm = AlgorithmManager.getInstance().getDescriptionOfAlgorithm(algorithmName);
+            model.addRow(new Object[]{algorithm.getName(), algorithm.getAlgorithmCategory(), algorithm.getAlgorithmType().toString(),
+                    algorithm.getImplementationAuthorNames(), algorithm.getURLOfDocumentation(),
+                    arrayToString(algorithm.getParametersDescription()), arrayToString(algorithm.getInputFileTypes()), arrayToString(algorithm.getOutputFileTypes())});
+        }
 
-		// Create a table with the table model
-		JTable table = new JTable(model);
+        // Create a table with the table model
+        JTable table = new JTable(model);
 
-		// Add a scroll pane to the table
-		JScrollPane scrollPane = new JScrollPane(table);
+        // Add a scroll pane to the table
+        JScrollPane scrollPane = new JScrollPane(table);
 
-		// Add the scroll pane to the frame
-		frame.add(scrollPane, BorderLayout.CENTER);
+        // Add the scroll pane to the frame
+        frame.add(scrollPane, BorderLayout.CENTER);
 
-		// Create a button to export the table as an HTML file
-		JButton exportButton = new JButton("Export as HTML");
+        // Create a button to export the table as an HTML file
+        JButton exportButton = new JButton("Export as HTML");
 
-		// Create a button to export the table as a CSV file
-		JButton csvButton = new JButton("Export as CSV");
+        // Create a button to export the table as a CSV file
+        JButton csvButton = new JButton("Export as CSV");
 
-		// Add an action listener to the button
-		csvButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// Create a file chooser to select the destination file
-				JFileChooser fileChooser = new JFileChooser();
-				fileChooser.setDialogTitle("Save as CSV");
-				fileChooser.setFileFilter(new FileNameExtensionFilter("CSV files", "csv"));
+        // Add an action listener to the button
+        csvButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Create a file chooser to select the destination file
+                JFileChooser fileChooser = new JFileChooser();
+                fileChooser.setDialogTitle("Save as CSV");
+                fileChooser.setFileFilter(new FileNameExtensionFilter("CSV files", "csv"));
 
-				// Show the file chooser and get the user's choice
-				int userChoice = fileChooser.showSaveDialog(frame);
+                // Show the file chooser and get the user's choice
+                int userChoice = fileChooser.showSaveDialog(frame);
 
-				// If the user approves the choice
-				if (userChoice == JFileChooser.APPROVE_OPTION) {
-					// Get the selected file
-					File file = fileChooser.getSelectedFile();
+                // If the user approves the choice
+                if (userChoice == JFileChooser.APPROVE_OPTION) {
+                    // Get the selected file
+                    File file = fileChooser.getSelectedFile();
 
-					// Add the .csv extension if not present
-					if (!file.getName().endsWith(".csv")) {
-						file = new File(file.getAbsolutePath() + ".csv");
-					}
+                    // Add the .csv extension if not present
+                    if (!file.getName().endsWith(".csv")) {
+                        file = new File(file.getAbsolutePath() + ".csv");
+                    }
 
-					// Try to write the table as a CSV file
-					try {
-						writeTableAsCSV(file, table);
-						// Show a success message
-						JOptionPane.showMessageDialog(frame, "The table has been exported as " + file.getName(),
-								"Success", JOptionPane.INFORMATION_MESSAGE);
-					} catch (Exception ex) {
-						// Show an error message
-						JOptionPane.showMessageDialog(frame,
-								"An error occurred while exporting the table: " + ex.getMessage(), "Error",
-								JOptionPane.ERROR_MESSAGE);
-					}
-				}
-			}
-		});
+                    // Try to write the table as a CSV file
+                    try {
+                        writeTableAsCSV(file, table);
+                        // Show a success message
+                        JOptionPane.showMessageDialog(frame, "The table has been exported as " + file.getName(),
+                                "Success", JOptionPane.INFORMATION_MESSAGE);
+                    } catch (Exception ex) {
+                        // Show an error message
+                        JOptionPane.showMessageDialog(frame,
+                                "An error occurred while exporting the table: " + ex.getMessage(), "Error",
+                                JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+            }
+        });
 
-		// Add an action listener to the button
-		exportButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// Create a file chooser to select the destination file
-				JFileChooser fileChooser = new JFileChooser();
-				fileChooser.setDialogTitle("Save as HTML");
-				fileChooser.setFileFilter(new FileNameExtensionFilter("HTML files", "html"));
+        // Add an action listener to the button
+        exportButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Create a file chooser to select the destination file
+                JFileChooser fileChooser = new JFileChooser();
+                fileChooser.setDialogTitle("Save as HTML");
+                fileChooser.setFileFilter(new FileNameExtensionFilter("HTML files", "html"));
 
-				// Show the file chooser and get the user's choice
-				int userChoice = fileChooser.showSaveDialog(frame);
+                // Show the file chooser and get the user's choice
+                int userChoice = fileChooser.showSaveDialog(frame);
 
-				// If the user approves the choice
-				if (userChoice == JFileChooser.APPROVE_OPTION) {
-					// Get the selected file
-					File file = fileChooser.getSelectedFile();
+                // If the user approves the choice
+                if (userChoice == JFileChooser.APPROVE_OPTION) {
+                    // Get the selected file
+                    File file = fileChooser.getSelectedFile();
 
-					// Add the .html extension if not present
-					if (!file.getName().endsWith(".html")) {
-						file = new File(file.getAbsolutePath() + ".html");
-					}
+                    // Add the .html extension if not present
+                    if (!file.getName().endsWith(".html")) {
+                        file = new File(file.getAbsolutePath() + ".html");
+                    }
 
-					// Try to write the table as an HTML file
-					try {
-						writeTableAsHTML(file, table);
-						// Show a success message
-						JOptionPane.showMessageDialog(frame, "The table has been exported as " + file.getName(),
-								"Success", JOptionPane.INFORMATION_MESSAGE);
-					} catch (Exception ex) {
-						// Show an error message
-						JOptionPane.showMessageDialog(frame,
-								"An error occurred while exporting the table: " + ex.getMessage(), "Error",
-								JOptionPane.ERROR_MESSAGE);
-					}
-				}
-			}
-		});
-		
-		JPanel panelPuttons = new JPanel();
-		panelPuttons.add(csvButton);
-		panelPuttons.add(exportButton);
-		
-		JLabel listLabel = new JLabel("List of algorithms", SwingConstants.CENTER);
+                    // Try to write the table as an HTML file
+                    try {
+                        writeTableAsHTML(file, table);
+                        // Show a success message
+                        JOptionPane.showMessageDialog(frame, "The table has been exported as " + file.getName(),
+                                "Success", JOptionPane.INFORMATION_MESSAGE);
+                    } catch (Exception ex) {
+                        // Show an error message
+                        JOptionPane.showMessageDialog(frame,
+                                "An error occurred while exporting the table: " + ex.getMessage(), "Error",
+                                JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+            }
+        });
 
-		// Add the button to the frame
-		frame.add(listLabel, BorderLayout.NORTH);
+        JPanel panelPuttons = new JPanel();
+        panelPuttons.add(csvButton);
+        panelPuttons.add(exportButton);
 
-		// Add the button to the frame
-		frame.add(panelPuttons, BorderLayout.SOUTH);
+        JLabel listLabel = new JLabel("List of algorithms", SwingConstants.CENTER);
 
-		// Set the window in the center of the screen
-		frame.setLocationRelativeTo(null);
+        // Add the button to the frame
+        frame.add(listLabel, BorderLayout.NORTH);
 
-		// Make the frame visible
-		frame.setVisible(true);
-	}
+        // Add the button to the frame
+        frame.add(panelPuttons, BorderLayout.SOUTH);
 
-// Define a helper method to convert an array of objects to a string
-	private static String arrayToString(Object[] array) {
-		if (array == null) {
-			return "None";
-		}
-		StringBuilder sb = new StringBuilder();
-		sb.append("[");
-		for (int i = 0; i < array.length; i++) {
-			sb.append(array[i]);
-			if (i < array.length - 1) {
-				sb.append(", ");
-			}
-		}
-		sb.append("]");
-		return sb.toString();
-	}
+        // Set the window in the center of the screen
+        frame.setLocationRelativeTo(null);
 
-// Define a helper method to write a table as an HTML file
-	private static void writeTableAsHTML(File file, JTable table) throws Exception {
-		// Create a buffered writer to write to the file
-		BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+        // Make the frame visible
+        frame.setVisible(true);
+    }
 
-		// Write the HTML header and title
-		writer.write("<!DOCTYPE html>\n");
-		writer.write("<html>\n");
-		writer.write("<head>\n");
-		writer.write("<title>Algorithms</title>\n");
+    // Define a helper method to convert an array of objects to a string
+    private static String arrayToString(Object[] array) {
+        if (array == null) {
+            return "None";
+        }
+        StringBuilder sb = new StringBuilder();
+        sb.append("[");
+        for (int i = 0; i < array.length; i++) {
+            sb.append(array[i]);
+            if (i < array.length - 1) {
+                sb.append(", ");
+            }
+        }
+        sb.append("]");
+        return sb.toString();
+    }
 
-		// Write some CSS style for the table
-		writer.write("<style>\n");
-		writer.write("table, th, td {\n");
-		writer.write("  border: 1px solid black;\n");
-		writer.write("  border-collapse: collapse;\n");
-		writer.write("}\n");
-		writer.write("th, td {\n");
-		writer.write("  padding: 10px;\n");
-		writer.write("}\n");
-		writer.write("</style>\n");
+    // Define a helper method to write a table as an HTML file
+    private static void writeTableAsHTML(File file, JTable table) throws Exception {
+        // Create a buffered writer to write to the file
+        BufferedWriter writer = new BufferedWriter(new FileWriter(file));
 
-		// Write the HTML body and table
-		writer.write("</head>\n");
-		writer.write("<body>\n");
-		writer.write("<h1>Algorithms</h1>\n");
-		writer.write("<table>\n");
+        // Write the HTML header and title
+        writer.write("<!DOCTYPE html>\n");
+        writer.write("<html>\n");
+        writer.write("<head>\n");
+        writer.write("<title>Algorithms</title>\n");
 
-		// Write the table header
-		writer.write("<tr>\n");
-		for (int i = 0; i < table.getColumnCount(); i++) {
-			writer.write("<th>" + table.getColumnName(i) + "</th>\n");
-		}
-		writer.write("</tr>\n");
+        // Write some CSS style for the table
+        writer.write("<style>\n");
+        writer.write("table, th, td {\n");
+        writer.write("  border: 1px solid black;\n");
+        writer.write("  border-collapse: collapse;\n");
+        writer.write("}\n");
+        writer.write("th, td {\n");
+        writer.write("  padding: 10px;\n");
+        writer.write("}\n");
+        writer.write("</style>\n");
 
-		// Write the table data
-		for (int i = 0; i < table.getRowCount(); i++) {
-			writer.write("<tr>\n");
-			for (int j = 0; j < table.getColumnCount(); j++) {
-				writer.write("<td>" + table.getValueAt(i, j) + "</td>\n");
-			}
-			writer.write("</tr>\n");
-		}
+        // Write the HTML body and table
+        writer.write("</head>\n");
+        writer.write("<body>\n");
+        writer.write("<h1>Algorithms</h1>\n");
+        writer.write("<table>\n");
 
-		// Write the HTML footer
-		writer.write("</table>\n");
-		writer.write("</body>\n");
-		writer.write("</html>\n");
+        // Write the table header
+        writer.write("<tr>\n");
+        for (int i = 0; i < table.getColumnCount(); i++) {
+            writer.write("<th>" + table.getColumnName(i) + "</th>\n");
+        }
+        writer.write("</tr>\n");
 
-		// Close the writer
-		writer.close();
-	}
+        // Write the table data
+        for (int i = 0; i < table.getRowCount(); i++) {
+            writer.write("<tr>\n");
+            for (int j = 0; j < table.getColumnCount(); j++) {
+                writer.write("<td>" + table.getValueAt(i, j) + "</td>\n");
+            }
+            writer.write("</tr>\n");
+        }
 
-	// Define a helper method to write a table as a CSV file
-	private static void writeTableAsCSV(File file, JTable table) throws Exception {
-		// Create a buffered writer to write to the file
-		BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+        // Write the HTML footer
+        writer.write("</table>\n");
+        writer.write("</body>\n");
+        writer.write("</html>\n");
 
-		// Get the table model
-		TableModel model = table.getModel();
+        // Close the writer
+        writer.close();
+    }
 
-		// Write the table header
-		for (int i = 0; i < model.getColumnCount(); i++) {
-			writer.write(model.getColumnName(i));
-			if (i < model.getColumnCount() - 1) {
-				writer.write(",");
-			}
-		}
-		writer.newLine();
+    // Define a helper method to write a table as a CSV file
+    private static void writeTableAsCSV(File file, JTable table) throws Exception {
+        // Create a buffered writer to write to the file
+        BufferedWriter writer = new BufferedWriter(new FileWriter(file));
 
-		// Write the table data
-		for (int i = 0; i < model.getRowCount(); i++) {
-			for (int j = 0; j < model.getColumnCount(); j++) {
-				writer.write(model.getValueAt(i, j).toString());
-				if (j < model.getColumnCount() - 1) {
-					writer.write(",");
-				}
-			}
-			writer.newLine();
-		}
+        // Get the table model
+        TableModel model = table.getModel();
 
-		// Close the writer
-		writer.close();
-	}
+        // Write the table header
+        for (int i = 0; i < model.getColumnCount(); i++) {
+            writer.write(model.getColumnName(i));
+            if (i < model.getColumnCount() - 1) {
+                writer.write(",");
+            }
+        }
+        writer.newLine();
 
-	public static void main(String[] args) throws Exception {
-		@SuppressWarnings("unused")
-		AlgorithmListExporterWindow viewer = new AlgorithmListExporterWindow(true);
-	}
+        // Write the table data
+        for (int i = 0; i < model.getRowCount(); i++) {
+            for (int j = 0; j < model.getColumnCount(); j++) {
+                writer.write(model.getValueAt(i, j).toString());
+                if (j < model.getColumnCount() - 1) {
+                    writer.write(",");
+                }
+            }
+            writer.newLine();
+        }
+
+        // Close the writer
+        writer.close();
+    }
+
+    public static void main(String[] args) throws Exception {
+        @SuppressWarnings("unused")
+        AlgorithmListExporterWindow viewer = new AlgorithmListExporterWindow(true);
+    }
 }

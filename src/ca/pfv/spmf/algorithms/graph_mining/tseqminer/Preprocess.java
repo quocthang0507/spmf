@@ -1,4 +1,5 @@
 package ca.pfv.spmf.algorithms.graph_mining.tseqminer;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -11,52 +12,83 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 /* This file is copyright (c) 2018 by Chao Cheng
-* 
-* This file is part of the SPMF DATA MINING SOFTWARE
-* (http://www.philippe-fournier-viger.com/spmf).
-* 
-* SPMF is free software: you can redistribute it and/or modify it under the
-* terms of the GNU General Public License as published by the Free Software
-* Foundation, either version 3 of the License, or (at your option) any later
-* version.
-* 
-* SPMF is distributed in the hope that it will be useful, but WITHOUT ANY
-* WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
-* A PARTICULAR PURPOSE. See the GNU General Public License for more details.
-* You should have received a copy of the GNU General Public License along with
-* SPMF. If not, see <http://www.gnu.org/licenses/>.
-*/
+ *
+ * This file is part of the SPMF DATA MINING SOFTWARE
+ * (http://www.philippe-fournier-viger.com/spmf).
+ *
+ * SPMF is free software: you can redistribute it and/or modify it under the
+ * terms of the GNU General Public License as published by the Free Software
+ * Foundation, either version 3 of the License, or (at your option) any later
+ * version.
+ *
+ * SPMF is distributed in the hope that it will be useful, but WITHOUT ANY
+ * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
+ * A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+ * You should have received a copy of the GNU General Public License along with
+ * SPMF. If not, see <http://www.gnu.org/licenses/>.
+ */
+
 /**
  * This class is used to perform naive discretization. It convert dynamic attribute graph to item dynamic attributed
  * graph and record mapping between them.
+ *
  * @see AlgoTSeqMiner
  */
 public class Preprocess {
-    /** naive discretization */
-    private static String[] trends = new String[] {"-", "=", "+"};
-
-    /** map from attribute type(integer) -> attribute name */
+    /**
+     * map from attribute type(integer) -> attribute name
+     */
     static Map<Integer, String> attrMapping;
-    /** map from event type(integer) -> enent type name(String) */
+    /**
+     * map from event type(integer) -> enent type name(String)
+     */
     static Map<Integer, String> eventTypeMapping = new LinkedHashMap<>();
-    /** map from event type name(String) -> event type(integer) */
+    /**
+     * map from event type name(String) -> event type(integer)
+     */
     static Map<String, Integer> eventTypeMappingRe = new LinkedHashMap<>();
-    /** item dynamic attributed graph(ItDyAG) deriving from original dynamic attributed graph(DyAG) */
+    /**
+     * item dynamic attributed graph(ItDyAG) deriving from original dynamic attributed graph(DyAG)
+     */
     static Map<Integer, ItemAttributedGraph> itDyAG = new LinkedHashMap<>();
-
-    /** set maximal number of attribute */
+    /**
+     * set maximal number of attribute
+     */
     static double INCRE_THRESHOLD = ParametersSetting.INCRE_THRESHOLD;
-
-    /** store path of mapping of attribute form integer to string */
+    /**
+     * naive discretization
+     */
+    private static String[] trends = new String[]{"-", "=", "+"};
+    /**
+     * store path of mapping of attribute form integer to string
+     */
     private static String ATTRI_MAPPING_PATH = ParametersSetting.ATTRI_MAPPING_PATH;
 
-    /** this flag indicate how to do discretization */
+    /**
+     * this flag indicate how to do discretization
+     */
     private static int DISCRET_FLAG = ParametersSetting.DISCRE_FLAG;
 
     private static int PASS_FLAG = -999;
 
     private static String EVENTTYPE_MAPPING_PATH = ParametersSetting.EVENTTYPE_MAPPING_PATH;
+    /**
+     *
+     */
+    private static Map<Integer, Map<Integer, List<Double>>> vertexMapAttrMapVals;
 
+    static {
+        switch (DISCRET_FLAG) {
+            case 0: {
+                trends = new String[]{"-", "0", "+"};
+                break;
+            }
+            case 1: {
+                trends = new String[]{"--", "-", "0", "+", "++"};
+                break;
+            }
+        }
+    }
 
     private static void repeatGraph(Map<Integer, ItemAttributedGraph> tempItemDyAG) {
         int repeatNum = ParametersSetting.REPEAT;
@@ -65,23 +97,6 @@ public class Preprocess {
             ItemAttributedGraph itemAG = tempItemDyAG.get(timeStamp);
             for (int i = 1; i < repeatNum; i++) {
                 tempItemDyAG.put(oriSize * i + timeStamp, itemAG);
-            }
-        }
-    }
-
-
-    /** */
-    private static Map<Integer, Map<Integer, List<Double>>> vertexMapAttrMapVals;
-
-    static {
-        switch (DISCRET_FLAG) {
-            case 0: {
-                trends = new String[] {"-", "0", "+"};
-                break;
-            }
-            case 1: {
-                trends = new String[] {"--", "-", "0", "+", "++"};
-                break;
             }
         }
     }
@@ -95,6 +110,7 @@ public class Preprocess {
 
     /**
      * This method read attribute mapping from integer to attribute name
+     *
      * @return attribute mapping
      * @throws IOException
      */
@@ -103,7 +119,7 @@ public class Preprocess {
         Map<Integer, String> attrMap = new LinkedHashMap<>();
 //        System.out.println(ATTRI_MAPPING_PATH);
         File attrMapFile = new File(ATTRI_MAPPING_PATH);
-        if (! attrMapFile.exists())
+        if (!attrMapFile.exists())
             attrMapFile.createNewFile();
         BufferedReader br = new BufferedReader(new FileReader(ATTRI_MAPPING_PATH));
         int count = 1;
@@ -121,6 +137,7 @@ public class Preprocess {
 
     /**
      * This method do naive discretization for original attribute types
+     *
      * @throws IOException
      */
     private static void findEventTypeMapping() throws IOException {
@@ -128,7 +145,7 @@ public class Preprocess {
         int count = 1;
         for (int attrType : attrMapping.keySet()) {
             String attrName = attrMapping.get(attrType);
-            for (String trend: trends){
+            for (String trend : trends) {
                 String eventName = attrName + trend;
                 eventTypeMapping.put(count, eventName);
                 eventTypeMappingRe.put(eventName, count);
@@ -139,6 +156,7 @@ public class Preprocess {
 
     /**
      * This method write result of discretization to file
+     *
      * @throws IOException
      */
     public static void writeEventTypeMapping() throws IOException {
@@ -157,7 +175,7 @@ public class Preprocess {
         for (int i = 0; i < oriDyAG.size() - 1; i++) {
             AttributedGraph aG = oriDyAG.get(i);
             if (i == 0) {
-                for( Integer vId : aG.getAllVerticeId()) {
+                for (Integer vId : aG.getAllVerticeId()) {
                     Map<Integer, List<Double>> attrMapVal = new HashMap<>();
                     vertexMapAttrMapVals.put(vId, attrMapVal);
                     Map<Integer, Double> attrMap = aG.getVertex(vId).getAttrDouMap();
@@ -168,7 +186,7 @@ public class Preprocess {
             }
             for (Integer vId : aG.getAllVerticeId()) {
                 Map<Integer, Double> attrMapVal = aG.getVertex(vId).getAttrDouMap();
-                for (Integer attrType: attrMapVal.keySet()) {
+                for (Integer attrType : attrMapVal.keySet()) {
                     vertexMapAttrMapVals.get(vId).get(attrType).add(attrMapVal.get(attrType));
                 }
             }
@@ -185,20 +203,22 @@ public class Preprocess {
                 int count = 0;
                 for (double val : vals) {
                     count++;
-                    mean += (val - preVal)/count;
+                    mean += (val - preVal) / count;
                 }
                 for (double val : vals) {
                     stdDev += (val - mean) * (val - mean);
                 }
-                stdDev = Math.sqrt(stdDev/vals.size());
+                stdDev = Math.sqrt(stdDev / vals.size());
                 vals.clear();
                 vals.add(mean);
                 vals.add(stdDev);
             }
         }
     }
+
     /**
      * This method derive item dynamic attributed graph from original dynamic attributed graph
+     *
      * @return resulting item dynamic attributed graph
      * @throws IOException
      */
@@ -219,7 +239,7 @@ public class Preprocess {
         //for each position in DyAG, other than the last
         for (int i = 0; i < oriDyAG.size() - 1; i++) {
             //get 2 consecutive attributed graphs that are needed to find trend
-            AttributedGraph aG1 = oriDyAG.get(i), aG2 = oriDyAG.get(i+1);
+            AttributedGraph aG1 = oriDyAG.get(i), aG2 = oriDyAG.get(i + 1);
             //construct a map of vertex id -> event types
             Map<Integer, ItemVertex> vMap = new HashMap<>();
             //for each vertex
@@ -281,9 +301,9 @@ public class Preprocess {
                 double diff = val2 - val1;
                 double scale = ParametersSetting.SCALE;
                 double stdDev = vertexMapAttrMapVals.get(vId).get(attrType).get(1);
-                if (diff > 2  *  scale * stdDev) trendFlag = 4;
+                if (diff > 2 * scale * stdDev) trendFlag = 4;
                 else if (diff > scale * stdDev) trendFlag = 3;
-                else if (diff < - 2  * scale * stdDev) trendFlag = 0;
+                else if (diff < -2 * scale * stdDev) trendFlag = 0;
                 else if (diff < scale * stdDev) trendFlag = 1;
                 else trendFlag = PASS_FLAG;
                 return trendFlag;
@@ -291,7 +311,6 @@ public class Preprocess {
         }
         return 999;
     }
-
 
 
 }

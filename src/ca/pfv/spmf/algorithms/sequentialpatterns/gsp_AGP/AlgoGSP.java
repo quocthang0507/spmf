@@ -17,6 +17,7 @@ package ca.pfv.spmf.algorithms.sequentialpatterns.gsp_AGP;
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -37,12 +38,12 @@ import ca.pfv.spmf.tools.MemoryLogger;
 /**
  * This is an implementation of the GSP algorithm. GSP was proposed by Srikant
  * and Agrawal 1996.
- *<br/><br/>
- *
+ * <br/><br/>
+ * <p>
  * NOTE: This implementation saves the patterns to a file as soon as a level of
  * patterns is found or can keep the patterns into memory if no output path is provided by the user.
- * 
- * @author Antonio Gomariz Peñalver 
+ *
+ * @author Antonio Gomariz Peñalver
  */
 public class AlgoGSP {
 
@@ -68,16 +69,15 @@ public class AlgoGSP {
     protected long start, end;
     //List with the frequent 1-sequences, i.e. the frequent items.
     protected List<Pattern> frequentItems;
+    // writer to write output file
+    BufferedWriter writer = null;
+    // save sequence identifiers to file
+    boolean outputSequenceIdentifiers = false;
     private AbstractionCreator abstractionCreator;
     //Flag indicanting if the output is sorted or not
     private boolean isSorted;
     //counter for the frequent patterns already found
     private int numberOfFrequentPatterns;
-    // writer to write output file
-    BufferedWriter writer = null;
-    
-    // save sequence identifiers to file
-    boolean outputSequenceIdentifiers = false;
 
     /**
      * Constructor for GSP algorithm. It initializes most of the class'
@@ -95,19 +95,19 @@ public class AlgoGSP {
     /**
      * Method that runs the GSP algorithm in the database given as parameter.
      *
-     * @param database a sequence database
-     * @param keepPatterns flag activated if we want to keep the resulting
-     * patterns or not
-     * @param verbose flat activated for debugging purposes
-     * @param outputFilePath an output file path
+     * @param database                  a sequence database
+     * @param keepPatterns              flag activated if we want to keep the resulting
+     *                                  patterns or not
+     * @param verbose                   flat activated for debugging purposes
+     * @param outputFilePath            an output file path
      * @param outputSequenceIdentifiers if true output sequence identifiers with each pattern
      * @return the frequent sequences found in the original database
      * @throws IOException
      */
     public Sequences runAlgorithm(SequenceDatabase database, boolean keepPatterns, boolean verbose, String outputFilePath, boolean outputSequenceIdentifiers) throws IOException {
         this.outputSequenceIdentifiers = outputSequenceIdentifiers;
-    	
-    	patterns = new Sequences("FREQUENT SEQUENTIAL PATTERNS");
+
+        patterns = new Sequences("FREQUENT SEQUENTIAL PATTERNS");
         // if the user want to keep the result into memory
         if (outputFilePath == null) {
             writer = null;
@@ -127,7 +127,7 @@ public class AlgoGSP {
 
         // reset the stats about memory usage
         MemoryLogger.getInstance().reset();
-        
+
         start = System.currentTimeMillis();
         runGsp(database, candidateGenerator, supportCounter, keepPatterns, verbose);
         end = System.currentTimeMillis();
@@ -144,12 +144,12 @@ public class AlgoGSP {
      * The actual method that executes GSP. It start from the frequent
      * 1-sequences level
      *
-     * @param database a sequence database
+     * @param database           a sequence database
      * @param candidateGenerator a CandidateGenerator
-     * @param supportCounter a supportCounting element
-     * @param keepPatterns flag activated if we want to keep the resulting
-     * patterns or not
-     * @param verbose flat activated for debugging purposes
+     * @param supportCounter     a supportCounting element
+     * @param keepPatterns       flag activated if we want to keep the resulting
+     *                           patterns or not
+     * @param verbose            flat activated for debugging purposes
      * @throws IOException
      */
     protected void runGsp(SequenceDatabase database, CandidateGeneration candidateGenerator, SupportCounting supportCounter, boolean keepPatterns, boolean verbose) throws IOException {
@@ -168,8 +168,8 @@ public class AlgoGSP {
         //We define a candidate set
         List<Pattern> candidateSet;
         /*And we put all those frequent 1-sequences indexed by their first item,
-        * the pattern itself, for this case
-        */
+         * the pattern itself, for this case
+         */
         Map<Item, Set<Pattern>> indexationMap = new HashMap<Item, Set<Pattern>>();
 
         //Updating the number of frequent candidates adding the number of frequent items
@@ -196,20 +196,20 @@ public class AlgoGSP {
                 System.out.println(candidateSet.size() + "  Candidates have been created!");
                 System.out.println("checking frequency...");
             }
-            
+
             // check the memory usage for statistics
             MemoryLogger.getInstance().checkMemory();
-            
+
             frequentSet = supportCounter.countSupport(candidateSet, k, minSupAbsolute);
             if (verbose) {
                 System.out.println(frequentSet.size() + " frequent patterns\n");
             }
-            
-            
+
+
             // check the memory usage for statistics
             MemoryLogger.getInstance().checkMemory();
 
-           //We update the number of frequent patterns, adding the number (k+1)-frequent patterns found
+            //We update the number of frequent patterns, adding the number (k+1)-frequent patterns found
             numberOfFrequentPatterns += frequentSet.size();
             /*And we prepare the next iteration, updating the indexation map and
              * the frequent level capable of generating the new candidates
@@ -220,15 +220,15 @@ public class AlgoGSP {
             /*Finally, we remove the previous level if we are not interested in
              * keeping the frequent patterns in memory
              */
-            int level = k - 1;  
+            int level = k - 1;
             if (!keepPatterns) {
                 if (!frequentSet.isEmpty()) {
                     patterns.delete(level);
                 }
                 /*Or even if we are interested in, but we want to keep them in
-                 * a file 
+                 * a file
                  */
-            }else if (writer != null) {
+            } else if (writer != null) {
                 if (!frequentSet.isEmpty()) {
                     for (Pattern seq : patterns.getLevel(level)) {
                         writer.write(seq.toStringToFile(outputSequenceIdentifiers));
@@ -241,7 +241,7 @@ public class AlgoGSP {
         /*When the loop is over, if we were interested in keeping the output in
          * a file, we store the last level found.
          */
-        
+
         if (keepPatterns) {
             if (writer != null) {
                 int level = patterns.getLevelCount();
@@ -253,7 +253,7 @@ public class AlgoGSP {
             }
         }
         // check the memory usage for statistics
-	MemoryLogger.getInstance().checkMemory();
+        MemoryLogger.getInstance().checkMemory();
     }
 
     /**
@@ -275,7 +275,7 @@ public class AlgoGSP {
         sb.append(numberOfFrequentPatterns);
         sb.append('\n');
         sb.append(" Max memory (mb):");
-	sb.append(MemoryLogger.getInstance().getMaxMemory());
+        sb.append(MemoryLogger.getInstance().getMaxMemory());
         sb.append('\n');
         if (writer == null) {
             sb.append(patterns.toString());
@@ -301,7 +301,6 @@ public class AlgoGSP {
     }
 
     /**
-     * 
      * @return The number of frequent sequences found by GSP in the last
      * execution
      */
@@ -310,7 +309,6 @@ public class AlgoGSP {
     }
 
     /**
-     * 
      * @return the frequent patterns found by the last execution of GSP. It only
      * works under a Save_To_Memory option.
      */
@@ -324,6 +322,7 @@ public class AlgoGSP {
 
     /**
      * Time that GSP takes completing the execution
+     *
      * @return the runtime as a long
      */
     public long runningTime() {
@@ -333,6 +332,7 @@ public class AlgoGSP {
     /**
      * Return the absolute minimum support, i.e. the minimum number of sequences
      * where a patter must appear
+     *
      * @return the minsup value
      */
     public double getMinSupAbsolut() {

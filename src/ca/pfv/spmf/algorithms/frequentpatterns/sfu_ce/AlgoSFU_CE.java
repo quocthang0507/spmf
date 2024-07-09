@@ -34,70 +34,57 @@ public class AlgoSFU_CE {
 
     // variable for statistics
     /**
-     * the maximum memory usage
-     */
-    double maxMemory = 0;
-
-    /**
-     * the time the algorithm started
-     */
-    long startTimestamp = 0;
-
-    /**
-     * the time the algorithm terminated
-     */
-    long endTimestamp = 0;
-
-    /**
-     * the sample numbers
-     */
-    int popSize = 2000;
-
-    /**
-     * pro_size is the number of based on probability
-     */
-    int proSize = 0;
-
-    /**
      * the maximum iterations of algorithm
      */
     final int iter = 2000;
-
-    /**
-     * the pro_size of transactions
-     */
-    int transCount = 0;
-
-    /**
-     * the item whose utility is CUS
-     */
-    Integer cusItem;
-
-    /**
-     * the actual iterations for statistics
-     */
-    int acIter = 0;
-
-    /**
-     * the critical utility of SFUIs
-     */
-    int CUS = 0;
-
-    /**
-     * the maximal frequency of 1-itemset
-     */
-    int fMax = 0;
-
     /**
      * the quantile parameter
      */
     final double alpha = 0.2;
-
     /**
      * the mutation parameter
      */
     final double beta = 0.3;
-
+    /**
+     * the maximum memory usage
+     */
+    double maxMemory = 0;
+    /**
+     * the time the algorithm started
+     */
+    long startTimestamp = 0;
+    /**
+     * the time the algorithm terminated
+     */
+    long endTimestamp = 0;
+    /**
+     * the sample numbers
+     */
+    int popSize = 2000;
+    /**
+     * pro_size is the number of based on probability
+     */
+    int proSize = 0;
+    /**
+     * the pro_size of transactions
+     */
+    int transCount = 0;
+    /**
+     * the item whose utility is CUS
+     */
+    Integer cusItem;
+    /**
+     * the actual iterations for statistics
+     */
+    int acIter = 0;
+    /**
+     * the critical utility of SFUIs
+     */
+    int CUS = 0;
+    /**
+     * the maximal frequency of 1-itemset
+     */
+    int fMax = 0;
     /**
      * a map that stores the utility of each item
      */
@@ -127,188 +114,22 @@ public class AlgoSFU_CE {
      * probability vector
      */
     double[] PV;
-
-    /**
-     * this inner class represent an item ,its frequency and its utility in a
-     * transaction
-     */
-    static class Pair {
-        /**
-         * an item
-         */
-        int item = 0;
-        /**
-         * a utility value
-         */
-        int utility = 0;
-        /**
-         * a frequency value
-         */
-        int frequency = 0;
-    }
-
-    /**
-     * this class represent the sample particle
-     */
-    class Particle {
-
-        /**
-         * the sample vector
-         */
-        BitSet IV;
-
-        /**
-         * fitness value of sample
-         */
-        int frequentFitness;
-
-        /**
-         * fitness frequency of sample
-         */
-        int utilityFitness;
-
-        /**
-         * Constructor
-         *
-         * @param length the particle length
-         */
-        public Particle(int length) {
-            IV = new BitSet(length);
-        }
-
-        /**
-         * Particle constructors for initialization
-         *
-         * @param IV              a vector
-         * @param frequentFitness frequent fitness
-         * @param utilityFitness  utility fitness
-         */
-        Particle(BitSet IV, int frequentFitness, int utilityFitness) {
-            this.IV = IV;
-            this.frequentFitness = frequentFitness;
-            this.utilityFitness = utilityFitness;
-        }
-
-        /**
-         * calculate the frequency and utility of the sample particle
-         *
-         * @param k        the length of itemset
-         * @param templist a list for storing the particle
-         */
-        public void calculateFitness(int k, List<Integer> templist) {
-            if (k == 0)
-                return;
-            int i, p, q, temp, m;
-            int sum, u_fitness = 0, f_fitness = 0;
-            for (m = 0; m < templist.size(); m++) {
-                p = templist.get(m);
-                i = 0;
-                q = 0;
-                temp = 0;
-                sum = 0;
-                while (q < database.get(p).size() && i < twuPattern.size()) {
-                    if (this.IV.get(i)) {
-                        //using a loop for solving the unordered datasets
-                        for (int t = 0; t < database.get(p).size(); t++) {
-                            if (database.get(p).get(t).item == twuPattern.get(i)) {
-                                sum = sum + database.get(p).get(t).utility;
-                                ++i;
-                                ++temp;
-                                break;
-                            }
-                        }
-                    } else {
-                        ++i;
-                    }
-                }
-                if (temp == k) {
-                    u_fitness = u_fitness + sum;
-                    f_fitness = f_fitness + 1;
-                }
-            }
-            this.utilityFitness = u_fitness;
-            this.frequentFitness = f_fitness;
-        }
-    }
-
-    /**
-     * this class is used to record the SFUIs
-     */
-    static class SFUI {
-        /**
-         * an itemset
-         */
-        String itemset;
-        /**
-         * the utility fitness
-         */
-        int U_fitness;
-        /**
-         * the frequent fitness
-         */
-        int F_fitness;
-
-        /**
-         * the constructor for SFUI
-         *
-         * @param itemset   an itemset
-         * @param U_fitness the utility fitness
-         * @param F_fitness the frequent fitness
-         */
-        public SFUI(String itemset, int U_fitness, int F_fitness) {
-            super();
-            this.itemset = itemset;
-            this.U_fitness = U_fitness;
-            this.F_fitness = F_fitness;
-
-        }
-
-    }
-
-    /**
-     * Bitmap Item Information Representation structure
-     */
-    class Item {
-        /**
-         * the item of transaction
-         */
-        int item;
-        /**
-         * to store the transaction
-         **/
-        BitSet TIDS;
-
-        /**
-         * Constructor
-         *
-         * @param item the item
-         */
-        public Item(int item) {
-            TIDS = new BitSet(transCount);
-            this.item = item;
-        }
-    }
-
     /**
      * samples
      **/
     List<Particle> population = new ArrayList<>();
-
     /**
      * A list to store database
      */
     List<List<Pair>> database = new ArrayList<>();
-
     /**
      * A list to store a transaction
      */
     List<Item> Items;
-
     /**
      * A list to store in CSFUIList
      */
     List<Particle> CSFUIList = new ArrayList<>();
-
     /**
      * A list to store SFUIs
      */
@@ -834,5 +655,166 @@ public class AlgoSFU_CE {
         System.out.println(" Pattern count              : " + SFUIList.size());
         System.out.println(" Actual number of iterations: " + acIter);
         System.out.println("===================================================");
+    }
+
+    /**
+     * this inner class represent an item ,its frequency and its utility in a
+     * transaction
+     */
+    static class Pair {
+        /**
+         * an item
+         */
+        int item = 0;
+        /**
+         * a utility value
+         */
+        int utility = 0;
+        /**
+         * a frequency value
+         */
+        int frequency = 0;
+    }
+
+    /**
+     * this class is used to record the SFUIs
+     */
+    static class SFUI {
+        /**
+         * an itemset
+         */
+        String itemset;
+        /**
+         * the utility fitness
+         */
+        int U_fitness;
+        /**
+         * the frequent fitness
+         */
+        int F_fitness;
+
+        /**
+         * the constructor for SFUI
+         *
+         * @param itemset   an itemset
+         * @param U_fitness the utility fitness
+         * @param F_fitness the frequent fitness
+         */
+        public SFUI(String itemset, int U_fitness, int F_fitness) {
+            super();
+            this.itemset = itemset;
+            this.U_fitness = U_fitness;
+            this.F_fitness = F_fitness;
+
+        }
+
+    }
+
+    /**
+     * this class represent the sample particle
+     */
+    class Particle {
+
+        /**
+         * the sample vector
+         */
+        BitSet IV;
+
+        /**
+         * fitness value of sample
+         */
+        int frequentFitness;
+
+        /**
+         * fitness frequency of sample
+         */
+        int utilityFitness;
+
+        /**
+         * Constructor
+         *
+         * @param length the particle length
+         */
+        public Particle(int length) {
+            IV = new BitSet(length);
+        }
+
+        /**
+         * Particle constructors for initialization
+         *
+         * @param IV              a vector
+         * @param frequentFitness frequent fitness
+         * @param utilityFitness  utility fitness
+         */
+        Particle(BitSet IV, int frequentFitness, int utilityFitness) {
+            this.IV = IV;
+            this.frequentFitness = frequentFitness;
+            this.utilityFitness = utilityFitness;
+        }
+
+        /**
+         * calculate the frequency and utility of the sample particle
+         *
+         * @param k        the length of itemset
+         * @param templist a list for storing the particle
+         */
+        public void calculateFitness(int k, List<Integer> templist) {
+            if (k == 0)
+                return;
+            int i, p, q, temp, m;
+            int sum, u_fitness = 0, f_fitness = 0;
+            for (m = 0; m < templist.size(); m++) {
+                p = templist.get(m);
+                i = 0;
+                q = 0;
+                temp = 0;
+                sum = 0;
+                while (q < database.get(p).size() && i < twuPattern.size()) {
+                    if (this.IV.get(i)) {
+                        //using a loop for solving the unordered datasets
+                        for (int t = 0; t < database.get(p).size(); t++) {
+                            if (database.get(p).get(t).item == twuPattern.get(i)) {
+                                sum = sum + database.get(p).get(t).utility;
+                                ++i;
+                                ++temp;
+                                break;
+                            }
+                        }
+                    } else {
+                        ++i;
+                    }
+                }
+                if (temp == k) {
+                    u_fitness = u_fitness + sum;
+                    f_fitness = f_fitness + 1;
+                }
+            }
+            this.utilityFitness = u_fitness;
+            this.frequentFitness = f_fitness;
+        }
+    }
+
+    /**
+     * Bitmap Item Information Representation structure
+     */
+    class Item {
+        /**
+         * the item of transaction
+         */
+        int item;
+        /**
+         * to store the transaction
+         **/
+        BitSet TIDS;
+
+        /**
+         * Constructor
+         *
+         * @param item the item
+         */
+        public Item(int item) {
+            TIDS = new BitSet(transCount);
+            this.item = item;
+        }
     }
 }

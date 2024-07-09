@@ -20,71 +20,76 @@ import java.util.List;
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
+
 /**
  * A class to represents a transaction with a profit value
- * 
+ *
  * @author Philippe Fournier-Viger 2024
  */
 public class ProductTransaction {
-	/** The profit of the transaction **/
-	private int profit;
-	/** The items in the transaction **/
-	private List<Integer> items;
+    /**
+     * The profit of the transaction
+     **/
+    private int profit;
+    /**
+     * The items in the transaction
+     **/
+    private List<Integer> items;
 
-	/**
-	 * The constructor that takes the profit and the items as parameters
-	 * 
-	 * @param profit the profit
-	 * @param items  the items
-	 */
-	public ProductTransaction(int profit, List<Integer> items) {
-		this.profit = profit;
-		this.items = items;
-	}
+    /**
+     * The constructor that takes the profit and the items as parameters
+     *
+     * @param profit the profit
+     * @param items  the items
+     */
+    public ProductTransaction(int profit, List<Integer> items) {
+        this.profit = profit;
+        this.items = items;
+    }
 
-	/**
-	 * A getter method for the profit
-	 * 
-	 * @return the profit
-	 */
-	public int getProfit() {
-		return profit;
-	}
+    /**
+     * A getter method for the profit
+     *
+     * @return the profit
+     */
+    public int getProfit() {
+        return profit;
+    }
 
-	/**
-	 * A getter method for the items
-	 * 
-	 * @return the list of items
-	 */
-	public List<Integer> getItems() {
-		return items;
-	}
+    /**
+     * A getter method for the items
+     *
+     * @return the list of items
+     */
+    public List<Integer> getItems() {
+        return items;
+    }
 
-	/**
-	 * A method to check if the transaction contains a given item
-	 * 
-	 * @param item the item
-	 * @return true if it appears
-	 */
-	public boolean contains(int item) {
-		return items.contains(item);
-	}
+    /**
+     * A method to check if the transaction contains a given item
+     *
+     * @param item the item
+     * @return true if it appears
+     */
+    public boolean contains(int item) {
+        return items.contains(item);
+    }
 
-	/**
-	 * A method to return the size of the transaction
-	 * 
-	 * @return the size
-	 */
-	public int size() {
-		return items.size();
-	}
+    /**
+     * A method to return the size of the transaction
+     *
+     * @return the size
+     */
+    public int size() {
+        return items.size();
+    }
 
-	/**
-	 * A method to override the toString() method
-	 * 
-	 * @return a String
-	 */
-	public String toString() {
-		return "Profit: " + profit + " | Items: " + items;
-	}
+    /**
+     * A method to override the toString() method
+     *
+     * @return a String
+     */
+    public String toString() {
+        return "Profit: " + profit + " | Items: " + items;
+    }
 }

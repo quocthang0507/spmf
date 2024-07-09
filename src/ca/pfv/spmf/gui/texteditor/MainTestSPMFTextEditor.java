@@ -18,22 +18,22 @@ package ca.pfv.spmf.gui.texteditor;
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
+
 /**
  * Class to test the SPMF Text editor.
- * 
- * @author philippe
  *
+ * @author philippe
  */
 public class MainTestSPMFTextEditor {
 
-	/**
-	 * Main method
-	 * 
-	 * @param args arguments
-	 */
-	public static void main(String args[]) {
-		boolean runAsStandalone = true;
-		@SuppressWarnings("unused")
-		SPMFTextEditor e = new SPMFTextEditor(runAsStandalone);
-	}
+    /**
+     * Main method
+     *
+     * @param args arguments
+     */
+    public static void main(String args[]) {
+        boolean runAsStandalone = true;
+        @SuppressWarnings("unused")
+        SPMFTextEditor e = new SPMFTextEditor(runAsStandalone);
+    }
 }

@@ -18,28 +18,29 @@ import java.util.*;
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
+
 /**
  * This is an implementation of a DFS code projection into a database graph, used by the CGSPAN algorithm.
  * The projection is implemented as a linked list of database graph edges.
- *  <br/><br/>
- *
+ * <br/><br/>
+ * <p>
  * The cgspan algorithm is described in : <br/>
  * <br/>
  * <p>
  * cgSpan: Closed Graph-Based Substructure Pattern Mining, by Zevin Shaul, Sheikh Naaz
  * IEEE BigData 2021 7th Special Session on Intelligent Data Mining
  * <p>
- *
+ * <p>
  * <br/>
- *
+ * <p>
  * The CGspan algorithm finds all the closed subgraphs and their support in a
  * graph provided by the user.
  * <br/><br/>
- *
+ * <p>
  * This implementation saves the result to a file
  *
- * @see AlgoCGSPANAbstract
  * @author Shaul Zevin
+ * @see AlgoCGSPANAbstract
  */
 
 public class PDFSCompact {
@@ -63,15 +64,16 @@ public class PDFSCompact {
 
     /**
      * creates a projection which is a prefix of another projection
-     * @param databaseGraph projection database graph
+     *
+     * @param databaseGraph  projection database graph
      * @param projectedEdges edges of another projection
-     * @param vertices vertices of another projection
-     * @param dfsCode dfsCode of another projection
-     * @param prefixLength number of edges from the start of another projection to include in created projection
+     * @param vertices       vertices of another projection
+     * @param dfsCode        dfsCode of another projection
+     * @param prefixLength   number of edges from the start of another projection to include in created projection
      */
     public PDFSCompact(DatabaseGraph databaseGraph, Stack<ProjectedEdge> projectedEdges, Stack<Vertex> vertices, DFSCode dfsCode, int prefixLength) {
         this.databaseGraph = databaseGraph;
-        this.projectedEdges = new ArrayList<>(projectedEdges).subList(0,prefixLength);
+        this.projectedEdges = new ArrayList<>(projectedEdges).subList(0, prefixLength);
         int numVertices = vertices.size();
         for (int i = dfsCode.size() - 1; i >= prefixLength; i--) {
             ExtendedEdge extendedEdge = dfsCode.getAt(i);
@@ -109,6 +111,7 @@ public class PDFSCompact {
 
     /**
      * builds isomorphism between DFS code vertices and vertices in the database graph
+     *
      * @param c DFS code
      * @return isomorphism that maps each vertex in DFS code to it's matching vertex in the projection
      */
@@ -121,8 +124,7 @@ public class PDFSCompact {
             if (projectedEdge.isReversed()) {
                 isomorphism.put(dfsEdge.v1, projectedEdge.getEdgeEnumeration().getEdge().v2);
                 isomorphism.put(dfsEdge.v2, projectedEdge.getEdgeEnumeration().getEdge().v1);
-            }
-            else {
+            } else {
                 isomorphism.put(dfsEdge.v1, projectedEdge.getEdgeEnumeration().getEdge().v1);
                 isomorphism.put(dfsEdge.v2, projectedEdge.getEdgeEnumeration().getEdge().v2);
             }
@@ -132,7 +134,6 @@ public class PDFSCompact {
     }
 
     /**
-     *
      * @param index edge index in the projection
      * @return 'to' vertex of the edge specified by index
      */
@@ -143,7 +144,6 @@ public class PDFSCompact {
     }
 
     /**
-     *
      * @param index edge index in the projection
      * @return 'from' vertex of the edge specified by index
      */
@@ -154,7 +154,6 @@ public class PDFSCompact {
     }
 
     /**
-     *
      * @param edge searched edge
      * @return true if projection includes the edge, false otherwise
      * uses edges cache for the search
@@ -162,7 +161,7 @@ public class PDFSCompact {
      * if miss updates cache with search result
      */
     public boolean hasEdge(Edge edge) {
-        for (ProjectedEdge projectedEdge: projectedEdges) {
+        for (ProjectedEdge projectedEdge : projectedEdges) {
             if (projectedEdge.getEdgeEnumeration().getEdge().equals(edge)) {
                 return true;
             }
@@ -172,13 +171,12 @@ public class PDFSCompact {
     }
 
     /**
-     *
-     * @param vertexId searched vertex
+     * @param vertexId     searched vertex
      * @param edgesIndexes indexes of edges in projection to use for the search
      * @return true if vertex belongs to one of the edges specified by indexes, false otherwise
      */
     public boolean hasVertex(int vertexId, List<Integer> edgesIndexes) {
-        for (int index: edgesIndexes) {
+        for (int index : edgesIndexes) {
             ProjectedEdge projectedEdge = projectedEdges.get(index);
             if (projectedEdge.getEdgeEnumeration().getEdge().v1 == vertexId || projectedEdge.getEdgeEnumeration().getEdge().v2 == vertexId) {
                 return true;
@@ -189,12 +187,11 @@ public class PDFSCompact {
     }
 
     /**
-     *
      * @param vertexId searched vertex
      * @return true if vertex belongs to one of the edges in projection, false otherwise
      */
     public boolean hasVertex(int vertexId) {
-        for (ProjectedEdge projectedEdge: projectedEdges) {
+        for (ProjectedEdge projectedEdge : projectedEdges) {
             if (projectedEdge.getEdgeEnumeration().getEdge().v1 == vertexId || projectedEdge.getEdgeEnumeration().getEdge().v2 == vertexId) {
                 return true;
             }

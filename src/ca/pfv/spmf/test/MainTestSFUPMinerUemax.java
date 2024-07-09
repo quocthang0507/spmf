@@ -8,26 +8,27 @@ import ca.pfv.spmf.algorithms.frequentpatterns.SFUPMinerUemax.AlgoSFUPMinerUemax
 
 
 /**
- * Example of how to use the SFUPMinerUemax algorithm 
+ * Example of how to use the SFUPMinerUemax algorithm
  * from the source code.
+ *
  * @author Jerry Chun-Wei Lin, Lu Yang, Philippe Fournier-Viger, 2016
  */
 public class MainTestSFUPMinerUemax {
 
-	public static void main(String [] arg) throws IOException{
-		
-		String input = fileToPath("contextHUIM.txt");
-		String output = ".//output.txt";
- 
-		// Applying the SFUPMinerUemax algorithm
-		AlgoSFUPMinerUemax sfupMinerUemax = new AlgoSFUPMinerUemax();
-		sfupMinerUemax.runAlgorithm(input, output);
-		sfupMinerUemax.printStats();
+    public static void main(String[] arg) throws IOException {
 
-	}
+        String input = fileToPath("contextHUIM.txt");
+        String output = ".//output.txt";
 
-	public static String fileToPath(String filename) throws UnsupportedEncodingException{
-		URL url = MainTestSFUPMinerUemax.class.getResource(filename);
-		 return java.net.URLDecoder.decode(url.getPath(),"UTF-8");
-	}
+        // Applying the SFUPMinerUemax algorithm
+        AlgoSFUPMinerUemax sfupMinerUemax = new AlgoSFUPMinerUemax();
+        sfupMinerUemax.runAlgorithm(input, output);
+        sfupMinerUemax.printStats();
+
+    }
+
+    public static String fileToPath(String filename) throws UnsupportedEncodingException {
+        URL url = MainTestSFUPMinerUemax.class.getResource(filename);
+        return java.net.URLDecoder.decode(url.getPath(), "UTF-8");
+    }
 }

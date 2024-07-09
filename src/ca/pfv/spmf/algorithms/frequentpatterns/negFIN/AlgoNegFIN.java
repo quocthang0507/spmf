@@ -44,30 +44,6 @@ import ca.pfv.spmf.tools.MemoryLogger;
 
 public class AlgoNegFIN {
 
-    // the start time and end time of the last algorithm execution
-    long startTimestamp;
-    long endTimestamp;
-
-    // Tree stuff
-    public BMCTreeNode bmcTreeRoot;//The root of BMC_tree
-    public SetEnumerationTreeNode nlRoot;//The root of set enumeration tree.
-
-
-    private int numOfTrans; //// Number of transactions
-    public int numOfFItem; // Number of items
-    int outputCount = 0;// number of itemsets found
-    public int minSupport; // minimum count
-    public Item[] item; // list of items sorted by count
-    public int[] itemset; // the current itemset
-    public int itemsetLen = 0; // the size of the current itemset
-
-    public int[] sameItems;
-
-    public Map<Integer, ArrayList<BMCTreeNode>> mapItemNodeset; //nodessets of 1-itemsets
-
-    BufferedWriter writer = null;// object to write the output file
-
-
     /**
      * Comparator to sort items by decreasing order of frequency
      */
@@ -76,7 +52,22 @@ public class AlgoNegFIN {
             return ((Item) b).num - ((Item) a).num;
         }
     };
-
+    // Tree stuff
+    public BMCTreeNode bmcTreeRoot;//The root of BMC_tree
+    public SetEnumerationTreeNode nlRoot;//The root of set enumeration tree.
+    public int numOfFItem; // Number of items
+    public int minSupport; // minimum count
+    public Item[] item; // list of items sorted by count
+    public int[] itemset; // the current itemset
+    public int itemsetLen = 0; // the size of the current itemset
+    public int[] sameItems;
+    public Map<Integer, ArrayList<BMCTreeNode>> mapItemNodeset; //nodessets of 1-itemsets
+    // the start time and end time of the last algorithm execution
+    long startTimestamp;
+    long endTimestamp;
+    int outputCount = 0;// number of itemsets found
+    BufferedWriter writer = null;// object to write the output file
+    private int numOfTrans; //// Number of transactions
 
     /**
      * Read the input file to find the frequent items
@@ -548,9 +539,9 @@ class MyBitVector {
 
     static {
         TWO_POWER = new long[64];
-        TWO_POWER[0]=1;
+        TWO_POWER[0] = 1;
         for (int i = 1; i < TWO_POWER.length; i++) {
-            TWO_POWER[i] = TWO_POWER[i-1]*2;
+            TWO_POWER[i] = TWO_POWER[i - 1] * 2;
         }
     }
 
@@ -562,7 +553,7 @@ class MyBitVector {
 
     public Object clone() {
         MyBitVector result = new MyBitVector(this.bits.length * 64);
-        System.arraycopy(this.bits,0,result.bits,0,result.bits.length);
+        System.arraycopy(this.bits, 0, result.bits, 0, result.bits.length);
         return result;
     }
 

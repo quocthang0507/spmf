@@ -29,7 +29,7 @@ public class MainTestCMClaSP_saveToFile {
         boolean verbose = true;
         boolean findClosedPatterns = true;
         boolean executePruningMethods = true;
-     // if you set the following parameter to true, the sequence ids of the sequences where
+        // if you set the following parameter to true, the sequence ids of the sequences where
         // each pattern appears will be shown in the result
         boolean outputSequenceIdentifiers = false;
 
@@ -45,7 +45,7 @@ public class MainTestCMClaSP_saveToFile {
 
 
         //System.out.println(sequenceDatabase.toString());
-        algorithm.runAlgorithm(sequenceDatabase, keepPatterns, verbose, ".//output.txt",outputSequenceIdentifiers);
+        algorithm.runAlgorithm(sequenceDatabase, keepPatterns, verbose, ".//output.txt", outputSequenceIdentifiers);
         System.out.println("Minsup (relative) : " + support);
         System.out.println(algorithm.getNumberOfFrequentPatterns() + " patterns found.");
 
@@ -53,7 +53,7 @@ public class MainTestCMClaSP_saveToFile {
             System.out.println(algorithm.printStatistics());
         }
 
-      //uncomment if we want to see the Trie graphically
+        //uncomment if we want to see the Trie graphically
 //        ShowTrie.showTree(algorithm.getFrequentAtomsTrie());
     }
 

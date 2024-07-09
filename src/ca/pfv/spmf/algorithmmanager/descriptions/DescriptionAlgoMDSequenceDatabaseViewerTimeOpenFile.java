@@ -9,7 +9,7 @@ import ca.pfv.spmf.gui.viewers.mdsequenceviewer.MDSequenceDatabaseViewer;
 
 /*
  *  Copyright (c) 2008-2012 Philippe Fournier-Viger
- * 
+ *
  * This file is part of the SPMF DATA MINING SOFTWARE
  * (http://www.philippe-fournier-viger.com/spmf).
  *
@@ -26,68 +26,69 @@ import ca.pfv.spmf.gui.viewers.mdsequenceviewer.MDSequenceDatabaseViewer;
  * You should have received a copy of the GNU General Public License
  * along with SPMF.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 /**
  * This class describes the algorithm to run the multidimensional sequence
  * database viewer to open a sequence database file with timestamps
- * 
- * @see MDSequenceDatabaseViewer
+ *
  * @author Philippe Fournier-Viger
+ * @see MDSequenceDatabaseViewer
  */
 public class DescriptionAlgoMDSequenceDatabaseViewerTimeOpenFile extends DescriptionOfAlgorithm {
 
-	/**
-	 * Default constructor
-	 */
-	public DescriptionAlgoMDSequenceDatabaseViewerTimeOpenFile() {
-	}
+    /**
+     * Default constructor
+     */
+    public DescriptionAlgoMDSequenceDatabaseViewerTimeOpenFile() {
+    }
 
-	@Override
-	public String getName() {
-		return "Open_md_time_sequence_database_with_viewer";
-	}
+    @Override
+    public String getName() {
+        return "Open_md_time_sequence_database_with_viewer";
+    }
 
-	@Override
-	public String getAlgorithmCategory() {
-		return "TOOLS - DATA VIEWERS";
-	}
+    @Override
+    public String getAlgorithmCategory() {
+        return "TOOLS - DATA VIEWERS";
+    }
 
-	@Override
-	public String getURLOfDocumentation() {
-		return "http://www.philippe-fournier-viger.com/spmf/Time_with_MDSequence_viewer.php";
-	}
+    @Override
+    public String getURLOfDocumentation() {
+        return "http://www.philippe-fournier-viger.com/spmf/Time_with_MDSequence_viewer.php";
+    }
 
-	@Override
-	public void runAlgorithm(String[] parameters, String inputFile, String outputFile) throws IOException {
+    @Override
+    public void runAlgorithm(String[] parameters, String inputFile, String outputFile) throws IOException {
 
-		boolean runAsStandalone = false;
-		MDSequenceDatabaseViewer tool = new MDSequenceDatabaseViewer(runAsStandalone, inputFile, true);
-	}
+        boolean runAsStandalone = false;
+        MDSequenceDatabaseViewer tool = new MDSequenceDatabaseViewer(runAsStandalone, inputFile, true);
+    }
 
-	@Override
-	public DescriptionOfParameter[] getParametersDescription() {
-		DescriptionOfParameter[] parameters = new DescriptionOfParameter[0];
-		return parameters;
-	}
+    @Override
+    public DescriptionOfParameter[] getParametersDescription() {
+        DescriptionOfParameter[] parameters = new DescriptionOfParameter[0];
+        return parameters;
+    }
 
-	@Override
-	public String getImplementationAuthorNames() {
-		return "Philippe Fournier-Viger";
-	}
+    @Override
+    public String getImplementationAuthorNames() {
+        return "Philippe Fournier-Viger";
+    }
 
-	@Override
-	public String[] getInputFileTypes() {
-		return new String[] { "Database of instances", "Sequence database", "Sequence database with timestamps",
-				"Multi-dimensional sequence database with timestamps" };
-	}
+    @Override
+    public String[] getInputFileTypes() {
+        return new String[]{"Database of instances", "Sequence database", "Sequence database with timestamps",
+                "Multi-dimensional sequence database with timestamps"};
+    }
 
-	@Override
-	public String[] getOutputFileTypes() {
-		return null;
-	}
+    @Override
+    public String[] getOutputFileTypes() {
+        return null;
+    }
 
-	@Override
-	public AlgorithmType getAlgorithmType() {
-		return AlgorithmType.DATA_VIEWER;
-	}
+    @Override
+    public AlgorithmType getAlgorithmType() {
+        return AlgorithmType.DATA_VIEWER;
+    }
 
 }

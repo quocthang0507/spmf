@@ -33,8 +33,8 @@ public class MainTestCMClaSP_saveToMemory {
         boolean executePruningMethods = true;
         // if you set the following parameter to true, the sequence ids of the sequences where
         // each pattern appears will be shown in the result
-        boolean outputSequenceIdentifiers = false; 
-        
+        boolean outputSequenceIdentifiers = false;
+
         AbstractionCreator abstractionCreator = AbstractionCreator_Qualitative.getInstance();
         IdListCreator idListCreator = IdListCreatorStandard_Map.getInstance();
 
@@ -54,8 +54,8 @@ public class MainTestCMClaSP_saveToMemory {
         if (verbose && keepPatterns) {
             System.out.println(algorithm.printStatistics());
         }
-        
-      //uncomment if we want to see the Trie graphically
+
+        //uncomment if we want to see the Trie graphically
 //        ShowTrie.showTree(algorithm.getFrequentAtomsTrie());
 
     }

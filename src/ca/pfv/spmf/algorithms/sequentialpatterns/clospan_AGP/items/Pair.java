@@ -9,21 +9,21 @@ import ca.pfv.spmf.algorithms.sequentialpatterns.clospan_AGP.items.abstractions.
  * Algorithm. It represents, based on Hirate & Yamana
  * a pair of an Item  and its occurrences in the projected database. It is used for calculating the support
  * of item in a database.
- *
+ * <p>
  * Copyright Antonio Gomariz Peñalver 2013
- *
+ * <p>
  * This file is part of the SPMF DATA MINING SOFTWARE
  * (http://www.philippe-fournier-viger.com/spmf).
- *
+ * <p>
  * SPMF is free software: you can redistribute it and/or modify it under the
  * terms of the GNU General Public License as published by the Free Software
  * Foundation, either version 3 of the License, or (at your option) any later
  * version.
- *
+ * <p>
  * SPMF is distributed in the hope that it will be useful, but WITHOUT ANY
  * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
  * A PARTICULAR PURPOSE. See the GNU General Public License for more details.
- *
+ * <p>
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  *
@@ -32,7 +32,7 @@ import ca.pfv.spmf.algorithms.sequentialpatterns.clospan_AGP.items.abstractions.
 public class Pair implements Comparable<Pair> {
 
     /**
-     * Flag indicating if the item appears in the same itemset that one from 
+     * Flag indicating if the item appears in the same itemset that one from
      * the projection was done.
      */
     private final boolean postfix;
@@ -47,9 +47,10 @@ public class Pair implements Comparable<Pair> {
 
     /**
      * Standard constructor
+     *
      * @param postfix flag indicating if it is an item appearing in the same
-     * itemset as that one from the projection was done
-     * @param pair pair appearing after the item of the projection
+     *                itemset as that one from the projection was done
+     * @param pair    pair appearing after the item of the projection
      */
     public Pair(boolean postfix, ItemAbstractionPair pair) {
         this.postfix = postfix;
@@ -58,13 +59,14 @@ public class Pair implements Comparable<Pair> {
 
     /**
      * Method to know this pair is equal to another.
+     *
      * @param object the other pair
      * @return true if equal
      */
     @Override
     public boolean equals(Object object) {
         Pair p = (Pair) object;
-        if ((p.pair.equals(this.pair))&&(p.postfix == this.postfix)) {
+        if ((p.pair.equals(this.pair)) && (p.postfix == this.postfix)) {
             return true;
         }
         return false;
@@ -88,6 +90,7 @@ public class Pair implements Comparable<Pair> {
 
     /**
      * Get the number of sequences where the pair appears.
+     *
      * @return the number of sequences.
      */
     public int getSupport() {
@@ -96,6 +99,7 @@ public class Pair implements Comparable<Pair> {
 
     /**
      * It returns the list of the sequences where the pair appears
+     *
      * @return the list of sequnces as a bitset.
      */
     public BitSet getSequencesID() {
@@ -124,11 +128,11 @@ public class Pair implements Comparable<Pair> {
     }
 
     @Override
-    public String toString(){
-        String post="";
-        if(postfix)
-            post="*";
+    public String toString() {
+        String post = "";
+        if (postfix)
+            post = "*";
 
-        return (post+pair.toString()+"["+sequencesID.size()+"]");
+        return (post + pair.toString() + "[" + sequencesID.size() + "]");
     }
 }

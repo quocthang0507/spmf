@@ -25,7 +25,7 @@ public class MainTestPrefixSpan_AGP_saveToMemory {
 
         boolean keepPatterns = true;
         boolean verbose = false;
-        
+
         // if you set the following parameter to true, the sequence ids of the sequences where
         // each pattern appears will be shown in the result
         boolean outputSequenceIdentifiers = false;

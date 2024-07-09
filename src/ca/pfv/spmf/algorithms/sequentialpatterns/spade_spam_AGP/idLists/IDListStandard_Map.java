@@ -16,24 +16,24 @@ import ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP.dataStructures.p
  * of the pattern in that sequence, denoted by the list of Integer. In that list
  * we will have one itemset timestamp where an appearance of the pattern can be
  * found, and is increasingly sorted in the itemset timestamps.
- *
+ * <p>
  * In order to make the join operation, we will do it entry by entry, for those
  * entries shared by two sequences.
- *
+ * <p>
  * Copyright Antonio Gomariz Peñalver 2013
- *
+ * <p>
  * This file is part of the SPMF DATA MINING SOFTWARE
  * (http://www.philippe-fournier-viger.com/spmf).
- *
+ * <p>
  * SPMF is free software: you can redistribute it and/or modify it under the
  * terms of the GNU General Public License as published by the Free Software
  * Foundation, either version 3 of the License, or (at your option) any later
  * version.
- *
+ * <p>
  * SPMF is distributed in the hope that it will be useful, but WITHOUT ANY
  * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
  * A PARTICULAR PURPOSE. See the GNU General Public License for more details.
- *
+ * <p>
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  *
@@ -75,9 +75,9 @@ public class IDListStandard_Map implements IDList {
      * It return the intersection IdList that results from the current object
      * and the IdList given as an argument.
      *
-     * @param idList IdList with which we join the current IdList.
-     * @param equals Flag indicating if we want a intersection for equal
-     * relation, or, if it is false, an after relation.
+     * @param idList     IdList with which we join the current IdList.
+     * @param equals     Flag indicating if we want a intersection for equal
+     *                   relation, or, if it is false, an after relation.
      * @param minSupport Minimum relative support.
      * @return the intersection
      */
@@ -138,10 +138,10 @@ public class IDListStandard_Map implements IDList {
      * It executes a join operation under the after relation for a two sets of
      * appearances that correspond to a same sequence in two different patterns
      *
-     * @param sid Sequence identifier of the sequence where we want to check if
-     * it exists the pattern
+     * @param sid                              Sequence identifier of the sequence where we want to check if
+     *                                         it exists the pattern
      * @param transactionAppearancesInSequence Itemset timestamps of the
-     * parameter Idlist
+     *                                         parameter Idlist
      * @return The new Entry for the new IdList
      */
     private List<Integer> laterOperation(Integer sid, List<Integer> transactionAppearancesInSequence) {
@@ -184,10 +184,10 @@ public class IDListStandard_Map implements IDList {
      * It executes a join operation under the equal relation for a two sets of
      * appearances that correspond to a same sequence in two different patterns
      *
-     * @param sid Sequence identifier of the sequence where we want to check if
-     * it exists the pattern
+     * @param sid                              Sequence identifier of the sequence where we want to check if
+     *                                         it exists the pattern
      * @param transactionAppearancesInSequence Itemset timestamps of the
-     * parameter Idlist
+     *                                         parameter Idlist
      * @return The new Entry for the new IdList
      */
     private List<Integer> equalOperation(Integer sid, List<Integer> transactionAppearancesInSequence) {
@@ -260,7 +260,7 @@ public class IDListStandard_Map implements IDList {
      * It adds an appearance for the sequence and timestamp given as parameter
      * in the current IdList
      *
-     * @param sequence Sequence identifier where the appearence occurs
+     * @param sequence  Sequence identifier where the appearence occurs
      * @param timestamp Itemset timestamp where the appearance occurs
      */
     public void addAppearance(Integer sequence, Integer timestamp) {
@@ -279,7 +279,7 @@ public class IDListStandard_Map implements IDList {
      * It adds the appearances for the sequence and the timestamp list given as
      * parameter in the current IdList
      *
-     * @param sid sequence identifier where the appearence occurs
+     * @param sid      sequence identifier where the appearence occurs
      * @param itemsets Itemset timestamps where the appearances occur
      */
     public void addAppearancesInSequence(Integer sid, List<Integer> itemsets) {

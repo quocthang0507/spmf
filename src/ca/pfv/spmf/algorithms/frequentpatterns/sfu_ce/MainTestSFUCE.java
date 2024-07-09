@@ -6,11 +6,10 @@ import java.net.URL;
 
 /**
  * This is the main class of algorithm sfu_ce
- *
+ * <p>
  * SFU-CE: Skyline Frequent-Utility Itemset Discovery Using the Cross-Entropy Method
  *
  * @author Wei Song,Chuanlong Zheng
- *
  */
 public class MainTestSFUCE {
     public static void main(String[] args) throws IOException {

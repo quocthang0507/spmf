@@ -17,12 +17,13 @@ import java.util.List;
  *
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  * Copyright Peng Yang  2019
  */
+
 /**
  * This class represents an itemset.
- * 
+ *
  * @author Peng yang
  * @see AlgoLPPGrowth
  */
@@ -32,21 +33,23 @@ public class Itemset {
 
 
     /**
-     *  add m-itemset into memory ( m>1 )
+     * add m-itemset into memory ( m>1 )
+     *
      * @param items
      * @param timeIntervals
      */
-	Itemset(int[] items, List<int[]> timeIntervals){
+    Itemset(int[] items, List<int[]> timeIntervals) {
         this.items = items;
         this.timeIntervals = timeIntervals;
     }
 
     /**
      * Constructor
-     * @param itemset an itemset
+     *
+     * @param itemset       an itemset
      * @param timeIntervals a list of time intervals
      */
-    Itemset(int itemset,ArrayList<int[]> timeIntervals){
+    Itemset(int itemset, ArrayList<int[]> timeIntervals) {
         this.items = new int[]{itemset};
         this.timeIntervals = timeIntervals;
     }
@@ -54,6 +57,7 @@ public class Itemset {
 
     /**
      * Get the list of time intervals
+     *
      * @return the list of time intervals
      */
     public List<int[]> getTimeIntervals() {
@@ -68,13 +72,13 @@ public class Itemset {
      */
     public String toString() {
         String s = "";
-        for(int item:items){
-            s = s + item+ " ,";
+        for (int item : items) {
+            s = s + item + " ,";
         }
-        s = s.substring(0,s.length()-1);
-        s+=" : ";
-        for(int[] interval:timeIntervals){
-            s = s  +  "[ "+interval[0]+" , "+interval[1]+" ] ";
+        s = s.substring(0, s.length() - 1);
+        s += " : ";
+        for (int[] interval : timeIntervals) {
+            s = s + "[ " + interval[0] + " , " + interval[1] + " ] ";
         }
         return s;
     }

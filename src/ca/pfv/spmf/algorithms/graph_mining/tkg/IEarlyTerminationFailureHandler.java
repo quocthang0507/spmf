@@ -23,8 +23,8 @@ import java.util.Map;
 /**
  * Handler provides analysis of early termination failure cases to be used later for early termination failure detection
  *
- * @see EarlyTerminationFailureHandlerAbstract
  * @author Shaul Zevin
+ * @see EarlyTerminationFailureHandlerAbstract
  */
 public interface IEarlyTerminationFailureHandler {
     /**

@@ -1,4 +1,5 @@
 package ca.pfv.spmf.algorithms.frequentpatterns.sppgrowth;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +16,7 @@ public class SPPNode {
     // link to next node with the same item id (for the header table).
     SPPNode nodeLink = null;
 
-    SPPNode(){
+    SPPNode() {
 
     }
 
@@ -25,9 +26,9 @@ public class SPPNode {
      */
     public SPPNode getChildByID(int id) {
         // for each child node
-        for(SPPNode child : childs){
+        for (SPPNode child : childs) {
             // if the id is the one that we are looking for
-            if(child.itemID == id){
+            if (child.itemID == id) {
                 // return that node
                 return child;
             }
@@ -36,10 +37,10 @@ public class SPPNode {
         return null;
     }
 
-    public void removeChildByID(int id){
+    public void removeChildByID(int id) {
         //for each child node
-        for(int i = 0;i<childs.size();i++){
-            if(childs.get(i).itemID == id){
+        for (int i = 0; i < childs.size(); i++) {
+            if (childs.get(i).itemID == id) {
                 childs.remove(i);
                 return;
             }
@@ -48,6 +49,6 @@ public class SPPNode {
 
 
     public String toString() {
-        return ""+itemID;
+        return "" + itemID;
     }
 }

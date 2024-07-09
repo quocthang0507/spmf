@@ -441,8 +441,8 @@ public class AlgoCGSPANMNI extends AlgoCGSPANAbstract {
     /**
      * This method outputs vertices that do not have equivalent occurrence with any closed subgraph.
      *
-     * @param graphDB                a graph database
-     * @param projected              empty projections
+     * @param graphDB   a graph database
+     * @param projected empty projections
      */
     protected void outputClosedOneVertex(List<DatabaseGraph> graphDB, ProjectedCompact projected) throws IOException, ClassNotFoundException, InterruptedException {
         // Create a map (key = vertex label, value = graph ids)
@@ -527,7 +527,7 @@ public class AlgoCGSPANMNI extends AlgoCGSPANAbstract {
                     DFSCode tempD = new DFSCode();
                     tempD.add(new ExtendedEdge(0, 0, label, label, -1));
 
-                    closedSubgraphs.add(new ClosedSubgraph(tempD, tempSupG, tempSupG.size(), new ProjectedCompact(tempD, graphDB),mni));
+                    closedSubgraphs.add(new ClosedSubgraph(tempD, tempSupG, tempSupG.size(), new ProjectedCompact(tempD, graphDB), mni));
                 }
             }
         }

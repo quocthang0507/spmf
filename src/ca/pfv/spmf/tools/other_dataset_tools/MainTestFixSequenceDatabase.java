@@ -10,19 +10,19 @@ import java.net.URL;
  */
 public class MainTestFixSequenceDatabase {
 
-	public static void main(String [] arg) throws IOException{
-		
-		String inputFile = fileToPath("online_best.txt");
-		String outputFile = "online_modified.txt";
-		
-		FixSequenceDatabaseTool tool = new FixSequenceDatabaseTool();
-		tool.convert(inputFile, outputFile);
-		
+    public static void main(String[] arg) throws IOException {
 
-	}
+        String inputFile = fileToPath("online_best.txt");
+        String outputFile = "online_modified.txt";
 
-	public static String fileToPath(String filename) throws UnsupportedEncodingException{
-		URL url = MainTestFixSequenceDatabase.class.getResource(filename);
-		 return java.net.URLDecoder.decode(url.getPath(),"UTF-8");
-	}
+        FixSequenceDatabaseTool tool = new FixSequenceDatabaseTool();
+        tool.convert(inputFile, outputFile);
+
+
+    }
+
+    public static String fileToPath(String filename) throws UnsupportedEncodingException {
+        URL url = MainTestFixSequenceDatabase.class.getResource(filename);
+        return java.net.URLDecoder.decode(url.getPath(), "UTF-8");
+    }
 }

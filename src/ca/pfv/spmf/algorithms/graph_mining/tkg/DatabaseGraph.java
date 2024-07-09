@@ -20,28 +20,29 @@ import java.util.concurrent.ConcurrentHashMap;
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
+
 /**
  * This is an implementation of a graph, used by the CGSPAN algorithm.
  * The implementation enumerates all edges of a graph by (graph id, edge) pair.
- *  <br/><br/>
- *
+ * <br/><br/>
+ * <p>
  * The cgspan algorithm is described in : <br/>
  * <br/>
  * <p>
  * cgSpan: Closed Graph-Based Substructure Pattern Mining, by Zevin Shaul, Sheikh Naaz
  * IEEE BigData 2021 7th Special Session on Intelligent Data Mining
  * <p>
- *
+ * <p>
  * <br/>
- *
+ * <p>
  * The CGspan algorithm finds all the closed subgraphs and their support in a
  * graph provided by the user.
  * <br/><br/>
- *
+ * <p>
  * This implementation saves the result to a file
  *
- * @see AlgoCGSPANAbstract
  * @author Shaul Zevin
+ * @see AlgoCGSPANAbstract
  */
 
 public class DatabaseGraph extends Graph {
@@ -63,7 +64,7 @@ public class DatabaseGraph extends Graph {
 
         Set<Edge> allEdges = getAllEdges();
 
-        for (Edge edge: allEdges) {
+        for (Edge edge : allEdges) {
             edgesEnumeration.put(edge, new EdgeEnumeration(getId(), edge));
         }
     }

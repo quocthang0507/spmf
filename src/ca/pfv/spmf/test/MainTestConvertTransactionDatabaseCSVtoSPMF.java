@@ -12,22 +12,21 @@ import ca.pfv.spmf.tools.dataset_converter.TransactionDatabaseConverter;
  * to the SPMF format.
  */
 public class MainTestConvertTransactionDatabaseCSVtoSPMF {
-	
-	public static void main(String [] arg) throws IOException{
-		
-		String inputFile = fileToPath("contextCSV.txt");
-		String outputFile = ".//output.txt";
-		Formats inputFileformat = Formats.CSV_INTEGER;
-		int sequenceCount = Integer.MAX_VALUE;
-		
-		TransactionDatabaseConverter converter = new TransactionDatabaseConverter();
-		converter.convert(inputFile, outputFile, inputFileformat, sequenceCount);
-	}
 
-	
+    public static void main(String[] arg) throws IOException {
 
-	public static String fileToPath(String filename) throws UnsupportedEncodingException{
-		URL url = MainTestConvertTransactionDatabaseCSVtoSPMF.class.getResource(filename);
-		 return java.net.URLDecoder.decode(url.getPath(),"UTF-8");
-	}
+        String inputFile = fileToPath("contextCSV.txt");
+        String outputFile = ".//output.txt";
+        Formats inputFileformat = Formats.CSV_INTEGER;
+        int sequenceCount = Integer.MAX_VALUE;
+
+        TransactionDatabaseConverter converter = new TransactionDatabaseConverter();
+        converter.convert(inputFile, outputFile, inputFileformat, sequenceCount);
+    }
+
+
+    public static String fileToPath(String filename) throws UnsupportedEncodingException {
+        URL url = MainTestConvertTransactionDatabaseCSVtoSPMF.class.getResource(filename);
+        return java.net.URLDecoder.decode(url.getPath(), "UTF-8");
+    }
 }

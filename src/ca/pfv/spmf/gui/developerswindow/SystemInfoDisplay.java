@@ -26,28 +26,30 @@ import ca.pfv.spmf.gui.SortableJTable;
  * You should have received a copy of the GNU General Public License along with
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
+
 /**
  * A class to display system information
+ *
  * @author Philippe Fournier-Viger
  */
 public class SystemInfoDisplay extends JFrame {
-	/**
-	 * serial UID
-	 */
-	private static final long serialVersionUID = -6239858712290930028L;
+    /**
+     * serial UID
+     */
+    private static final long serialVersionUID = -6239858712290930028L;
 
-	/**
-	 * Constructor
-	 * 
-	 * @param runAsStandalone set to true if the window is run as a standalone
-	 *                        program. Otherwise false.
-	 * @throws Exception if some exception occurs
-	 */
-	public SystemInfoDisplay(boolean runAsStandalone) throws Exception {
-		if (runAsStandalone) {
-			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		}
-		
+    /**
+     * Constructor
+     *
+     * @param runAsStandalone set to true if the window is run as a standalone
+     *                        program. Otherwise false.
+     * @throws Exception if some exception occurs
+     */
+    public SystemInfoDisplay(boolean runAsStandalone) throws Exception {
+        if (runAsStandalone) {
+            setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        }
+
         // Set up the frame
         setTitle("System and JVM Information");
         setSize(500, 200);
@@ -56,19 +58,19 @@ public class SystemInfoDisplay extends JFrame {
         // Prepare table data
         String[] columnNames = {"Property", "Value"};
         String[][] data = {
-        	    {"Java Version", System.getProperty("java.version")},
-        	    {"Java Runtime Version", System.getProperty("java.runtime.version")},
-        	    {"Java Vendor", System.getProperty("java.vendor")},
-        	    {"OS Name", System.getProperty("os.name")},
-        	    {"OS Version", System.getProperty("os.version")},
-        	    {"OS Architecture", System.getProperty("os.arch")},
-        	    {"User's Home Directory", System.getProperty("user.home")},
-        	    {"User's Current Working Directory", System.getProperty("user.dir")},
-        	    {"Java Class Path", System.getProperty("java.class.path")},
-        	    {"Java Library Path", System.getProperty("java.library.path")},
-        	    {"PATH", System.getenv("PATH")},
-        	    {"TEMP", System.getenv("TEMP")},
-        	    {"Java Installation Directory", System.getProperty("java.home")},
+                {"Java Version", System.getProperty("java.version")},
+                {"Java Runtime Version", System.getProperty("java.runtime.version")},
+                {"Java Vendor", System.getProperty("java.vendor")},
+                {"OS Name", System.getProperty("os.name")},
+                {"OS Version", System.getProperty("os.version")},
+                {"OS Architecture", System.getProperty("os.arch")},
+                {"User's Home Directory", System.getProperty("user.home")},
+                {"User's Current Working Directory", System.getProperty("user.dir")},
+                {"Java Class Path", System.getProperty("java.class.path")},
+                {"Java Library Path", System.getProperty("java.library.path")},
+                {"PATH", System.getenv("PATH")},
+                {"TEMP", System.getenv("TEMP")},
+                {"Java Installation Directory", System.getProperty("java.home")},
 //        	    {"Java Vendor URL", System.getProperty("java.vendor.url")},
 //        	    {"JVM Specification Version", System.getProperty("java.vm.specification.version")},
 //        	    {"JVM Specification Vendor", System.getProperty("java.vm.specification.vendor")},
@@ -77,15 +79,15 @@ public class SystemInfoDisplay extends JFrame {
 //        	    {"JVM Implementation Vendor", System.getProperty("java.vm.vendor")},
 //        	    {"JVM Implementation Name", System.getProperty("java.vm.name")},
 //        	    {"Java Compiler", System.getProperty("java.compiler")},
-        	    {"User name", System.getenv("USERNAME")},
-        	    {"Computer name", System.getenv("COMPUTERNAME")},
-        	    {"Processor ID", System.getenv("PROCESSOR_IDENTIFIER")},
-        	    {"Processor Architecture", System.getenv("PROCESSOR_ARCHITECTURE")},
-        	    {"Processor Level", System.getenv("PROCESSOR_LEVEL")},
-        	    {"Processor count", System.getenv("NUMBER_OF_PROCESSORS")},
-        	    {"Total Memory (bytes)", String.valueOf(Runtime.getRuntime().totalMemory())},
-        	    {"Free Memory (bytes)", String.valueOf(Runtime.getRuntime().freeMemory())},
-        	    {"Max Memory (bytes)", String.valueOf(Runtime.getRuntime().maxMemory())}};
+                {"User name", System.getenv("USERNAME")},
+                {"Computer name", System.getenv("COMPUTERNAME")},
+                {"Processor ID", System.getenv("PROCESSOR_IDENTIFIER")},
+                {"Processor Architecture", System.getenv("PROCESSOR_ARCHITECTURE")},
+                {"Processor Level", System.getenv("PROCESSOR_LEVEL")},
+                {"Processor count", System.getenv("NUMBER_OF_PROCESSORS")},
+                {"Total Memory (bytes)", String.valueOf(Runtime.getRuntime().totalMemory())},
+                {"Free Memory (bytes)", String.valueOf(Runtime.getRuntime().freeMemory())},
+                {"Max Memory (bytes)", String.valueOf(Runtime.getRuntime().maxMemory())}};
 
 
         // Create table model and JTable
@@ -95,19 +97,21 @@ public class SystemInfoDisplay extends JFrame {
 
         // Add the table to a scroll pane
         JScrollPane scrollPane = new JScrollPane(table);
-        setSize(500,500);
+        setSize(500, 500);
         table.setFillsViewportHeight(true);
 
         // Add the scroll pane to the frame
         add(scrollPane, BorderLayout.CENTER);
-        
+
         setLocationRelativeTo(null);
         setVisible(true);
     }
 
-    /** Method for testing **/
+    /**
+     * Method for testing
+     **/
     public static void main(String[] args) throws Exception {
-    	 SystemInfoDisplay frame = new SystemInfoDisplay(true);
-         frame.setVisible(true);
+        SystemInfoDisplay frame = new SystemInfoDisplay(true);
+        frame.setVisible(true);
     }
 }

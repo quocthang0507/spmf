@@ -9,25 +9,25 @@ import ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP.dataStructures.a
 /**
  * Implementation of pattern structure. We define it as a list of pairs <abstraction, item>.
  * Besides, a bitSet appearingIn denotes the sequences where the pattern appears.
- * 
+ * <p>
  * Copyright Antonio Gomariz Peñalver 2013
- * 
+ * <p>
  * This file is part of the SPMF DATA MINING SOFTWARE
  * (http://www.philippe-fournier-viger.com/spmf).
- *
+ * <p>
  * SPMF is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- *
+ * <p>
  * SPMF is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- *
+ * <p>
  * You should have received a copy of the GNU General Public License
  * along with SPMF.  If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  * @author agomariz
  */
 public class Pattern implements Comparable<Pattern> {
@@ -51,7 +51,8 @@ public class Pattern implements Comparable<Pattern> {
 
     /**
      * New pattern from a list of pairs <abstraction, item>
-     * @param elements 
+     *
+     * @param elements
      */
     public Pattern(List<ItemAbstractionPair> elements) {
         this.elements = elements;
@@ -60,7 +61,8 @@ public class Pattern implements Comparable<Pattern> {
 
     /**
      * New pattern from a single pair <abstraction, item>
-     * @param pair 
+     *
+     * @param pair
      */
     public Pattern(ItemAbstractionPair pair) {
         this.elements = new ArrayList<ItemAbstractionPair>();
@@ -70,6 +72,7 @@ public class Pattern implements Comparable<Pattern> {
 
     /**
      * Get the string representation of this pattern
+     *
      * @return the string representation
      */
     @Override
@@ -81,44 +84,45 @@ public class Pattern implements Comparable<Pattern> {
         result.append("]");
         return result.toString();
     }
-    
+
     /**
      * Get the string representation of this itemset adjusted to SPMF format.
-     * @param outputSequenceIdentifiers 
+     *
+     * @param outputSequenceIdentifiers
      * @return the string representation.
      */
     public String toStringToFile(boolean outputSequenceIdentifiers) {
         StringBuilder result = new StringBuilder();
         for (int i = 0; i < elements.size(); i++) {
-            if(i==elements.size()-1){
-                if(i!=0)
+            if (i == elements.size() - 1) {
+                if (i != 0)
                     result.append(elements.get(i).toStringToFile());
                 else
                     result.append(elements.get(i).getItem());
                 result.append(" -1");
-            }
-            else if(i==0){
+            } else if (i == 0) {
                 result.append(elements.get(i).getItem());
-            }else{
+            } else {
                 result.append(elements.get(i).toStringToFile());
             }
-            
+
         }
         result.append(" #SUP: ");
         result.append(appearingIn.cardinality());
         // if the user wants the sequence IDs, we will show them
-        if(outputSequenceIdentifiers) {
-        	result.append(" #SID: ");
-        	for (int i = appearingIn.nextSetBit(0); i >= 0; i = appearingIn.nextSetBit(i+1)) {
-        		result.append(i - 1);  // BUG FIX: PHILIPPE 2017 - we must decrease ids by 1
-        		result.append(" ");
-        	}
+        if (outputSequenceIdentifiers) {
+            result.append(" #SID: ");
+            for (int i = appearingIn.nextSetBit(0); i >= 0; i = appearingIn.nextSetBit(i + 1)) {
+                result.append(i - 1);  // BUG FIX: PHILIPPE 2017 - we must decrease ids by 1
+                result.append(" ");
+            }
         }
         return result.toString();
     }
 
     /**
      * It clones a pattern
+     *
      * @return the resulting pattern
      */
     public Pattern clonePattern() {
@@ -130,6 +134,7 @@ public class Pattern implements Comparable<Pattern> {
 
     /**
      * It obtains the elements of the pattern
+     *
      * @return the list of elements in this pattern.
      */
     public List<ItemAbstractionPair> getElements() {
@@ -137,7 +142,17 @@ public class Pattern implements Comparable<Pattern> {
     }
 
     /**
+     * Setter method to set the elements of the pattern
+     *
+     * @param elements
+     */
+    public void setElements(List<ItemAbstractionPair> elements) {
+        this.elements = elements;
+    }
+
+    /**
      * It obtains the Ith element of the pattern
+     *
      * @param i the ith element
      * @return the element
      */
@@ -147,6 +162,7 @@ public class Pattern implements Comparable<Pattern> {
 
     /**
      * It obtains the last but one element of the pattern
+     *
      * @return the last but one element
      */
     public ItemAbstractionPair getLastButOneElement() {
@@ -158,6 +174,7 @@ public class Pattern implements Comparable<Pattern> {
 
     /**
      * It obtains the last element of the pattern
+     *
      * @return the last element
      */
     public ItemAbstractionPair getLastElement() {
@@ -175,17 +192,10 @@ public class Pattern implements Comparable<Pattern> {
     }
 
     /**
-     * Setter method to set the elements of the pattern
-     * @param elements 
-     */
-    public void setElements(List<ItemAbstractionPair> elements) {
-        this.elements = elements;
-    }
-
-    /**
-     * It adds an item with its abstraction in the pattern. The new pair is 
+     * It adds an item with its abstraction in the pattern. The new pair is
      * added in the last position of the pattern.
-     * @param pair 
+     *
+     * @param pair
      */
     public void add(ItemAbstractionPair pair) {
         this.elements.add(pair);
@@ -193,6 +203,7 @@ public class Pattern implements Comparable<Pattern> {
 
     /**
      * It returns the number of items contained in the pattern
+     *
      * @return the number of items
      */
     public int size() {
@@ -203,12 +214,13 @@ public class Pattern implements Comparable<Pattern> {
      * Compare this pattern with another
      * Since we always compare elements which belong to the same equivalence class
      * we only make the comparison of the last items of both patterns.
-     * @param arg  another pattern
+     *
+     * @param arg another pattern
      * @return 0 if equals, -1 if this one is smaller, otherwise 1
      */
     @Override
     public int compareTo(Pattern arg) {
-        return getIthElement(size()-1).compareTo(arg.getIthElement(arg.size()-1));
+        return getIthElement(size() - 1).compareTo(arg.getIthElement(arg.size() - 1));
     }
 
     @Override
@@ -232,6 +244,7 @@ public class Pattern implements Comparable<Pattern> {
 
     /**
      * It informs us if this pattern is a prefix of the argument given pattern.
+     *
      * @param p the pattern
      * @return true if the pattern is a prefix, otherwise false.
      */
@@ -239,7 +252,7 @@ public class Pattern implements Comparable<Pattern> {
         boolean output = false;
         List<ItemAbstractionPair> pElements = new ArrayList<ItemAbstractionPair>(p.getElements());
         pElements.remove(pElements.size() - 1);
-        if (pElements.get(pElements.size()-1).equals(getIthElement(size() - 1))) {
+        if (pElements.get(pElements.size() - 1).equals(getIthElement(size() - 1))) {
             output = true;
         }
         return output;
@@ -247,6 +260,7 @@ public class Pattern implements Comparable<Pattern> {
 
     /**
      * It returns the list of sequence IDs where the pattern appears.
+     *
      * @return the list of sequence IDs
      */
     public BitSet getAppearingIn() {
@@ -255,7 +269,8 @@ public class Pattern implements Comparable<Pattern> {
 
     /**
      * it set the list of sequence IDs where the pattern appears.
-     * @param appearingIn 
+     *
+     * @param appearingIn
      */
     public void setAppearingIn(BitSet appearingIn) {
         this.appearingIn = appearingIn;
