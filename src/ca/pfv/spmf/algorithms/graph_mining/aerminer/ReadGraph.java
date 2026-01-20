@@ -3,12 +3,8 @@ package ca.pfv.spmf.algorithms.graph_mining.aerminer;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.Map.Entry;
-import java.util.Set;
 /* This file is copyright (c) 2020 by Ganghuan He
  *
  * This file is part of the SPMF DATA MINING SOFTWARE

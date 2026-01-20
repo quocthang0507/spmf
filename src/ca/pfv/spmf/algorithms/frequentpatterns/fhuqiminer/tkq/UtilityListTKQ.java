@@ -18,10 +18,10 @@ package ca.pfv.spmf.algorithms.frequentpatterns.fhuqiminer.tkq;
  *
  */
 
-import java.util.ArrayList;
-
 import ca.pfv.spmf.algorithms.frequentpatterns.fhuqiminer.QItemTrans;
 import ca.pfv.spmf.algorithms.frequentpatterns.fhuqiminer.Qitem;
+
+import java.util.ArrayList;
 
 /**
  * A class representing a utility-list as used by the TKQ algorithm

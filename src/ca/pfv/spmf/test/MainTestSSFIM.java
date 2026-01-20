@@ -1,10 +1,10 @@
 package ca.pfv.spmf.test;
 
+import ca.pfv.spmf.algorithms.frequentpatterns.ssfim.AlgoSSFIM;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-
-import ca.pfv.spmf.algorithms.frequentpatterns.ssfim.AlgoSSFIM;
 
 /**
  * Example of how to use SSFIM from the source code.

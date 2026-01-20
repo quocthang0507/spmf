@@ -14,21 +14,14 @@ O* This is an implementation of the CEPB, corCEPB, CEPN algorithms.
 
 package ca.pfv.spmf.algorithms.sequentialpatterns.cost;
 
+import ca.pfv.spmf.tools.MemoryLogger;
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.Map.Entry;
-import java.util.TreeMap;
-
-import ca.pfv.spmf.tools.MemoryLogger;
 
 /**
  * This is a implementation of the CEPB, corCEPB, and CEPN algorithms. <br/>

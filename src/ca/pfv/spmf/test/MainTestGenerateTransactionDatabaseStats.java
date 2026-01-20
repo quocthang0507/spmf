@@ -1,10 +1,10 @@
 package ca.pfv.spmf.test;
 
+import ca.pfv.spmf.tools.dataset_stats.TransactionStatsGenerator;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-
-import ca.pfv.spmf.tools.dataset_stats.TransactionStatsGenerator;
 
 /**
  * Example of how to get statistics about a transaction database in SPMF format

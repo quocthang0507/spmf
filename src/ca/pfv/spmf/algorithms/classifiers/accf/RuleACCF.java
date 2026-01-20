@@ -19,9 +19,9 @@
  */
 package ca.pfv.spmf.algorithms.classifiers.accf;
 
-import java.io.Serializable;
-
 import ca.pfv.spmf.algorithms.classifiers.general.Rule;
+
+import java.io.Serializable;
 
 /**
  * Base class for a rule of ACCF. It extends base Rule, but add functionalities

@@ -1,13 +1,13 @@
 package ca.pfv.spmf.algorithmmanager.descriptions;
 
-import java.io.File;
-import java.io.IOException;
-
 import ca.pfv.spmf.algorithmmanager.AlgorithmType;
 import ca.pfv.spmf.algorithmmanager.DescriptionOfAlgorithm;
 import ca.pfv.spmf.algorithmmanager.DescriptionOfParameter;
 import ca.pfv.spmf.algorithms.frequentpatterns.fhuqiminer.AlgoFHUQIMiner;
 import ca.pfv.spmf.algorithms.frequentpatterns.fhuqiminer.EnumCombination;
+
+import java.io.File;
+import java.io.IOException;
 
 /**
  * This class describes the FHUQIMiner algorithm parameters.

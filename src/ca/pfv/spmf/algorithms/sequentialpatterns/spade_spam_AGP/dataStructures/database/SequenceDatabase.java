@@ -1,19 +1,5 @@
 package ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP.dataStructures.database;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
 import ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP.EquivalenceClass;
 import ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP.dataStructures.Item;
 import ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP.dataStructures.ItemFactory;
@@ -24,6 +10,9 @@ import ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP.dataStructures.c
 import ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP.dataStructures.patterns.PatternCreator;
 import ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP.idLists.IDList;
 import ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP.idLists.creators.IdListCreator;
+
+import java.io.*;
+import java.util.*;
 
 /**
  * Inspired in SPMF. Implementation of a sequence database. Each sequence should

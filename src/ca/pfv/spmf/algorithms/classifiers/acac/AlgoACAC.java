@@ -18,12 +18,12 @@
  */
 package ca.pfv.spmf.algorithms.classifiers.acac;
 
-import java.io.Serializable;
-import java.util.List;
-
 import ca.pfv.spmf.algorithms.classifiers.data.Dataset;
 import ca.pfv.spmf.algorithms.classifiers.general.ClassificationAlgorithm;
 import ca.pfv.spmf.algorithms.classifiers.general.Classifier;
+
+import java.io.Serializable;
+import java.util.List;
 
 /**
  * Implementation of the algorithm ACAC for associative classification. This

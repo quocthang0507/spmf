@@ -1,11 +1,11 @@
 package ca.pfv.spmf.test;
 
 
+import ca.pfv.spmf.algorithms.frequentpatterns.lppgrowth.AlgoLPPGrowth;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-
-import ca.pfv.spmf.algorithms.frequentpatterns.lppgrowth.AlgoLPPGrowth;
 
 /**
  * This file shows how to run the LPP_Growth algorithm on an input file.

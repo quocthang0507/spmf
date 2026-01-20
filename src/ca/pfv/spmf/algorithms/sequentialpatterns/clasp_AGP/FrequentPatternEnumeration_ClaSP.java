@@ -1,13 +1,5 @@
 package ca.pfv.spmf.algorithms.sequentialpatterns.clasp_AGP;
 
-import java.util.AbstractMap;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-
 import ca.pfv.spmf.algorithms.sequentialpatterns.clasp_AGP.dataStructures.Item;
 import ca.pfv.spmf.algorithms.sequentialpatterns.clasp_AGP.dataStructures.abstracciones.ItemAbstractionPair;
 import ca.pfv.spmf.algorithms.sequentialpatterns.clasp_AGP.dataStructures.creators.AbstractionCreator;
@@ -18,6 +10,9 @@ import ca.pfv.spmf.algorithms.sequentialpatterns.clasp_AGP.idlists.IDList;
 import ca.pfv.spmf.algorithms.sequentialpatterns.clasp_AGP.savers.Saver;
 import ca.pfv.spmf.algorithms.sequentialpatterns.clasp_AGP.tries.Trie;
 import ca.pfv.spmf.algorithms.sequentialpatterns.clasp_AGP.tries.TrieNode;
+
+import java.util.*;
+import java.util.Map.Entry;
 
 /**
  * This is an implementation of the main method of ClaSP algorithm. We can use

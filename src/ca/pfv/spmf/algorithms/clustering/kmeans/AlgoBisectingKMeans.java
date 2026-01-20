@@ -16,15 +16,15 @@ package ca.pfv.spmf.algorithms.clustering.kmeans;
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
 import ca.pfv.spmf.algorithms.clustering.distanceFunctions.DistanceFunction;
 import ca.pfv.spmf.patterns.cluster.ClusterWithMean;
 import ca.pfv.spmf.patterns.cluster.ClustersEvaluation;
 import ca.pfv.spmf.patterns.cluster.DoubleArray;
 import ca.pfv.spmf.tools.MemoryLogger;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * An implementation of the Bisecting K-means algorithm (Steinbach et al, 2000).

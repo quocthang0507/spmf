@@ -1,10 +1,10 @@
 package ca.pfv.spmf.algorithms.frequentpatterns.clhminer;
 
+import ca.pfv.spmf.test.MainTestAprioriHT_saveToFile;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-
-import ca.pfv.spmf.test.MainTestAprioriHT_saveToFile;
 
 /**
  * Example of how to use the CLH-Miner algorithm from the source code

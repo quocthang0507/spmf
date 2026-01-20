@@ -18,26 +18,12 @@
 
 package ca.pfv.spmf.algorithms.associationrules.gcd;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import ca.pfv.spmf.tools.MemoryLogger;
+
+import java.io.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeSet;
-
-import ca.pfv.spmf.tools.MemoryLogger;
+import java.util.*;
 
 public class GCDAssociationRules {
     private static final DateFormat FORMATTER = new SimpleDateFormat("[hh:mm:ss a]");
@@ -253,6 +239,7 @@ public class GCDAssociationRules {
 
     /**
      * Get the number of pattern found
+     *
      * @return the number of patterns
      */
     public int getPatternCount() {

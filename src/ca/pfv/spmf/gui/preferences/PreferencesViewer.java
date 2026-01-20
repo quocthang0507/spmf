@@ -1,19 +1,14 @@
 package ca.pfv.spmf.gui.preferences;
 
-import java.awt.BorderLayout;
+import ca.pfv.spmf.gui.MainWindow;
+import ca.pfv.spmf.gui.SortableJTable;
+
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.lang.reflect.Modifier;
-
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
-
-import ca.pfv.spmf.gui.MainWindow;
-import ca.pfv.spmf.gui.SortableJTable;
 
 /*
  * Copyright (c) 2008-2022 Philippe Fournier-Viger

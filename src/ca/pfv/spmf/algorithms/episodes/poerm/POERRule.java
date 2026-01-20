@@ -4,8 +4,6 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-import ca.pfv.spmf.algorithms.episodes.emma.EpisodeEMMA;
-
 /* This file is copyright (c) 2021  CHEN YANGMING, Philippe Fournier-Viger
  *
  * This file is part of the SPMF DATA MINING SOFTWARE

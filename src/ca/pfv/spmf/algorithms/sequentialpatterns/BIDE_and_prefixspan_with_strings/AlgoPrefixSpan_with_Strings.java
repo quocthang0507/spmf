@@ -16,20 +16,15 @@ package ca.pfv.spmf.algorithms.sequentialpatterns.BIDE_and_prefixspan_with_strin
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
-
 import ca.pfv.spmf.input.sequence_database_list_strings.Sequence;
 import ca.pfv.spmf.input.sequence_database_list_strings.SequenceDatabase;
 import ca.pfv.spmf.tools.MemoryLogger;
+
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.*;
+import java.util.Map.Entry;
 
 /*** 
  * This is an implementation of the PrefixSpan algorithm by Pei et al. 2001 modfied to take

@@ -15,12 +15,12 @@
 
 package ca.pfv.spmf.test;
 
+import ca.pfv.spmf.algorithms.sequentialpatterns.cost.AlgoCEPM;
+import ca.pfv.spmf.algorithms.sequentialpatterns.cost.SequentialPatterns;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-
-import ca.pfv.spmf.algorithms.sequentialpatterns.cost.AlgoCEPM;
-import ca.pfv.spmf.algorithms.sequentialpatterns.cost.SequentialPatterns;
 
 /**
  * Example of how to use the corCEPB algorithm to extract cost-effective

@@ -1,13 +1,13 @@
 package ca.pfv.spmf.test;
 
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.net.URL;
-
 import ca.pfv.spmf.algorithms.associationrules.closedrules.AlgoClosedRules_UsingFPClose;
 import ca.pfv.spmf.algorithms.frequentpatterns.fpgrowth.AlgoFPClose;
 import ca.pfv.spmf.input.transaction_database_list_integers.TransactionDatabase;
 import ca.pfv.spmf.patterns.itemset_array_integers_with_count.Itemsets;
+
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URL;
 
 /**
  * Example of how to mine closed association rules from the source code.

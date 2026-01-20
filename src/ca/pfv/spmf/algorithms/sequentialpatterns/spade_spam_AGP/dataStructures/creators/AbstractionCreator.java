@@ -1,14 +1,14 @@
 package ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP.dataStructures.creators;
 
-import java.util.List;
-import java.util.Map;
-
 import ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP.EquivalenceClass;
 import ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP.dataStructures.Item;
 import ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP.dataStructures.Sequence;
 import ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP.dataStructures.abstractions.Abstraction_Generic;
 import ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP.dataStructures.patterns.Pattern;
 import ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP.idLists.creators.IdListCreator;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * Abstract class that is thought to make it possible the creation of any kind

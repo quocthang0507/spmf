@@ -19,11 +19,11 @@
  */
 package ca.pfv.spmf.algorithms.classifiers.acn;
 
-import java.util.List;
-
 import ca.pfv.spmf.algorithms.classifiers.data.Dataset;
 import ca.pfv.spmf.algorithms.classifiers.general.ClassificationAlgorithm;
 import ca.pfv.spmf.algorithms.classifiers.general.RuleClassifier;
+
+import java.util.List;
 
 /**
  * This is an implementation of the ACN algorithm, proposed in the following paper

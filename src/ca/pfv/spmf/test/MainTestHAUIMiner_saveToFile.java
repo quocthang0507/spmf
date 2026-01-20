@@ -16,11 +16,11 @@ package ca.pfv.spmf.test;
  * @author Ting Li
  */
 
+import ca.pfv.spmf.algorithms.frequentpatterns.haui_miner.AlgoHAUIMiner;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-
-import ca.pfv.spmf.algorithms.frequentpatterns.haui_miner.AlgoHAUIMiner;
 
 /**
  * Example of how to use the HAUIMiner algorithm

@@ -1,14 +1,14 @@
 package ca.pfv.spmf.algorithms.classifiers.general;
 
+import ca.pfv.spmf.algorithms.classifiers.data.Dataset;
+import ca.pfv.spmf.algorithms.classifiers.data.Instance;
+import ca.pfv.spmf.tools.MemoryLogger;
+
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
-
-import ca.pfv.spmf.algorithms.classifiers.data.Dataset;
-import ca.pfv.spmf.algorithms.classifiers.data.Instance;
-import ca.pfv.spmf.tools.MemoryLogger;
 
 /**
  * Class to run some experiment on some classifier(s).

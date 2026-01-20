@@ -16,12 +16,12 @@ package ca.pfv.spmf.test;
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
 
+import ca.pfv.spmf.algorithms.episodes.tup.tup_preinsertion.AlgoTUP_preinsertion;
+import ca.pfv.spmf.algorithms.episodes.tup.tup_preinsertion.Episode_preinsertion;
+
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.util.Queue;
-
-import ca.pfv.spmf.algorithms.episodes.tup.tup_preinsertion.AlgoTUP_preinsertion;
-import ca.pfv.spmf.algorithms.episodes.tup.tup_preinsertion.Episode_preinsertion;
 
 /**
  * This is an example of how to run the TUP(Preinsertion) algorithm and save the result to memory

@@ -18,10 +18,10 @@ package ca.pfv.spmf.algorithms.frequentpatterns.d2hup;
  */
 
 
+import ca.pfv.spmf.algorithms.frequentpatterns.hmine.AlgoHMine;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import ca.pfv.spmf.algorithms.frequentpatterns.hmine.AlgoHMine;
 
 /**
  * This class represents a row of the table in the CAUL structure.

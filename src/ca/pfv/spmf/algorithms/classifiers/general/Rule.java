@@ -17,11 +17,11 @@
  */
 package ca.pfv.spmf.algorithms.classifiers.general;
 
+import ca.pfv.spmf.algorithms.ArraysAlgos;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
-import ca.pfv.spmf.algorithms.ArraysAlgos;
 
 /**
  * Represent classification rules
@@ -170,6 +170,7 @@ public abstract class Rule implements Serializable {
 
     /**
      * Check if this is a rule with some negative items
+     *
      * @return true if there are some negative items in this rule.
      */
     public boolean isANegativeRule() {
@@ -178,6 +179,7 @@ public abstract class Rule implements Serializable {
 
     /**
      * Check if the i-th item of the antecedent is negative
+     *
      * @param i the position
      * @return true if negative, otherwise false
      */

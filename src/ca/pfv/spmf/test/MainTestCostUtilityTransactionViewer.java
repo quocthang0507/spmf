@@ -1,10 +1,10 @@
 package ca.pfv.spmf.test;
 
+import ca.pfv.spmf.gui.viewers.utility_cost_tdb_viewer.CostUtilityTransactionDatabaseViewer;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-
-import ca.pfv.spmf.gui.viewers.utility_cost_tdb_viewer.CostUtilityTransactionDatabaseViewer;
 
 /**
  * Example of how to use Cost Utility Transaction Database viewer algorithm from the

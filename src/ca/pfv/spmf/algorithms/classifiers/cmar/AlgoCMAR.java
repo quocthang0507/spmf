@@ -18,11 +18,11 @@
  */
 package ca.pfv.spmf.algorithms.classifiers.cmar;
 
-import java.util.List;
-
 import ca.pfv.spmf.algorithms.classifiers.data.Dataset;
 import ca.pfv.spmf.algorithms.classifiers.general.ClassificationAlgorithm;
 import ca.pfv.spmf.algorithms.classifiers.general.Rule;
+
+import java.util.List;
 
 /**
  * This is an implementation of the CMAR algorithm. CMAR is an algorithm for classification

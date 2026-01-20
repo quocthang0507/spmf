@@ -1,13 +1,13 @@
 package ca.pfv.spmf.algorithms.associationrules.hgb;
 
+import ca.pfv.spmf.tools.MemoryLogger;
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
-import ca.pfv.spmf.tools.MemoryLogger;
 
 /* This file is copyright (c) Jayakrushna Sahoo
  *

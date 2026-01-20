@@ -1,10 +1,10 @@
 package ca.pfv.spmf.test;
 
+import ca.pfv.spmf.algorithms.frequentpatterns.pascal.AlgoPASCAL;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-
-import ca.pfv.spmf.algorithms.frequentpatterns.pascal.AlgoPASCAL;
 
 /**
  * Example of how to use the PASCAL algorithm (hash-tree version),

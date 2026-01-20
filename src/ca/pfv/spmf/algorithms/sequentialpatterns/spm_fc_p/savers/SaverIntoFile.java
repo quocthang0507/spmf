@@ -4,13 +4,13 @@
  */
 package ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_p.savers;
 
+import ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_p.items.patterns.Pattern;
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_p.items.patterns.Pattern;
 
 /**
  * This is an implementation of a class implementing the Saver interface. By

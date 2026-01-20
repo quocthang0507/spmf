@@ -17,13 +17,13 @@ package ca.pfv.spmf.algorithms.timeseries.reader_writer;
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
 
+import ca.pfv.spmf.algorithms.timeseries.TimeSeries;
+import ca.pfv.spmf.tools.MemoryLogger;
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
-
-import ca.pfv.spmf.algorithms.timeseries.TimeSeries;
-import ca.pfv.spmf.tools.MemoryLogger;
 
 /**
  * This class write a list of time series to a file

@@ -1,12 +1,12 @@
 package ca.pfv.spmf.algorithms.frequentpatterns.itemsettree;
 
+import ca.pfv.spmf.tools.MemoryLogger;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.HashSet;
-
-import ca.pfv.spmf.tools.MemoryLogger;
 
 /**
  * An implementation of the Itemset-tree

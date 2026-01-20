@@ -1,23 +1,13 @@
 package ca.pfv.spmf.test;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.TreeMap;
-
 import ca.pfv.spmf.algorithms.sequentialpatterns.qcsp.AlgoQCSP;
 import ca.pfv.spmf.algorithms.sequentialpatterns.qcsp.SequentialPattern;
 import ca.pfv.spmf.algorithms.sequentialpatterns.qcsp.util.Pair;
+
+import java.io.*;
+import java.net.URL;
+import java.util.*;
+import java.util.Map.Entry;
 
 /**
  * Example of how to use the QCSP algorithm from the source code.

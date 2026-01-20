@@ -1,11 +1,11 @@
 package ca.pfv.spmf.algorithmmanager.descriptions;
 
-import java.util.Calendar;
-
 import ca.pfv.spmf.algorithmmanager.AlgorithmType;
 import ca.pfv.spmf.algorithmmanager.DescriptionOfAlgorithm;
 import ca.pfv.spmf.algorithmmanager.DescriptionOfParameter;
 import ca.pfv.spmf.algorithms.associationrules.gcd.GCDAssociationRules;
+
+import java.util.Calendar;
 
 /**
  * This class describes parameters of the algorithm for generating association rules

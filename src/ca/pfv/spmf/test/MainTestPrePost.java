@@ -1,11 +1,11 @@
 package ca.pfv.spmf.test;
 
 
+import ca.pfv.spmf.algorithms.frequentpatterns.fin_prepost.PrePost;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-
-import ca.pfv.spmf.algorithms.frequentpatterns.fin_prepost.PrePost;
 
 /**
  * Example of how to use PrePost algorithm from the source code.

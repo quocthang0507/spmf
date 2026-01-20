@@ -1,24 +1,13 @@
 package ca.pfv.spmf.algorithms.classifiers.naive_bayes_text_classifier;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map.Entry;
-import java.util.Set;
-import java.util.TreeMap;
-
 import ca.pfv.spmf.tools.MemoryLogger;
 import ca.pfv.spmf.tools.textprocessing.PorterStemmer;
 import ca.pfv.spmf.tools.textprocessing.StopWordAnalyzer;
+
+import java.io.*;
+import java.math.BigDecimal;
+import java.util.*;
+import java.util.Map.Entry;
 
 /**
  * * * This is an implementation of the Naive Bayes Document Classifier algorithm.
@@ -39,9 +28,9 @@ import ca.pfv.spmf.tools.textprocessing.StopWordAnalyzer;
 
 /**
  *
- * Input can be of any format. 
+ * Input can be of any format.
  * For the training data, Please place the input files under corresponding ClassNames as FolderNames.
- * Output has the following format outputfileName \t ClassName 
+ * Output has the following format outputfileName \t ClassName
  */
 public class AlgoNaiveBayesClassifier {
     long mStartTimestamp = 0; // last execution start time
@@ -178,6 +167,7 @@ public class AlgoNaiveBayesClassifier {
 
     /**
      * Get the probability value of a particular word in a particular class. Calculates them from in memory stored objects
+     *
      * @param word
      * @param op
      * @param currentClass
@@ -199,6 +189,7 @@ public class AlgoNaiveBayesClassifier {
 
     /**
      * Get the probability value of a particular word in a particular class. Calculates them from File search.
+     *
      * @param word
      * @param op
      * @param currentClass
@@ -238,6 +229,7 @@ public class AlgoNaiveBayesClassifier {
 
     /**
      * Get from cached probabilities.
+     *
      * @param word
      * @param probabilties
      * @param className
@@ -261,6 +253,7 @@ public class AlgoNaiveBayesClassifier {
 
     /**
      * Reads one test file and stores it in Object.
+     *
      * @param f
      * @return
      */

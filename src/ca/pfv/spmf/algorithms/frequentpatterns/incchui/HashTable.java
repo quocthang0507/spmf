@@ -70,9 +70,10 @@ class HashTable {
 
     /**
      * Add an itemset to the hash table.
-     * @param itemset the itemset to be added to the hashtable
+     *
+     * @param itemset  the itemset to be added to the hashtable
      * @param hashcode the hashcode of the itemset (need to be calculated before by using the
-     *  provided hashcode() method.
+     *                 provided hashcode() method.
      */
     public void put(ItemsetIncCHUI itemset, int hashcode) {
         // if the position in the array is empty create a new array list
@@ -88,6 +89,7 @@ class HashTable {
     /**
      * Calculate the hashcode of an itemset as the sum of the tids of its tidset,
      * modulo the internal array length.
+     *
      * @param tidset the tidset of the itemset
      * @return the hashcode (an integer)
      */

@@ -16,9 +16,9 @@ package ca.pfv.spmf.input.utility_transaction_database;
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import java.util.List;
-
 import ca.pfv.spmf.algorithms.frequentpatterns.two_phase.AlgoTwoPhase;
+
+import java.util.List;
 
 /**
  * This class represents a transaction (a set of items) from a transaction

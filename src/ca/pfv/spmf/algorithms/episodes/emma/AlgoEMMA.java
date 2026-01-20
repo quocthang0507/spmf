@@ -1,18 +1,12 @@
 package ca.pfv.spmf.algorithms.episodes.emma;
 
+import ca.pfv.spmf.algorithms.episodes.general.FrequentEpisodes;
+import ca.pfv.spmf.tools.MemoryLogger;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import ca.pfv.spmf.algorithms.episodes.general.FrequentEpisodes;
-import ca.pfv.spmf.tools.MemoryLogger;
+import java.util.*;
 
 /*
  * This file is part of the SPMF DATA MINING SOFTWARE *

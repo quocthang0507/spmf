@@ -3,7 +3,6 @@ package ca.pfv.spmf.datastructures.collections.automatic_test;
 import ca.pfv.spmf.datastructures.collections.comparators.ComparatorLong;
 import ca.pfv.spmf.datastructures.collections.list.ArrayListLong;
 import ca.pfv.spmf.datastructures.collections.list.ListLong;
-import ca.pfv.spmf.datastructures.collections.list.ListInt.IteratorList;
 
 /*
  * Copyright (c) 2023 Philippe Fournier-Viger

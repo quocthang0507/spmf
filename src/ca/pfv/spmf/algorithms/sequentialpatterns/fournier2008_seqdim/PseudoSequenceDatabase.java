@@ -16,12 +16,12 @@ package ca.pfv.spmf.algorithms.sequentialpatterns.fournier2008_seqdim;
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
 
+import ca.pfv.spmf.algorithms.sequentialpatterns.fournier2008_seqdim.kmeans_for_fournier08.Cluster;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
-import ca.pfv.spmf.algorithms.sequentialpatterns.fournier2008_seqdim.kmeans_for_fournier08.Cluster;
 
 /**
  * This class represents a projected database as used by SeqDim and Fournier-Viger (2008) algorithms.

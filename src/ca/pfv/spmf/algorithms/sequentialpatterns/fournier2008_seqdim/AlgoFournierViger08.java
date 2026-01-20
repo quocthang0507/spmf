@@ -16,19 +16,14 @@ package ca.pfv.spmf.algorithms.sequentialpatterns.fournier2008_seqdim;
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
 
+import ca.pfv.spmf.algorithms.sequentialpatterns.fournier2008_seqdim.kmeans_for_fournier08.AlgoKMeansWithSupport;
+import ca.pfv.spmf.algorithms.sequentialpatterns.fournier2008_seqdim.kmeans_for_fournier08.Cluster;
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.Map.Entry;
-import java.util.Set;
-
-import ca.pfv.spmf.algorithms.sequentialpatterns.fournier2008_seqdim.kmeans_for_fournier08.AlgoKMeansWithSupport;
-import ca.pfv.spmf.algorithms.sequentialpatterns.fournier2008_seqdim.kmeans_for_fournier08.Cluster;
 
 /**
  * This is the original implementation of the Fournier-Viger algorithm (2008) for sequential

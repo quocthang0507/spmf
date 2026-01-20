@@ -17,12 +17,12 @@
  */
 package ca.pfv.spmf.test;
 
+import ca.pfv.spmf.algorithms.frequentpatterns.fhuqiminer.EnumCombination;
+import ca.pfv.spmf.algorithms.frequentpatterns.vhuqi.AlgoVHUQI;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-
-import ca.pfv.spmf.algorithms.frequentpatterns.fhuqiminer.EnumCombination;
-import ca.pfv.spmf.algorithms.frequentpatterns.vhuqi.AlgoVHUQI;
 
 /**
  * Class that shows how to run the FHUQI-Miner algorithm from the source code.

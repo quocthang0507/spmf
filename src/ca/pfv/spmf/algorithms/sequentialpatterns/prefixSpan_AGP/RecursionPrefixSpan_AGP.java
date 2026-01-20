@@ -1,13 +1,5 @@
 package ca.pfv.spmf.algorithms.sequentialpatterns.prefixSpan_AGP;
 
-import java.util.ArrayList;
-import java.util.BitSet;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
 import ca.pfv.spmf.algorithms.sequentialpatterns.prefixSpan_AGP.items.Item;
 import ca.pfv.spmf.algorithms.sequentialpatterns.prefixSpan_AGP.items.Pair;
 import ca.pfv.spmf.algorithms.sequentialpatterns.prefixSpan_AGP.items.PseudoSequence;
@@ -18,6 +10,8 @@ import ca.pfv.spmf.algorithms.sequentialpatterns.prefixSpan_AGP.items.creators.A
 import ca.pfv.spmf.algorithms.sequentialpatterns.prefixSpan_AGP.items.creators.ItemAbstractionPairCreator;
 import ca.pfv.spmf.algorithms.sequentialpatterns.prefixSpan_AGP.items.patterns.Pattern;
 import ca.pfv.spmf.algorithms.sequentialpatterns.prefixSpan_AGP.savers.Saver;
+
+import java.util.*;
 
 /**
  * This is an the real execution of PrefixSpan algorithm.

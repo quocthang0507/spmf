@@ -1,15 +1,5 @@
 package ca.pfv.spmf.algorithms.sequentialpatterns.clasp_AGP;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
-
 import ca.pfv.spmf.algorithms.sequentialpatterns.clasp_AGP.dataStructures.Itemset;
 import ca.pfv.spmf.algorithms.sequentialpatterns.clasp_AGP.dataStructures.Sequence;
 import ca.pfv.spmf.algorithms.sequentialpatterns.clasp_AGP.dataStructures.creators.AbstractionCreator;
@@ -20,6 +10,12 @@ import ca.pfv.spmf.algorithms.sequentialpatterns.clasp_AGP.savers.SaverIntoFile;
 import ca.pfv.spmf.algorithms.sequentialpatterns.clasp_AGP.savers.SaverIntoMemory;
 import ca.pfv.spmf.algorithms.sequentialpatterns.clasp_AGP.tries.Trie;
 import ca.pfv.spmf.tools.MemoryLogger;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.util.*;
+import java.util.Map.Entry;
 
 /**
  * This is an implementation of the ClaSP algorithm. ClaSP was proposed by A.

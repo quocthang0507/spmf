@@ -1,14 +1,14 @@
 package ca.pfv.spmf.algorithms.sequenceprediction.ipredict.predictor.CPT.CPTPlus;
 
+import ca.pfv.spmf.algorithms.sequenceprediction.ipredict.database.Item;
+import ca.pfv.spmf.algorithms.sequenceprediction.ipredict.database.Sequence;
+import ca.pfv.spmf.algorithms.sequenceprediction.ipredict.helpers.ScoreDistribution;
+
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.TreeMap;
-
-import ca.pfv.spmf.algorithms.sequenceprediction.ipredict.database.Item;
-import ca.pfv.spmf.algorithms.sequenceprediction.ipredict.database.Sequence;
-import ca.pfv.spmf.algorithms.sequenceprediction.ipredict.helpers.ScoreDistribution;
 /*
  * This file is copyright (c) Ted Gueniche
  * <ted.gueniche@gmail.com>

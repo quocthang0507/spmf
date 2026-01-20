@@ -16,9 +16,9 @@ package ca.pfv.spmf.algorithms.sequentialpatterns.fournier2008_seqdim;
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import java.io.IOException;
-
 import ca.pfv.spmf.algorithms.sequentialpatterns.fournier2008_seqdim.multidimensionalsequentialpatterns.AlgoSeqDim;
+
+import java.io.IOException;
 
 /**
  * This class is an abstract class for PrefixSpan based algorithms that are used with the multi-dimensional

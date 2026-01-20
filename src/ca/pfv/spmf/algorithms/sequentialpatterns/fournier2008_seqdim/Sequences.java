@@ -16,10 +16,10 @@ package ca.pfv.spmf.algorithms.sequentialpatterns.fournier2008_seqdim;
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
 
+import ca.pfv.spmf.algorithms.sequentialpatterns.fournier2008_seqdim.multidimensionalsequentialpatterns.AlgoSeqDim;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import ca.pfv.spmf.algorithms.sequentialpatterns.fournier2008_seqdim.multidimensionalsequentialpatterns.AlgoSeqDim;
 
 /**
  * Implementation of a set of sequential patterns, grouped by their size (how many items they have) as

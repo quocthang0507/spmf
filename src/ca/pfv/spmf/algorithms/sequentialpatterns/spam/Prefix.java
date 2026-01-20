@@ -16,10 +16,10 @@ package ca.pfv.spmf.algorithms.sequentialpatterns.spam;
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
 
+import ca.pfv.spmf.patterns.itemset_list_integers_without_support.Itemset;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import ca.pfv.spmf.patterns.itemset_list_integers_without_support.Itemset;
 
 
 /**

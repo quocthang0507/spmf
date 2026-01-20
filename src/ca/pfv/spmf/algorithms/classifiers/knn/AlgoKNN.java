@@ -1,13 +1,6 @@
 package ca.pfv.spmf.algorithms.classifiers.knn;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-
 import ca.pfv.spmf.algorithms.classifiers.data.Dataset;
-import ca.pfv.spmf.algorithms.classifiers.data.Instance;
 import ca.pfv.spmf.algorithms.classifiers.general.ClassificationAlgorithm;
 import ca.pfv.spmf.algorithms.classifiers.general.Classifier;
 

@@ -1,11 +1,11 @@
 package ca.pfv.spmf.algorithms.sequentialpatterns.clospan_AGP.items.patterns;
 
+import ca.pfv.spmf.algorithms.sequentialpatterns.clospan_AGP.items.abstractions.ItemAbstractionPair;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import ca.pfv.spmf.algorithms.sequentialpatterns.clospan_AGP.items.abstractions.ItemAbstractionPair;
 
 /**
  * This class is the implementation of a creator of patterns.
@@ -35,6 +35,7 @@ public class PatternCreator {
 
     private static Map<Pattern, Pattern> patternPool = new HashMap<Pattern, Pattern>();
     private static PatternCreator instance = null;
+
     private PatternCreator() {
     }
 

@@ -26,9 +26,13 @@ package ca.pfv.spmf.gui.developerswindow;
 
 //Import the necessary classes
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Component;
+import ca.pfv.spmf.algorithmmanager.AlgorithmManager;
+import ca.pfv.spmf.algorithmmanager.DescriptionOfAlgorithm;
+
+import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.HttpURLConnection;
@@ -36,23 +40,6 @@ import java.net.URI;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-
-/**
- * This is a tool to find the list of broken URLs in the documentation of SPMF.
- * @author Philippe Fournier-Viger, 2024.
- */
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JProgressBar;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.SwingUtilities;
-import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.DefaultTableModel;
-
-import ca.pfv.spmf.algorithmmanager.AlgorithmManager;
-import ca.pfv.spmf.algorithmmanager.DescriptionOfAlgorithm;
 
 public class FindDocBrokenURLsViewer {
 

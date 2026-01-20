@@ -17,17 +17,13 @@ package ca.pfv.spmf.tools.dataset_stats;
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import ca.pfv.spmf.algorithms.sequentialpatterns.fasttirp.SymbolicTimeInterval;
+
+import java.io.*;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
-import ca.pfv.spmf.algorithms.sequentialpatterns.fasttirp.SymbolicTimeInterval;
 
 /**
  * An tool to calculate stats about an interval sequence database (as used by

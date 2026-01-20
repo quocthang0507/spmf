@@ -1,10 +1,10 @@
 package ca.pfv.spmf.test;
 
+import ca.pfv.spmf.gui.viewers.transactionviewer.TransactionDatabaseViewer;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-
-import ca.pfv.spmf.gui.viewers.transactionviewer.TransactionDatabaseViewer;
 /*
  * Copyright (c) 2024 Philippe Fournier-Viger
  *

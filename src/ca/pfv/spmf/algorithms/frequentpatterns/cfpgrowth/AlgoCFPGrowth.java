@@ -16,17 +16,6 @@ package ca.pfv.spmf.algorithms.frequentpatterns.cfpgrowth;
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Map.Entry;
-
 import ca.pfv.spmf.datastructures.collections.comparators.ComparatorInt;
 import ca.pfv.spmf.datastructures.collections.list.ArrayListInt;
 import ca.pfv.spmf.datastructures.collections.list.ArrayListObject;
@@ -34,11 +23,17 @@ import ca.pfv.spmf.datastructures.collections.list.ListInt;
 import ca.pfv.spmf.datastructures.collections.list.ListObject;
 import ca.pfv.spmf.datastructures.collections.map.LMapIntToInt;
 import ca.pfv.spmf.datastructures.collections.map.MapIntToInt;
-import ca.pfv.spmf.datastructures.collections.map.MapIntToInt.MapEntryIntToInt;
 import ca.pfv.spmf.datastructures.collections.map.MapIntToInt.EntryIterator;
+import ca.pfv.spmf.datastructures.collections.map.MapIntToInt.MapEntryIntToInt;
 import ca.pfv.spmf.patterns.itemset_array_integers_with_count.Itemset;
 import ca.pfv.spmf.patterns.itemset_array_integers_with_count.Itemsets;
 import ca.pfv.spmf.tools.MemoryLogger;
+
+import java.io.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
 
 /**
  * This is an implementation of the CFPGrowth++ algorithm. CFPGrowth++ was

@@ -1,11 +1,11 @@
 package ca.pfv.spmf.test;
 
+import ca.pfv.spmf.algorithms.frequentpatterns.rpgrowth.AlgoRPGrowth;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-
-import ca.pfv.spmf.algorithms.frequentpatterns.rpgrowth.AlgoRPGrowth;
 
 /**
  * Example of how to use RPGrowth from source code and save to file.

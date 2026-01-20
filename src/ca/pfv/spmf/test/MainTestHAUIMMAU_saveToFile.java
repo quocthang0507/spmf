@@ -17,13 +17,13 @@ package ca.pfv.spmf.test;
  */
 
 
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.net.URL;
-
 import ca.pfv.spmf.algorithms.frequentpatterns.haui_mmau.AlgoHAUIMMAU;
 import ca.pfv.spmf.algorithms.frequentpatterns.haui_mmau.ItemsetsTP;
 import ca.pfv.spmf.algorithms.frequentpatterns.haui_mmau.UtilityTransactionDatabaseTP;
+
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URL;
 
 /**
  * Example of how to use the HAUIMMAU Algorithm in source code.

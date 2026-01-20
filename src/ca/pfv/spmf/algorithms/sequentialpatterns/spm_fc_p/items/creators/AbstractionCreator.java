@@ -1,16 +1,16 @@
 package ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_p.items.creators;
 
-import java.util.BitSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
 import ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_p.items.Item;
 import ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_p.items.Pair;
 import ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_p.items.PseudoSequence;
 import ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_p.items.Sequence;
 import ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_p.items.abstractions.Abstraction_Generic;
 import ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_p.items.patterns.Pattern;
+
+import java.util.BitSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Abstract class that is thought to make it possible the creation of any kind

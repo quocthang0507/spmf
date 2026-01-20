@@ -1,12 +1,12 @@
 package ca.pfv.spmf.algorithms.timeseries.sax;
 
+import ca.pfv.spmf.algorithms.timeseries.TimeSeries;
+import ca.pfv.spmf.algorithms.timeseries.reader_writer.AlgoTimeSeriesReader;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.util.List;
-
-import ca.pfv.spmf.algorithms.timeseries.TimeSeries;
-import ca.pfv.spmf.algorithms.timeseries.reader_writer.AlgoTimeSeriesReader;
 
 /**
  * Example of how to use SAX algorithm for converting a time series from the source code.

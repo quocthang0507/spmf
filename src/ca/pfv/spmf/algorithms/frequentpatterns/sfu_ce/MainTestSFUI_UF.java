@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
 
-import ca.pfv.spmf.algorithms.frequentpatterns.sfui_uf.AlgoSFUI_UF;
-
 /**
  * This example shows how
  * SFUI-UF:Mining Skyline Frequent-Utility Itemsets with Utility Filtering

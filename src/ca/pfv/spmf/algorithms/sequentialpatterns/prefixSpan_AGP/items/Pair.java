@@ -1,8 +1,8 @@
 package ca.pfv.spmf.algorithms.sequentialpatterns.prefixSpan_AGP.items;
 
-import java.util.BitSet;
-
 import ca.pfv.spmf.algorithms.sequentialpatterns.prefixSpan_AGP.items.abstractions.ItemAbstractionPair;
+
+import java.util.BitSet;
 
 /**
  * This class is used by PrefixSpan and it is based on SPMF original PrefixSpan

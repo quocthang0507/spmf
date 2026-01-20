@@ -16,9 +16,9 @@ package ca.pfv.spmf.patterns.itemset_array_integers_with_tids_bitset;
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import java.util.BitSet;
-
 import ca.pfv.spmf.patterns.AbstractOrderedItemset;
+
+import java.util.BitSet;
 
 /**
  * This class represents an itemset (a set of items) where the itemset is an array of integers

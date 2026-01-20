@@ -35,6 +35,7 @@ public class UtilityInterval {
      */
     ArrayList<Interval> intervalSet = null;
     private long currentMaxMin = 0;
+
     /**
      * Constructor
      */

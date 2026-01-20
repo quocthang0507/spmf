@@ -1,12 +1,12 @@
 package ca.pfv.spmf.algorithms.frequentpatterns.opusminer;
 
+import ca.pfv.spmf.tools.MemoryLogger;
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.PriorityQueue;
-
-import ca.pfv.spmf.tools.MemoryLogger;
 
 /**
  * An implementation of the Opus-Miner algorithm proposed in : </br>

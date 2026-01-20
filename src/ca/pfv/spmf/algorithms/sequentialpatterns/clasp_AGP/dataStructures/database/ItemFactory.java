@@ -1,8 +1,8 @@
 package ca.pfv.spmf.algorithms.sequentialpatterns.clasp_AGP.dataStructures.database;
 
-import java.util.HashMap;
-
 import ca.pfv.spmf.algorithms.sequentialpatterns.clasp_AGP.dataStructures.Item;
+
+import java.util.HashMap;
 
 /**
  * Implementation of a pool of items.

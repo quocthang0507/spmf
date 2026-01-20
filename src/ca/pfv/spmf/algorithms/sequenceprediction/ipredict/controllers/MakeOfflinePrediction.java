@@ -1,14 +1,14 @@
 package ca.pfv.spmf.algorithms.sequenceprediction.ipredict.controllers;
 
+import ca.pfv.spmf.algorithms.sequenceprediction.ipredict.database.Sequence;
+import ca.pfv.spmf.algorithms.sequenceprediction.ipredict.predictor.Markov.MarkovAllKPredictor;
+import ca.pfv.spmf.algorithms.sequenceprediction.ipredict.predictor.Predictor;
+import ca.pfv.spmf.algorithms.sequenceprediction.ipredict.predictor.profile.DefaultProfile;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.Scanner;
-
-import ca.pfv.spmf.algorithms.sequenceprediction.ipredict.database.Sequence;
-import ca.pfv.spmf.algorithms.sequenceprediction.ipredict.predictor.Predictor;
-import ca.pfv.spmf.algorithms.sequenceprediction.ipredict.predictor.Markov.MarkovAllKPredictor;
-import ca.pfv.spmf.algorithms.sequenceprediction.ipredict.predictor.profile.DefaultProfile;
 
 /**
  * This controller loads a trained model from disk (see SerializePredictor.java)

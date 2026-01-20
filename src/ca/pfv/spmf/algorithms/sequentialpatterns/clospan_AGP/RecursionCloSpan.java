@@ -1,16 +1,5 @@
 package ca.pfv.spmf.algorithms.sequentialpatterns.clospan_AGP;
 
-import java.util.AbstractMap;
-import java.util.ArrayList;
-import java.util.BitSet;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
-
 import ca.pfv.spmf.algorithms.sequentialpatterns.clospan_AGP.items.Item;
 import ca.pfv.spmf.algorithms.sequentialpatterns.clospan_AGP.items.Pair;
 import ca.pfv.spmf.algorithms.sequentialpatterns.clospan_AGP.items.PseudoSequence;
@@ -23,6 +12,9 @@ import ca.pfv.spmf.algorithms.sequentialpatterns.clospan_AGP.items.patterns.Patt
 import ca.pfv.spmf.algorithms.sequentialpatterns.clospan_AGP.items.trie.Trie;
 import ca.pfv.spmf.algorithms.sequentialpatterns.clospan_AGP.items.trie.TrieNode;
 import ca.pfv.spmf.algorithms.sequentialpatterns.clospan_AGP.savers.Saver;
+
+import java.util.*;
+import java.util.Map.Entry;
 
 /**
  * This is an the real execution of PrefixSpan algorithm.

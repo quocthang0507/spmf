@@ -1,9 +1,9 @@
 package ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP.idLists.creators;
 
-import java.util.List;
-
 import ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP.idLists.IDList;
 import ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP.idLists.IDListFatBitmap;
+
+import java.util.List;
 
 /**
  * Creator of a IdList based on bitmaps.

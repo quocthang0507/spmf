@@ -18,11 +18,11 @@ package ca.pfv.spmf.test;
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
 
+import ca.pfv.spmf.algorithms.frequentpatterns.fhmds.naive.AlgoFHMDS_Naive;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-
-import ca.pfv.spmf.algorithms.frequentpatterns.fhmds.naive.AlgoFHMDS_Naive;
 
 /**
  * This example shows how to use the FHM-DS-NAIVE algorithm using the source code of SPMF.

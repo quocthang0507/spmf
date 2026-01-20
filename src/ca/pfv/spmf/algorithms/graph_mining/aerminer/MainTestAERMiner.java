@@ -1,6 +1,5 @@
 package ca.pfv.spmf.algorithms.graph_mining.aerminer;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;

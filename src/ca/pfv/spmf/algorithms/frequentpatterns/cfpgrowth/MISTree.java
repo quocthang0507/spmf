@@ -16,13 +16,6 @@ package ca.pfv.spmf.algorithms.frequentpatterns.cfpgrowth;
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import ca.pfv.spmf.datastructures.collections.comparators.ComparatorInt;
 import ca.pfv.spmf.datastructures.collections.list.ArrayListInt;
 import ca.pfv.spmf.datastructures.collections.list.ListInt;

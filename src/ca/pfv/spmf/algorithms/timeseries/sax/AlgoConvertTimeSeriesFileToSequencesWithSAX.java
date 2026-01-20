@@ -17,13 +17,13 @@ package ca.pfv.spmf.algorithms.timeseries.sax;
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
 
+import ca.pfv.spmf.algorithms.timeseries.TimeSeries;
+import ca.pfv.spmf.tools.MemoryLogger;
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
-
-import ca.pfv.spmf.algorithms.timeseries.TimeSeries;
-import ca.pfv.spmf.tools.MemoryLogger;
 
 /**
  * This class reads a time series file and convert it to a sequence of symbols using the SAX algorithm.
@@ -110,7 +110,7 @@ public class AlgoConvertTimeSeriesFileToSequencesWithSAX {
 //			for(TimeSeries timeSeries : multipleTimeSeries){
 //				// print the time series number
 //				System.out.println(System.lineSeparator() + "--- Reading time series #" + (timeSeriesCount + 1) + " ---");
-////			}
+////            }
 //		}
 
         if (DEBUG_MODE) {

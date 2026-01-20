@@ -1,19 +1,11 @@
 package ca.pfv.spmf.algorithms.clustering.text_clusterer;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
-
 import ca.pfv.spmf.tools.MemoryLogger;
 import ca.pfv.spmf.tools.textprocessing.PorterStemmer;
 import ca.pfv.spmf.tools.textprocessing.StopWordAnalyzer;
+
+import java.io.*;
+import java.util.*;
 
 /* This file is copyright (c) 2014-2015 Sabarish Raghu
  *

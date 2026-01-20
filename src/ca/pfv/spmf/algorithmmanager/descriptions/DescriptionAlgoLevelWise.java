@@ -1,11 +1,11 @@
 package ca.pfv.spmf.algorithmmanager.descriptions;
 
-import java.io.IOException;
-
 import ca.pfv.spmf.algorithmmanager.AlgorithmType;
 import ca.pfv.spmf.algorithmmanager.DescriptionOfAlgorithm;
 import ca.pfv.spmf.algorithmmanager.DescriptionOfParameter;
 import ca.pfv.spmf.algorithms.frequentpatterns.levelwise.AlgoLevelWise;
+
+import java.io.IOException;
 /* This is an implementation of the LevelWise algorithm.
  *
  * Copyright (c) 2018  Wu Cheng-Wei, Huang Jian-Tao

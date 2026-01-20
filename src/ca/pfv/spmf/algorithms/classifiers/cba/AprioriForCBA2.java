@@ -18,16 +18,11 @@
  */
 package ca.pfv.spmf.algorithms.classifiers.cba;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-
 import ca.pfv.spmf.algorithms.classifiers.data.Dataset;
 import ca.pfv.spmf.algorithms.classifiers.data.Instance;
+
+import java.util.*;
+import java.util.Map.Entry;
 
 /**
  * Implementation of Apriori for CBA 2. It is adapted to output rules directly
@@ -277,7 +272,7 @@ public class AprioriForCBA2 {
      * @param posRemoved the position of an item that should be ignored from
      *                   "itemset2" to perform the comparison.
      * @return 0 if they are the same, 1 if itemset is larger according to lexical
-     *         order, -1 if smaller.
+     * order, -1 if smaller.
      */
     int sameAs(List<Short> itemset1, List<Short> itemsets2, int posRemoved) {
         // a variable to know which item from candidate we are currently searching

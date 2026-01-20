@@ -1,21 +1,10 @@
 package ca.pfv.spmf.algorithms.sequentialpatterns.mapd_owsp;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Queue;
-import java.util.TreeMap;
-
 import ca.pfv.spmf.tools.MemoryLogger;
+
+import java.io.*;
+import java.util.*;
+import java.util.Map.Entry;
 
 /* This file is copyright (c) 2018 by Youxi Wu et al.
  *

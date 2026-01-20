@@ -16,16 +16,8 @@ package ca.pfv.spmf.algorithms.episodes.tup.tup_combined;
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.PriorityQueue;
-import java.util.Queue;
+import java.io.*;
+import java.util.*;
 
 /**
  * An implementation of the TUP(Combined) algorithm for mining the top-k high utility episodes.

@@ -17,17 +17,18 @@
  */
 package ca.pfv.spmf.algorithms.classifiers.adt;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-
 import ca.pfv.spmf.algorithms.ArraysAlgos;
 import ca.pfv.spmf.algorithms.classifiers.data.Dataset;
 import ca.pfv.spmf.algorithms.classifiers.data.Instance;
 import ca.pfv.spmf.algorithms.classifiers.general.Rule;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Class that represents a rule of the ADT algorithm
+ *
  * @see AlgoADT
  */
 public class RuleADT extends Rule implements Serializable {

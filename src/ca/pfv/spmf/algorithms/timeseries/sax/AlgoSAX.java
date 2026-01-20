@@ -18,13 +18,13 @@ package ca.pfv.spmf.algorithms.timeseries.sax;
  */
 
 
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.List;
-
 import ca.pfv.spmf.algorithms.timeseries.TimeSeries;
 import ca.pfv.spmf.algorithms.timeseries.paa.AlgoPiecewiseAggregateApproximation;
 import ca.pfv.spmf.tools.MemoryLogger;
+
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * An implementation of the SAX algorithm to convert a time series to a sequence of symbols.<br/><br/>

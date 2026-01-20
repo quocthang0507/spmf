@@ -1,11 +1,11 @@
 package ca.pfv.spmf.datastructures.triangularmatrix;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import ca.pfv.spmf.algorithms.frequentpatterns.charm.AlgoCharm_Bitset;
 import ca.pfv.spmf.algorithms.frequentpatterns.eclat.AlgoEclat;
 import ca.pfv.spmf.algorithms.frequentpatterns.eclat.AlgoEclat_Bitset;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /* This file is copyright (c) 2008-2013 Philippe Fournier-Viger
  *

@@ -1,25 +1,13 @@
 package ca.pfv.spmf.welwindow;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.UnsupportedEncodingException;
-import java.net.HttpURLConnection;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.net.URLConnection;
+import ca.pfv.spmf.algorithmmanager.DescriptionOfParameter;
+import ca.pfv.spmf.gui.preferences.PreferencesManager;
+
+import java.io.*;
+import java.net.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-
-import ca.pfv.spmf.algorithmmanager.DescriptionOfParameter;
-import ca.pfv.spmf.gui.preferences.PreferencesManager;
 
 /*
  * Copyright (c) 2008-2019 Philippe Fournier-Viger

@@ -1,24 +1,14 @@
 package ca.pfv.spmf.test;
 
-import java.util.ArrayList;
-import java.util.BitSet;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_p.items.Item;
-import ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_p.items.Pair;
-import ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_p.items.PseudoSequence;
-import ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_p.items.PseudoSequenceDatabase;
-import ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_p.items.SequenceDatabase;
+import ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_p.items.*;
 import ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_p.items.abstractions.Abstraction_Generic;
 import ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_p.items.abstractions.ItemAbstractionPair;
 import ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_p.items.creators.AbstractionCreator;
 import ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_p.items.creators.ItemAbstractionPairCreator;
 import ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_p.items.patterns.Pattern;
 import ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_p.savers.Saver;
+
+import java.util.*;
 
 /**
  * This is an the real execution of PrefixSpan algorithm. The main methods of

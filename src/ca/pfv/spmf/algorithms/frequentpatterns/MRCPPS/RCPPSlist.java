@@ -3,8 +3,6 @@ package ca.pfv.spmf.algorithms.frequentpatterns.MRCPPS;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.plaf.basic.BasicInternalFrameTitlePane.MaximizeAction;
-
 /*
  * This file is part of the SPMF DATA MINING SOFTWARE *
  * (http://www.philippe-fournier-viger.com/spmf).

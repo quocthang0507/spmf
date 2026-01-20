@@ -1,11 +1,11 @@
 package ca.pfv.spmf.test;
 
 
-import java.io.UnsupportedEncodingException;
-import java.net.URL;
-
 import ca.pfv.spmf.algorithms.frequentpatterns.tshoun.AlgoTSHoun;
 import ca.pfv.spmf.algorithms.frequentpatterns.tshoun.DatabaseWithPeriods;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URL;
 
 /**
  * Example of how to use the TS-Houn in source code, and save the output to a file.

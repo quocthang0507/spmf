@@ -16,10 +16,10 @@ package ca.pfv.spmf.algorithms.classifiers.decisiontree.id3;
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import java.io.Serializable;
-
 import ca.pfv.spmf.algorithms.classifiers.data.Instance;
 import ca.pfv.spmf.algorithms.classifiers.general.Classifier;
+
+import java.io.Serializable;
 
 /**
  * A classifier of type  ID3 (a decision tree)

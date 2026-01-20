@@ -5,13 +5,13 @@
  */
 package ca.pfv.spmf.test;
 
+import ca.pfv.spmf.algorithms.episodes.nonepi.AlgoNONEPI;
+import ca.pfv.spmf.algorithms.episodes.nonepi.Episode;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.util.List;
-
-import ca.pfv.spmf.algorithms.episodes.nonepi.AlgoNONEPI;
-import ca.pfv.spmf.algorithms.episodes.nonepi.Episode;
 
 /**
  * Example of how to run the NONEPI algorithm from the source code.

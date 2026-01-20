@@ -1,7 +1,5 @@
 package ca.pfv.spmf.algorithmmanager.descriptions;
 
-import java.io.IOException;
-
 import ca.pfv.spmf.algorithmmanager.AlgorithmType;
 import ca.pfv.spmf.algorithmmanager.DescriptionOfAlgorithm;
 import ca.pfv.spmf.algorithmmanager.DescriptionOfParameter;
@@ -9,6 +7,8 @@ import ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_p.AlgoSPM_FC_P;
 import ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_p.items.SequenceDatabase;
 import ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_p.items.creators.AbstractionCreator;
 import ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_p.items.creators.AbstractionCreator_Qualitative;
+
+import java.io.IOException;
 
 /**
  * This class describes the SPM-FC-P algorithm parameters. It is designed to be

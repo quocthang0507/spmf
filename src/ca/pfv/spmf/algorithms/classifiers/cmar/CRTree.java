@@ -18,12 +18,12 @@
  */
 package ca.pfv.spmf.algorithms.classifiers.cmar;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import ca.pfv.spmf.algorithms.classifiers.data.Dataset;
 import ca.pfv.spmf.algorithms.classifiers.data.Instance;
 import ca.pfv.spmf.algorithms.classifiers.general.Rule;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Class representing a CR-Tree. This is a data structure used by the CMAR

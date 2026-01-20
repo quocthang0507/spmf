@@ -17,6 +17,11 @@ package ca.pfv.spmf.algorithms.associationrules.IGB;
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
 
+import ca.pfv.spmf.algorithms.frequentpatterns.zart.TZTableClosed;
+import ca.pfv.spmf.patterns.itemset_array_integers_with_count.Itemset;
+import ca.pfv.spmf.patterns.rule_itemset_array_integer_with_count.Rule;
+import ca.pfv.spmf.patterns.rule_itemset_array_integer_with_count.Rules;
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -24,11 +29,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
-import ca.pfv.spmf.algorithms.frequentpatterns.zart.TZTableClosed;
-import ca.pfv.spmf.patterns.itemset_array_integers_with_count.Itemset;
-import ca.pfv.spmf.patterns.rule_itemset_array_integer_with_count.Rule;
-import ca.pfv.spmf.patterns.rule_itemset_array_integer_with_count.Rules;
 
 /**
  * This is an implementation of the GEN-IGB-FERMES algorithm for mining

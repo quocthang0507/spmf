@@ -1,12 +1,10 @@
 package ca.pfv.spmf.algorithms.frequentpatterns.HUIM_ACO;
 
+import ca.pfv.spmf.tools.MemoryLogger;
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.net.URL;
-
-import ca.pfv.spmf.tools.MemoryLogger;
 
 /*
  * Copyright (c) 2020 Wei Song, Jiakai Nan

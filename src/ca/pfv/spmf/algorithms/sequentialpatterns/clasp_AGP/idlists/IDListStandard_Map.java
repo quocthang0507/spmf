@@ -1,14 +1,9 @@
 package ca.pfv.spmf.algorithms.sequentialpatterns.clasp_AGP.idlists;
 
-import java.util.ArrayList;
-import java.util.BitSet;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
 import ca.pfv.spmf.algorithms.sequentialpatterns.clasp_AGP.dataStructures.patterns.Pattern;
 import ca.pfv.spmf.algorithms.sequentialpatterns.clasp_AGP.tries.Trie;
+
+import java.util.*;
 
 /**
  * Inspired in SPMF. Implementation of a Idlist for ClaSP. This IdList is based

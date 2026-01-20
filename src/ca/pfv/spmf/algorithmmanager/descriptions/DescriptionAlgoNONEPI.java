@@ -1,14 +1,14 @@
 package ca.pfv.spmf.algorithmmanager.descriptions;
 
-import java.io.IOException;
-import java.util.List;
-
 import ca.pfv.spmf.algorithmmanager.AlgorithmType;
 import ca.pfv.spmf.algorithmmanager.DescriptionOfAlgorithm;
 import ca.pfv.spmf.algorithmmanager.DescriptionOfParameter;
 import ca.pfv.spmf.algorithms.episodes.emma.AlgoEMMA;
 import ca.pfv.spmf.algorithms.episodes.nonepi.AlgoNONEPI;
 import ca.pfv.spmf.algorithms.episodes.nonepi.Episode;
+
+import java.io.IOException;
+import java.util.List;
 
 /**
  * This class describes the EMMA algorithm parameters. It is designed to be used

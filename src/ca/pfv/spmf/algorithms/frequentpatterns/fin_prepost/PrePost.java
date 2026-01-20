@@ -1,17 +1,13 @@
 package ca.pfv.spmf.algorithms.frequentpatterns.fin_prepost;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import ca.pfv.spmf.tools.MemoryLogger;
+
+import java.io.*;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
-
-import ca.pfv.spmf.tools.MemoryLogger;
 
 /*
  * Copyright (c) 2008-2015 ZHIHONG DENG

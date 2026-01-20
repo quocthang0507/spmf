@@ -1,11 +1,11 @@
 package ca.pfv.spmf.test;
 
+import ca.pfv.spmf.algorithms.frequentpatterns.DFIGrowth.AlgoDFIGrowth;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-
-import ca.pfv.spmf.algorithms.frequentpatterns.DFIGrowth.AlgoDFIGrowth;
 /* This is an implementation of the DFI-Growth algorithm.
  *
  * Copyright (c) 2018  Wu Cheng-Wei, Huang Jian-Tao

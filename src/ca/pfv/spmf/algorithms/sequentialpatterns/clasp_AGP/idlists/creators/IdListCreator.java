@@ -1,12 +1,12 @@
 package ca.pfv.spmf.algorithms.sequentialpatterns.clasp_AGP.idlists.creators;
 
-import java.util.List;
-import java.util.Map;
-
 import ca.pfv.spmf.algorithms.sequentialpatterns.clasp_AGP.dataStructures.Item;
 import ca.pfv.spmf.algorithms.sequentialpatterns.clasp_AGP.idlists.IDList;
 import ca.pfv.spmf.algorithms.sequentialpatterns.clasp_AGP.idlists.Position;
 import ca.pfv.spmf.algorithms.sequentialpatterns.clasp_AGP.tries.TrieNode;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * Interface for a IdList Creator. If we are interested in adding any other kind

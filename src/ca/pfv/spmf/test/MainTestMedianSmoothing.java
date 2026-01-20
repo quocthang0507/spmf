@@ -1,11 +1,11 @@
 package ca.pfv.spmf.test;
 
+import ca.pfv.spmf.algorithms.timeseries.TimeSeries;
+import ca.pfv.spmf.algorithms.timeseries.mediansmoothing.AlgoMedianSmoothing;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-
-import ca.pfv.spmf.algorithms.timeseries.TimeSeries;
-import ca.pfv.spmf.algorithms.timeseries.mediansmoothing.AlgoMedianSmoothing;
 
 /**
  * Example of how to calculate the median smoothing of a time series, using

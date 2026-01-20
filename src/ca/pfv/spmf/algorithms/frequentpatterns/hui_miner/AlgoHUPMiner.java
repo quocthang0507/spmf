@@ -17,21 +17,10 @@ package ca.pfv.spmf.algorithms.frequentpatterns.hui_miner;
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import ca.pfv.spmf.tools.MemoryLogger;
+
+import java.io.*;
+import java.util.*;
 
 /**
  * This is an implementation of the "HUP-MINER Algorithm" for High-Utility Itemsets Mining

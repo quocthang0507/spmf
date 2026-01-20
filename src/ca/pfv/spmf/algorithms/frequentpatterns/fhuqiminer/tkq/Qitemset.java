@@ -17,10 +17,10 @@
  */
 package ca.pfv.spmf.algorithms.frequentpatterns.fhuqiminer.tkq;
 
+import ca.pfv.spmf.algorithms.frequentpatterns.fhuqiminer.Qitem;
+
 import java.util.ArrayList;
 import java.util.Arrays;
-
-import ca.pfv.spmf.algorithms.frequentpatterns.fhuqiminer.Qitem;
 
 /**
  * A Q-itemset as used by the TKQ algorithm

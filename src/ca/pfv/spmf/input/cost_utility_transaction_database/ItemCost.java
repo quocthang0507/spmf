@@ -5,6 +5,7 @@ public class ItemCost {
 
     public int item;
     public int cost;
+
     public ItemCost(int item, int cost) {
         this.item = item;
         this.cost = cost;

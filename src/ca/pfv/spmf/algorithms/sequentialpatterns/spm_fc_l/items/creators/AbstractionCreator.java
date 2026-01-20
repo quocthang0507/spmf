@@ -5,14 +5,14 @@
 package ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_l.items.creators;
 
 
-import java.util.List;
-import java.util.Map;
-
 import ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_l.items.CandidateInSequenceFinder;
 import ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_l.items.Item;
 import ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_l.items.Sequence;
 import ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_l.items.abstractions.Abstraction_Generic;
 import ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_l.items.patterns.Pattern;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * Abstract class that is thought to make it possible the creation of any kind

@@ -1,10 +1,10 @@
 package ca.pfv.spmf.tools.dataset_stats;
 
-import java.io.IOException;
-import java.util.List;
-
 import ca.pfv.spmf.algorithms.timeseries.TimeSeries;
 import ca.pfv.spmf.algorithms.timeseries.reader_writer.AlgoTimeSeriesReader;
+
+import java.io.IOException;
+import java.util.List;
 
 /**
  * This class reads time series data and calculates statistics

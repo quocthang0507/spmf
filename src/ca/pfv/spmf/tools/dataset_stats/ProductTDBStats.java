@@ -1,12 +1,12 @@
 package ca.pfv.spmf.tools.dataset_stats;
 
+import ca.pfv.spmf.input.product_transaction_database.ProductTransaction;
+import ca.pfv.spmf.input.product_transaction_database.ProductTransactionDatabase;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
-
-import ca.pfv.spmf.input.product_transaction_database.ProductTransaction;
-import ca.pfv.spmf.input.product_transaction_database.ProductTransactionDatabase;
 /* This file is copyright (c) 2008-2012 Philippe Fournier-Viger
  *
  * This file is part of the SPMF DATA MINING SOFTWARE

@@ -1,12 +1,12 @@
 package ca.pfv.spmf.algorithms.frequentpatterns.tshoun;
 
 
-import java.util.ArrayList;
-import java.util.List;
-
 import ca.pfv.spmf.algorithms.frequentpatterns.charm.AlgoCharm_Bitset;
 import ca.pfv.spmf.datastructures.triangularmatrix.TriangularMatrix;
 import ca.pfv.spmf.input.transaction_database_list_integers.TransactionDatabase;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This class represents an HashTable for storing itemsets found by the Charm

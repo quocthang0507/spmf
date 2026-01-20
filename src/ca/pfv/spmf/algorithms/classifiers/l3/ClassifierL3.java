@@ -18,16 +18,12 @@
  */
 package ca.pfv.spmf.algorithms.classifiers.l3;
 
-import java.util.ArrayList;
-import java.util.BitSet;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-
 import ca.pfv.spmf.algorithms.classifiers.data.Dataset;
 import ca.pfv.spmf.algorithms.classifiers.data.Instance;
 import ca.pfv.spmf.algorithms.classifiers.general.Rule;
 import ca.pfv.spmf.algorithms.classifiers.general.RuleClassifier;
+
+import java.util.*;
 
 /**
  * A rule classifier created by the L3 algorithm

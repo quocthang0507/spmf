@@ -18,10 +18,10 @@
  */
 package ca.pfv.spmf.algorithms.classifiers.mac;
 
+import ca.pfv.spmf.algorithms.classifiers.general.Rule;
+
 import java.io.Serializable;
 import java.util.Set;
-
-import ca.pfv.spmf.algorithms.classifiers.general.Rule;
 
 /**
  * A classification rule as defined by the MAC algorithm.

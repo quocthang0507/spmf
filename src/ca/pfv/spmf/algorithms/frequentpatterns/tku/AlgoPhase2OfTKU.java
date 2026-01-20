@@ -30,15 +30,10 @@ package ca.pfv.spmf.algorithms.frequentpatterns.tku;
  * @version 1.00 2009/12/9
  */
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
-
 import ca.pfv.spmf.datastructures.redblacktree.RedBlackTree;
+
+import java.io.*;
+import java.util.ArrayList;
 
 /**
  * This is an implementation of the Phase 2 of the TKU algorithm
@@ -47,21 +42,35 @@ import ca.pfv.spmf.datastructures.redblacktree.RedBlackTree;
  */
 class AlgoPhase2OfTKU {
 
-    /** delimiter used in some files  by TKU */
+    /**
+     * delimiter used in some files  by TKU
+     */
     private final String delimiter = ":";
-    /** the minimum utility threshold */
+    /**
+     * the minimum utility threshold
+     */
     private int minUtility;
     private int theCurrentK;
-    /** Number of transactions */
+    /**
+     * Number of transactions
+     */
     private int numberOfTransactions;
-    /** #CIs checked by Phase II **/
+    /**
+     * #CIs checked by Phase II
+     **/
     private String inputFilePath;
-    /** The path to a file of sorted candidates */
+    /**
+     * The path to a file of sorted candidates
+     */
     private String sortedCandidatePath;
     private String temporaryFilePathWHUIs = "HUI.txt";
-    /** the output file path */
+    /**
+     * the output file path
+     */
     private String outputTopKHUIsFilePath;
-    /** The number of top-k HUIs found */
+    /**
+     * The number of top-k HUIs found
+     */
     private int numTopKHUI;
 
     static void readDatabase(ArrayList<Integer> HDB[], ArrayList<Integer> BNF[], int num_trans,

@@ -1,8 +1,8 @@
 package ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP.idLists.creators;
 
-import java.util.List;
-
 import ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP.idLists.IDList;
+
+import java.util.List;
 
 /**
  * Interface for a IdList Creator. If we are interested in adding any other kind

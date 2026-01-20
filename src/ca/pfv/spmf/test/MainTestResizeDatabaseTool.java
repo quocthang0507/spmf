@@ -1,9 +1,9 @@
 package ca.pfv.spmf.test;
 
+import ca.pfv.spmf.tools.other_dataset_tools.ResizeDatabaseTool;
+
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-
-import ca.pfv.spmf.tools.other_dataset_tools.ResizeDatabaseTool;
 
 /**
  * Class file that shows how to resize a database

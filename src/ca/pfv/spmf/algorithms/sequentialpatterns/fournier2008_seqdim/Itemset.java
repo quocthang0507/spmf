@@ -16,12 +16,12 @@ package ca.pfv.spmf.algorithms.sequentialpatterns.fournier2008_seqdim;
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
 
+import ca.pfv.spmf.algorithms.sequentialpatterns.fournier2008_seqdim.multidimensionalsequentialpatterns.AlgoSeqDim;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
-import ca.pfv.spmf.algorithms.sequentialpatterns.fournier2008_seqdim.multidimensionalsequentialpatterns.AlgoSeqDim;
 
 /**
  * This class represents an itemset as used by the SeqDim and Fournier-Viger 2008 algorithm.

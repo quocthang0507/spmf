@@ -1,11 +1,11 @@
 package ca.pfv.spmf.test;
 
+import ca.pfv.spmf.algorithms.timeseries.TimeSeries;
+import ca.pfv.spmf.algorithms.timeseries.normalization.AlgoMinMaxNormalization;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-
-import ca.pfv.spmf.algorithms.timeseries.TimeSeries;
-import ca.pfv.spmf.algorithms.timeseries.normalization.AlgoMinMaxNormalization;
 
 /**
  * Example of how to calculate the min max normalization of a time series, using

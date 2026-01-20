@@ -1,12 +1,11 @@
 package ca.pfv.spmf.algorithms.frequentpatterns.efim;
 
+import ca.pfv.spmf.datastructures.collections.list.ArrayListObject;
+import ca.pfv.spmf.datastructures.collections.list.ListObject;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.List;
-
-import ca.pfv.spmf.datastructures.collections.list.ArrayListObject;
-import ca.pfv.spmf.datastructures.collections.list.ListObject;
 /* This file is copyright (c) 2012-2015 Souleymane Zida, Philippe Fournier-Viger, Alan Souza
  *
  * This file is part of the SPMF DATA MINING SOFTWARE

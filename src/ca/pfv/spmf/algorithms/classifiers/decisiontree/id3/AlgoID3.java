@@ -16,16 +16,16 @@ package ca.pfv.spmf.algorithms.classifiers.decisiontree.id3;
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
 
+import ca.pfv.spmf.algorithms.classifiers.data.Dataset;
+import ca.pfv.spmf.algorithms.classifiers.data.Instance;
+import ca.pfv.spmf.algorithms.classifiers.general.ClassificationAlgorithm;
+import ca.pfv.spmf.algorithms.classifiers.general.Classifier;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-
-import ca.pfv.spmf.algorithms.classifiers.data.Dataset;
-import ca.pfv.spmf.algorithms.classifiers.data.Instance;
-import ca.pfv.spmf.algorithms.classifiers.general.ClassificationAlgorithm;
-import ca.pfv.spmf.algorithms.classifiers.general.Classifier;
 
 /**
  * This is an implementation of the ID3 algorithm for creating a decision tree.

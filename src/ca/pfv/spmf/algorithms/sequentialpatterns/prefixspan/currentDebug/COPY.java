@@ -1,18 +1,13 @@
 package ca.pfv.spmf.algorithms.sequentialpatterns.prefixspan.currentDebug;
 
+import ca.pfv.spmf.patterns.itemset_list_integers_without_support.Itemset;
+import ca.pfv.spmf.tools.MemoryLogger;
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.Map.Entry;
-import java.util.Set;
-
-import ca.pfv.spmf.patterns.itemset_list_integers_without_support.Itemset;
-import ca.pfv.spmf.tools.MemoryLogger;
 
 
 /*** 

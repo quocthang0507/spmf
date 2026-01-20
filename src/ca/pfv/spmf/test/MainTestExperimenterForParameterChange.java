@@ -1,9 +1,9 @@
 package ca.pfv.spmf.test;
 
+import ca.pfv.spmf.experiments.oneparametervaried.ExperimenterForParameterChange;
+
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-
-import ca.pfv.spmf.experiments.oneparametervaried.ExperimenterForParameterChange;
 
 /**
  * This is a class to run experiments where multiple algorithms are compared

@@ -19,10 +19,10 @@
  */
 package ca.pfv.spmf.algorithms.classifiers.adt;
 
+import ca.pfv.spmf.algorithms.ArraysAlgos;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import ca.pfv.spmf.algorithms.ArraysAlgos;
 
 /**
  * Class used to represent each node forming an ADT tree

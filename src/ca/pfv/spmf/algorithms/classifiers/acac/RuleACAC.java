@@ -19,14 +19,14 @@
  */
 package ca.pfv.spmf.algorithms.classifiers.acac;
 
-import java.io.Serializable;
-import java.util.HashMap;
-import java.util.Map;
-
 import ca.pfv.spmf.algorithms.ArraysAlgos;
 import ca.pfv.spmf.algorithms.classifiers.data.Dataset;
 import ca.pfv.spmf.algorithms.classifiers.data.Instance;
 import ca.pfv.spmf.algorithms.classifiers.general.Rule;
+
+import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * This is a rule for the ACAC classifier. It extends the basic Rule class to

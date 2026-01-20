@@ -1,9 +1,8 @@
 package ca.pfv.spmf.experimental.charsetdialog;
 
+import javax.swing.*;
 import java.nio.charset.Charset;
 import java.util.Set;
-
-import javax.swing.JOptionPane;
 
 public class CharsetChooserDialog {
 

@@ -18,9 +18,9 @@
  */
 package ca.pfv.spmf.algorithms.classifiers.l3;
 
-import java.io.Serializable;
-
 import ca.pfv.spmf.algorithms.classifiers.general.Rule;
+
+import java.io.Serializable;
 
 /**
  * A rule of the L3 classifier.

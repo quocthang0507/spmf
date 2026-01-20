@@ -16,13 +16,13 @@ package ca.pfv.spmf.tools.dataset_generator;
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
 
+import ca.pfv.spmf.input.sequence_database_array_integers.Sequence;
+import ca.pfv.spmf.input.sequence_database_array_integers.SequenceDatabase;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-
-import ca.pfv.spmf.input.sequence_database_array_integers.Sequence;
-import ca.pfv.spmf.input.sequence_database_array_integers.SequenceDatabase;
 
 /**
  * This class is to read a sequence database in SPMF format, add consecutive timestamps

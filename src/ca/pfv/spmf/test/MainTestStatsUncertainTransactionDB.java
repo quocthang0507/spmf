@@ -1,10 +1,10 @@
 package ca.pfv.spmf.test;
 
+import ca.pfv.spmf.tools.dataset_stats.UncertainTransactionDBStatsGenerator;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-
-import ca.pfv.spmf.tools.dataset_stats.UncertainTransactionDBStatsGenerator;
 
 /**
  * Example of how to use the Uncertain Transaction Database viewer algorithm from the

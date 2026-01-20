@@ -16,13 +16,13 @@ package ca.pfv.spmf.tools.dataset_stats;
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
 
+import ca.pfv.spmf.input.transaction_database_list_integers.TransactionDatabase;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
-
-import ca.pfv.spmf.input.transaction_database_list_integers.TransactionDatabase;
 
 /**
  * This class read a transaction database and calculates statistics

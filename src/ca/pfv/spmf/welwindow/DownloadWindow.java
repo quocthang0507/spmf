@@ -1,25 +1,15 @@
 package ca.pfv.spmf.welwindow;
 
+import ca.pfv.spmf.gui.preferences.PreferencesManager;
+
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
-
-import javax.swing.GroupLayout;
-import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JProgressBar;
-import javax.swing.LayoutStyle;
-import javax.swing.SwingUtilities;
-
-import ca.pfv.spmf.gui.preferences.PreferencesManager;
 
 /*
  * Copyright (c) 2008-2019 Philippe Fournier-Viger

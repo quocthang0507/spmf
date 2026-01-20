@@ -1,13 +1,13 @@
 package ca.pfv.spmf.test;
 
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.net.URL;
-
 import ca.pfv.spmf.algorithms.associationrules.MNRRules.AlgoMNRRules;
 import ca.pfv.spmf.algorithms.frequentpatterns.zart.AlgoZart;
 import ca.pfv.spmf.algorithms.frequentpatterns.zart.TZTableClosed;
 import ca.pfv.spmf.input.transaction_database_list_integers.TransactionDatabase;
+
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URL;
 
 /**
  * Example of how to generate minimal non redundant

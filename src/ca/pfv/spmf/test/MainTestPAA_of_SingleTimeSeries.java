@@ -1,11 +1,11 @@
 package ca.pfv.spmf.test;
 
+import ca.pfv.spmf.algorithms.timeseries.TimeSeries;
+import ca.pfv.spmf.algorithms.timeseries.paa.AlgoPiecewiseAggregateApproximation;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-
-import ca.pfv.spmf.algorithms.timeseries.TimeSeries;
-import ca.pfv.spmf.algorithms.timeseries.paa.AlgoPiecewiseAggregateApproximation;
 
 /**
  * Example of how to calculate the Piecewise Aggregate Approximation of a time series, using

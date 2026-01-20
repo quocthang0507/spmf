@@ -1,11 +1,11 @@
 package ca.pfv.spmf.algorithmmanager.descriptions;
 
-import java.io.IOException;
-
 import ca.pfv.spmf.algorithmmanager.AlgorithmType;
 import ca.pfv.spmf.algorithmmanager.DescriptionOfAlgorithm;
 import ca.pfv.spmf.algorithmmanager.DescriptionOfParameter;
 import ca.pfv.spmf.tools.other_dataset_tools.FixSequenceDatabaseTool;
+
+import java.io.IOException;
 
 /**
  * This class describes the algorithm to fix a sequence database. It is designed to be used by the graphical and command line interface.

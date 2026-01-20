@@ -1,22 +1,15 @@
 package ca.pfv.spmf.gui.developerswindow;
 
-import java.awt.BorderLayout;
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.UnsupportedLookAndFeelException;
-
 import ca.pfv.spmf.gui.Main;
 import ca.pfv.spmf.gui.MainWindow;
 import ca.pfv.spmf.gui.algorithmexplorer.AlgorithmExplorer;
 import ca.pfv.spmf.gui.preferences.PreferencesViewer;
 import ca.pfv.spmf.gui.web.WebpageAlgorithmDocViewer;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 /*
  * Copyright (c) 2022 Philippe Fournier-Viger
  *

@@ -18,10 +18,10 @@
  */
 package ca.pfv.spmf.algorithms.classifiers.mac;
 
-import java.util.List;
-
 import ca.pfv.spmf.algorithms.classifiers.data.Dataset;
 import ca.pfv.spmf.algorithms.classifiers.general.ClassificationAlgorithm;
+
+import java.util.List;
 
 /**
  * An implementation of the MAC algorithm for associative classification. It was proposed in this paper:

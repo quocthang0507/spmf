@@ -1,5 +1,9 @@
 package ca.pfv.spmf.algorithms.frequentpatterns.itemsettree;
 
+import ca.pfv.spmf.algorithms.ArraysAlgos;
+import ca.pfv.spmf.patterns.itemset_array_integers_with_count.Itemset;
+import ca.pfv.spmf.tools.MemoryLogger;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -8,10 +12,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
-
-import ca.pfv.spmf.algorithms.ArraysAlgos;
-import ca.pfv.spmf.patterns.itemset_array_integers_with_count.Itemset;
-import ca.pfv.spmf.tools.MemoryLogger;
 
 /**
  * This is the original implementation of the Memory Efficient Itemset-tree as

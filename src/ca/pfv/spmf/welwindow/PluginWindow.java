@@ -1,34 +1,19 @@
 package ca.pfv.spmf.welwindow;
 
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Desktop;
+import ca.pfv.spmf.gui.Main;
+import ca.pfv.spmf.gui.preferences.PreferencesManager;
+
+import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.swing.DefaultCellEditor;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JDialog;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.JTextArea;
-import javax.swing.ListSelectionModel;
-import javax.swing.UIManager;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableCellRenderer;
-
-import ca.pfv.spmf.gui.Main;
-import ca.pfv.spmf.gui.preferences.PreferencesManager;
 
 /*
  * Copyright (c) 2008-2019 Philippe Fournier-Viger

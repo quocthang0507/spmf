@@ -1,15 +1,14 @@
 package ca.pfv.spmf.datastructures.collections.automatic_test;
 
+import ca.pfv.spmf.datastructures.collections.map.AMapIntToLong;
+import ca.pfv.spmf.datastructures.collections.map.MapIntToLong;
+import ca.pfv.spmf.datastructures.collections.map.MapIntToLong.EntryIterator;
+import ca.pfv.spmf.datastructures.collections.map.MapIntToLong.MapEntryIntToLong;
+
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
-
-import ca.pfv.spmf.datastructures.collections.map.AMapIntToInt;
-import ca.pfv.spmf.datastructures.collections.map.AMapIntToLong;
-import ca.pfv.spmf.datastructures.collections.map.MapIntToLong;
-import ca.pfv.spmf.datastructures.collections.map.MapIntToLong.MapEntryIntToLong;
-import ca.pfv.spmf.datastructures.collections.map.MapIntToLong.EntryIterator;
 
 /*
  * Copyright (c) 2023 Philippe Fournier-Viger

@@ -1,11 +1,11 @@
 package ca.pfv.spmf.algorithmmanager.descriptions;
 
-import java.io.IOException;
-
 import ca.pfv.spmf.algorithmmanager.AlgorithmType;
 import ca.pfv.spmf.algorithmmanager.DescriptionOfAlgorithm;
 import ca.pfv.spmf.algorithmmanager.DescriptionOfParameter;
 import ca.pfv.spmf.algorithms.sequentialpatterns.spam.AlgoVMSP;
+
+import java.io.IOException;
 /* This file is copyright (c) 2008-2016 Philippe Fournier-Viger
  *
  * This file is part of the SPMF DATA MINING SOFTWARE

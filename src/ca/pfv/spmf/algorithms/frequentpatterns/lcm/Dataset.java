@@ -3,13 +3,7 @@ package ca.pfv.spmf.algorithms.frequentpatterns.lcm;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.regex.Pattern;
 /* This file is copyright (c) 2012-2014 Alan Souza
  *

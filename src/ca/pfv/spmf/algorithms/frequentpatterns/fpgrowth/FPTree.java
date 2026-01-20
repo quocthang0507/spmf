@@ -18,14 +18,9 @@ package ca.pfv.spmf.algorithms.frequentpatterns.fpgrowth;
  */
 
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import ca.pfv.spmf.patterns.itemset_array_integers_with_count.Itemset;
+
+import java.util.*;
 
 
 /**

@@ -18,12 +18,12 @@ package ca.pfv.spmf.algorithms.timeseries.mediansmoothing;
  */
 
 
-import java.io.IOException;
-import java.util.Arrays;
-
 import ca.pfv.spmf.algorithms.sort.Select;
 import ca.pfv.spmf.algorithms.timeseries.TimeSeries;
 import ca.pfv.spmf.tools.MemoryLogger;
+
+import java.io.IOException;
+import java.util.Arrays;
 
 /**
  * An algorithm to calculate the median smoothing of a time series.

@@ -1,14 +1,14 @@
 package ca.pfv.spmf.test;
 
+import ca.pfv.spmf.algorithms.frequentpatterns.hui_miner.AlgoCHUIMiner;
+import ca.pfv.spmf.algorithms.frequentpatterns.hui_miner.AlgoGHUIMINER;
+import ca.pfv.spmf.algorithms.frequentpatterns.hui_miner.Itemset;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.util.List;
 import java.util.Set;
-
-import ca.pfv.spmf.algorithms.frequentpatterns.hui_miner.AlgoCHUIMiner;
-import ca.pfv.spmf.algorithms.frequentpatterns.hui_miner.AlgoGHUIMINER;
-import ca.pfv.spmf.algorithms.frequentpatterns.hui_miner.Itemset;
 
 
 /**

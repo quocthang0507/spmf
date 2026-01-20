@@ -1,11 +1,11 @@
 package ca.pfv.spmf.test;
 
 
+import ca.pfv.spmf.algorithms.frequentpatterns.huimaf.AlgoHUIM_AF;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-
-import ca.pfv.spmf.algorithms.frequentpatterns.huimaf.AlgoHUIM_AF;
 
 /**
  * Example of how to use the HUIM-AF algorithm

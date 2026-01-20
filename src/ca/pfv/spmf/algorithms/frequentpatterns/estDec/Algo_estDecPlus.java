@@ -1,12 +1,12 @@
 package ca.pfv.spmf.algorithms.frequentpatterns.estDec;
 
+import ca.pfv.spmf.tools.MemoryLogger;
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Hashtable;
-
-import ca.pfv.spmf.tools.MemoryLogger;
 
 /**
  * This is an implementation of the estDecPlus algorithm

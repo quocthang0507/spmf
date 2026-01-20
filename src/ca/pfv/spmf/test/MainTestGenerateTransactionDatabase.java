@@ -1,10 +1,10 @@
 package ca.pfv.spmf.test;
 
+import ca.pfv.spmf.tools.dataset_generator.TransactionDatabaseGenerator;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-
-import ca.pfv.spmf.tools.dataset_generator.TransactionDatabaseGenerator;
 
 /**
  * Example of how to use the random transaction database generator

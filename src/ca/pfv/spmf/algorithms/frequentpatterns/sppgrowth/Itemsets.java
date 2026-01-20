@@ -28,16 +28,23 @@ import java.util.List;
  */
 
 public class Itemsets {
-    /** We store the itemsets in a list named "levels".
-     Position i in "levels" contains the list of itemsets of size i */
+    /**
+     * We store the itemsets in a list named "levels".
+     * Position i in "levels" contains the list of itemsets of size i
+     */
     private final List<List<Itemset>> levels = new ArrayList<List<Itemset>>();
-    /** the total number of itemsets **/
+    /**
+     * the total number of itemsets
+     **/
     private int itemsetsCount = 0;
-    /** a name that we give to these itemsets (e.g. "frequent itemsets") */
+    /**
+     * a name that we give to these itemsets (e.g. "frequent itemsets")
+     */
     private String name;
 
     /**
      * Constructor
+     *
      * @param name the name of these itemsets
      */
     public Itemsets(String name) {
@@ -48,8 +55,9 @@ public class Itemsets {
 
     /**
      * Add an itemset to this structure
+     *
      * @param itemset the itemset
-     * @param k the number of items contained in the itemset
+     * @param k       the number of items contained in the itemset
      */
     public void addItemset(Itemset itemset, int k) {
         while (levels.size() <= k) {
@@ -62,6 +70,7 @@ public class Itemsets {
 
     /**
      * Get all itemsets.
+     *
      * @return A list of list of itemsets.
      * Position i in this list is the list of itemsets of size i.
      */
@@ -71,6 +80,7 @@ public class Itemsets {
 
     /**
      * Get the total number of itemsets
+     *
      * @return the number of itemsets.
      */
     public int getItemsetsCount() {

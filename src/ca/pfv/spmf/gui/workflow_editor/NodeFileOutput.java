@@ -1,18 +1,12 @@
 package ca.pfv.spmf.gui.workflow_editor;
 
-import java.awt.BasicStroke;
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.io.File;
-import java.net.URL;
-
-import javax.swing.JFileChooser;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-
 import ca.pfv.spmf.gui.preferences.PreferencesManager;
 import ca.pfv.spmf.test.MainTestApriori_saveToFile;
+
+import javax.swing.*;
+import java.awt.*;
+import java.io.File;
+import java.net.URL;
 /*
  * Copyright (c) 2022 Philippe Fournier-Viger
  *

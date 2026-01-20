@@ -1,10 +1,10 @@
 package ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP.dataStructures;
 
+import ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP.dataStructures.patterns.Pattern;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
-import ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP.dataStructures.patterns.Pattern;
 
 /**
  * Inspired in SPMF

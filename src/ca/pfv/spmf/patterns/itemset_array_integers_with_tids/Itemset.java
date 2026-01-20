@@ -17,10 +17,10 @@ package ca.pfv.spmf.patterns.itemset_array_integers_with_tids;
  */
 
 
+import ca.pfv.spmf.patterns.AbstractOrderedItemset;
+
 import java.util.HashSet;
 import java.util.Set;
-
-import ca.pfv.spmf.patterns.AbstractOrderedItemset;
 
 /**
  * This class represents an itemset (a set of items) where the itemset is an array of integers

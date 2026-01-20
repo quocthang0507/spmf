@@ -1,11 +1,11 @@
 package ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_p.items.creators;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_p.items.Item;
 import ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_p.items.abstractions.Abstraction_Generic;
 import ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_p.items.abstractions.ItemAbstractionPair;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Class that implements a creator for pairs <item,abstraction> that are used in a pattern implementation.
@@ -37,6 +37,7 @@ public class ItemAbstractionPairCreator {
      */
     private static ItemAbstractionPairCreator instance = null;
     private static Map<Item, Map<Abstraction_Generic, ItemAbstractionPair>> poolPairs = new HashMap<Item, Map<Abstraction_Generic, ItemAbstractionPair>>();
+
     private ItemAbstractionPairCreator() {
 
     }

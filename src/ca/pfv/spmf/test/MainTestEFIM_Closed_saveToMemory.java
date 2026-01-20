@@ -1,11 +1,11 @@
 package ca.pfv.spmf.test;
 
+import ca.pfv.spmf.algorithms.frequentpatterns.efim_closed.AlgoEFIMClosed;
+import ca.pfv.spmf.algorithms.frequentpatterns.efim_closed.Itemsets;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-
-import ca.pfv.spmf.algorithms.frequentpatterns.efim_closed.AlgoEFIMClosed;
-import ca.pfv.spmf.algorithms.frequentpatterns.efim_closed.Itemsets;
 
 
 /**

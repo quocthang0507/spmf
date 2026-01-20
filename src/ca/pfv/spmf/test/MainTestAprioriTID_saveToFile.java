@@ -1,10 +1,10 @@
 package ca.pfv.spmf.test;
 
+import ca.pfv.spmf.algorithms.frequentpatterns.aprioriTID.AlgoAprioriTID;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-
-import ca.pfv.spmf.algorithms.frequentpatterns.aprioriTID.AlgoAprioriTID;
 
 /**
  * Example of how to use APRIORI-TID and save the output to a file,

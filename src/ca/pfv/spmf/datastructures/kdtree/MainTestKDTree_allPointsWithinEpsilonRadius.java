@@ -16,10 +16,10 @@ package ca.pfv.spmf.datastructures.kdtree;
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
 
+import ca.pfv.spmf.patterns.cluster.DoubleArray;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import ca.pfv.spmf.patterns.cluster.DoubleArray;
 
 /**
  * This test show how to use the KDTree structure to find

@@ -1,16 +1,14 @@
 package ca.pfv.spmf.algorithms.frequentpatterns.feacp;
 
+import ca.pfv.spmf.tools.MemoryLogger;
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
-//import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
-
-import ca.pfv.spmf.algorithms.frequentpatterns.efim.Itemset;
-import ca.pfv.spmf.tools.MemoryLogger;
 /* This file is copyright (c) 2012-2015 Souleymane Zida, Philippe Fournier-Viger, Alan Souza
  *
  * This file is part of the SPMF DATA MINING SOFTWARE

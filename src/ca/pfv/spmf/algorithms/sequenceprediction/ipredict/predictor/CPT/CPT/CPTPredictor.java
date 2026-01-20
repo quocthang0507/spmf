@@ -1,20 +1,14 @@
 package ca.pfv.spmf.algorithms.sequenceprediction.ipredict.predictor.CPT.CPT;
 
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
-
 import ca.pfv.spmf.algorithms.sequenceprediction.ipredict.database.Item;
 import ca.pfv.spmf.algorithms.sequenceprediction.ipredict.database.Sequence;
 import ca.pfv.spmf.algorithms.sequenceprediction.ipredict.helpers.MemoryLogger;
 import ca.pfv.spmf.algorithms.sequenceprediction.ipredict.predictor.Paramable;
 import ca.pfv.spmf.algorithms.sequenceprediction.ipredict.predictor.Predictor;
+
+import java.util.*;
+import java.util.Map.Entry;
 /*
  * This file is copyright (c) Ted Gueniche
  * <ted.gueniche@gmail.com>

@@ -1,27 +1,14 @@
 package ca.pfv.spmf.algorithms.sequentialpatterns.lapin;
 
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.BitSet;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
-
 import ca.pfv.spmf.datastructures.triangularmatrix.AbstractTriangularMatrix;
 import ca.pfv.spmf.datastructures.triangularmatrix.SparseTriangularMatrix;
 import ca.pfv.spmf.input.sequence_database_array_integers.SequenceDatabase;
 import ca.pfv.spmf.tools.MemoryLogger;
+
+import java.io.*;
+import java.util.*;
+import java.util.Map.Entry;
 
 /*** 
  * This is an implementation of the LAPIN algorithm (a.k.a LAPIN-SPAM or LAPIN-LCI). 
@@ -629,7 +616,7 @@ public class AlgoLAPIN_LCI {
 //						}
 //					}
 //				}
-////			}
+////            }
 
 
         //  ======  S-STEPS ======

@@ -1,14 +1,6 @@
 package ca.pfv.spmf.gui;
 
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStreamReader;
-import java.nio.charset.Charset;
-import java.util.HashMap;
-import java.util.Map;
-
 import ca.pfv.spmf.algorithmmanager.AlgorithmManager;
 import ca.pfv.spmf.algorithmmanager.AlgorithmType;
 import ca.pfv.spmf.algorithmmanager.DescriptionOfAlgorithm;
@@ -17,6 +9,14 @@ import ca.pfv.spmf.gui.preferences.PreferencesManager;
 import ca.pfv.spmf.tools.dataset_converter.SequenceDatabaseConverter;
 import ca.pfv.spmf.tools.dataset_converter.TransactionDatabaseConverter;
 import ca.pfv.spmf.tools.resultConverter.ResultConverter;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.Charset;
+import java.util.HashMap;
+import java.util.Map;
 /*
  * Copyright (c) 2008-2015 Philippe Fournier-Viger
  *

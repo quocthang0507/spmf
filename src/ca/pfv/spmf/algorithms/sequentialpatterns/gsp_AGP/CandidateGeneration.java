@@ -1,13 +1,13 @@
 package ca.pfv.spmf.algorithms.sequentialpatterns.gsp_AGP;
 
+import ca.pfv.spmf.algorithms.sequentialpatterns.gsp_AGP.items.Item;
+import ca.pfv.spmf.algorithms.sequentialpatterns.gsp_AGP.items.creators.AbstractionCreator;
+import ca.pfv.spmf.algorithms.sequentialpatterns.gsp_AGP.items.patterns.Pattern;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
-import ca.pfv.spmf.algorithms.sequentialpatterns.gsp_AGP.items.Item;
-import ca.pfv.spmf.algorithms.sequentialpatterns.gsp_AGP.items.creators.AbstractionCreator;
-import ca.pfv.spmf.algorithms.sequentialpatterns.gsp_AGP.items.patterns.Pattern;
 
 /**
  * This is an implementation of the candidate generation addressed in GSP algorithm.

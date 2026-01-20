@@ -1,10 +1,10 @@
 package ca.pfv.spmf.test;
 
+import ca.pfv.spmf.tools.dataset_stats.TimeSeriesStats;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-
-import ca.pfv.spmf.tools.dataset_stats.TimeSeriesStats;
 
 /**
  * Example of how to calculate stats about time series from a file

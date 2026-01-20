@@ -1,18 +1,14 @@
 package ca.pfv.spmf.algorithms.frequentpatterns.dFIN;
 
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import ca.pfv.spmf.tools.MemoryLogger;
+
+import java.io.*;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
-
-import ca.pfv.spmf.tools.MemoryLogger;
 
 /*
  ** The implementation of the "dFIN algorithm", the algorithm presented in:

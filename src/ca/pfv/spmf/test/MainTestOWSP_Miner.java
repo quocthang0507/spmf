@@ -1,10 +1,10 @@
 package ca.pfv.spmf.test;
 
+import ca.pfv.spmf.algorithms.sequentialpatterns.mapd_owsp.AlgoOWSPMiner;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-
-import ca.pfv.spmf.algorithms.sequentialpatterns.mapd_owsp.AlgoOWSPMiner;
 /* This file is copyright (c) 2021 Youxi Wu et al.
  *
  * This file is part of the SPMF DATA MINING SOFTWARE

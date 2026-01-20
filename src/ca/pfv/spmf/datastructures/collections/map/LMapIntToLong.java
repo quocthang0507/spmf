@@ -3,12 +3,6 @@ package ca.pfv.spmf.datastructures.collections.map;
 import java.util.Arrays;
 import java.util.NoSuchElementException;
 
-import ca.pfv.spmf.datastructures.collections.map.LMapIntToInt.LKeyIterator;
-import ca.pfv.spmf.datastructures.collections.map.LMapIntToInt.LValueIterator;
-import ca.pfv.spmf.datastructures.collections.map.LMapIntToInt.Entry;
-import ca.pfv.spmf.datastructures.collections.map.MapIntToInt.KeyIterator;
-import ca.pfv.spmf.datastructures.collections.map.MapIntToInt.ValueIterator;
-
 /*
  * Copyright (c) 2023 Philippe Fournier-Viger
  *

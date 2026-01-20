@@ -1,11 +1,11 @@
 package ca.pfv.spmf.algorithms.sequentialpatterns.clospan_AGP.items.patterns;
 
+import ca.pfv.spmf.algorithms.sequentialpatterns.clospan_AGP.items.abstractions.ItemAbstractionPair;
+import ca.pfv.spmf.algorithms.sequentialpatterns.clospan_AGP.items.creators.AbstractionCreator;
+
 import java.util.ArrayList;
 import java.util.BitSet;
 import java.util.List;
-
-import ca.pfv.spmf.algorithms.sequentialpatterns.clospan_AGP.items.abstractions.ItemAbstractionPair;
-import ca.pfv.spmf.algorithms.sequentialpatterns.clospan_AGP.items.creators.AbstractionCreator;
 
 /**
  * Implementation of pattern structure. We define it as a list of pairs <abstraction, item>.

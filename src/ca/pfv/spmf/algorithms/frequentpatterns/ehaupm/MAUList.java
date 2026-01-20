@@ -24,12 +24,12 @@ import java.util.List;
 /**
  * This is an implementation of the "EHAUPM" algorithm for High-Average-Utility Itemsets Mining
  * as described in the jouranl paper : <br/><br/>
+ * <p>
+ * Lin C W, Ren S, Fournier-Viger P, et al. EHAUPM: Efficient High Average-Utility Pattern Mining with Tighter Upper-Bounds[J]. IEEE Access, 2017, PP(99):1-1.
  *
- *  Lin C W, Ren S, Fournier-Viger P, et al. EHAUPM: Efficient High Average-Utility Pattern Mining with Tighter Upper-Bounds[J]. IEEE Access, 2017, PP(99):1-1.
- *
+ * @author Shi-Feng Ren
  * @see MAUEntry
  * @see AlgoEHAUPM
- * @author Shi-Feng Ren
  */
 
 public class MAUList {

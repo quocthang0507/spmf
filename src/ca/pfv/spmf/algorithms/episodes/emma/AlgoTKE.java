@@ -1,22 +1,9 @@
 package ca.pfv.spmf.algorithms.episodes.emma;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.PriorityQueue;
-import java.util.Set;
-
 import ca.pfv.spmf.tools.MemoryLogger;
+
+import java.io.*;
+import java.util.*;
 
 /*
  * This file is part of the SPMF DATA MINING SOFTWARE *

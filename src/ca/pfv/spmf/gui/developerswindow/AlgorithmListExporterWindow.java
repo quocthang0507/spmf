@@ -1,28 +1,19 @@
 package ca.pfv.spmf.gui.developerswindow;
 
-import java.awt.BorderLayout;
+import ca.pfv.spmf.algorithmmanager.AlgorithmManager;
+import ca.pfv.spmf.algorithmmanager.DescriptionOfAlgorithm;
+
+import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.util.List;
-
-import javax.swing.JButton;
-import javax.swing.JFileChooser;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.SwingConstants;
-import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
-
-import ca.pfv.spmf.algorithmmanager.AlgorithmManager;
-import ca.pfv.spmf.algorithmmanager.DescriptionOfAlgorithm;
 
 /*
  * Copyright (c) 2008-2015 Philippe Fournier-Viger

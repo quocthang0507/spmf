@@ -1,11 +1,11 @@
 package ca.pfv.spmf.algorithms.sequentialpatterns.prefixspan.currentDebug;
 
+import ca.pfv.spmf.algorithms.sequentialpatterns.prefixspan.AlgoBIDEPlus;
+import ca.pfv.spmf.algorithms.sequentialpatterns.prefixspan.SequentialPatterns;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-
-import ca.pfv.spmf.algorithms.sequentialpatterns.prefixspan.AlgoBIDEPlus;
-import ca.pfv.spmf.algorithms.sequentialpatterns.prefixspan.SequentialPatterns;
 
 /**
  * Example of how to use the BIDE+ algorithm, from the source code.

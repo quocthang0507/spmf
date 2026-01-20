@@ -1,13 +1,13 @@
 package ca.pfv.spmf.algorithms.timeseries.sax;
 
+import ca.pfv.spmf.algorithms.timeseries.TimeSeries;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-import ca.pfv.spmf.algorithms.timeseries.TimeSeries;
 
 /**
  * Example of how to use SAX algorithm for converting multiple time series to the SAX representation, in the source code

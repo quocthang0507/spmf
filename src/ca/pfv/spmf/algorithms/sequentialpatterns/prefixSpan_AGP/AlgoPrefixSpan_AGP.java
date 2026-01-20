@@ -18,20 +18,16 @@ package ca.pfv.spmf.algorithms.sequentialpatterns.prefixSpan_AGP;
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import java.io.IOException;
-import java.util.BitSet;
-import java.util.Map;
-
-import ca.pfv.spmf.algorithms.sequentialpatterns.prefixSpan_AGP.items.Item;
-import ca.pfv.spmf.algorithms.sequentialpatterns.prefixSpan_AGP.items.PseudoSequence;
-import ca.pfv.spmf.algorithms.sequentialpatterns.prefixSpan_AGP.items.PseudoSequenceDatabase;
-import ca.pfv.spmf.algorithms.sequentialpatterns.prefixSpan_AGP.items.Sequence;
-import ca.pfv.spmf.algorithms.sequentialpatterns.prefixSpan_AGP.items.SequenceDatabase;
+import ca.pfv.spmf.algorithms.sequentialpatterns.prefixSpan_AGP.items.*;
 import ca.pfv.spmf.algorithms.sequentialpatterns.prefixSpan_AGP.items.creators.AbstractionCreator;
 import ca.pfv.spmf.algorithms.sequentialpatterns.prefixSpan_AGP.savers.Saver;
 import ca.pfv.spmf.algorithms.sequentialpatterns.prefixSpan_AGP.savers.SaverIntoFile;
 import ca.pfv.spmf.algorithms.sequentialpatterns.prefixSpan_AGP.savers.SaverIntoMemory;
 import ca.pfv.spmf.tools.MemoryLogger;
+
+import java.io.IOException;
+import java.util.BitSet;
+import java.util.Map;
 
 /**
  * This is an implementation of the PrefixSpan algorithm by Antonio Gomariz Peñalver(AGP).

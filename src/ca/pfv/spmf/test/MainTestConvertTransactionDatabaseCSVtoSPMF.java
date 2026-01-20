@@ -1,11 +1,11 @@
 package ca.pfv.spmf.test;
 
+import ca.pfv.spmf.tools.dataset_converter.Formats;
+import ca.pfv.spmf.tools.dataset_converter.TransactionDatabaseConverter;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-
-import ca.pfv.spmf.tools.dataset_converter.Formats;
-import ca.pfv.spmf.tools.dataset_converter.TransactionDatabaseConverter;
 
 /**
  * Example of how to convert a transaction database from the CSV format

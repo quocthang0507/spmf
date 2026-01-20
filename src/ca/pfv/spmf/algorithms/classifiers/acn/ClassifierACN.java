@@ -19,17 +19,12 @@
  */
 package ca.pfv.spmf.algorithms.classifiers.acn;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-
 import ca.pfv.spmf.algorithms.classifiers.data.Dataset;
 import ca.pfv.spmf.algorithms.classifiers.data.Instance;
 import ca.pfv.spmf.algorithms.classifiers.general.RuleClassifier;
+
+import java.io.Serializable;
+import java.util.*;
 
 /**
  * Main class for the ACN classifier. It implements its own way of predicting

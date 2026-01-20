@@ -1,12 +1,8 @@
 package ca.pfv.spmf.algorithms.frequentpatterns.opusminer;
 
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-
 import ca.pfv.spmf.tools.MemoryLogger;
+
+import java.util.*;
 
 /**
  * The filterItemsets class from the Opus-Miner algorithm proposed in : </br></br>

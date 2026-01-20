@@ -1,18 +1,7 @@
 package ca.pfv.spmf.algorithms.frequentpatterns.HUIM_SA_HC;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.BitSet;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.io.*;
+import java.util.*;
 
 /* This file is copyright (c) Saqib Nawaz, Philippe Fournier-Viger et al.
  *
@@ -92,6 +81,7 @@ public class AlgoHUIMSA {
     List<Double> percentage = new ArrayList<Double>();// the portation of twu value of each
     // 1-HTWUIs in sum of twu value
     List<Item> Items;// bitmap database representation
+
     /**
      * Default constructor
      */

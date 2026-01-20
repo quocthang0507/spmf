@@ -1,13 +1,13 @@
 package ca.pfv.spmf.test;
 
+import ca.pfv.spmf.algorithms.frequentpatterns.slim.AlgoSLIM;
+import ca.pfv.spmf.algorithms.frequentpatterns.slim.Itemset;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
-
-import ca.pfv.spmf.algorithms.frequentpatterns.slim.AlgoSLIM;
-import ca.pfv.spmf.algorithms.frequentpatterns.slim.Itemset;
 
 /**
  * Example of how to run the SLIM algorithm

@@ -1,13 +1,13 @@
 package ca.pfv.spmf.test;
 
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.net.URL;
-
 import ca.pfv.spmf.algorithms.associationrules.hgb.AlgoFHIM_and_HUCI;
 import ca.pfv.spmf.algorithms.associationrules.hgb.AlgoHGBAll;
 import ca.pfv.spmf.algorithms.associationrules.hgb.HUTable;
 import ca.pfv.spmf.algorithms.associationrules.hgb.Rules;
+
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URL;
 
 /**
  * Example of how to use the HGB-ALL algorithm from the source code.

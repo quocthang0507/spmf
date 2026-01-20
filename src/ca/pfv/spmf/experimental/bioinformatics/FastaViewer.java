@@ -1,23 +1,12 @@
 package ca.pfv.spmf.experimental.bioinformatics;
 
-import java.awt.BorderLayout;
-import java.awt.Desktop;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
-
-import javax.swing.BorderFactory;
-import javax.swing.JFileChooser;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
 /* Copyright (c) 2008-2024 Philippe Fournier-Viger
  *
  * This file is part of the SPMF DATA MINING SOFTWARE

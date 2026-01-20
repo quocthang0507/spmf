@@ -1,11 +1,10 @@
 package ca.pfv.spmf.algorithms.episodes.maxfem;
 
+import ca.pfv.spmf.algorithms.episodes.emma.AlgoAFEM;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-
-import ca.pfv.spmf.algorithms.episodes.emma.AlgoAFEM;
-import ca.pfv.spmf.algorithms.episodes.maxfem.AlgoMAXFEM;
 
 /**
  * This file shows how to run the AFEM algorithm on an input file.

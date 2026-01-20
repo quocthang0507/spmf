@@ -1,14 +1,10 @@
 package ca.pfv.spmf.algorithms.frequentpatterns.chud;
 
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.Arrays;
-
 import ca.pfv.spmf.tools.MemoryLogger;
+
+import java.io.*;
+import java.util.Arrays;
 
 /* This file is copyright (c) 2011 Cheng-Wei-Wu, Philippe Fournier-Viger
  *

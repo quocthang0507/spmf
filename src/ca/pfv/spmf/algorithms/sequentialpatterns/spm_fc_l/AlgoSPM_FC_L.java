@@ -18,22 +18,17 @@ package ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_l;
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
 import ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_l.items.Item;
 import ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_l.items.SequenceDatabase;
 import ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_l.items.Sequences;
 import ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_l.items.creators.AbstractionCreator;
 import ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_l.items.patterns.Pattern;
 import ca.pfv.spmf.tools.MemoryLogger;
+
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.*;
 
 /**
  * This is an implementation of the SPMF-FC_L algorithm proposed by Wei Song

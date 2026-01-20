@@ -1,10 +1,10 @@
 package ca.pfv.spmf.test;
 
+import ca.pfv.spmf.algorithms.sequentialpatterns.prosecco.AlgoProsecco;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-
-import ca.pfv.spmf.algorithms.sequentialpatterns.prosecco.AlgoProsecco;
 
 /**
  * Example of how to use the ProSecCo algorithm in source code.

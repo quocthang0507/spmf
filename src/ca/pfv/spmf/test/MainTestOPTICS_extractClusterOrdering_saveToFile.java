@@ -1,10 +1,10 @@
 package ca.pfv.spmf.test;
 
+import ca.pfv.spmf.algorithms.clustering.optics.AlgoOPTICS;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-
-import ca.pfv.spmf.algorithms.clustering.optics.AlgoOPTICS;
 
 /**
  * Example of how to use the OPTICS algorithm from the source code to obtain the OPTICS cluster

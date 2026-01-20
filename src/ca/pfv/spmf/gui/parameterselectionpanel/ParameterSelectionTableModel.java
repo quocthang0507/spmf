@@ -1,9 +1,9 @@
 package ca.pfv.spmf.gui.parameterselectionpanel;
 
-import javax.swing.table.AbstractTableModel;
-
 import ca.pfv.spmf.algorithmmanager.DescriptionOfAlgorithm;
 import ca.pfv.spmf.algorithmmanager.DescriptionOfParameter;
+
+import javax.swing.table.AbstractTableModel;
 
 /*
  * Copyright (c) 2022 Philippe Fournier-Viger

@@ -1,8 +1,8 @@
 package ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_p.items;
 
-import java.util.BitSet;
-
 import ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_p.items.abstractions.ItemAbstractionPair;
+
+import java.util.BitSet;
 
 /**
  * ////

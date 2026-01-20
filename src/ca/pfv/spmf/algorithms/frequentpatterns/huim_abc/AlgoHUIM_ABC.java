@@ -1,21 +1,7 @@
 package ca.pfv.spmf.algorithms.frequentpatterns.huim_abc;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.BitSet;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.io.*;
+import java.util.*;
 
 /**
  * * * *
@@ -43,7 +29,7 @@ import java.util.Set;
 /**
  * This is an implementation of the "HUIM-ABC Algorithm" for High-Utility Itemsets Mining
  * as described in the conference paper :
- *
+ * <p>
  * Discovering High Utility Itemsets Based on the Artificial Bee Colony Algorithm[C]
  * Pacific-Asia Conference on Knowledge Discovery and Data Mining. Springer, Cham, 2018.
  *
@@ -104,14 +90,11 @@ public class AlgoHUIM_ABC {
 
     /**
      * Run the algorithm
-     * @param input
-     * 				the input file path
-     * @param output
-     * 				the output file path
-     * @param minUtility
-     * 				the minimum utility threshold
-     * @throws IOException
-     * 				exception if error while writing the file
+     *
+     * @param input      the input file path
+     * @param output     the output file path
+     * @param minUtility the minimum utility threshold
+     * @throws IOException exception if error while writing the file
      */
     public void runAlgorithm(String input, String output, int minUtility) throws IOException {
         // reset maximum
@@ -303,6 +286,7 @@ public class AlgoHUIM_ABC {
 
     /**
      * Is it a promising BeeGroup
+     *
      * @param tempBeeGroup
      * @return
      */
@@ -341,6 +325,7 @@ public class AlgoHUIM_ABC {
 
     /**
      * Initial population, nectar source and other information
+     *
      * @param minUtility
      */
     private void Initialization(int minUtility) {
@@ -406,6 +391,7 @@ public class AlgoHUIM_ABC {
 
     /**
      * employed bees mapped to the nectar source
+     *
      * @param list1BeeGroup
      * @param list2BeeGroup
      */
@@ -444,6 +430,7 @@ public class AlgoHUIM_ABC {
 
     /**
      * Re-copy the list and press it into the huiBeeGroup
+     *
      * @param huiBeeGroup
      * @param list
      */
@@ -656,6 +643,7 @@ public class AlgoHUIM_ABC {
     /**
      * Change the bit of the specified number
      * and record the value of the fitness of tempGroup before using this function
+     *
      * @param tempGroup
      */
     public void changeKBit(BeeGroup tempGroup) {
@@ -682,6 +670,7 @@ public class AlgoHUIM_ABC {
     /**
      * Generate a BeeGroup that meets the requirements and change the specified bit number
      * and update huiBeeGroup,huiSets,pruneNodelist
+     *
      * @param tempGroup
      * @param minUtility
      */
@@ -766,6 +755,7 @@ public class AlgoHUIM_ABC {
 
     /**
      * initialization BeeGroup.X
+     *
      * @param tempNode
      * @param k
      */
@@ -787,6 +777,7 @@ public class AlgoHUIM_ABC {
 
     /**
      * initialization percentage
+     *
      * @return percentage
      */
     private List<Double> roulettePercent() {
@@ -809,9 +800,8 @@ public class AlgoHUIM_ABC {
     /**
      * Use roulette to select the position of 1
      *
-     * @param percentage
-     *            the portation of twu value of each 1-HTWUIs in sum of twu
-     *            value
+     * @param percentage the portation of twu value of each 1-HTWUIs in sum of twu
+     *                   value
      * @return the position of 1
      */
     private int select(List<Double> percentage) {
@@ -835,6 +825,7 @@ public class AlgoHUIM_ABC {
 
     /**
      * Calculate the fitness value and suffix utility of BeeGroup
+     *
      * @param tempChroNode
      * @param k
      * @return
@@ -884,8 +875,7 @@ public class AlgoHUIM_ABC {
     /**
      * Method to inseret tempChroNode to huiSets
      *
-     * @param tempChroNode
-     *            the chromosome to be inserted
+     * @param tempChroNode the chromosome to be inserted
      */
     private void insert(BeeGroup tempBeeGroup) {
         int i;
@@ -951,6 +941,7 @@ public class AlgoHUIM_ABC {
 
     /**
      * Get the bucket number (should be adjusted depending on number of items in the database)
+     *
      * @return the bucket count
      */
     public int getBucketNum() {
@@ -959,6 +950,7 @@ public class AlgoHUIM_ABC {
 
     /**
      * Set the bucket number (should be adjusted depending on number of items in the database)
+     *
      * @param bucketNum the bucket count
      */
     public void setBucketNum(int bucketNum) {
@@ -998,6 +990,7 @@ public class AlgoHUIM_ABC {
     /**
      *
      * this class represent the particles
+     *
      * @author Wei Song,Chaomin Huang
      *
      */

@@ -1,19 +1,17 @@
 package ca.pfv.spmf.gui.algorithmexplorer;
 
-import java.util.Enumeration;
-import java.util.List;
+import ca.pfv.spmf.algorithmmanager.AlgorithmManager;
+import ca.pfv.spmf.algorithmmanager.DescriptionOfAlgorithm;
+import ca.pfv.spmf.algorithmmanager.DescriptionOfParameter;
 
-import javax.swing.JLabel;
-import javax.swing.JTree;
+import javax.swing.*;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeNode;
-
-import ca.pfv.spmf.algorithmmanager.AlgorithmManager;
-import ca.pfv.spmf.algorithmmanager.DescriptionOfAlgorithm;
-import ca.pfv.spmf.algorithmmanager.DescriptionOfParameter;
+import java.util.Enumeration;
+import java.util.List;
 
 /*
  * Copyright (c) 2008-2022 Philippe Fournier-Viger

@@ -1,5 +1,12 @@
 package ca.pfv.spmf.algorithms.sequentialpatterns.clofast;
 
+import ca.pfv.spmf.algorithms.sequentialpatterns.clofast.model.*;
+import ca.pfv.spmf.algorithms.sequentialpatterns.clofast.model.tree.ItemsetNode;
+import ca.pfv.spmf.algorithms.sequentialpatterns.clofast.model.tree.ItemsetTree;
+import ca.pfv.spmf.algorithms.sequentialpatterns.clofast.model.tree.SequenceNode;
+import ca.pfv.spmf.algorithms.sequentialpatterns.clofast.model.tree.SequenceTree;
+import ca.pfv.spmf.tools.MemoryLogger;
+
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -9,17 +16,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Queue;
-
-import ca.pfv.spmf.algorithms.sequentialpatterns.clofast.model.Itemset;
-import ca.pfv.spmf.algorithms.sequentialpatterns.clofast.model.ListNode;
-import ca.pfv.spmf.algorithms.sequentialpatterns.clofast.model.Sequence;
-import ca.pfv.spmf.algorithms.sequentialpatterns.clofast.model.SparseIdList;
-import ca.pfv.spmf.algorithms.sequentialpatterns.clofast.model.VerticalIdList;
-import ca.pfv.spmf.algorithms.sequentialpatterns.clofast.model.tree.ItemsetNode;
-import ca.pfv.spmf.algorithms.sequentialpatterns.clofast.model.tree.ItemsetTree;
-import ca.pfv.spmf.algorithms.sequentialpatterns.clofast.model.tree.SequenceNode;
-import ca.pfv.spmf.algorithms.sequentialpatterns.clofast.model.tree.SequenceTree;
-import ca.pfv.spmf.tools.MemoryLogger;
 
 
 /* This file is copyright (c)  E. Salvemini et al.

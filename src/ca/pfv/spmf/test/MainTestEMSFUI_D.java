@@ -1,10 +1,10 @@
 package ca.pfv.spmf.test;
 
+import ca.pfv.spmf.algorithms.frequentpatterns.emsfui_d.AlgoEMSFUI_D;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-
-import ca.pfv.spmf.algorithms.frequentpatterns.emsfui_d.AlgoEMSFUI_D;
 
 /**
  * Example of how to run the EMSFUI_D algorithm from the source code

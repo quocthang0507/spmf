@@ -17,11 +17,7 @@ package ca.pfv.spmf.algorithms.episodes.tup.tup_combined;
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Episode_preinsertion_EWU {
 

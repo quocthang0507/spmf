@@ -1,12 +1,5 @@
 package ca.pfv.spmf.test;
 
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import ca.pfv.spmf.algorithms.clustering.instancereader.AlgoInstanceFileReader;
 import ca.pfv.spmf.gui.viewers.instanceviewer.InstanceViewer;
 import ca.pfv.spmf.patterns.cluster.DoubleArray;
@@ -14,6 +7,13 @@ import ca.pfv.spmf.tools.dataset_generator.ClusteringDataGenerator;
 import ca.pfv.spmf.tools.dataset_generator.ClusteringDataGenerator.Distribution;
 import ca.pfv.spmf.tools.dataset_generator.ClusteringDataGenerator.NormalDistribution;
 import ca.pfv.spmf.tools.dataset_generator.ClusteringDataGenerator.UniformDistribution;
+
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Example of how to use the synthetic clustering data generator from the source

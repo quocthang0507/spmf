@@ -1,9 +1,9 @@
 package ca.pfv.spmf.algorithms.sequenceprediction.ipredict.predictor;
 
+import ca.pfv.spmf.algorithms.sequenceprediction.ipredict.predictor.profile.Profile;
+
 import java.io.Serializable;
 import java.util.HashMap;
-
-import ca.pfv.spmf.algorithms.sequenceprediction.ipredict.predictor.profile.Profile;
 
 /*
  * This file is copyright (c) Ted Gueniche

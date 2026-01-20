@@ -3,8 +3,6 @@ package ca.pfv.spmf.algorithms.frequentpatterns.mpfps;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
 
-import ca.pfv.spmf.algorithms.frequentpatterns.mpfps.AlgoMPFPS_DFS;
-
 /* This file is copyright (c) 2019 Zhitian Li, Philippe Fournier-Viger
  *
  * This file is part of the SPMF DATA MINING SOFTWARE

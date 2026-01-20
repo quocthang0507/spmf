@@ -1,12 +1,12 @@
 package ca.pfv.spmf.algorithms.classifiers.decisiontree.id3;
 
-import java.io.Serializable;
-import java.util.List;
-import java.util.Map;
-
 import ca.pfv.spmf.algorithms.classifiers.data.Attribute;
 import ca.pfv.spmf.algorithms.classifiers.data.Instance;
 import ca.pfv.spmf.algorithms.classifiers.general.Classifier;
+
+import java.io.Serializable;
+import java.util.List;
+import java.util.Map;
 
 /* This file is copyright (c) 2008-2021 Philippe Fournier-Viger
  *

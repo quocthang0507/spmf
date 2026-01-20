@@ -16,10 +16,10 @@ package ca.pfv.spmf.algorithms.sequentialpatterns.fournier2008_seqdim.multidimen
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
 
+import ca.pfv.spmf.algorithms.sequentialpatterns.fournier2008_seqdim.AlgoFournierViger08;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import ca.pfv.spmf.algorithms.sequentialpatterns.fournier2008_seqdim.AlgoFournierViger08;
 
 /**
  * A set of MDSequences organized by levels representing their size.

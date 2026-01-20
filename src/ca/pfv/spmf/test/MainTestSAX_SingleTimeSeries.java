@@ -1,13 +1,13 @@
 package ca.pfv.spmf.test;
 
+import ca.pfv.spmf.algorithms.timeseries.TimeSeries;
+import ca.pfv.spmf.algorithms.timeseries.sax.AlgoSAX;
+import ca.pfv.spmf.algorithms.timeseries.sax.SAXSymbol;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.util.Arrays;
-
-import ca.pfv.spmf.algorithms.timeseries.TimeSeries;
-import ca.pfv.spmf.algorithms.timeseries.sax.AlgoSAX;
-import ca.pfv.spmf.algorithms.timeseries.sax.SAXSymbol;
 
 /**
  * Example of how to use SAX algorithm for converting a time series to the SAX representation, in the source code

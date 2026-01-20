@@ -1,17 +1,7 @@
 package ca.pfv.spmf.algorithms.frequentpatterns.HUIM_BPSO_tree;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.io.*;
+import java.util.*;
 
 
 /**
@@ -67,6 +57,7 @@ public class AlgoHUIM_BPSO_tree {
     // Create a list to store maximal pattern
     List<List<Integer>> maximalPatterns = new ArrayList<List<Integer>>();
     treeNode orNorTree;// the root of OR/NOR-tree
+
     /**
      * Default constructor
      */

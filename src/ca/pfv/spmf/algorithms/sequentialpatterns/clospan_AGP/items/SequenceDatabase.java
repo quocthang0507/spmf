@@ -1,17 +1,7 @@
 package ca.pfv.spmf.algorithms.sequentialpatterns.clospan_AGP.items;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.BitSet;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.io.*;
+import java.util.*;
 
 /**
  * Inspired in SPMF. Implementation of a sequence database. Each sequence should

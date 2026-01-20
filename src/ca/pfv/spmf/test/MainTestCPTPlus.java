@@ -1,16 +1,16 @@
 package ca.pfv.spmf.test;
 
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.net.URL;
-import java.util.Map;
-import java.util.Map.Entry;
-
 import ca.pfv.spmf.algorithms.sequenceprediction.ipredict.database.Item;
 import ca.pfv.spmf.algorithms.sequenceprediction.ipredict.database.Sequence;
 import ca.pfv.spmf.algorithms.sequenceprediction.ipredict.database.SequenceDatabase;
 import ca.pfv.spmf.algorithms.sequenceprediction.ipredict.database.SequenceStatsGenerator;
 import ca.pfv.spmf.algorithms.sequenceprediction.ipredict.predictor.CPT.CPTPlus.CPTPlusPredictor;
+
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URL;
+import java.util.Map;
+import java.util.Map.Entry;
 
 /**
  * Example of how to use the CPT+ sequence prediction model in the source code.

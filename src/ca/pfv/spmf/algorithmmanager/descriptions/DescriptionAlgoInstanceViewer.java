@@ -1,14 +1,14 @@
 package ca.pfv.spmf.algorithmmanager.descriptions;
 
-import java.io.IOException;
-import java.util.List;
-
 import ca.pfv.spmf.algorithmmanager.AlgorithmType;
 import ca.pfv.spmf.algorithmmanager.DescriptionOfAlgorithm;
 import ca.pfv.spmf.algorithmmanager.DescriptionOfParameter;
 import ca.pfv.spmf.algorithms.clustering.instancereader.AlgoInstanceFileReader;
 import ca.pfv.spmf.gui.viewers.instanceviewer.InstanceViewer;
 import ca.pfv.spmf.patterns.cluster.DoubleArray;
+
+import java.io.IOException;
+import java.util.List;
 
 /**
  * This class describes the algorithm to visualize a time series.

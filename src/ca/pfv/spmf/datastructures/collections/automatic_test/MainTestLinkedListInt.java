@@ -1,7 +1,6 @@
 package ca.pfv.spmf.datastructures.collections.automatic_test;
 
 import ca.pfv.spmf.datastructures.collections.linkedlist.LinkedListInt;
-import ca.pfv.spmf.datastructures.collections.list.ListInt;
 
 /*
  * Copyright (c) 2023 Philippe Fournier-Viger

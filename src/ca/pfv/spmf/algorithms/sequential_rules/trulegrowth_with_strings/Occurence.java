@@ -16,11 +16,11 @@ package ca.pfv.spmf.algorithms.sequential_rules.trulegrowth_with_strings;
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import java.util.ArrayList;
-import java.util.List;
-
 import ca.pfv.spmf.input.sequence_database_list_integers.Sequence;
 import ca.pfv.spmf.input.sequence_database_list_integers.SequenceDatabase;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This class represent the first and last occurences of an itemset in a sequence, as defined

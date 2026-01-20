@@ -1,10 +1,10 @@
 package ca.pfv.spmf.test;
 
+import ca.pfv.spmf.algorithms.episodes.maxfem.AlgoMAXFEM;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-
-import ca.pfv.spmf.algorithms.episodes.maxfem.AlgoMAXFEM;
 
 /**
  * This file shows how to run the MAXFEM algorithm on an input file.

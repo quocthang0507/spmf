@@ -1,23 +1,12 @@
 package ca.pfv.spmf.algorithms.sequentialpatterns.clospan_AGP.items.creators;
 
-import java.util.ArrayList;
-import java.util.BitSet;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import ca.pfv.spmf.algorithms.sequentialpatterns.clospan_AGP.items.Item;
-import ca.pfv.spmf.algorithms.sequentialpatterns.clospan_AGP.items.Itemset;
-import ca.pfv.spmf.algorithms.sequentialpatterns.clospan_AGP.items.Pair;
-import ca.pfv.spmf.algorithms.sequentialpatterns.clospan_AGP.items.PseudoSequence;
-import ca.pfv.spmf.algorithms.sequentialpatterns.clospan_AGP.items.Sequence;
+import ca.pfv.spmf.algorithms.sequentialpatterns.clospan_AGP.items.*;
 import ca.pfv.spmf.algorithms.sequentialpatterns.clospan_AGP.items.abstractions.Abstraction_Generic;
 import ca.pfv.spmf.algorithms.sequentialpatterns.clospan_AGP.items.abstractions.Abstraction_Qualitative;
 import ca.pfv.spmf.algorithms.sequentialpatterns.clospan_AGP.items.abstractions.ItemAbstractionPair;
 import ca.pfv.spmf.algorithms.sequentialpatterns.clospan_AGP.items.patterns.Pattern;
+
+import java.util.*;
 
 /**
  * This class is the implementation of a creator of a qualitative abstraction.

@@ -1,31 +1,15 @@
 package ca.pfv.spmf.algorithms.sequentialpatterns.clofast;
 
+import ca.pfv.spmf.algorithms.sequentialpatterns.clofast.model.*;
+import ca.pfv.spmf.algorithms.sequentialpatterns.clofast.model.tree.*;
+import ca.pfv.spmf.tools.MemoryLogger;
+
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Queue;
-
-import ca.pfv.spmf.algorithms.sequentialpatterns.clofast.model.Itemset;
-import ca.pfv.spmf.algorithms.sequentialpatterns.clofast.model.ListNode;
-import ca.pfv.spmf.algorithms.sequentialpatterns.clofast.model.Sequence;
-import ca.pfv.spmf.algorithms.sequentialpatterns.clofast.model.SparseIdList;
-import ca.pfv.spmf.algorithms.sequentialpatterns.clofast.model.VerticalIdList;
-import ca.pfv.spmf.algorithms.sequentialpatterns.clofast.model.tree.ClosedItemsetNode;
-import ca.pfv.spmf.algorithms.sequentialpatterns.clofast.model.tree.ClosedItemsetTree;
-import ca.pfv.spmf.algorithms.sequentialpatterns.clofast.model.tree.ClosedSequenceNode;
-import ca.pfv.spmf.algorithms.sequentialpatterns.clofast.model.tree.ClosedSequenceTree;
-import ca.pfv.spmf.algorithms.sequentialpatterns.clofast.model.tree.ItemsetNodeType;
-import ca.pfv.spmf.algorithms.sequentialpatterns.clofast.model.tree.NodeType;
-import ca.pfv.spmf.tools.MemoryLogger;
+import java.util.*;
 
 /*
  * This file is part of the SPMF DATA MINING SOFTWARE

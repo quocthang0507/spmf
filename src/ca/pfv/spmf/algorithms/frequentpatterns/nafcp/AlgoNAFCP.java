@@ -2,35 +2,6 @@ package ca.pfv.spmf.algorithms.frequentpatterns.nafcp;
 
 import ca.pfv.spmf.tools.MemoryLogger;
 
-/*
- ** The implementation of the "NAFCP algorithm", the algorithm presented in:
- * "Le, Tuong; Vo, Bay. An N-list-based algorithm for mining frequent closed patterns. Expert Systems with Applications, 2015, 42.19: 6648-6657.‏"
- *
- * This file is part of the SPMF DATA MINING SOFTWARE
- * (http://www.philippe-fournier-viger.com/spmf).
- *
- * SPMF is free software: you can redistribute it and/or modify it under the
- * terms of the GNU General Public License as published by the Free Software
- * Foundation, either version 3 of the License, or (at your option) any later
- * version.
- *
- * SPMF is distributed in the hope that it will be useful, but WITHOUT ANY
- * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
- * A PARTICULAR PURPOSE. See the GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License along with
- * SPMF. If not, see <http://www.gnu.org/licenses/>.
- */
-
-/**
- * This implementation was obtained by converting the C# code of the NAFCP algorithm to Java.
- * The C# code of this algorithm was provided by Dr. "Le Tuong", the first author of the above paper.
- * <p>
- *
- * @author Nader Aryabarzan (Copyright 2019)
- * @Email aryabarzan@aut.ac.ir or aryabarzan@gmail.com
- */
-
 import java.io.*;
 import java.util.*;
 

@@ -1,15 +1,14 @@
 package ca.pfv.spmf.algorithms.clustering.hierarchical_clustering;
 
+import ca.pfv.spmf.algorithms.clustering.distanceFunctions.DistanceEuclidian;
+import ca.pfv.spmf.algorithms.clustering.distanceFunctions.DistanceFunction;
+import ca.pfv.spmf.patterns.cluster.ClusterWithMean;
+import ca.pfv.spmf.patterns.cluster.DoubleArray;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.util.List;
-
-import ca.pfv.spmf.algorithms.clustering.distanceFunctions.DistanceEuclidian;
-import ca.pfv.spmf.algorithms.clustering.distanceFunctions.DistanceFunction;
-import ca.pfv.spmf.algorithms.clustering.hierarchical_clustering.AlgoHierarchicalClustering;
-import ca.pfv.spmf.patterns.cluster.ClusterWithMean;
-import ca.pfv.spmf.patterns.cluster.DoubleArray;
 
 /**
  * Example of how to use the hierarchical clustering algorithm

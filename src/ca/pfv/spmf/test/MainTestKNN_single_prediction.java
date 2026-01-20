@@ -17,13 +17,13 @@ package ca.pfv.spmf.test;
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import java.io.UnsupportedEncodingException;
-import java.net.URL;
-
 import ca.pfv.spmf.algorithms.classifiers.data.Instance;
 import ca.pfv.spmf.algorithms.classifiers.data.StringDataset;
 import ca.pfv.spmf.algorithms.classifiers.knn.AlgoKNN;
 import ca.pfv.spmf.algorithms.classifiers.knn.ClassifierKNN;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URL;
 
 /**
  * Example of how to run the KNN algorithm

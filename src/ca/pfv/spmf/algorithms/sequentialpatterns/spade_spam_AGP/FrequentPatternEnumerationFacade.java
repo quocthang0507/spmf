@@ -1,8 +1,8 @@
 package ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP;
 
-import java.util.concurrent.Callable;
-
 import ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP.savers.Saver;
+
+import java.util.concurrent.Callable;
 
 /**
  * This class is used by the methods that mine the database in a parallelized

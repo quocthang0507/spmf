@@ -18,16 +18,16 @@
  */
 package ca.pfv.spmf.algorithms.classifiers.cmar;
 
+import ca.pfv.spmf.algorithms.classifiers.data.Dataset;
+import ca.pfv.spmf.algorithms.classifiers.data.Instance;
+import ca.pfv.spmf.algorithms.classifiers.general.Rule;
+import ca.pfv.spmf.algorithms.classifiers.general.RuleClassifier;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-
-import ca.pfv.spmf.algorithms.classifiers.data.Dataset;
-import ca.pfv.spmf.algorithms.classifiers.data.Instance;
-import ca.pfv.spmf.algorithms.classifiers.general.Rule;
-import ca.pfv.spmf.algorithms.classifiers.general.RuleClassifier;
 
 /**
  * Generates classifier by means of the previously obtained rules. It sorts the

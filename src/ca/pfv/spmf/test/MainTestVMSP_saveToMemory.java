@@ -1,13 +1,13 @@
 package ca.pfv.spmf.test;
 
+import ca.pfv.spmf.algorithms.sequentialpatterns.spam.AlgoVMSP;
+import ca.pfv.spmf.algorithms.sequentialpatterns.spam.PatternVMSP;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.util.List;
 import java.util.TreeSet;
-
-import ca.pfv.spmf.algorithms.sequentialpatterns.spam.AlgoVMSP;
-import ca.pfv.spmf.algorithms.sequentialpatterns.spam.PatternVMSP;
 
 
 /**

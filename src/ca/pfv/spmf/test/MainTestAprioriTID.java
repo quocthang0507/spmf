@@ -1,11 +1,11 @@
 package ca.pfv.spmf.test;
 
+import ca.pfv.spmf.algorithms.frequentpatterns.aprioriTID.AlgoAprioriTID;
+import ca.pfv.spmf.patterns.itemset_array_integers_with_tids.Itemsets;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-
-import ca.pfv.spmf.algorithms.frequentpatterns.aprioriTID.AlgoAprioriTID;
-import ca.pfv.spmf.patterns.itemset_array_integers_with_tids.Itemsets;
 
 /**
  * Example of how to use the AprioriTID algorithm from the source code.

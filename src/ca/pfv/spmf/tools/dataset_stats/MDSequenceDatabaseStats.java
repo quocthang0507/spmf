@@ -1,18 +1,14 @@
 package ca.pfv.spmf.tools.dataset_stats;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map.Entry;
-import java.util.Set;
-
 import ca.pfv.spmf.algorithms.sequentialpatterns.fournier2008_seqdim.ItemSimple;
 import ca.pfv.spmf.algorithms.sequentialpatterns.fournier2008_seqdim.Itemset;
 import ca.pfv.spmf.algorithms.sequentialpatterns.fournier2008_seqdim.multidimensionalpatterns.MDPattern;
 import ca.pfv.spmf.algorithms.sequentialpatterns.fournier2008_seqdim.multidimensionalsequentialpatterns.MDSequence;
 import ca.pfv.spmf.algorithms.sequentialpatterns.fournier2008_seqdim.multidimensionalsequentialpatterns.MDSequenceDatabase;
+
+import java.io.IOException;
+import java.util.*;
+import java.util.Map.Entry;
 
 /* This file is copyright (c) 2008-2014 Philippe Fournier-Viger
  *

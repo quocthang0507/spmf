@@ -24,13 +24,19 @@ import ca.pfv.spmf.tools.MemoryLogger;
  */
 public abstract class ClassificationAlgorithm {
 
-    /** Training time **/
+    /**
+     * Training time
+     **/
     private long trainingTime;
 
-    /** memory usage **/
+    /**
+     * memory usage
+     **/
     private double trainingMaxMemory;
 
-    /** classifier ***/
+    /**
+     * classifier
+     ***/
     private Classifier classifier;
 
     /**
@@ -57,6 +63,7 @@ public abstract class ClassificationAlgorithm {
 
     /**
      * Train a classifier
+     *
      * @param training a dataset for training
      * @return a classifier
      * @throws Exception if error while reading a file
@@ -65,6 +72,7 @@ public abstract class ClassificationAlgorithm {
 
     /**
      * Get the training time
+     *
      * @return the training time
      */
     public long getTrainingTime() {
@@ -73,6 +81,7 @@ public abstract class ClassificationAlgorithm {
 
     /**
      * Get the maximum amount of memory used for training
+     *
      * @return the amount of memory
      */
     public double getTrainingMaxMemory() {
@@ -81,6 +90,7 @@ public abstract class ClassificationAlgorithm {
 
     /**
      * Get the name of this algorithm
+     *
      * @return the name
      */
     public abstract String getName();

@@ -19,11 +19,7 @@
 package ca.pfv.spmf.algorithms.associationrules.gcd;
 
 import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * This is an adapted version of BigInteger that speeds up the execution time
@@ -135,10 +131,10 @@ public class MyBigInteger implements Comparable<MyBigInteger> {
      * This is the core operator for this implementation of the algorithm It
      * utilizes the merge routine without using heavy computational division
      * operations.
-     *
+     * <p>
      * This function is an approximation that extracts the most frequent
      * combinations
-     *
+     * <p>
      * Note: The exact implementation would be to return all combinations of all
      * items, but this would grow exponentially in time and memory
      */

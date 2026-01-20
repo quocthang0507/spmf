@@ -1,7 +1,5 @@
 package ca.pfv.spmf.algorithms.frequentpatterns.efim;
 
-import java.util.List;
-
 import ca.pfv.spmf.datastructures.collections.list.ListInt;
 
 

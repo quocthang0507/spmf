@@ -19,7 +19,10 @@
 
 package ca.pfv.spmf.algorithms.sequentialpatterns.clofast.model;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * The Itemset class. A set of item.

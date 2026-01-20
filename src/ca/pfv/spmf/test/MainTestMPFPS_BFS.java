@@ -1,10 +1,10 @@
 package ca.pfv.spmf.test;
 
+import ca.pfv.spmf.algorithms.frequentpatterns.mpfps.AlgoMPFPS_BFS;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-
-import ca.pfv.spmf.algorithms.frequentpatterns.mpfps.AlgoMPFPS_BFS;
 
 /* This file is copyright (c) 2019 Zhitian Li, Philippe Fournier-Viger
  *

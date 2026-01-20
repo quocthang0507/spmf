@@ -1,9 +1,5 @@
 package ca.pfv.spmf.algorithmmanager.descriptions;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
 import ca.pfv.spmf.algorithmmanager.AlgorithmType;
 import ca.pfv.spmf.algorithmmanager.DescriptionOfAlgorithm;
 import ca.pfv.spmf.algorithmmanager.DescriptionOfParameter;
@@ -14,6 +10,10 @@ import ca.pfv.spmf.tools.dataset_generator.ClusteringDataGenerator;
 import ca.pfv.spmf.tools.dataset_generator.ClusteringDataGenerator.Distribution;
 import ca.pfv.spmf.tools.dataset_generator.ClusteringDataGenerator.NormalDistribution;
 import ca.pfv.spmf.tools.dataset_generator.ClusteringDataGenerator.UniformDistribution;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /* This file is copyright (c) 2008-2012 Philippe Fournier-Viger
  *

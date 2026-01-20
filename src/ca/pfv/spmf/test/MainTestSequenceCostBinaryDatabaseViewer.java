@@ -1,10 +1,10 @@
 package ca.pfv.spmf.test;
 
+import ca.pfv.spmf.gui.viewers.sequencedb_cost_utility_viewer.SequenceCostUtilityDatabaseViewer;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-
-import ca.pfv.spmf.gui.viewers.sequencedb_cost_utility_viewer.SequenceCostUtilityDatabaseViewer;
 /*
  * Copyright (c) 2008-2022 Philippe Fournier-Viger
  *

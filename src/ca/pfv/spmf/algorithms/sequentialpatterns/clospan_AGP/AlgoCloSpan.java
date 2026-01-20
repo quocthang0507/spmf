@@ -18,22 +18,18 @@ package ca.pfv.spmf.algorithms.sequentialpatterns.clospan_AGP;
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import java.io.IOException;
-import java.util.BitSet;
-import java.util.List;
-import java.util.Map;
-
-import ca.pfv.spmf.algorithms.sequentialpatterns.clospan_AGP.items.Item;
-import ca.pfv.spmf.algorithms.sequentialpatterns.clospan_AGP.items.PseudoSequence;
-import ca.pfv.spmf.algorithms.sequentialpatterns.clospan_AGP.items.PseudoSequenceDatabase;
-import ca.pfv.spmf.algorithms.sequentialpatterns.clospan_AGP.items.Sequence;
-import ca.pfv.spmf.algorithms.sequentialpatterns.clospan_AGP.items.SequenceDatabase;
+import ca.pfv.spmf.algorithms.sequentialpatterns.clospan_AGP.items.*;
 import ca.pfv.spmf.algorithms.sequentialpatterns.clospan_AGP.items.creators.AbstractionCreator;
 import ca.pfv.spmf.algorithms.sequentialpatterns.clospan_AGP.items.patterns.Pattern;
 import ca.pfv.spmf.algorithms.sequentialpatterns.clospan_AGP.savers.Saver;
 import ca.pfv.spmf.algorithms.sequentialpatterns.clospan_AGP.savers.SaverIntoFile;
 import ca.pfv.spmf.algorithms.sequentialpatterns.clospan_AGP.savers.SaverIntoMemory;
 import ca.pfv.spmf.tools.MemoryLogger;
+
+import java.io.IOException;
+import java.util.BitSet;
+import java.util.List;
+import java.util.Map;
 
 /**
  * This is an implementation of the CloSpan algorithm. CloSpan was proposed by

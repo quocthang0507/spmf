@@ -1,13 +1,5 @@
 package ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP.dataStructures.creators;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-
 import ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP.EquivalenceClass;
 import ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP.dataStructures.Item;
 import ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP.dataStructures.Itemset;
@@ -19,6 +11,9 @@ import ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP.dataStructures.p
 import ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP.dataStructures.patterns.PatternCreator;
 import ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP.idLists.IDList;
 import ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP.idLists.creators.IdListCreator;
+
+import java.util.*;
+import java.util.Map.Entry;
 
 /**
  * This class is the implementation of a creator of a qualitative abstraction.

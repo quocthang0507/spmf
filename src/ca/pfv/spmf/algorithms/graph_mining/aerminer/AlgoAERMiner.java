@@ -1,20 +1,12 @@
 package ca.pfv.spmf.algorithms.graph_mining.aerminer;
 
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
-
 import ca.pfv.spmf.algorithms.graph_mining.tseqminer.ParametersSetting;
 import ca.pfv.spmf.tools.MemoryLogger;
+
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.*;
+import java.util.Map.Entry;
 
 /* This file is copyright (c) 2020 by Ganghuan He
  *

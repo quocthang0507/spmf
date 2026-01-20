@@ -1,17 +1,5 @@
 package ca.pfv.spmf.algorithms.sequentialpatterns.clasp_AGP.dataStructures.database;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
 import ca.pfv.spmf.algorithms.sequentialpatterns.clasp_AGP.dataStructures.Item;
 import ca.pfv.spmf.algorithms.sequentialpatterns.clasp_AGP.dataStructures.Itemset;
 import ca.pfv.spmf.algorithms.sequentialpatterns.clasp_AGP.dataStructures.Sequence;
@@ -21,6 +9,9 @@ import ca.pfv.spmf.algorithms.sequentialpatterns.clasp_AGP.idlists.IDList;
 import ca.pfv.spmf.algorithms.sequentialpatterns.clasp_AGP.idlists.creators.IdListCreator;
 import ca.pfv.spmf.algorithms.sequentialpatterns.clasp_AGP.tries.Trie;
 import ca.pfv.spmf.algorithms.sequentialpatterns.clasp_AGP.tries.TrieNode;
+
+import java.io.*;
+import java.util.*;
 
 /**
  * Inspired in SPMF. Implementation of a sequence database. Each sequence should

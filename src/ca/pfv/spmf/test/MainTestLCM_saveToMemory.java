@@ -1,12 +1,12 @@
 package ca.pfv.spmf.test;
 
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.net.URL;
-
 import ca.pfv.spmf.algorithms.frequentpatterns.lcm.AlgoLCM;
 import ca.pfv.spmf.algorithms.frequentpatterns.lcm.Dataset;
 import ca.pfv.spmf.patterns.itemset_array_integers_with_count.Itemsets;
+
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URL;
 /* This file is copyright (c) 2012-2014 Alan Souza
  *
  * This file is part of the SPMF DATA MINING SOFTWARE

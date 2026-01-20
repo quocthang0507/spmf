@@ -19,15 +19,11 @@
  */
 package ca.pfv.spmf.algorithms.classifiers.acac;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-
 import ca.pfv.spmf.algorithms.classifiers.general.RuleClassifier;
+
+import java.io.Serializable;
+import java.util.*;
+import java.util.Map.Entry;
 
 /**
  * Main class for the ACAC classifier. It implements its own way of predicting

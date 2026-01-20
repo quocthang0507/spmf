@@ -1,10 +1,9 @@
 package ca.pfv.spmf.gui.patternvizualizer;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.swing.event.TableModelListener;
 import javax.swing.table.TableModel;
+import java.util.ArrayList;
+import java.util.List;
 /*
  * Copyright (c) 2008-2015 Philippe Fournier-Viger
  *

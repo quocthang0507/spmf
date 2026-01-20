@@ -1,10 +1,6 @@
 package ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_p.items;
 
-import java.util.ArrayList;
-import java.util.BitSet;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 /**

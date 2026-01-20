@@ -1,48 +1,5 @@
 package ca.pfv.spmf.gui.patternvizualizer;
 
-import java.awt.BorderLayout;
-import java.awt.Dialog.ModalExclusionType;
-import java.awt.Dimension;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.net.URL;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Vector;
-
-import javax.swing.Box;
-import javax.swing.DefaultListModel;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFileChooser;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.JTextField;
-import javax.swing.ScrollPaneConstants;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
-import javax.swing.event.TableModelEvent;
-import javax.swing.event.TableModelListener;
-import javax.swing.table.TableRowSorter;
-
 import ca.pfv.spmf.gui.Main;
 import ca.pfv.spmf.gui.MainWindow;
 import ca.pfv.spmf.gui.patternvizualizer.filters.AbstractFilter;
@@ -50,6 +7,25 @@ import ca.pfv.spmf.gui.preferences.PreferencesManager;
 import ca.pfv.spmf.gui.visuals.histograms.HistogramDistributionPanel.Order;
 import ca.pfv.spmf.gui.visuals.histograms.HistogramDistributionWindow;
 import ca.pfv.spmf.test.MainTestApriori_saveToFile;
+
+import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
+import javax.swing.table.TableRowSorter;
+import java.awt.*;
+import java.awt.Dialog.ModalExclusionType;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.*;
+import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Vector;
 
 /*
  * Copyright (c) 2008-2015 Philippe Fournier-Viger

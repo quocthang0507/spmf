@@ -1,14 +1,14 @@
 package ca.pfv.spmf.test;
 
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.net.URL;
-
 import ca.pfv.spmf.algorithms.associationrules.IGB.AlgoIGB;
 import ca.pfv.spmf.algorithms.frequentpatterns.zart.AlgoZart;
 import ca.pfv.spmf.algorithms.frequentpatterns.zart.TZTableClosed;
 import ca.pfv.spmf.input.transaction_database_list_integers.TransactionDatabase;
 import ca.pfv.spmf.patterns.rule_itemset_array_integer_with_count.Rules;
+
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URL;
 
 /**
  * Examples of how to generate the IGB basis of association rules,

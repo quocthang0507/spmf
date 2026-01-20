@@ -2,18 +2,13 @@ package ca.pfv.spmf.algorithms.frequentpatterns.tku;
 
 //Import packages
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.PriorityQueue;
-
 import ca.pfv.spmf.algorithms.episodes.upspan.CalculateDatabaseInfo;
 import ca.pfv.spmf.datastructures.redblacktree.RedBlackTree;
 import ca.pfv.spmf.tools.MemoryLogger;
+
+import java.io.*;
+import java.util.ArrayList;
+import java.util.PriorityQueue;
 
 /* This file is copyright (c) Wu et al.
  *

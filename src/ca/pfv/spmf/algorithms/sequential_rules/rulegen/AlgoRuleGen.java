@@ -16,15 +16,14 @@ package ca.pfv.spmf.algorithms.sequential_rules.rulegen;
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-
 import ca.pfv.spmf.algorithms.sequentialpatterns.prefixspan.AlgoPrefixSpan;
-import ca.pfv.spmf.algorithms.sequentialpatterns.prefixspan.SequenceDatabase;
 import ca.pfv.spmf.algorithms.sequentialpatterns.prefixspan.SequentialPattern;
 import ca.pfv.spmf.algorithms.sequentialpatterns.prefixspan.SequentialPatterns;
 import ca.pfv.spmf.tools.MemoryLogger;
+
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 
 /**
  * This is an implementation of the RuleGen algorithm proposed by Zaki et al to generate sequential rules where

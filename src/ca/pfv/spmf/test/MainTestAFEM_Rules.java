@@ -1,12 +1,12 @@
 package ca.pfv.spmf.test;
 
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.net.URL;
-
 import ca.pfv.spmf.algorithms.episodes.emma.AlgoAFEM;
 import ca.pfv.spmf.algorithms.episodes.general.FrequentEpisodes;
 import ca.pfv.spmf.algorithms.episodes.standardepisoderules.AlgoGenerateEpisodeRules;
+
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URL;
 
 /**
  * This file shows how to run the AFEM algorithm on an input file to generate episode rules

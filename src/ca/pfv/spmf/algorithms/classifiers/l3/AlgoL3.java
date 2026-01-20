@@ -18,10 +18,10 @@
  */
 package ca.pfv.spmf.algorithms.classifiers.l3;
 
-import java.util.List;
-
 import ca.pfv.spmf.algorithms.classifiers.data.Dataset;
 import ca.pfv.spmf.algorithms.classifiers.general.Rule;
+
+import java.util.List;
 
 /**
  * An implementation of the L3 algorithm to generate a class association rule classifier.

@@ -1,12 +1,8 @@
 package ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP.idLists;
 
-import java.util.BitSet;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
 import ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP.dataStructures.patterns.Pattern;
+
+import java.util.*;
 
 /**
  * Inspired in SPMF.

@@ -1,16 +1,16 @@
 package ca.pfv.spmf.test;
 
+import ca.pfv.spmf.algorithms.frequentpatterns.itemsettree.AssociationRuleIT;
+import ca.pfv.spmf.algorithms.frequentpatterns.itemsettree.HashTableIT;
+import ca.pfv.spmf.algorithms.frequentpatterns.itemsettree.MemoryEfficientItemsetTree;
+import ca.pfv.spmf.patterns.itemset_array_integers_with_count.Itemset;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.util.List;
-
-import ca.pfv.spmf.algorithms.frequentpatterns.itemsettree.AssociationRuleIT;
-import ca.pfv.spmf.algorithms.frequentpatterns.itemsettree.HashTableIT;
-import ca.pfv.spmf.algorithms.frequentpatterns.itemsettree.MemoryEfficientItemsetTree;
-import ca.pfv.spmf.patterns.itemset_array_integers_with_count.Itemset;
 
 /**
  * Example of how to use the memory efficient itemset tree data structure.

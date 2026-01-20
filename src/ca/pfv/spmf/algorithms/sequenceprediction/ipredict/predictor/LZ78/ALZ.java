@@ -1,13 +1,13 @@
 package ca.pfv.spmf.algorithms.sequenceprediction.ipredict.predictor.LZ78;
 
+import ca.pfv.spmf.algorithms.sequenceprediction.ipredict.database.Item;
+import ca.pfv.spmf.algorithms.sequenceprediction.ipredict.database.Sequence;
+import ca.pfv.spmf.algorithms.sequenceprediction.ipredict.predictor.Predictor;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
-
-import ca.pfv.spmf.algorithms.sequenceprediction.ipredict.database.Item;
-import ca.pfv.spmf.algorithms.sequenceprediction.ipredict.database.Sequence;
-import ca.pfv.spmf.algorithms.sequenceprediction.ipredict.predictor.Predictor;
 /*
  * This file is copyright (c) Ted Gueniche
  * <ted.gueniche@gmail.com>

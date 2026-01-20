@@ -1,23 +1,13 @@
 package ca.pfv.spmf.algorithms.sequentialpatterns.clofast;
 
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.LineNumberReader;
+import ca.pfv.spmf.algorithms.sequentialpatterns.clofast.model.SparseIdList;
+
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
-import java.util.StringTokenizer;
-import java.util.TreeMap;
+import java.util.*;
 import java.util.stream.Collectors;
-
-import ca.pfv.spmf.algorithms.sequentialpatterns.clofast.model.SparseIdList;
 
 
 /* This file is copyright (c) Fabiana Lanotte, Fabio Fumarola, M. Ceci,  D. Malerba et al.

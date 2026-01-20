@@ -19,9 +19,9 @@
  */
 package ca.pfv.spmf.algorithms.classifiers.accf;
 
-import java.util.Arrays;
-
 import ca.pfv.spmf.algorithms.ArraysAlgos;
+
+import java.util.Arrays;
 
 /**
  * This class represents an itemset (a set of items) implemented as an array of

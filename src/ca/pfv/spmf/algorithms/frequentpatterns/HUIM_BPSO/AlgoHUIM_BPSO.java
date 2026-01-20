@@ -1,17 +1,7 @@
 package ca.pfv.spmf.algorithms.frequentpatterns.HUIM_BPSO;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.io.*;
+import java.util.*;
 
 /**
  * * * * This is an implementation of the high utility itemset mining algorithm
@@ -64,6 +54,7 @@ public class AlgoHUIM_BPSO {
     List<Double> percentage = new ArrayList<Double>();// the portation of twu
     // Create a list to store database
     List<List<Pair>> database = new ArrayList<List<Pair>>();
+
     /**
      * Default constructor
      */

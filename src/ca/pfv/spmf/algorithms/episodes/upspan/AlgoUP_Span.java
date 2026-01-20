@@ -17,23 +17,10 @@ package ca.pfv.spmf.algorithms.episodes.upspan;
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.DataInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
-
 import ca.pfv.spmf.tools.MemoryLogger;
+
+import java.io.*;
+import java.util.*;
 
 /**
  * Implementation of the UP-SPAN algorithm by Wu et al. Obtained from the
@@ -49,7 +36,7 @@ public class AlgoUP_Span {
      * If true the single events will be output
      */
     boolean outputSingleEvents = false;
-    /////// �t�ΰѼ�
+    /// //// �t�ΰѼ�
     int allCalculateCount = 0;
     /**
      * �ɶ��I
@@ -119,7 +106,7 @@ public class AlgoUP_Span {
      * �o��time  point������event
      */
     HashMap<Integer, ArrayList<Integer>> freDB = new HashMap<Integer, ArrayList<Integer>>();
-    ////// output���F��/////
+    /// /// output���F��/////
     ArrayList<String> FreEP = new ArrayList<String>();
     ArrayList<Integer> EPCount = new ArrayList<Integer>();
     long Num_FreEP = 0;

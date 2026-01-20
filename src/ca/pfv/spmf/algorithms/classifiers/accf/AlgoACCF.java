@@ -18,10 +18,10 @@
  */
 package ca.pfv.spmf.algorithms.classifiers.accf;
 
-import java.util.List;
-
 import ca.pfv.spmf.algorithms.classifiers.data.Dataset;
 import ca.pfv.spmf.algorithms.classifiers.general.Rule;
+
+import java.util.List;
 
 /**
  * Main class for the algorithm ACCF. Please refer to the original publication

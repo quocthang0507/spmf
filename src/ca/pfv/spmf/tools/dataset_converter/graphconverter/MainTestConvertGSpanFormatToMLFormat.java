@@ -1,18 +1,16 @@
 package ca.pfv.spmf.tools.dataset_converter.graphconverter;
 
 
+import ca.pfv.spmf.algorithms.graph_mining.tkg.GSPAN2GraphMLConverter;
+import ca.pfv.spmf.algorithms.graph_mining.tkg.Graph;
+import ca.pfv.spmf.gui.viewers.graphviewer.MainTestGraphViewer_PatternFile;
+import org.xml.sax.SAXException;
+
+import javax.xml.transform.TransformerConfigurationException;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.util.List;
-
-import javax.xml.transform.TransformerConfigurationException;
-
-import org.xml.sax.SAXException;
-
-import ca.pfv.spmf.algorithms.graph_mining.tkg.GSPAN2GraphMLConverter;
-import ca.pfv.spmf.algorithms.graph_mining.tkg.Graph;
-import ca.pfv.spmf.gui.viewers.graphviewer.MainTestGraphViewer_PatternFile;
 
 /**
  * Test file to convert a graph file from the GSpan format to the ML format

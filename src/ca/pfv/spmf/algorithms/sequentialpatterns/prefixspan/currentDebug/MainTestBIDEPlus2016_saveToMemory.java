@@ -3,7 +3,6 @@ package ca.pfv.spmf.algorithms.sequentialpatterns.prefixspan.currentDebug;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-import java.util.List;
 
 
 /**

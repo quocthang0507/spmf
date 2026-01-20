@@ -1,12 +1,12 @@
 package ca.pfv.spmf.tools.dataset_stats;
 
+import ca.pfv.spmf.algorithms.sequential_rules.husrm.SequenceDatabaseWithUtility;
+import ca.pfv.spmf.algorithms.sequential_rules.husrm.SequenceWithUtility;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
-import ca.pfv.spmf.algorithms.sequential_rules.husrm.SequenceDatabaseWithUtility;
-import ca.pfv.spmf.algorithms.sequential_rules.husrm.SequenceWithUtility;
 /* This file is copyright (c) 2008-2012 Philippe Fournier-Viger
  *
  * This file is part of the SPMF DATA MINING SOFTWARE

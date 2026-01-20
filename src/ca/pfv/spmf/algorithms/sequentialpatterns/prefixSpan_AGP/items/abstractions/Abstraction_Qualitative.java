@@ -1,9 +1,9 @@
 package ca.pfv.spmf.algorithms.sequentialpatterns.prefixSpan_AGP.items.abstractions;
 
+import ca.pfv.spmf.algorithms.sequentialpatterns.prefixSpan_AGP.items.PseudoSequence;
+
 import java.util.HashMap;
 import java.util.Map;
-
-import ca.pfv.spmf.algorithms.sequentialpatterns.prefixSpan_AGP.items.PseudoSequence;
 
 /**
  * Class that implements a qualitative abstraction. Two different values are

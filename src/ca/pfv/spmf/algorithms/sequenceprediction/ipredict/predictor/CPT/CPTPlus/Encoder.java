@@ -1,13 +1,13 @@
 package ca.pfv.spmf.algorithms.sequenceprediction.ipredict.predictor.CPT.CPTPlus;
 
+import ca.pfv.spmf.algorithms.sequenceprediction.ipredict.database.Item;
+import ca.pfv.spmf.algorithms.sequenceprediction.ipredict.database.Sequence;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
-
-import ca.pfv.spmf.algorithms.sequenceprediction.ipredict.database.Item;
-import ca.pfv.spmf.algorithms.sequenceprediction.ipredict.database.Sequence;
 /*
  * This file is copyright (c) Ted Gueniche
  * <ted.gueniche@gmail.com>

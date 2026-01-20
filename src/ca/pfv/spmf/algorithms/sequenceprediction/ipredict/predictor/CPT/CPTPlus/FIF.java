@@ -1,10 +1,10 @@
 package ca.pfv.spmf.algorithms.sequenceprediction.ipredict.predictor.CPT.CPTPlus;
 
-import java.util.HashMap;
-import java.util.List;
-
 import ca.pfv.spmf.algorithms.sequenceprediction.ipredict.database.Item;
 import ca.pfv.spmf.algorithms.sequenceprediction.ipredict.database.Sequence;
+
+import java.util.HashMap;
+import java.util.List;
 
 /*
  * This file is copyright (c) Ted Gueniche

@@ -1,11 +1,11 @@
 package ca.pfv.spmf.test;
 
+import ca.pfv.spmf.algorithms.episodes.tup.tup_combined.AlgoTUP_Combined;
+import ca.pfv.spmf.algorithms.episodes.tup.tup_combined.Episode_preinsertion_EWU;
+
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.util.Queue;
-
-import ca.pfv.spmf.algorithms.episodes.tup.tup_combined.AlgoTUP_Combined;
-import ca.pfv.spmf.algorithms.episodes.tup.tup_combined.Episode_preinsertion_EWU;
 
 /**
  * This is an example of how to run the TUP(Combined) algorithm and save the result to memory

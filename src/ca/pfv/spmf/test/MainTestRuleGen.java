@@ -1,10 +1,10 @@
 package ca.pfv.spmf.test;
 
+import ca.pfv.spmf.algorithms.sequential_rules.rulegen.AlgoRuleGen;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-
-import ca.pfv.spmf.algorithms.sequential_rules.rulegen.AlgoRuleGen;
 
 /**
  * Example of how to use the RULEGEN Algorithm in source code.

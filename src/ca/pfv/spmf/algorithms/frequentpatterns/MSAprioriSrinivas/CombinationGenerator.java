@@ -36,7 +36,8 @@ public class CombinationGenerator {
 
     /**
      * this function would return a list of all combinations up to size len from L
-     * @param L an input list of items
+     *
+     * @param L   an input list of items
      * @param len the maximum size of combinations to be drawn from L
      * @return
      */
@@ -50,7 +51,8 @@ public class CombinationGenerator {
 
     /**
      * this function would return a list of all combinations up to size len from L
-     * @param L an input list of items
+     *
+     * @param L   an input list of items
      * @param len the maximum size of combinations to be drawn from L
      * @return
      */

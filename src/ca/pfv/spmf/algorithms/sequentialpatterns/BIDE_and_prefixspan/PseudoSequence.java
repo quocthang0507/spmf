@@ -1,8 +1,8 @@
 package ca.pfv.spmf.algorithms.sequentialpatterns.BIDE_and_prefixspan;
 
-import java.util.List;
-
 import ca.pfv.spmf.input.sequence_database_list_integers.Sequence;
+
+import java.util.List;
 
 /**
  * This represents a sequence from a projected database (as based in PrefixSpan).

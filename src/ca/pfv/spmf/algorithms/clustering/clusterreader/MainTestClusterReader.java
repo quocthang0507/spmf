@@ -1,12 +1,11 @@
 package ca.pfv.spmf.algorithms.clustering.clusterreader;
 
+import ca.pfv.spmf.patterns.cluster.Cluster;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.util.List;
-
-import ca.pfv.spmf.algorithms.timeseries.TimeSeries;
-import ca.pfv.spmf.patterns.cluster.Cluster;
 
 /**
  * Example of how to read clusters from a file

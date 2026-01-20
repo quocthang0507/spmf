@@ -1,12 +1,12 @@
 package ca.pfv.spmf.test;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URL;
-import java.util.List;
-
 import ca.pfv.spmf.algorithms.sequentialpatterns.qcsp.AlgoQCSP;
 import ca.pfv.spmf.algorithms.sequentialpatterns.qcsp.SequentialPattern;
 import ca.pfv.spmf.algorithms.sequentialpatterns.qcsp.util.Pair;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URL;
+import java.util.List;
 
 /**
  * Example of how to use the QCSP algorithm from the source code.

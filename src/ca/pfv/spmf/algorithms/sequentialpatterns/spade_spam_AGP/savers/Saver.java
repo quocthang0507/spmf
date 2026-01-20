@@ -1,8 +1,8 @@
 package ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP.savers;
 
-import java.util.Collection;
-
 import ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP.dataStructures.patterns.Pattern;
+
+import java.util.Collection;
 
 /**
  * This is the definition of a interface in order to decide where the user wants

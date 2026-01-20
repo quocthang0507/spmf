@@ -18,26 +18,18 @@ package ca.pfv.spmf.algorithms.frequentpatterns.hui_miner;
  *
  */
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.ObjectOutputStream;
-
 import ca.pfv.spmf.datastructures.collections.comparators.ComparatorObject;
 import ca.pfv.spmf.datastructures.collections.list.ArrayListObject;
 import ca.pfv.spmf.datastructures.collections.list.ListObject;
 import ca.pfv.spmf.datastructures.collections.map.AMapIntToLong;
 import ca.pfv.spmf.datastructures.collections.map.AMapIntToObject;
 import ca.pfv.spmf.datastructures.collections.map.LMapIntToObject;
-import ca.pfv.spmf.datastructures.collections.map.MapIntToLong.MapEntryIntToLong;
 import ca.pfv.spmf.datastructures.collections.map.MapIntToLong.EntryIterator;
+import ca.pfv.spmf.datastructures.collections.map.MapIntToLong.MapEntryIntToLong;
 import ca.pfv.spmf.datastructures.collections.map.MapIntToObject;
 import ca.pfv.spmf.tools.MemoryLogger;
+
+import java.io.*;
 
 /**
  * This is an implementation of the "FHM" algorithm for High-Utility Itemsets

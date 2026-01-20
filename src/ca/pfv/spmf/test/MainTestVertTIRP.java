@@ -1,10 +1,10 @@
 package ca.pfv.spmf.test;
 
+import ca.pfv.spmf.algorithms.sequentialpatterns.fasttirp.AlgoFastTIRP;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-
-import ca.pfv.spmf.algorithms.sequentialpatterns.fasttirp.AlgoFastTIRP;
 
 /**
  * Example of how to use the VertTIRP algorithm from the source code.

@@ -17,18 +17,12 @@ package ca.pfv.spmf.algorithms.frequentpatterns.two_phase;
  */
 
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
 import ca.pfv.spmf.input.utility_transaction_database.ItemUtility;
 import ca.pfv.spmf.input.utility_transaction_database.TransactionTP;
 import ca.pfv.spmf.input.utility_transaction_database.UtilityTransactionDatabaseTP;
 import ca.pfv.spmf.tools.MemoryLogger;
+
+import java.util.*;
 
 
 /**

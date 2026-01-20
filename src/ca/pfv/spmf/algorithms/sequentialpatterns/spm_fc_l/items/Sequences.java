@@ -1,10 +1,10 @@
 package ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_l.items;
 
+import ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_l.items.patterns.Pattern;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
-import ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_l.items.patterns.Pattern;
 
 /**
  * Inspired in SPMF

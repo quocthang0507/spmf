@@ -1,14 +1,9 @@
 package ca.pfv.spmf.datastructures.collections.map;
 
+import ca.pfv.spmf.datastructures.collections.list.ArrayListObject;
+
 import java.util.Arrays;
 import java.util.NoSuchElementException;
-
-import ca.pfv.spmf.datastructures.collections.list.ArrayListObject;
-import ca.pfv.spmf.datastructures.collections.map.AMapIntToShort.AKeyIterator;
-import ca.pfv.spmf.datastructures.collections.map.AMapIntToShort.AValueIterator;
-import ca.pfv.spmf.datastructures.collections.map.AMapIntToShort.Entry;
-import ca.pfv.spmf.datastructures.collections.map.MapIntToShort.KeyIterator;
-import ca.pfv.spmf.datastructures.collections.map.MapIntToShort.ValueIterator;
 
 /*
  * Copyright (c) 2023 Philippe Fournier-Viger

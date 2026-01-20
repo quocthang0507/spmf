@@ -1,15 +1,15 @@
 package ca.pfv.spmf.test;
 
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.net.URL;
-import java.util.List;
-
 import ca.pfv.spmf.algorithms.frequentpatterns.zart.AlgoZart;
 import ca.pfv.spmf.algorithms.frequentpatterns.zart.TFTableFrequent;
 import ca.pfv.spmf.algorithms.frequentpatterns.zart.TZTableClosed;
 import ca.pfv.spmf.input.transaction_database_list_integers.TransactionDatabase;
 import ca.pfv.spmf.patterns.itemset_array_integers_with_count.Itemset;
+
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URL;
+import java.util.List;
 
 /**
  * Example of how to use the Zart Algorithm in source code.

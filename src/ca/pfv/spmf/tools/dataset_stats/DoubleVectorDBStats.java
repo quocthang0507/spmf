@@ -1,12 +1,12 @@
 package ca.pfv.spmf.tools.dataset_stats;
 
+import ca.pfv.spmf.algorithms.clustering.instancereader.AlgoInstanceFileReader;
+import ca.pfv.spmf.patterns.cluster.DoubleArray;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
-import ca.pfv.spmf.algorithms.clustering.instancereader.AlgoInstanceFileReader;
-import ca.pfv.spmf.patterns.cluster.DoubleArray;
 /* This file is copyright (c) 2008-2012 Philippe Fournier-Viger
  *
  * This file is part of the SPMF DATA MINING SOFTWARE

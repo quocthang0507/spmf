@@ -17,26 +17,13 @@
  */
 package ca.pfv.spmf.algorithms.frequentpatterns.fhuqiminer.tkq;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.Hashtable;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.PriorityQueue;
-
 import ca.pfv.spmf.algorithms.frequentpatterns.fhuqiminer.EnumCombination;
 import ca.pfv.spmf.algorithms.frequentpatterns.fhuqiminer.QItemTrans;
 import ca.pfv.spmf.algorithms.frequentpatterns.fhuqiminer.Qitem;
 import ca.pfv.spmf.tools.MemoryLogger;
+
+import java.io.*;
+import java.util.*;
 
 /**
  * Implementation of the CHUQI-Miner algorithm for mining quantitative high

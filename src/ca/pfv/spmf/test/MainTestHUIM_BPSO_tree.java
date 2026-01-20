@@ -1,10 +1,10 @@
 package ca.pfv.spmf.test;
 
+import ca.pfv.spmf.algorithms.frequentpatterns.HUIM_BPSO_tree.AlgoHUIM_BPSO_tree;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-
-import ca.pfv.spmf.algorithms.frequentpatterns.HUIM_BPSO_tree.AlgoHUIM_BPSO_tree;
 
 /**
  * Example of how to use the HUIM-BPSO-tree algorithm

@@ -1,10 +1,10 @@
 package ca.pfv.spmf.test;
 
+import ca.pfv.spmf.tools.dataset_stats.MDSequenceDatabaseStats;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-
-import ca.pfv.spmf.tools.dataset_stats.MDSequenceDatabaseStats;
 
 /**
  * Example of how to use the tool to calculate stats about a multidimensional database from the source code.

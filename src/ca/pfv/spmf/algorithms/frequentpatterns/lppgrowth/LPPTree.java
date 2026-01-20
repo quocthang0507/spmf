@@ -1,11 +1,6 @@
 package ca.pfv.spmf.algorithms.frequentpatterns.lppgrowth;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /*
  * This file is part of the SPMF DATA MINING SOFTWARE *

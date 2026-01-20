@@ -1,9 +1,9 @@
 package ca.pfv.spmf.test;
 
+import ca.pfv.spmf.algorithms.frequentpatterns.HMiner_CLosed.AlgoHMiner_Closed;
+
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-
-import ca.pfv.spmf.algorithms.frequentpatterns.HMiner_CLosed.AlgoHMiner_Closed;
 
 /* This file is copyright (c) 2018+  by Siddharth Dawar et al.
  *

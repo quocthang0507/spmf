@@ -1,10 +1,10 @@
 package ca.pfv.spmf.test;
 
+import ca.pfv.spmf.algorithms.frequentpatterns.emsfui_b.AlgoEMSFUI_B;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-
-import ca.pfv.spmf.algorithms.frequentpatterns.emsfui_b.AlgoEMSFUI_B;
 
 /**
  * Example of how to run the EMSFUI_B algorithm from the source code

@@ -16,11 +16,11 @@ package ca.pfv.spmf.test;
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
 
+import ca.pfv.spmf.algorithms.episodes.upspan.AlgoUP_Span;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-
-import ca.pfv.spmf.algorithms.episodes.upspan.AlgoUP_Span;
 
 /**
  * This is an example of how to run the UP-SPAN algorithm and save the result to

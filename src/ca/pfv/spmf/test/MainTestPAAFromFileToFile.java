@@ -1,15 +1,15 @@
 package ca.pfv.spmf.test;
 
+import ca.pfv.spmf.algorithms.timeseries.TimeSeries;
+import ca.pfv.spmf.algorithms.timeseries.paa.AlgoPiecewiseAggregateApproximation;
+import ca.pfv.spmf.algorithms.timeseries.reader_writer.AlgoTimeSeriesReader;
+import ca.pfv.spmf.algorithms.timeseries.reader_writer.AlgoTimeSeriesWriter;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-
-import ca.pfv.spmf.algorithms.timeseries.TimeSeries;
-import ca.pfv.spmf.algorithms.timeseries.paa.AlgoPiecewiseAggregateApproximation;
-import ca.pfv.spmf.algorithms.timeseries.reader_writer.AlgoTimeSeriesReader;
-import ca.pfv.spmf.algorithms.timeseries.reader_writer.AlgoTimeSeriesWriter;
 
 /**
  * Example of how to calculate the Piecewise Aggregate Approximation of time series, using

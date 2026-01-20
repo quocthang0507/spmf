@@ -1,18 +1,14 @@
 package ca.pfv.spmf.algorithms.sequenceprediction.ipredict.controllers;
 
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import ca.pfv.spmf.algorithms.sequenceprediction.ipredict.database.Sequence;
+import ca.pfv.spmf.algorithms.sequenceprediction.ipredict.predictor.Markov.MarkovAllKPredictor;
+import ca.pfv.spmf.algorithms.sequenceprediction.ipredict.predictor.Predictor;
+import ca.pfv.spmf.algorithms.sequenceprediction.ipredict.predictor.profile.DefaultProfile;
+
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-
-import ca.pfv.spmf.algorithms.sequenceprediction.ipredict.database.Sequence;
-import ca.pfv.spmf.algorithms.sequenceprediction.ipredict.predictor.Predictor;
-import ca.pfv.spmf.algorithms.sequenceprediction.ipredict.predictor.Markov.MarkovAllKPredictor;
-import ca.pfv.spmf.algorithms.sequenceprediction.ipredict.predictor.profile.DefaultProfile;
 
 
 public class SerializePredictor {

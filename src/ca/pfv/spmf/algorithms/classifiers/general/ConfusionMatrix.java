@@ -25,8 +25,8 @@ import java.util.TreeSet;
 
 /**
  * Confusion matrix used to quality metrics for classifiers. <br/><br/>
- *
- * The code was obtained from the LAC library under GPL license. Then, it was optimized 
+ * <p>
+ * The code was obtained from the LAC library under GPL license. Then, it was optimized
  * and adapted for integration in SPMF.
  */
 public class ConfusionMatrix {
@@ -40,7 +40,9 @@ public class ConfusionMatrix {
      */
     long correct = 0;
 
-    /** number of no predictions */
+    /**
+     * number of no predictions
+     */
     long nopredictions = 0;
 
     /**

@@ -1,10 +1,10 @@
 package ca.pfv.spmf.test;
 
+import ca.pfv.spmf.algorithms.frequentpatterns.hauim_gmu.AlgoHAUIM_GMU;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-
-import ca.pfv.spmf.algorithms.frequentpatterns.hauim_gmu.AlgoHAUIM_GMU;
 
 /**
  * Example of how to run the HAUIM-GMU algorithm from the paper: Generalized

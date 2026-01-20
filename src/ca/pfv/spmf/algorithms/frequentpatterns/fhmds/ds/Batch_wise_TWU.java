@@ -18,7 +18,7 @@ package ca.pfv.spmf.algorithms.frequentpatterns.fhmds.ds;
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import java.util.*;
+import java.util.HashMap;
 
 public class Batch_wise_TWU {
 

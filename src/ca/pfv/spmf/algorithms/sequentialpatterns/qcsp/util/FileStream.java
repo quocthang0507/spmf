@@ -32,18 +32,17 @@ import java.util.Arrays;
 
 /**
  * Some "low-level" code, to prevent reading a file at once.
- * Idea: read data buffered, and return tokens, one by one, update buffer when required. 
- * Seperator can be '\n' or ' ' or ... 
- *
+ * Idea: read data buffered, and return tokens, one by one, update buffer when required.
+ * Seperator can be '\n' or ' ' or ...
+ * <p>
  * Note: Similar to BufferReader, but there the seperator is always '\n', hence if all data is on a on single line...
  * E.g.
  * FileStream stream = new FileStream(new File("very-big-file.txt"), '\n');
  * String token = s.nextToken();
  * while(token != null){
- *   ...
- *   token = s.nextToken();
+ * ...
+ * token = s.nextToken();
  * }
- *
  *
  * @author lfereman
  *

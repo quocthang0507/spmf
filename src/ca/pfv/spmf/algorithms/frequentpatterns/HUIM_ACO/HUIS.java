@@ -54,6 +54,7 @@ public class HUIS {
      * The best item spare index list
      */
     private List<Integer> bestItemIndexSpare = new ArrayList<Integer>();
+
     public HUIS() {
         this.huiSet = new ArrayList<HUI>();
     }

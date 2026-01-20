@@ -1,16 +1,12 @@
 package ca.pfv.spmf.algorithms.sequentialpatterns.clasp_AGP.tries;
 
-import java.util.AbstractMap;
-import java.util.ArrayList;
-import java.util.BitSet;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map.Entry;
-
 import ca.pfv.spmf.algorithms.sequentialpatterns.clasp_AGP.dataStructures.abstracciones.ItemAbstractionPair;
 import ca.pfv.spmf.algorithms.sequentialpatterns.clasp_AGP.dataStructures.patterns.Pattern;
 import ca.pfv.spmf.algorithms.sequentialpatterns.clasp_AGP.dataStructures.patterns.PatternCreator;
 import ca.pfv.spmf.algorithms.sequentialpatterns.clasp_AGP.idlists.IDList;
+
+import java.util.*;
+import java.util.Map.Entry;
 
 
 /**
@@ -85,6 +81,7 @@ public class Trie implements Comparable<Trie> {
      * Trie identifier
      */
     private int id;
+
     /**
      * Constructor of a Trie by means of a list of NodeTrie and the
      * IdList of the pattern associated to the trie.
@@ -97,6 +94,7 @@ public class Trie implements Comparable<Trie> {
         this.idList = idList;
         id = intId++;
     }
+
     /**
      * Constructor of a Trie by means of a list of NodeTrie.
      *

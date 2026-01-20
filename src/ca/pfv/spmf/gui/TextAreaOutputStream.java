@@ -1,8 +1,7 @@
 package ca.pfv.spmf.gui;
 
+import javax.swing.*;
 import java.io.OutputStream;
-
-import javax.swing.JTextArea;
 
 /**
  * A type of outputstream for displaying the console output in a JTextArea

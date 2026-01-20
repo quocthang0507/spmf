@@ -16,19 +16,8 @@ package ca.pfv.spmf.algorithms.frequentpatterns.haui_miner;
  * @author Ting Li
  */
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.io.*;
+import java.util.*;
 
 /**
  * This is an implementation of the "HAUI-Miner Algorithm" for High Average-Utility Itemsets Mining

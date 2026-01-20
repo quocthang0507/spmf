@@ -1,10 +1,10 @@
 package ca.pfv.spmf.test;
 
+import ca.pfv.spmf.algorithms.frequentpatterns.phmn_plus.AlgoPHMN;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-
-import ca.pfv.spmf.algorithms.frequentpatterns.phmn_plus.AlgoPHMN;
 
 /**
  * Example of how to use the PHMN+ algorithm from the source code.

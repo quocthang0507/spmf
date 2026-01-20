@@ -18,16 +18,11 @@
  */
 package ca.pfv.spmf.algorithms.classifiers.cba;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-
 import ca.pfv.spmf.algorithms.classifiers.data.Dataset;
 import ca.pfv.spmf.algorithms.classifiers.data.Instance;
+
+import java.util.*;
+import java.util.Map.Entry;
 
 /**
  * Implementation of Apriori for CBA. It is adapted to output rules directly.
@@ -54,9 +49,8 @@ public class AprioriForCBA {
      * @param dataset the training dataset
      * @param minSup  the minimum support
      * @param minConf the minimum confidence
-     *
      * @return rules whose support and confidence is greater than a user-specified
-     *         threshold
+     * threshold
      */
     public List<RuleCBA> runAlgorithm(Dataset dataset, double minSup, double minConf) {
         this.minSupRelative = (long) Math.ceil(minSup * dataset.getInstances().size());
@@ -105,10 +99,10 @@ public class AprioriForCBA {
     /**
      * Find valid rules of size k
      *
-     * @param dataset        The dataset
-     * @param minConf        The minimum confidence
-     * @param rules          The set of final rules (will be modified)
-     * @param level         the rules of size k -1
+     * @param dataset The dataset
+     * @param minConf The minimum confidence
+     * @param rules   The set of final rules (will be modified)
+     * @param level   the rules of size k -1
      * @return The list of rules of size k that are valid
      */
     private List<RuleCBA> generateAndTestCandidateSizeK(Dataset dataset, double minConf, List<RuleCBA> rules,
@@ -159,10 +153,10 @@ public class AprioriForCBA {
     /**
      * Find the rules of size 2
      *
-     * @param dataset        The dataset
-     * @param minConf        The minimum confidence
-     * @param rules          The set of final rules (will be modified)
-     * @param frequent1      The Frequent items.
+     * @param dataset   The dataset
+     * @param minConf   The minimum confidence
+     * @param rules     The set of final rules (will be modified)
+     * @param frequent1 The Frequent items.
      * @return The list of rules of size 2 that are valid (according to ACAC)
      */
     private List<RuleCBA> generateAndTestCandidateSize2(Dataset dataset, double minConf, List<RuleCBA> rules,
@@ -279,7 +273,7 @@ public class AprioriForCBA {
      * @param posRemoved the position of an item that should be ignored from
      *                   "itemset2" to perform the comparison.
      * @return 0 if they are the same, 1 if itemset is larger according to lexical
-     *         order, -1 if smaller.
+     * order, -1 if smaller.
      */
     int sameAs(List<Short> itemset1, List<Short> itemsets2, int posRemoved) {
         // a variable to know which item from candidate we are currently searching

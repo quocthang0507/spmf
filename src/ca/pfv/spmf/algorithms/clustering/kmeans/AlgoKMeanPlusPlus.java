@@ -1,11 +1,11 @@
 package ca.pfv.spmf.algorithms.clustering.kmeans;
 
-import java.util.List;
-
 import ca.pfv.spmf.patterns.cluster.ClusterWithMean;
 import ca.pfv.spmf.patterns.cluster.ClustersEvaluation;
 import ca.pfv.spmf.patterns.cluster.DoubleArray;
 import ca.pfv.spmf.tools.MemoryLogger;
+
+import java.util.List;
 
 /* This file is copyright (c) 2008-2013 Philippe Fournier-Viger
  *

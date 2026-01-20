@@ -1,8 +1,8 @@
 package ca.pfv.spmf.algorithms.sequenceprediction.ipredict.predictor;
 
-import java.util.List;
-
 import ca.pfv.spmf.algorithms.sequenceprediction.ipredict.database.Sequence;
+
+import java.util.List;
 /*
  * This file is copyright (c) Ted Gueniche
  * <ted.gueniche@gmail.com>

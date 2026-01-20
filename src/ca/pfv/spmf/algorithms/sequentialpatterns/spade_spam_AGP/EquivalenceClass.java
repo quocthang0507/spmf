@@ -1,10 +1,10 @@
 package ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP.dataStructures.patterns.Pattern;
 import ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP.idLists.IDList;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This is the definition of an equivalence class.

@@ -1,11 +1,11 @@
 package ca.pfv.spmf.test;
 
+import ca.pfv.spmf.gui.viewers.utility_time_tdb_viewer.TypeOfTime;
+import ca.pfv.spmf.gui.viewers.utility_time_tdb_viewer.UtilityTimeTransactionDatabaseViewer;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-
-import ca.pfv.spmf.gui.viewers.utility_time_tdb_viewer.TypeOfTime;
-import ca.pfv.spmf.gui.viewers.utility_time_tdb_viewer.UtilityTimeTransactionDatabaseViewer;
 
 /**
  * Example of how to use the Time-Utility Transaction Database viewer  from the

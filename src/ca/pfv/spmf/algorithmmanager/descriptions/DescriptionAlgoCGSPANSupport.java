@@ -1,11 +1,11 @@
 package ca.pfv.spmf.algorithmmanager.descriptions;
 
-import java.io.IOException;
-
 import ca.pfv.spmf.algorithmmanager.AlgorithmType;
 import ca.pfv.spmf.algorithmmanager.DescriptionOfAlgorithm;
 import ca.pfv.spmf.algorithmmanager.DescriptionOfParameter;
 import ca.pfv.spmf.algorithms.graph_mining.tkg.AlgoCGSPANSupport;
+
+import java.io.IOException;
 
 /**
  * This class describes the CGSPAN algorithm parameters when support threshold is used. It is designed to be used by the graphical and command line interface.

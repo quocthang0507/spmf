@@ -1,6 +1,6 @@
 package ca.pfv.spmf.algorithms.sequentialpatterns.prosecco;
 
-import ca.pfv.spmf.algorithms.sequentialpatterns.prefixspan.*;
+import ca.pfv.spmf.algorithms.sequentialpatterns.prefixspan.SequentialPattern;
 import ca.pfv.spmf.patterns.itemset_list_integers_without_support.Itemset;
 
 import java.util.ArrayList;

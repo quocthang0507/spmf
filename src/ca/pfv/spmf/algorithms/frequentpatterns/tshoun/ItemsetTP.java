@@ -1,10 +1,10 @@
 package ca.pfv.spmf.algorithms.frequentpatterns.tshoun;
 
 
+import ca.pfv.spmf.algorithms.frequentpatterns.two_phase.AlgoTwoPhase;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import ca.pfv.spmf.algorithms.frequentpatterns.two_phase.AlgoTwoPhase;
 
 /**
  * This class represents an itemset (a set of items) with utility information found

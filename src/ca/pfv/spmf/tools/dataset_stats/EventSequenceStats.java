@@ -16,11 +16,11 @@ package ca.pfv.spmf.tools.dataset_stats;
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
 
+import ca.pfv.spmf.input.event_sequence.EventSequence;
+
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
-
-import ca.pfv.spmf.input.event_sequence.EventSequence;
 
 /**
  * This class read an event sequence with time and calculates statistics

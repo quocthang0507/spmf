@@ -34,15 +34,25 @@ import java.io.LineNumberReader;
 import java.util.*;
 
 public class Data {
-    /** Map of item to the TWU */
+    /**
+     * Map of item to the TWU
+     */
     private Map<Integer, Integer> itemAndTWU = null;
-    /** the Pheromones betweenone one item to another item */
+    /**
+     * the Pheromones betweenone one item to another item
+     */
     private Integer[][] database;
-    /** The transaction utility list */
+    /**
+     * The transaction utility list
+     */
     private Integer[] transactionUtilityList;
-    /** The database high */
+    /**
+     * The database high
+     */
     private Integer databaseHigh;
-    /** the items which has twu value more than minUtil */
+    /**
+     * the items which has twu value more than minUtil
+     */
     private List<Integer> HTWUs_1 = null;
 
     /**

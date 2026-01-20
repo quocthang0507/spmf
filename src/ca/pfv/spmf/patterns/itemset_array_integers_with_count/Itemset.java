@@ -1,10 +1,10 @@
 package ca.pfv.spmf.patterns.itemset_array_integers_with_count;
 
-import java.util.Arrays;
-import java.util.List;
-
 import ca.pfv.spmf.algorithms.ArraysAlgos;
 import ca.pfv.spmf.patterns.AbstractOrderedItemset;
+
+import java.util.Arrays;
+import java.util.List;
 
 /* This file is copyright (c) 2008-2012 Philippe Fournier-Viger
  *

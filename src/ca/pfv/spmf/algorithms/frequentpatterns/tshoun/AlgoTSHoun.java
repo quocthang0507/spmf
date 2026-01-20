@@ -1,23 +1,14 @@
 package ca.pfv.spmf.algorithms.frequentpatterns.tshoun;
 
 
+import ca.pfv.spmf.algorithms.frequentpatterns.two_phase.ItemsetsTP;
+import ca.pfv.spmf.tools.MemoryLogger;
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.BitSet;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.Map.Entry;
-import java.util.Set;
-
-import ca.pfv.spmf.algorithms.frequentpatterns.two_phase.ItemsetsTP;
-import ca.pfv.spmf.tools.MemoryLogger;
 
 /**
  * This is an implementation of the "TSHOUN" algorithm for High on-shelf utility itemsets Mining

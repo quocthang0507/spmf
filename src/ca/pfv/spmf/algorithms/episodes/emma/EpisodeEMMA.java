@@ -1,9 +1,9 @@
 package ca.pfv.spmf.algorithms.episodes.emma;
 
+import ca.pfv.spmf.algorithms.episodes.general.AbstractEpisode;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import ca.pfv.spmf.algorithms.episodes.general.AbstractEpisode;
 /*
  * This file is part of the SPMF DATA MINING SOFTWARE *
  * (http://www.philippe-fournier-viger.com/spmf).

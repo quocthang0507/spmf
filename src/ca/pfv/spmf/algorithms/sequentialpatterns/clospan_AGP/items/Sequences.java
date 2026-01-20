@@ -1,11 +1,11 @@
 package ca.pfv.spmf.algorithms.sequentialpatterns.clospan_AGP.items;
 
+import ca.pfv.spmf.algorithms.sequentialpatterns.clospan_AGP.items.patterns.Pattern;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-
-import ca.pfv.spmf.algorithms.sequentialpatterns.clospan_AGP.items.patterns.Pattern;
 
 /**
  * Inspired in SPMF
@@ -40,6 +40,7 @@ public class Sequences {
     private final String name;
     public List<List<Pattern>> levels = new ArrayList<List<Pattern>>();  // itemset class� par taille
     public int nbSequeencesFrequentes = 0;
+
     public Sequences(String name) {
         this.name = name;
         levels.add(new ArrayList<Pattern>()); // on cr�� le niveau z�ro vide par d�faut.

@@ -1,15 +1,15 @@
 package ca.pfv.spmf.algorithms.sequentialpatterns.clasp_AGP.idlists.creators;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import ca.pfv.spmf.algorithms.sequentialpatterns.clasp_AGP.dataStructures.Item;
 import ca.pfv.spmf.algorithms.sequentialpatterns.clasp_AGP.idlists.IDList;
 import ca.pfv.spmf.algorithms.sequentialpatterns.clasp_AGP.idlists.IDListStandard_Map;
 import ca.pfv.spmf.algorithms.sequentialpatterns.clasp_AGP.idlists.Position;
 import ca.pfv.spmf.algorithms.sequentialpatterns.clasp_AGP.tries.TrieNode;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Creator of a IdList based on a hashmap of arraylists.

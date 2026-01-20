@@ -1,12 +1,12 @@
 package ca.pfv.spmf.algorithms.episodes.general;
 
+import ca.pfv.spmf.algorithms.episodes.emma.AlgoEMMA;
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
-import ca.pfv.spmf.algorithms.episodes.emma.AlgoEMMA;
 /*
  * This file is part of the SPMF DATA MINING SOFTWARE *
  * (http://www.philippe-fournier-viger.com/spmf).

@@ -1,12 +1,8 @@
 package ca.pfv.spmf.algorithms.classifiers.general;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-
 import ca.pfv.spmf.algorithms.classifiers.data.Instance;
+
+import java.io.*;
 
 /**
  * This class represents a classifier

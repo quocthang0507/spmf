@@ -4,10 +4,10 @@
  */
 package ca.pfv.spmf.algorithms.sequentialpatterns.gsp_AGP.items.patterns;
 
+import ca.pfv.spmf.algorithms.sequentialpatterns.gsp_AGP.items.abstractions.ItemAbstractionPair;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import ca.pfv.spmf.algorithms.sequentialpatterns.gsp_AGP.items.abstractions.ItemAbstractionPair;
 
 /**
  * This class is the implementation of a creator of patterns.

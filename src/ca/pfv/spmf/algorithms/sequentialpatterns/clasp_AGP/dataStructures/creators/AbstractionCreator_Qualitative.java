@@ -1,14 +1,14 @@
 package ca.pfv.spmf.algorithms.sequentialpatterns.clasp_AGP.dataStructures.creators;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import ca.pfv.spmf.algorithms.sequentialpatterns.clasp_AGP.dataStructures.Item;
 import ca.pfv.spmf.algorithms.sequentialpatterns.clasp_AGP.dataStructures.abstracciones.Abstraction_Generic;
 import ca.pfv.spmf.algorithms.sequentialpatterns.clasp_AGP.dataStructures.abstracciones.Abstraction_Qualitative;
 import ca.pfv.spmf.algorithms.sequentialpatterns.clasp_AGP.dataStructures.abstracciones.ItemAbstractionPair;
 import ca.pfv.spmf.algorithms.sequentialpatterns.clasp_AGP.dataStructures.patterns.Pattern;
 import ca.pfv.spmf.algorithms.sequentialpatterns.clasp_AGP.dataStructures.patterns.PatternCreator;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Class that implements a qualitative abstraction. Two different values are

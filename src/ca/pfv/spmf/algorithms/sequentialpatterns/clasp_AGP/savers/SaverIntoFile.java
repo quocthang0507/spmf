@@ -1,12 +1,12 @@
 package ca.pfv.spmf.algorithms.sequentialpatterns.clasp_AGP.savers;
 
+import ca.pfv.spmf.algorithms.sequentialpatterns.clasp_AGP.dataStructures.patterns.Pattern;
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import ca.pfv.spmf.algorithms.sequentialpatterns.clasp_AGP.dataStructures.patterns.Pattern;
 
 /**
  * This is an implementation of a class implementing the Saver interface. By

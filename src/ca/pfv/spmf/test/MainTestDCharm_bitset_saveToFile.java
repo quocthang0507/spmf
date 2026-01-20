@@ -1,11 +1,11 @@
 package ca.pfv.spmf.test;
 
+import ca.pfv.spmf.algorithms.frequentpatterns.charm.AlgoDCharm_Bitset;
+import ca.pfv.spmf.input.transaction_database_list_integers.TransactionDatabase;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-
-import ca.pfv.spmf.algorithms.frequentpatterns.charm.AlgoDCharm_Bitset;
-import ca.pfv.spmf.input.transaction_database_list_integers.TransactionDatabase;
 
 
 /**

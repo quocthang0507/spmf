@@ -16,17 +16,13 @@ package ca.pfv.spmf.tools.dataset_stats;
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import ca.pfv.spmf.input.sequence_database_list_integers.Sequence;
+
+import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
-
-import ca.pfv.spmf.input.sequence_database_list_integers.Sequence;
 
 /**
  * This class read a sequence database and calculates statistics

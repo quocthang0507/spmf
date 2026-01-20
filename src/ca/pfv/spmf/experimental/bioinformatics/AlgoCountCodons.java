@@ -1,13 +1,13 @@
 package ca.pfv.spmf.experimental.bioinformatics;
 
+import ca.pfv.spmf.tools.MemoryLogger;
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
-
-import ca.pfv.spmf.tools.MemoryLogger;
 
 /* Copyright (c) 2008-2024 Philippe Fournier-Viger
  *

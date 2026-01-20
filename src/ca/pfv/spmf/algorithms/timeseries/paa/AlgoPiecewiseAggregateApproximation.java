@@ -18,12 +18,12 @@ package ca.pfv.spmf.algorithms.timeseries.paa;
  */
 
 
-import java.io.IOException;
-import java.util.Arrays;
-
 import ca.pfv.spmf.algorithms.timeseries.TimeSeries;
 import ca.pfv.spmf.algorithms.timeseries.sax.AlgoSAX;
 import ca.pfv.spmf.tools.MemoryLogger;
+
+import java.io.IOException;
+import java.util.Arrays;
 
 /**
  * An implementation of the algorithm to generate the Piecewise Aggregate Approximation of a time series

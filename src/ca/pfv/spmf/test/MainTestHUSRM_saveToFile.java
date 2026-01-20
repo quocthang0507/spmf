@@ -1,11 +1,11 @@
 package ca.pfv.spmf.test;
 
 
+import ca.pfv.spmf.algorithms.sequential_rules.husrm.AlgoHUSRM;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-
-import ca.pfv.spmf.algorithms.sequential_rules.husrm.AlgoHUSRM;
 /* This file is copyright (c) 2008-2015 Philippe Fournier-Viger
  *
  * This file is part of the SPMF DATA MINING SOFTWARE

@@ -1,13 +1,13 @@
 package ca.pfv.spmf.test;
 
+import ca.pfv.spmf.algorithms.timeseries.TimeSeries;
+import ca.pfv.spmf.algorithms.timeseries.reader_writer.AlgoTimeSeriesReader;
+import ca.pfv.spmf.gui.viewers.timeseriesviewer.TimeSeriesViewer;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.util.List;
-
-import ca.pfv.spmf.algorithms.timeseries.TimeSeries;
-import ca.pfv.spmf.algorithms.timeseries.reader_writer.AlgoTimeSeriesReader;
-import ca.pfv.spmf.gui.viewers.timeseriesviewer.TimeSeriesViewer;
 
 /**
  * Example of how to view a time series, from the source code of SPMF.

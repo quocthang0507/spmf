@@ -16,13 +16,9 @@ package ca.pfv.spmf.algorithms.sequential_rules.rulegrowth;
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
 import ca.pfv.spmf.patterns.itemset_array_integers_with_tids.Itemset;
+
+import java.util.*;
 
 /**
  * This class represents a right equivalence class.

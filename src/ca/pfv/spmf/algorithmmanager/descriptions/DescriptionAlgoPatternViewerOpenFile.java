@@ -1,12 +1,12 @@
 package ca.pfv.spmf.algorithmmanager.descriptions;
 
-import java.io.IOException;
-import java.text.ParseException;
-
 import ca.pfv.spmf.algorithmmanager.AlgorithmType;
 import ca.pfv.spmf.algorithmmanager.DescriptionOfAlgorithm;
 import ca.pfv.spmf.algorithmmanager.DescriptionOfParameter;
 import ca.pfv.spmf.gui.patternvizualizer.PatternVizualizer;
+
+import java.io.IOException;
+import java.text.ParseException;
 
 /**
  * This class describes the algorithm to run the pattern viewer of SPMF

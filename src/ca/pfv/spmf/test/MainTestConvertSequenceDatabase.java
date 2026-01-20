@@ -1,12 +1,12 @@
 package ca.pfv.spmf.test;
 
+import ca.pfv.spmf.tools.dataset_converter.Formats;
+import ca.pfv.spmf.tools.dataset_converter.SequenceDatabaseConverter;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.nio.charset.Charset;
-
-import ca.pfv.spmf.tools.dataset_converter.Formats;
-import ca.pfv.spmf.tools.dataset_converter.SequenceDatabaseConverter;
 
 /**
  * Example of how to convert a sequence database from a given format

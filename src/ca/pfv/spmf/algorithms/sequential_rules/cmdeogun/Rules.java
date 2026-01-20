@@ -16,10 +16,10 @@ package ca.pfv.spmf.algorithms.sequential_rules.cmdeogun;
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
 
+import ca.pfv.spmf.patterns.itemset_array_integers_with_tids.Itemset;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import ca.pfv.spmf.patterns.itemset_array_integers_with_tids.Itemset;
 
 /**
  * This class represents a group of sequential rules found by the CMDeo algorithm.

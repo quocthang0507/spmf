@@ -1,10 +1,10 @@
 package ca.pfv.spmf.test;
 
+import ca.pfv.spmf.algorithms.frequentpatterns.hui_miner_float.AlgoFHM_Float;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-
-import ca.pfv.spmf.algorithms.frequentpatterns.hui_miner_float.AlgoFHM_Float;
 
 /**
  * Example of how to use the FHM algorithm with float values

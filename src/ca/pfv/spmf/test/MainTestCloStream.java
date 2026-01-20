@@ -1,11 +1,11 @@
 package ca.pfv.spmf.test;
 
+import ca.pfv.spmf.algorithms.frequentpatterns.clostream.AlgoCloSteam;
+import ca.pfv.spmf.patterns.itemset_array_integers_with_count.Itemset;
+
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.util.List;
-
-import ca.pfv.spmf.algorithms.frequentpatterns.clostream.AlgoCloSteam;
-import ca.pfv.spmf.patterns.itemset_array_integers_with_count.Itemset;
 
 /**
  * Example of how to use the CloStream algorith, from the source code.

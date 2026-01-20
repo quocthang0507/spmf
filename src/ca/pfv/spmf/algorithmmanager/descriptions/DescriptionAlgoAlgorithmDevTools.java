@@ -1,13 +1,12 @@
 package ca.pfv.spmf.algorithmmanager.descriptions;
 
-import java.io.IOException;
-
-import javax.swing.UnsupportedLookAndFeelException;
-
 import ca.pfv.spmf.algorithmmanager.AlgorithmType;
 import ca.pfv.spmf.algorithmmanager.DescriptionOfAlgorithm;
 import ca.pfv.spmf.algorithmmanager.DescriptionOfParameter;
 import ca.pfv.spmf.gui.developerswindow.DevelopersToolsWindow;
+
+import javax.swing.*;
+import java.io.IOException;
 
 /**
  * This class describes the algorithm to run the Developpers tool of SPMF

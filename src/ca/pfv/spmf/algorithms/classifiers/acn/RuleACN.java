@@ -19,14 +19,14 @@
  */
 package ca.pfv.spmf.algorithms.classifiers.acn;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-
 import ca.pfv.spmf.algorithms.ArraysAlgos;
 import ca.pfv.spmf.algorithms.classifiers.data.Dataset;
 import ca.pfv.spmf.algorithms.classifiers.data.Instance;
 import ca.pfv.spmf.algorithms.classifiers.general.Rule;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Base class for a rule of ACN. It extends base Rule, but add functionalities

@@ -1,8 +1,8 @@
 package ca.pfv.spmf.algorithms.frequentpatterns.efim;
 
-import java.util.Arrays;
-
 import ca.pfv.spmf.datastructures.collections.list.ArrayListObject;
+
+import java.util.Arrays;
 
 /**
  * This class represents a set of itemsets, where an itemset is an array of integers

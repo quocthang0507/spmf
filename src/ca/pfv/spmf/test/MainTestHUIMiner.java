@@ -1,10 +1,10 @@
 package ca.pfv.spmf.test;
 
+import ca.pfv.spmf.algorithms.frequentpatterns.hui_miner.AlgoHUIMiner;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-
-import ca.pfv.spmf.algorithms.frequentpatterns.hui_miner.AlgoHUIMiner;
 
 /**
  * Example of how to use the HUIMiner algorithm

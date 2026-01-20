@@ -1,12 +1,12 @@
 package ca.pfv.spmf.datastructures.collections.automatic_test;
 
-import java.util.HashSet;
-import java.util.Random;
-import java.util.Set;
-
 import ca.pfv.spmf.datastructures.collections.set.AHashSetObject;
 import ca.pfv.spmf.datastructures.collections.set.SetObject;
 import ca.pfv.spmf.datastructures.collections.set.SetObject.AEntryIterator;
+
+import java.util.HashSet;
+import java.util.Random;
+import java.util.Set;
 
 /*
  * Copyright (c) 2023 Philippe Fournier-Viger

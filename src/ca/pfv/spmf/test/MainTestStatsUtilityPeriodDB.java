@@ -1,10 +1,10 @@
 package ca.pfv.spmf.test;
 
+import ca.pfv.spmf.tools.dataset_stats.TransactionDBUtilityTimeStats;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-
-import ca.pfv.spmf.tools.dataset_stats.TransactionDBUtilityTimeStats;
 
 /**
  * Example of how to calculate stats for a Utility-Period Transaction Database from the

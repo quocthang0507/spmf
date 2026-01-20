@@ -1,17 +1,11 @@
 package ca.pfv.spmf.algorithms.sequentialpatterns.prosecco;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-
-import ca.pfv.spmf.tools.MemoryLogger;
 import ca.pfv.spmf.algorithms.sequentialpatterns.prefixspan.*;
 import ca.pfv.spmf.patterns.itemset_list_integers_without_support.Itemset;
+import ca.pfv.spmf.tools.MemoryLogger;
 
-
+import java.io.IOException;
+import java.util.*;
 import java.util.Map.Entry;
 
 /**

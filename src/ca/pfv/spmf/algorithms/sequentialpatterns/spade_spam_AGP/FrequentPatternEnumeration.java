@@ -1,12 +1,12 @@
 package ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP;
 
-import java.util.List;
-import java.util.Map;
-
 import ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP.candidatePatternsGeneration.CandidateGenerator;
 import ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP.dataStructures.patterns.Pattern;
 import ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP.idLists.IDList;
 import ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP.savers.Saver;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * This is an implementation of the main methods of SPADE algorithm. We keep

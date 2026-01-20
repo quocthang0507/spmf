@@ -1,13 +1,8 @@
 package ca.pfv.spmf.gui;
 
-import java.awt.BorderLayout;
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.JFrame;
-import javax.swing.JProgressBar;
-import javax.swing.SwingUtilities;
-import javax.swing.Timer;
 
 /*
  * Copyright (c) 2008-2023 Philippe Fournier-Viger

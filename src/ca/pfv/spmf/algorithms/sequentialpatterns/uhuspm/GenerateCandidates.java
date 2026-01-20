@@ -1,19 +1,7 @@
 package ca.pfv.spmf.algorithms.sequentialpatterns.uhuspm;
 
-import java.io.BufferedWriter;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.io.*;
+import java.util.*;
 
 /* This file is part of the SPMF DATA MINING SOFTWARE
  * (http://www.philippe-fournier-viger.com/spmf).

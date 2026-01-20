@@ -1,24 +1,11 @@
 package ca.pfv.spmf.algorithms.sequentialpatterns.spam;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
-
 import ca.pfv.spmf.patterns.itemset_list_integers_without_support.Itemset;
 import ca.pfv.spmf.tools.MemoryLogger;
+
+import java.io.*;
+import java.util.*;
+import java.util.Map.Entry;
 
 /**
  * * This is the original implementation of the CM-SPAM algorithm described in

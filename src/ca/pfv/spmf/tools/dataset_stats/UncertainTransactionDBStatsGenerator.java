@@ -16,15 +16,15 @@ package ca.pfv.spmf.tools.dataset_stats;
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
 
+import ca.pfv.spmf.algorithms.frequentpatterns.uapriori.ItemUApriori;
+import ca.pfv.spmf.algorithms.frequentpatterns.uapriori.ItemsetUApriori;
+import ca.pfv.spmf.algorithms.frequentpatterns.uapriori.UncertainTransactionDatabase;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
-
-import ca.pfv.spmf.algorithms.frequentpatterns.uapriori.ItemUApriori;
-import ca.pfv.spmf.algorithms.frequentpatterns.uapriori.ItemsetUApriori;
-import ca.pfv.spmf.algorithms.frequentpatterns.uapriori.UncertainTransactionDatabase;
 
 /**
  * This class read a transaction database and calculates statistics

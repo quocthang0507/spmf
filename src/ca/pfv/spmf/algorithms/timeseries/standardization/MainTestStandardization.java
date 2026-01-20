@@ -1,10 +1,10 @@
 package ca.pfv.spmf.algorithms.timeseries.standardization;
 
+import ca.pfv.spmf.algorithms.timeseries.TimeSeries;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-
-import ca.pfv.spmf.algorithms.timeseries.TimeSeries;
 
 /**
  * Example of how to calculate the standardization of a time series, using

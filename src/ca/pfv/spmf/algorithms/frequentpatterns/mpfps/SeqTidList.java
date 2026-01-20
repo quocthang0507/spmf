@@ -1,6 +1,8 @@
 package ca.pfv.spmf.algorithms.frequentpatterns.mpfps;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 /* This file is copyright (c) 2019 Zhitian Li, Philippe Fournier-Viger
  *
  * This file is part of the SPMF DATA MINING SOFTWARE

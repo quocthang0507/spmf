@@ -17,11 +17,11 @@
  */
 package ca.pfv.spmf.algorithms.frequentpatterns.fhuqiminer;
 
+import ca.pfv.spmf.algorithms.frequentpatterns.fhuqiminer.tkq.AlgoTKQ;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-
-import ca.pfv.spmf.algorithms.frequentpatterns.fhuqiminer.tkq.AlgoTKQ;
 
 /**
  * Class that shows how to run the TKQ algorithm from the source code.

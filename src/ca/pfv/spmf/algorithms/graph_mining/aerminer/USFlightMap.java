@@ -1,10 +1,6 @@
 package ca.pfv.spmf.algorithms.graph_mining.aerminer;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 /* This file is copyright (c) 2020 by Ganghuan He

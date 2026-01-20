@@ -1,8 +1,8 @@
 package ca.pfv.spmf.algorithms.sequentialpatterns.clofast.model;
 
-import java.util.LinkedList;
-
 import ca.pfv.spmf.algorithms.sequentialpatterns.clofast.model.tree.ClosedSequenceNode;
+
+import java.util.LinkedList;
 
 /* This file is copyright (c) Fabiana Lanotte et al.
  *

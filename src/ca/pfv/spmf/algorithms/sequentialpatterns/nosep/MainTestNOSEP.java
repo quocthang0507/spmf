@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
 
-import ca.pfv.spmf.algorithms.sequentialpatterns.nosep.AlgoNOSEP;
-
 /**
  * This file shows how to run the NOSEP algorithm on an input file.
  *

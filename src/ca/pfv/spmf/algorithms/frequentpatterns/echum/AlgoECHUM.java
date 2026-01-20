@@ -16,17 +16,12 @@ package ca.pfv.spmf.algorithms.frequentpatterns.echum;
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
 
+import ca.pfv.spmf.tools.MemoryLogger;
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-
-import ca.pfv.spmf.tools.MemoryLogger;
+import java.util.*;
 
 /**
  * Implementation of the ECHUM algorithm.
@@ -60,8 +55,10 @@ public class AlgoECHUM {
     double minUtil;
     double minCor;
 
-    /** The following variables are the utility-bins array 
-     // Recall that each bucket correspond to an item */
+    /**
+     * The following variables are the utility-bins array
+     * // Recall that each bucket correspond to an item
+     */
     HashMap<String, Integer> mp = new HashMap<>();
     /**
      * The total time spent for performing intersections

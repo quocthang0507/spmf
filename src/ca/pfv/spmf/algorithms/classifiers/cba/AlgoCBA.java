@@ -18,11 +18,11 @@
  */
 package ca.pfv.spmf.algorithms.classifiers.cba;
 
-import java.util.List;
-
 import ca.pfv.spmf.algorithms.classifiers.data.Dataset;
 import ca.pfv.spmf.algorithms.classifiers.general.ClassificationAlgorithm;
 import ca.pfv.spmf.algorithms.classifiers.general.Classifier;
+
+import java.util.List;
 
 /**
  * This is an implementation of the CBA and CBA2 algorithms. CBA is an algorithm

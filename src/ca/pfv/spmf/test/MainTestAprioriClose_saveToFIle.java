@@ -1,10 +1,10 @@
 package ca.pfv.spmf.test;
 
+import ca.pfv.spmf.algorithms.frequentpatterns.apriori_close.AlgoAprioriClose;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-
-import ca.pfv.spmf.algorithms.frequentpatterns.apriori_close.AlgoAprioriClose;
 
 /**
  * Example of how to use APRIORIClose (a.k.a Close)

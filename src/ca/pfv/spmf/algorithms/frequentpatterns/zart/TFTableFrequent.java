@@ -16,12 +16,12 @@ package ca.pfv.spmf.algorithms.frequentpatterns.zart;
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
 
+import ca.pfv.spmf.patterns.itemset_array_integers_with_count.Itemset;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import ca.pfv.spmf.patterns.itemset_array_integers_with_count.Itemset;
 
 /**
  * This class represents the TF table of frequent itemsets, used by the Zart algorithm.

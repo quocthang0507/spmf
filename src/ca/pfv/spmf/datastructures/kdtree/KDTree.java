@@ -16,14 +16,14 @@ package ca.pfv.spmf.datastructures.kdtree;
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
 import ca.pfv.spmf.algorithms.clustering.distanceFunctions.DistanceEuclidian;
 import ca.pfv.spmf.algorithms.clustering.distanceFunctions.DistanceFunction;
 import ca.pfv.spmf.datastructures.redblacktree.RedBlackTree;
 import ca.pfv.spmf.patterns.cluster.DoubleArray;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 /**
  * This is an implementation of a "KD tree" based on the description in the
@@ -61,7 +61,7 @@ public class KDTree {
     DoubleArray nearestNeighboor = null;  // the current nearest neighboor.
     double minDist = 0;  // the distance of the current nearest neighbor with the target point.
 
-//	List<DoubleArray> pointsDEBUG = null;
+    //	List<DoubleArray> pointsDEBUG = null;
     RedBlackTree<KNNPoint> resultKNN = null; // field to store the current k nearest neighboor with the target point
     int k = 0; // the parameter k.
     private int nodeCount = 0; // number of nodes in the tree

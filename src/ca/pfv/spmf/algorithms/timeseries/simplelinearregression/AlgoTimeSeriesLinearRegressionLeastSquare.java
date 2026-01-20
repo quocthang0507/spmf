@@ -18,10 +18,10 @@ package ca.pfv.spmf.algorithms.timeseries.simplelinearregression;
  */
 
 
-import java.util.Arrays;
-
 import ca.pfv.spmf.algorithms.timeseries.TimeSeries;
 import ca.pfv.spmf.tools.MemoryLogger;
+
+import java.util.Arrays;
 
 /**
  * An algorithm to calculate the simple linear regression of a time series

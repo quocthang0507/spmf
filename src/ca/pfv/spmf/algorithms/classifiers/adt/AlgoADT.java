@@ -19,12 +19,12 @@
  */
 package ca.pfv.spmf.algorithms.classifiers.adt;
 
-import java.io.Serializable;
-import java.util.List;
-
 import ca.pfv.spmf.algorithms.classifiers.data.Dataset;
 import ca.pfv.spmf.algorithms.classifiers.general.ClassificationAlgorithm;
 import ca.pfv.spmf.algorithms.classifiers.general.RuleClassifier;
+
+import java.io.Serializable;
+import java.util.List;
 
 /**
  * Main class for the ADT algorithm. K. Wang, S. Zhou, and Y. He, “Growing

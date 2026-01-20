@@ -1,10 +1,10 @@
 package ca.pfv.spmf.test;
 
+import ca.pfv.spmf.algorithms.associationrules.gcd.GCDAssociationRules;
+
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.util.Calendar;
-
-import ca.pfv.spmf.algorithms.associationrules.gcd.GCDAssociationRules;
 
 /**
  * Example of how to use the GCD algorithm

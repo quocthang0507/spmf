@@ -1,10 +1,10 @@
 package ca.pfv.spmf.test;
 
+import ca.pfv.spmf.algorithms.frequentpatterns.fuimtf.AlgoFUIMTF;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-
-import ca.pfv.spmf.algorithms.frequentpatterns.fuimtf.AlgoFUIMTF;
 
 /**
  * Example of how to use the FUIMTF-Tree algorithm . The code is under the GPLv3

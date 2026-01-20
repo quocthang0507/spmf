@@ -19,11 +19,7 @@
  */
 package ca.pfv.spmf.algorithms.classifiers.data;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Class representing a dataset for classiciation

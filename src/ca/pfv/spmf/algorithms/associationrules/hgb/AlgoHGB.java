@@ -16,14 +16,14 @@ package ca.pfv.spmf.algorithms.associationrules.hgb;
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
 
+import ca.pfv.spmf.tools.MemoryLogger;
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
-import ca.pfv.spmf.tools.MemoryLogger;
 
 /**
  * Algorithm to generate high utility association rules from the paper

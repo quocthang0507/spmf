@@ -1,11 +1,11 @@
 package ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_p.items.patterns;
 
+import ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_p.items.abstractions.ItemAbstractionPair;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_p.items.abstractions.ItemAbstractionPair;
 
 /**
  * This class is the implementation of a creator of patterns.

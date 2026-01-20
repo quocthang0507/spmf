@@ -1,15 +1,11 @@
 package ca.pfv.spmf.gui;
 
-import java.awt.FlowLayout;
+import ca.pfv.spmf.algorithmmanager.DescriptionOfParameter;
+
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JFrame;
-import javax.swing.JTextField;
-
-import ca.pfv.spmf.algorithmmanager.DescriptionOfParameter;
 /*
  * Copyright (c) 2022 Philippe Fournier-Viger
  *

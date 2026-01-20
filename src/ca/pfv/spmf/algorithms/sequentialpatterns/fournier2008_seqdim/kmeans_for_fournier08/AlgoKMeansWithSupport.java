@@ -16,12 +16,12 @@ package ca.pfv.spmf.algorithms.sequentialpatterns.fournier2008_seqdim.kmeans_for
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
 
+import ca.pfv.spmf.algorithms.sequentialpatterns.fournier2008_seqdim.AlgoFournierViger08;
+import ca.pfv.spmf.algorithms.sequentialpatterns.fournier2008_seqdim.ItemValued;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
-import ca.pfv.spmf.algorithms.sequentialpatterns.fournier2008_seqdim.AlgoFournierViger08;
-import ca.pfv.spmf.algorithms.sequentialpatterns.fournier2008_seqdim.ItemValued;
 
 /**
  * This algorithm is a modified K-Means algorithm to be used with the Fournier-Viger-2008 algorithm, which.

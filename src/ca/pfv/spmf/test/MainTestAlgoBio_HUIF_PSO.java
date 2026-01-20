@@ -1,10 +1,10 @@
 package ca.pfv.spmf.test;
 
+import ca.pfv.spmf.algorithms.frequentpatterns.biohuif.AlgoBio_HUIF_PSO;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-
-import ca.pfv.spmf.algorithms.frequentpatterns.biohuif.AlgoBio_HUIF_PSO;
 
 /**
  * Example of how to use HUIF-PSO algorithm from the source code.

@@ -1,5 +1,5 @@
 package ca.pfv.spmf.algorithms.sequentialpatterns.skopus;
-///*******************************************************************************
+/// *******************************************************************************
 // * Copyright (C) 2015 Tao Li
 // * 
 // * This file is part of Skopus.

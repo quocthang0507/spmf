@@ -1,13 +1,13 @@
 package ca.pfv.spmf.test;
 
+import ca.pfv.spmf.algorithms.frequentpatterns.krimp.AlgoKrimp;
+import ca.pfv.spmf.algorithms.frequentpatterns.krimp.Itemset;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
-
-import ca.pfv.spmf.algorithms.frequentpatterns.krimp.AlgoKrimp;
-import ca.pfv.spmf.algorithms.frequentpatterns.krimp.Itemset;
 
 /**
  * Example of how to run the Krimp algorithm

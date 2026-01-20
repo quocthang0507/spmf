@@ -1,10 +1,10 @@
 package ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_p.items;
 
+import ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_p.items.patterns.Pattern;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
-import ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_p.items.patterns.Pattern;
 
 /**
  * Inspired in SPMF This class implements a list of frequent sequence lists (or

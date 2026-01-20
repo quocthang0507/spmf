@@ -1,9 +1,6 @@
 package ca.pfv.spmf.gui.workflow_editor;
 
-import java.awt.BasicStroke;
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
+import java.awt.*;
 /*
  * Copyright (c) 2022 Philippe Fournier-Viger
  *

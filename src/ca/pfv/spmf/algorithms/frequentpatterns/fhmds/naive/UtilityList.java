@@ -18,9 +18,9 @@ package ca.pfv.spmf.algorithms.frequentpatterns.fhmds.naive;
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import java.util.HashMap;
-
 import ca.pfv.spmf.algorithms.frequentpatterns.hui_miner.AlgoHUIMiner;
+
+import java.util.HashMap;
 
 /**
  * This class represents a UtilityList as used by the HUI-Miner algorithm.

@@ -1,18 +1,13 @@
 package ca.pfv.spmf.algorithms.sequentialpatterns.clospan_AGP.items.trie;
 
-import java.util.ArrayList;
-import java.util.BitSet;
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
+import ca.pfv.spmf.algorithms.sequentialpatterns.clospan_AGP.items.abstractions.ItemAbstractionPair;
+import ca.pfv.spmf.algorithms.sequentialpatterns.clospan_AGP.items.patterns.Pattern;
+import ca.pfv.spmf.algorithms.sequentialpatterns.clospan_AGP.items.patterns.PatternCreator;
 
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.MutableTreeNode;
-
-import ca.pfv.spmf.algorithms.sequentialpatterns.clospan_AGP.items.abstractions.ItemAbstractionPair;
-import ca.pfv.spmf.algorithms.sequentialpatterns.clospan_AGP.items.patterns.Pattern;
-import ca.pfv.spmf.algorithms.sequentialpatterns.clospan_AGP.items.patterns.PatternCreator;
+import java.util.*;
 
 /**
  * Class that implement a trie structure. A trie is composed of a list of

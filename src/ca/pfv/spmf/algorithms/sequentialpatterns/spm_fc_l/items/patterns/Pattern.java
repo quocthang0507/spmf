@@ -4,11 +4,11 @@
  */
 package ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_l.items.patterns;
 
+import ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_l.items.abstractions.ItemAbstractionPair;
+
 import java.util.ArrayList;
 import java.util.BitSet;
 import java.util.List;
-
-import ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_l.items.abstractions.ItemAbstractionPair;
 
 /**
  * Implementation of pattern structure. We define it as a list of pairs <abstraction, item>.

@@ -1,10 +1,10 @@
 package ca.pfv.spmf.test;
 
+import ca.pfv.spmf.tools.dataset_stats.SequenceDBUtilityStats;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-
-import ca.pfv.spmf.tools.dataset_stats.SequenceDBUtilityStats;
 /*
  * Copyright (c) 2008-2015 Philippe Fournier-Viger
  *

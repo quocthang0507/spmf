@@ -18,10 +18,10 @@ package ca.pfv.spmf.algorithms.frequentpatterns.ihaupm;
  *
  */
 
+import ca.pfv.spmf.test.MainTestMEMU;
+
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-
-import ca.pfv.spmf.test.MainTestMEMU;
 
 /**
  * This is an implementation of the "IHAUPM" algorithm for High-Average-Utility

@@ -16,23 +16,15 @@ package ca.pfv.spmf.algorithms.sequentialpatterns.fournier2008_seqdim.multidimen
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import ca.pfv.spmf.algorithms.sequentialpatterns.fournier2008_seqdim.*;
+import ca.pfv.spmf.algorithms.sequentialpatterns.fournier2008_seqdim.multidimensionalpatterns.MDPattern;
+import ca.pfv.spmf.algorithms.sequentialpatterns.fournier2008_seqdim.multidimensionalpatterns.MDPatternsDatabase;
+
+import java.io.*;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
-import ca.pfv.spmf.algorithms.sequentialpatterns.fournier2008_seqdim.ItemSimple;
-import ca.pfv.spmf.algorithms.sequentialpatterns.fournier2008_seqdim.ItemValued;
-import ca.pfv.spmf.algorithms.sequentialpatterns.fournier2008_seqdim.Itemset;
-import ca.pfv.spmf.algorithms.sequentialpatterns.fournier2008_seqdim.Sequence;
-import ca.pfv.spmf.algorithms.sequentialpatterns.fournier2008_seqdim.SequenceDatabase;
-import ca.pfv.spmf.algorithms.sequentialpatterns.fournier2008_seqdim.multidimensionalpatterns.MDPattern;
-import ca.pfv.spmf.algorithms.sequentialpatterns.fournier2008_seqdim.multidimensionalpatterns.MDPatternsDatabase;
 
 /**
  * Implementation of a "Multi-Dimensional Sequence Database"

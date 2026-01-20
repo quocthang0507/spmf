@@ -17,6 +17,11 @@
  */
 package ca.pfv.spmf.algorithms.classifiers.general;
 
+import ca.pfv.spmf.algorithms.classifiers.data.Attribute;
+import ca.pfv.spmf.algorithms.classifiers.data.Dataset;
+import ca.pfv.spmf.algorithms.classifiers.data.Instance;
+import ca.pfv.spmf.algorithms.classifiers.data.StringDataset;
+
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.Serializable;
@@ -24,26 +29,26 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
-import ca.pfv.spmf.algorithms.classifiers.data.Attribute;
-import ca.pfv.spmf.algorithms.classifiers.data.Dataset;
-import ca.pfv.spmf.algorithms.classifiers.data.Instance;
-import ca.pfv.spmf.algorithms.classifiers.data.StringDataset;
-
 /**
  * Class representing a rule-based classifier
+ *
  * @see Classifier
  */
 public class RuleClassifier extends Classifier implements Serializable {
 
     /**
-     *  UID
+     * UID
      */
     private static final long serialVersionUID = -3339753093228301309L;
 
-    /** Rules in this classifier */
+    /**
+     * Rules in this classifier
+     */
     protected List<Rule> rules;
 
-    /** Name of this classifier */
+    /**
+     * Name of this classifier
+     */
     protected String name;
 
     /**

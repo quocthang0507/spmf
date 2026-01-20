@@ -17,19 +17,13 @@ package ca.pfv.spmf.algorithms.associationrules.TopKRules_and_TNR;
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
 
+import ca.pfv.spmf.tools.MemoryLogger;
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.BitSet;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.*;
 import java.util.Map.Entry;
-import java.util.PriorityQueue;
-
-import ca.pfv.spmf.tools.MemoryLogger;
 
 /**
  * TopKRules is an algorithm for mining the TOP-K  association rules from a

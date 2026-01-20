@@ -16,10 +16,10 @@ package ca.pfv.spmf.algorithms.sequential_rules.rulegrowth;
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
 
+import ca.pfv.spmf.patterns.itemset_array_integers_with_tids.Itemset;
+
 import java.util.Arrays;
 import java.util.Set;
-
-import ca.pfv.spmf.patterns.itemset_array_integers_with_tids.Itemset;
 
 /**
  * This class represents a rule member of a left equivalence class.

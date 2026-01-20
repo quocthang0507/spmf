@@ -1,13 +1,10 @@
 package ca.pfv.spmf.gui.developerswindow;
 
-import java.awt.BorderLayout;
-
-import javax.swing.JFrame;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
-
 import ca.pfv.spmf.gui.SortableJTable;
+
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.awt.*;
 /*
  * Copyright (c) 2008-2015 Philippe Fournier-Viger
  *

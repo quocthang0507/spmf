@@ -18,11 +18,11 @@ package ca.pfv.spmf.algorithms.timeseries.exponentialsmoothing;
  */
 
 
-import java.io.IOException;
-import java.util.Arrays;
-
 import ca.pfv.spmf.algorithms.timeseries.TimeSeries;
 import ca.pfv.spmf.tools.MemoryLogger;
+
+import java.io.IOException;
+import java.util.Arrays;
 
 /**
  * An algorithm to calculate the exponential smoothing of a time series.

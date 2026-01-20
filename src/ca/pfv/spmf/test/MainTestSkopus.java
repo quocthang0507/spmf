@@ -1,9 +1,9 @@
 package ca.pfv.spmf.test;
 
+import ca.pfv.spmf.algorithms.sequentialpatterns.skopus.AlgoSkopus;
+
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-
-import ca.pfv.spmf.algorithms.sequentialpatterns.skopus.AlgoSkopus;
 
 /**
  * Example of how to use the SKOPUS algorithm from the source code.

@@ -19,20 +19,16 @@ package ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_p;
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import java.io.IOException;
-import java.util.BitSet;
-import java.util.Map;
-
-import ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_p.items.Item;
-import ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_p.items.PseudoSequence;
-import ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_p.items.PseudoSequenceDatabase;
-import ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_p.items.Sequence;
-import ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_p.items.SequenceDatabase;
+import ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_p.items.*;
 import ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_p.items.creators.AbstractionCreator;
 import ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_p.savers.Saver;
 import ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_p.savers.SaverIntoFile;
 import ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_p.savers.SaverIntoMemory;
 import ca.pfv.spmf.tools.MemoryLogger;
+
+import java.io.IOException;
+import java.util.BitSet;
+import java.util.Map;
 
 /**
  * This is an implementation of the SPMF-FC_P algorithm proposed by Wei Song et

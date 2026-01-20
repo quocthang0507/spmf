@@ -1,11 +1,11 @@
 package ca.pfv.spmf.algorithms.sequenceprediction.ipredict.database;
 
+import ca.pfv.spmf.algorithms.sequenceprediction.ipredict.predictor.profile.Profile;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.Collections;
-
-import ca.pfv.spmf.algorithms.sequenceprediction.ipredict.predictor.profile.Profile;
 
 /*
  * This file is copyright (c) Ted Gueniche

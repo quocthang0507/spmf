@@ -1,11 +1,11 @@
 package ca.pfv.spmf.algorithms.timeseries.reader_writer;
 
+import ca.pfv.spmf.algorithms.timeseries.TimeSeries;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.util.List;
-
-import ca.pfv.spmf.algorithms.timeseries.TimeSeries;
 
 /**
  * Example of how to read time series from a file

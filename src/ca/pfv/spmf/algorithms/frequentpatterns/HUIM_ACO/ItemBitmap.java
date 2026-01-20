@@ -31,7 +31,9 @@ import java.util.BitSet;
 public class ItemBitmap {
     /** An item */
 //	private Integer item = null;
-    /** The bitmap of this item */
+    /**
+     * The bitmap of this item
+     */
     private BitSet itemBitmap = null;
     /** The item index */
 //	private Integer itemIndex;

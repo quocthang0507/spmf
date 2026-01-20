@@ -18,12 +18,12 @@ package ca.pfv.spmf.algorithms.frequentpatterns.ihaupm;
  *
  */
 
+import ca.pfv.spmf.tools.MemoryLogger;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-
-import ca.pfv.spmf.tools.MemoryLogger;
 
 /**
  * This is an implementation of the "IHAUPM" algorithm for High-Average-Utility Itemsets Mining

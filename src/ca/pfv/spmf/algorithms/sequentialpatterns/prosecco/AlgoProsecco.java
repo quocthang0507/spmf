@@ -1,5 +1,10 @@
 package ca.pfv.spmf.algorithms.sequentialpatterns.prosecco;
 
+import ca.pfv.spmf.algorithms.sequentialpatterns.prefixspan.SequentialPattern;
+import ca.pfv.spmf.algorithms.sequentialpatterns.prefixspan.SequentialPatterns;
+import ca.pfv.spmf.patterns.itemset_list_integers_without_support.Itemset;
+import ca.pfv.spmf.tools.MemoryLogger;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -7,11 +12,6 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import ca.pfv.spmf.algorithms.sequentialpatterns.prefixspan.SequentialPattern;
-import ca.pfv.spmf.algorithms.sequentialpatterns.prefixspan.SequentialPatterns;
-import ca.pfv.spmf.patterns.itemset_list_integers_without_support.Itemset;
-import ca.pfv.spmf.tools.MemoryLogger;
 
 /**
  * * * This is an implementation of the ProSecCo algorithm.

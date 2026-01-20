@@ -1,10 +1,10 @@
 package ca.pfv.spmf.test;
 
+import ca.pfv.spmf.algorithms.frequentpatterns.MSApriori.AlgoMSApriori;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-
-import ca.pfv.spmf.algorithms.frequentpatterns.MSApriori.AlgoMSApriori;
 
 /**
  * Example of how to use the MSAPRIORI algorithm in source code.

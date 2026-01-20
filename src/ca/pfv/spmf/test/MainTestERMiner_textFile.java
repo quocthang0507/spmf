@@ -1,14 +1,14 @@
 package ca.pfv.spmf.test;
 
+import ca.pfv.spmf.algorithms.sequential_rules.rulegrowth.AlgoERMiner;
+import ca.pfv.spmf.tools.dataset_converter.SequenceDatabaseConverter;
+import ca.pfv.spmf.tools.resultConverter.ResultConverter;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.Map;
-
-import ca.pfv.spmf.algorithms.sequential_rules.rulegrowth.AlgoERMiner;
-import ca.pfv.spmf.tools.dataset_converter.SequenceDatabaseConverter;
-import ca.pfv.spmf.tools.resultConverter.ResultConverter;
 
 /**
  * Example of how to use the ERMiner algorithm in source code with a text file.

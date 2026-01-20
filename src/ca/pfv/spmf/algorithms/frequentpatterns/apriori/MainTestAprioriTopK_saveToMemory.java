@@ -1,11 +1,11 @@
 package ca.pfv.spmf.algorithms.frequentpatterns.apriori;
 
+import ca.pfv.spmf.patterns.itemset_array_integers_with_count.Itemset;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.util.PriorityQueue;
-
-import ca.pfv.spmf.patterns.itemset_array_integers_with_count.Itemset;
 
 /**
  * Example of how to use APRIORI(top-K) algorithm from the source code.

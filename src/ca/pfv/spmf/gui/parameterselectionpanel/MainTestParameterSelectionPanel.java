@@ -1,9 +1,9 @@
 package ca.pfv.spmf.gui.parameterselectionpanel;
 
-import javax.swing.JFrame;
-
 import ca.pfv.spmf.algorithmmanager.AlgorithmManager;
 import ca.pfv.spmf.algorithmmanager.DescriptionOfAlgorithm;
+
+import javax.swing.*;
 /*
  * Copyright (c) 2022 Philippe Fournier-Viger
  *

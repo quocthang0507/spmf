@@ -1,21 +1,15 @@
 package ca.pfv.spmf.experimental.iolayer.test;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-
 import ca.pfv.spmf.algorithms.ItemNameConverter;
 import ca.pfv.spmf.experimental.datastructures.cache.StringToIntegerCache;
 import ca.pfv.spmf.experimental.iolayer.AbstractSPMFReader;
 import ca.pfv.spmf.experimental.iolayer.AbstractSPMFWriter;
 import ca.pfv.spmf.experimental.iolayer.IOManager;
 import ca.pfv.spmf.tools.MemoryLogger;
+
+import java.io.IOException;
+import java.util.*;
+import java.util.Map.Entry;
 
 /**
  * An implementation of the HMine algorithm for mining frequent itemsets from a

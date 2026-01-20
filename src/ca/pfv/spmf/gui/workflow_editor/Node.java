@@ -1,9 +1,6 @@
 package ca.pfv.spmf.gui.workflow_editor;
 
-import java.awt.Color;
-import java.awt.FontMetrics;
-import java.awt.Graphics;
-import java.awt.Rectangle;
+import java.awt.*;
 
 /*
  * Copyright (c) 2022 Philippe Fournier-Viger

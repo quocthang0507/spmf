@@ -1,12 +1,12 @@
 package ca.pfv.spmf.test;
 
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.net.URL;
-
 import ca.pfv.spmf.algorithms.frequentpatterns.cori.AlgoCORI;
 import ca.pfv.spmf.algorithms.frequentpatterns.cori.ItemsetsCORI;
 import ca.pfv.spmf.input.transaction_database_list_integers.TransactionDatabase;
+
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URL;
 
 
 /**

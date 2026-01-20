@@ -6,6 +6,7 @@ public class ItemUtility {
 
     public int item;
     public int utility;
+
     public ItemUtility(int item, int utility) {
         this.item = item;
         this.utility = utility;

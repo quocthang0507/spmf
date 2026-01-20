@@ -1,12 +1,12 @@
 package ca.pfv.spmf.test;
 
+import ca.pfv.spmf.algorithms.frequentpatterns.incchui.AlgoIncCHUI;
+
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.LineNumberReader;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-
-import ca.pfv.spmf.algorithms.frequentpatterns.incchui.AlgoIncCHUI;
 
 /**
  * Example of how to use the IncCHUI algorithm for incremental high-utility itemset mining,

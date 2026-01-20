@@ -1,8 +1,5 @@
 package ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP.dataStructures.abstractions.ItemAbstractionPair;
 import ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP.dataStructures.creators.AbstractionCreator_Qualitative;
 import ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP.dataStructures.creators.ItemAbstractionPairCreator;
@@ -10,6 +7,9 @@ import ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP.dataStructures.p
 import ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP.dataStructures.patterns.PatternCreator;
 import ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP.idLists.IDList;
 import ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP.savers.Saver;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This is an implementation of the main methods of SPAM algorithm. We keep open

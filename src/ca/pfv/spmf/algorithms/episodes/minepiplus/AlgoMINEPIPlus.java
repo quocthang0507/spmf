@@ -1,5 +1,8 @@
 package ca.pfv.spmf.algorithms.episodes.minepiplus;
 
+import ca.pfv.spmf.algorithms.episodes.general.FrequentEpisodes;
+import ca.pfv.spmf.tools.MemoryLogger;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -7,9 +10,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import ca.pfv.spmf.algorithms.episodes.general.FrequentEpisodes;
-import ca.pfv.spmf.tools.MemoryLogger;
 
 /*
  * This file is part of the SPMF DATA MINING SOFTWARE *

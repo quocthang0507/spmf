@@ -1,6 +1,5 @@
 package ca.pfv.spmf.algorithms.frequentpatterns.HMiner_CLosed;
 
-import java.util.Arrays;
 import java.util.HashSet;
 
 /**

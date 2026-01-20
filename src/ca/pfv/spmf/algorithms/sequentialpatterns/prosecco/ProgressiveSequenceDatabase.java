@@ -1,14 +1,10 @@
 package ca.pfv.spmf.algorithms.sequentialpatterns.prosecco;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import ca.pfv.spmf.algorithms.sequentialpatterns.prefixspan.SequenceDatabase;
+
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-
-import ca.pfv.spmf.algorithms.sequentialpatterns.prefixspan.SequenceDatabase;
 
 /**
  * This class is a modified version of the SequenceDatabase class found in PrefixSpan. It reads a dataset in blocks
@@ -35,10 +31,13 @@ import ca.pfv.spmf.algorithms.sequentialpatterns.prefixspan.SequenceDatabase;
 
 /**
  * Interface is used for obtaining each progessive block as the dataset is read
- * */
+ *
+ */
 interface ProgressiveSequenceDatabaseCallbacks {
 
-    /** called when the next block is read */
+    /**
+     * called when the next block is read
+     */
     public void nextSequenceBlock(List<int[]> block, String outputFilePath, boolean isLast);
 }
 
@@ -55,7 +54,8 @@ public class ProgressiveSequenceDatabase extends SequenceDatabase {
 
     /**
      * Method to load a sequence database from a text file in SPMF format.
-     * @param path  the input file path.
+     *
+     * @param path the input file path.
      * @throws IOException exception if error while reading the file.
      */
     public void loadFile(String inputPath,
@@ -132,7 +132,9 @@ public class ProgressiveSequenceDatabase extends SequenceDatabase {
         }
     }
 
-    /** Get the current error bound
+    /**
+     * Get the current error bound
+     *
      * @return current error, see http://www.riondabsd.net/papers/ServanSchreiberEtAl-ProSecCo-ICDM.pdf
      */
     public double getError() {
@@ -140,7 +142,8 @@ public class ProgressiveSequenceDatabase extends SequenceDatabase {
     }
 
     /**
-     *  Get the number of sequences (transactions) processed
+     * Get the number of sequences (transactions) processed
+     *
      * @return number of transactions processed so far
      */
     public int numSequencesProcessed() {

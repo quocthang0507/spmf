@@ -1,8 +1,5 @@
 package ca.pfv.spmf.algorithms.frequentpatterns.hui_miner;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import ca.pfv.spmf.datastructures.collections.list.ArrayListObject;
 import ca.pfv.spmf.datastructures.collections.list.ListObject;
 

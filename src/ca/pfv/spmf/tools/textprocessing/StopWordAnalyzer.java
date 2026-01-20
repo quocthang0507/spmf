@@ -1,12 +1,7 @@
 package ca.pfv.spmf.tools.textprocessing;
 
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 /* This file is copyright (c) 2015 Sabarish Raghu
  *
  * This file is part of the SPMF DATA MINING SOFTWARE

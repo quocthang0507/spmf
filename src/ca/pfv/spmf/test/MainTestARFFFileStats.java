@@ -1,9 +1,9 @@
 package ca.pfv.spmf.test;
 
+import ca.pfv.spmf.tools.dataset_stats.ARFFFileStats;
+
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-
-import ca.pfv.spmf.tools.dataset_stats.ARFFFileStats;
 
 /**
  * Example of how to calculate stats about an ARFF file from the source code of SPMF.

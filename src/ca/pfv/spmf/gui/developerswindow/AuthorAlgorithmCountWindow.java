@@ -1,32 +1,20 @@
 package ca.pfv.spmf.gui.developerswindow;
 
-import java.awt.BorderLayout;
+import ca.pfv.spmf.algorithmmanager.AlgorithmManager;
+import ca.pfv.spmf.algorithmmanager.DescriptionOfAlgorithm;
+import ca.pfv.spmf.gui.SortableJTable;
+
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
+import java.util.*;
 import java.util.List;
-import java.util.Map;
-
-import javax.swing.JButton;
-import javax.swing.JFileChooser;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.SwingConstants;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
-
-import ca.pfv.spmf.algorithmmanager.AlgorithmManager;
-import ca.pfv.spmf.algorithmmanager.DescriptionOfAlgorithm;
-import ca.pfv.spmf.gui.SortableJTable;
 
 /*
  * Copyright (c) 2008-2015 Philippe Fournier-Viger

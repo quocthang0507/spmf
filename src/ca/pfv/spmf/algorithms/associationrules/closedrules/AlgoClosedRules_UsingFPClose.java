@@ -16,14 +16,6 @@ package ca.pfv.spmf.algorithms.associationrules.closedrules;
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-
 import ca.pfv.spmf.algorithms.ArraysAlgos;
 import ca.pfv.spmf.algorithms.associationrules.agrawal94_association_rules.AlgoAgrawalFaster94;
 import ca.pfv.spmf.algorithms.associationrules.agrawal94_association_rules.AssocRule;
@@ -31,6 +23,14 @@ import ca.pfv.spmf.algorithms.associationrules.agrawal94_association_rules.Assoc
 import ca.pfv.spmf.algorithms.frequentpatterns.fpgrowth.CFITree;
 import ca.pfv.spmf.patterns.itemset_array_integers_with_count.Itemset;
 import ca.pfv.spmf.patterns.itemset_array_integers_with_count.Itemsets;
+
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 /**
  * This is an implementation of the "faster algorithm" for generating association rules,

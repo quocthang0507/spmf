@@ -17,12 +17,12 @@ package ca.pfv.spmf.input.sequence_database_list_integers;
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
 
+import ca.pfv.spmf.input.sequence_database_array_integers.SequenceDatabase;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
-import ca.pfv.spmf.input.sequence_database_array_integers.SequenceDatabase;
 
 /**
  * Implementation of a sequence as a list of itemsets, where an itemset is a list of integers.

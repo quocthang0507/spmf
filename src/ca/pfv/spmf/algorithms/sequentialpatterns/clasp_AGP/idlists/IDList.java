@@ -1,10 +1,10 @@
 package ca.pfv.spmf.algorithms.sequentialpatterns.clasp_AGP.idlists;
 
-import java.util.List;
-import java.util.Map;
-
 import ca.pfv.spmf.algorithms.sequentialpatterns.clasp_AGP.dataStructures.patterns.Pattern;
 import ca.pfv.spmf.algorithms.sequentialpatterns.clasp_AGP.tries.Trie;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * Interface for a IdList class. If we are interested in adding any other kind

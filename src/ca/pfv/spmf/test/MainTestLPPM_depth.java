@@ -1,11 +1,11 @@
 package ca.pfv.spmf.test;
 
+import ca.pfv.spmf.algorithms.frequentpatterns.lppm.AlgoLPPMDepth1;
+import ca.pfv.spmf.algorithms.frequentpatterns.lppm.AlgoLPPMDepth2;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-
-import ca.pfv.spmf.algorithms.frequentpatterns.lppm.AlgoLPPMDepth1;
-import ca.pfv.spmf.algorithms.frequentpatterns.lppm.AlgoLPPMDepth2;
 
 /**
  * This file shows how to run the LPPM_Depth algorithm on an input file.

@@ -19,15 +19,11 @@
  */
 package ca.pfv.spmf.algorithms.classifiers.adt;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-
 import ca.pfv.spmf.algorithms.classifiers.data.Dataset;
 import ca.pfv.spmf.algorithms.classifiers.data.Instance;
+
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Class used to mine rules from the training dataset

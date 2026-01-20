@@ -1,10 +1,10 @@
 package ca.pfv.spmf.test;
 
+import ca.pfv.spmf.gui.viewers.sequencedb_viewer.SequenceDatabaseViewer;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-
-import ca.pfv.spmf.gui.viewers.sequencedb_viewer.SequenceDatabaseViewer;
 
 /**
  * Example of how to use Sequence Database viewer

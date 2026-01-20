@@ -19,6 +19,11 @@ package ca.pfv.spmf.algorithms.associationrules.MNRRules;
  */
 
 
+import ca.pfv.spmf.algorithms.frequentpatterns.zart.TZTableClosed;
+import ca.pfv.spmf.patterns.itemset_array_integers_with_count.Itemset;
+import ca.pfv.spmf.patterns.rule_itemset_array_integer_with_count.Rule;
+import ca.pfv.spmf.patterns.rule_itemset_array_integer_with_count.Rules;
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -26,11 +31,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
-import ca.pfv.spmf.algorithms.frequentpatterns.zart.TZTableClosed;
-import ca.pfv.spmf.patterns.itemset_array_integers_with_count.Itemset;
-import ca.pfv.spmf.patterns.rule_itemset_array_integer_with_count.Rule;
-import ca.pfv.spmf.patterns.rule_itemset_array_integer_with_count.Rules;
 
 /**
  * This is an implementation of an algorithm for finding the set of Minimum Non Redundant rules (MNR)

@@ -21,20 +21,13 @@
  */
 package ca.pfv.spmf.algorithms.classifiers.accf;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.BitSet;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-
 import ca.pfv.spmf.algorithms.ArraysAlgos;
 import ca.pfv.spmf.algorithms.classifiers.data.Dataset;
 import ca.pfv.spmf.algorithms.classifiers.data.Instance;
 import ca.pfv.spmf.algorithms.classifiers.general.Rule;
+
+import java.util.*;
+import java.util.Map.Entry;
 
 /**
  * An adaptation of the CHARM algorithm. It is able to directly obtain rules

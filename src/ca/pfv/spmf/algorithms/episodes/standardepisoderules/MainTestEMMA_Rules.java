@@ -1,12 +1,12 @@
 package ca.pfv.spmf.algorithms.episodes.standardepisoderules;
 
+import ca.pfv.spmf.algorithms.episodes.emma.AlgoEMMA;
+import ca.pfv.spmf.algorithms.episodes.general.FrequentEpisodes;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.util.List;
-
-import ca.pfv.spmf.algorithms.episodes.emma.AlgoEMMA;
-import ca.pfv.spmf.algorithms.episodes.general.FrequentEpisodes;
 
 /**
  * This file shows how to run the EMMA algorithm on an input file to generate episode rules

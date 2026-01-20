@@ -1,12 +1,7 @@
 package ca.pfv.spmf.input.product_transaction_database;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-//Import the Scanner class
-import java.util.Scanner;
-import java.util.Set;
+import java.util.*;
 
 /*
  * Copyright (c) 2024 Philippe Fournier-Viger

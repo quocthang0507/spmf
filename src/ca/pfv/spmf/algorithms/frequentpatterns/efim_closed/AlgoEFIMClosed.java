@@ -1,16 +1,16 @@
 package ca.pfv.spmf.algorithms.frequentpatterns.efim_closed;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.Arrays;
-
 import ca.pfv.spmf.datastructures.collections.comparators.ComparatorObject;
 import ca.pfv.spmf.datastructures.collections.list.ArrayListInt;
 import ca.pfv.spmf.datastructures.collections.list.ArrayListObject;
 import ca.pfv.spmf.datastructures.collections.list.ListInt;
 import ca.pfv.spmf.datastructures.collections.list.ListObject;
 import ca.pfv.spmf.tools.MemoryLogger;
+
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Arrays;
 
 /* This file is copyright (c) 2012-2015 Souleymane Zida & Philippe Fournier-Viger
  *

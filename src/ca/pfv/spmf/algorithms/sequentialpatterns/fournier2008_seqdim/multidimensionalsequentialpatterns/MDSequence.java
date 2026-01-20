@@ -16,11 +16,11 @@ package ca.pfv.spmf.algorithms.sequentialpatterns.fournier2008_seqdim.multidimen
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import java.text.DecimalFormat;
-
 import ca.pfv.spmf.algorithms.sequentialpatterns.fournier2008_seqdim.AlgoFournierViger08;
 import ca.pfv.spmf.algorithms.sequentialpatterns.fournier2008_seqdim.Sequence;
 import ca.pfv.spmf.algorithms.sequentialpatterns.fournier2008_seqdim.multidimensionalpatterns.MDPattern;
+
+import java.text.DecimalFormat;
 
 /**
  * Implementation of a "MultiDimensional-Sequence" used by the SeqDim algorithm (Pinto et al., 2001).

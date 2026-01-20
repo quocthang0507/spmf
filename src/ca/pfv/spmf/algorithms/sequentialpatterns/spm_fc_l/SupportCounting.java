@@ -1,13 +1,5 @@
 package ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_l;
 
-import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
 import ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_l.items.CandidateInSequenceFinder;
 import ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_l.items.Item;
 import ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_l.items.Sequence;
@@ -15,6 +7,9 @@ import ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_l.items.SequenceDatabase
 import ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_l.items.abstractions.ItemAbstractionPair;
 import ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_l.items.creators.AbstractionCreator;
 import ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_l.items.patterns.Pattern;
+
+import java.text.DecimalFormat;
+import java.util.*;
 
 
 /**

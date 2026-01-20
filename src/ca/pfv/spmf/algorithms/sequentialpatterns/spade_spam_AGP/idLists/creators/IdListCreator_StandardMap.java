@@ -1,11 +1,11 @@
 package ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP.idLists.creators;
 
+import ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP.idLists.IDList;
+import ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP.idLists.IDListStandard_Map;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP.idLists.IDList;
-import ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP.idLists.IDListStandard_Map;
 
 /**
  * Creator of a IdList based on a hashmap of arraylists.

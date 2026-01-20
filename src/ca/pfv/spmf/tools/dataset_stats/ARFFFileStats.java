@@ -1,10 +1,10 @@
 package ca.pfv.spmf.tools.dataset_stats;
 
+import ca.pfv.spmf.input.arff.ARFFDatabase;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import ca.pfv.spmf.input.arff.ARFFDatabase;
 /* This file is copyright (c) 2008-2012 Philippe Fournier-Viger
  *
  * This file is part of the SPMF DATA MINING SOFTWARE

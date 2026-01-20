@@ -17,16 +17,6 @@ package ca.pfv.spmf.algorithms.clustering.optics;
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.PriorityQueue;
-
 import ca.pfv.spmf.algorithms.clustering.distanceFunctions.DistanceEuclidian;
 import ca.pfv.spmf.algorithms.clustering.distanceFunctions.DistanceFunction;
 import ca.pfv.spmf.datastructures.kdtree.KDTree;
@@ -34,6 +24,11 @@ import ca.pfv.spmf.datastructures.kdtree.KNNPoint;
 import ca.pfv.spmf.patterns.cluster.Cluster;
 import ca.pfv.spmf.patterns.cluster.DoubleArray;
 import ca.pfv.spmf.tools.MemoryLogger;
+
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.PriorityQueue;
 
 /* This file is copyright (c) 2008-2015 Philippe Fournier-Viger
  *

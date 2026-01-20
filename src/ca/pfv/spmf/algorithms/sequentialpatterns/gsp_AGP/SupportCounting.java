@@ -1,12 +1,5 @@
 package ca.pfv.spmf.algorithms.sequentialpatterns.gsp_AGP;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
 import ca.pfv.spmf.algorithms.sequentialpatterns.gsp_AGP.items.CandidateInSequenceFinder;
 import ca.pfv.spmf.algorithms.sequentialpatterns.gsp_AGP.items.Item;
 import ca.pfv.spmf.algorithms.sequentialpatterns.gsp_AGP.items.Sequence;
@@ -14,6 +7,8 @@ import ca.pfv.spmf.algorithms.sequentialpatterns.gsp_AGP.items.SequenceDatabase;
 import ca.pfv.spmf.algorithms.sequentialpatterns.gsp_AGP.items.abstractions.ItemAbstractionPair;
 import ca.pfv.spmf.algorithms.sequentialpatterns.gsp_AGP.items.creators.AbstractionCreator;
 import ca.pfv.spmf.algorithms.sequentialpatterns.gsp_AGP.items.patterns.Pattern;
+
+import java.util.*;
 
 
 /**

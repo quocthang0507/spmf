@@ -1,14 +1,14 @@
 package ca.pfv.spmf.algorithmmanager.descriptions;
 
-import java.io.IOException;
-import java.nio.charset.Charset;
-
 import ca.pfv.spmf.algorithmmanager.AlgorithmType;
 import ca.pfv.spmf.algorithmmanager.DescriptionOfAlgorithm;
 import ca.pfv.spmf.algorithmmanager.DescriptionOfParameter;
 import ca.pfv.spmf.gui.preferences.PreferencesManager;
 import ca.pfv.spmf.tools.dataset_converter.Formats;
 import ca.pfv.spmf.tools.dataset_converter.SequenceDatabaseConverter;
+
+import java.io.IOException;
+import java.nio.charset.Charset;
 /* This file is copyright (c) 2008-2016 Philippe Fournier-Viger
  *
  * This file is part of the SPMF DATA MINING SOFTWARE

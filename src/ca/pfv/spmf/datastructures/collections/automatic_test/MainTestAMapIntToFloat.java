@@ -1,18 +1,15 @@
 package ca.pfv.spmf.datastructures.collections.automatic_test;
 
+import ca.pfv.spmf.datastructures.collections.map.AMapIntToFloat;
+import ca.pfv.spmf.datastructures.collections.map.MapIntToFloat;
+import ca.pfv.spmf.datastructures.collections.map.MapIntToFloat.EntryIterator;
+import ca.pfv.spmf.datastructures.collections.map.MapIntToFloat.MapEntryIntToFloat;
+import ca.pfv.spmf.datastructures.collections.map.MapIntToFloat.ValueIterator;
+
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
-
-import ca.pfv.spmf.datastructures.collections.map.AMapIntToDouble;
-import ca.pfv.spmf.datastructures.collections.map.AMapIntToFloat;
-import ca.pfv.spmf.datastructures.collections.map.MapIntToDouble;
-import ca.pfv.spmf.datastructures.collections.map.MapIntToFloat;
-import ca.pfv.spmf.datastructures.collections.map.LMapIntToFloat.LValueIterator;
-import ca.pfv.spmf.datastructures.collections.map.MapIntToFloat.MapEntryIntToFloat;
-import ca.pfv.spmf.datastructures.collections.map.MapIntToFloat.ValueIterator;
-import ca.pfv.spmf.datastructures.collections.map.MapIntToFloat.EntryIterator;
 
 /*
  * Copyright (c) 2023 Philippe Fournier-Viger

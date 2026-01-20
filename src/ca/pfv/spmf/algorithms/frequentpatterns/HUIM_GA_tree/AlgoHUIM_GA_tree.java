@@ -1,17 +1,7 @@
 package ca.pfv.spmf.algorithms.frequentpatterns.HUIM_GA_tree;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.io.*;
+import java.util.*;
 
 /**
  * * * * This is an implementation of the high utility itemset mining algorithm
@@ -65,6 +55,7 @@ public class AlgoHUIM_GA_tree {
     // 1-HTWUIs in sum of
     // twu value
     treeNode orNorTree;// the root of OR/NOR-tree
+
     /**
      * Default constructor
      */

@@ -1,7 +1,6 @@
 package ca.pfv.spmf.algorithms.frequentpatterns.skymine;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 /**
  * This is a Pareto Set as used by the SkyMine algorithm.

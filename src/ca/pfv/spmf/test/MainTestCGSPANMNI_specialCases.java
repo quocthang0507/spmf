@@ -1,10 +1,10 @@
 package ca.pfv.spmf.test;
 
+import ca.pfv.spmf.algorithms.graph_mining.tkg.AlgoCGSPANMNI;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-
-import ca.pfv.spmf.algorithms.graph_mining.tkg.AlgoCGSPANMNI;
 
 /**
  * Example of how to use the CGSPAN algorithm

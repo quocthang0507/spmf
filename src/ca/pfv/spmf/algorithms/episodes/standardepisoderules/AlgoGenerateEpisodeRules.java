@@ -1,5 +1,12 @@
 package ca.pfv.spmf.algorithms.episodes.standardepisoderules;
 
+import ca.pfv.spmf.algorithms.episodes.emma.AlgoEMMA;
+import ca.pfv.spmf.algorithms.episodes.emma.EpisodeEMMA;
+import ca.pfv.spmf.algorithms.episodes.general.AbstractEpisode;
+import ca.pfv.spmf.algorithms.episodes.general.FrequentEpisodes;
+import ca.pfv.spmf.algorithms.episodes.general.Level;
+import ca.pfv.spmf.tools.MemoryLogger;
+
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
@@ -7,13 +14,6 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.PriorityQueue;
-
-import ca.pfv.spmf.algorithms.episodes.emma.AlgoEMMA;
-import ca.pfv.spmf.algorithms.episodes.emma.EpisodeEMMA;
-import ca.pfv.spmf.algorithms.episodes.general.AbstractEpisode;
-import ca.pfv.spmf.algorithms.episodes.general.FrequentEpisodes;
-import ca.pfv.spmf.algorithms.episodes.general.Level;
-import ca.pfv.spmf.tools.MemoryLogger;
 
 /*
  * This file is part of the SPMF DATA MINING SOFTWARE *

@@ -1,11 +1,10 @@
 package ca.pfv.spmf.gui.patternvizualizer;
 
+import ca.pfv.spmf.gui.patternvizualizer.filters.AbstractFilter;
+
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.swing.RowFilter;
-
-import ca.pfv.spmf.gui.patternvizualizer.filters.AbstractFilter;
 /*
  * Copyright (c) 2008-2015 Philippe Fournier-Viger
  *

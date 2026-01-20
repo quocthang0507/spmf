@@ -1,6 +1,6 @@
 package ca.pfv.spmf.algorithms.sequentialpatterns.skopus;
 
-///*******************************************************************************
+/// *******************************************************************************
 // * Copyright (C) 2015 Tao Li
 // * 
 // * This file is part of Skopus.
@@ -18,16 +18,10 @@ package ca.pfv.spmf.algorithms.sequentialpatterns.skopus;
 // * along with Skopus.  If not, see <http://www.gnu.org/licenses/>.
 // ******************************************************************************/
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Optional;
-import java.util.PriorityQueue;
-import java.util.function.BinaryOperator;
-
 import ca.pfv.spmf.tools.MemoryLogger;
+
+import java.util.*;
+import java.util.function.BinaryOperator;
 
 public class ItemsetFinder {
 

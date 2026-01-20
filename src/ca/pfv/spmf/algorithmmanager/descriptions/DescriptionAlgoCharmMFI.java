@@ -1,14 +1,14 @@
 package ca.pfv.spmf.algorithmmanager.descriptions;
 
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-
 import ca.pfv.spmf.algorithmmanager.AlgorithmType;
 import ca.pfv.spmf.algorithmmanager.DescriptionOfAlgorithm;
 import ca.pfv.spmf.algorithmmanager.DescriptionOfParameter;
 import ca.pfv.spmf.algorithms.frequentpatterns.charm.AlgoCharmMFI;
 import ca.pfv.spmf.algorithms.frequentpatterns.charm.AlgoCharm_Bitset;
 import ca.pfv.spmf.input.transaction_database_list_integers.TransactionDatabase;
+
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 /* This file is copyright (c) 2008-2016 Philippe Fournier-Viger
  *
  * This file is part of the SPMF DATA MINING SOFTWARE

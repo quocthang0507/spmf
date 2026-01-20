@@ -1,10 +1,10 @@
 package ca.pfv.spmf.test;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URL;
-
 import ca.pfv.spmf.algorithms.associationrules.TopKRules_and_TNR.AlgoTopKClassRules;
 import ca.pfv.spmf.algorithms.associationrules.TopKRules_and_TNR.Database;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URL;
 
 /**
  * Example of how to usAlgoTopKClassRules.javae the TOPKClassRules algorithm in source code.

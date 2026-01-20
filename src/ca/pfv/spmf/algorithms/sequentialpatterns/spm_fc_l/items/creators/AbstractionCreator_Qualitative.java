@@ -5,15 +5,6 @@
 package ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_l.items.creators;
 
 
-import java.util.ArrayList;
-import java.util.BitSet;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-
 import ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_l.items.CandidateInSequenceFinder;
 import ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_l.items.Item;
 import ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_l.items.Itemset;
@@ -23,6 +14,9 @@ import ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_l.items.abstractions.Abs
 import ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_l.items.abstractions.ItemAbstractionPair;
 import ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_l.items.patterns.Pattern;
 import ca.pfv.spmf.algorithms.sequentialpatterns.spm_fc_l.items.patterns.PatternCreator;
+
+import java.util.*;
+import java.util.Map.Entry;
 
 /**
  * This class is the implementation of a creator of a qualitative abstraction.

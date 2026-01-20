@@ -1,8 +1,8 @@
 package ca.pfv.spmf.test;
 
-import java.io.File;
-
 import ca.pfv.spmf.algorithms.classifiers.naive_bayes_text_classifier.AlgoNaiveBayesClassifier;
+
+import java.io.File;
 
 /**
  * Example of how to use the Text Classifier from the source code

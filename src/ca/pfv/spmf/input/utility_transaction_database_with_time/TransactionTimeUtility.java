@@ -16,10 +16,10 @@ package ca.pfv.spmf.input.utility_transaction_database_with_time;
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import java.util.List;
-
 import ca.pfv.spmf.input.utility_transaction_database.ItemUtility;
 import ca.pfv.spmf.input.utility_transaction_database.TransactionTP;
+
+import java.util.List;
 
 /**
  * This class represents a transaction (a set of items) from a transaction

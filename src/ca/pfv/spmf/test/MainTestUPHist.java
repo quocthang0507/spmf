@@ -17,10 +17,10 @@ package ca.pfv.spmf.test;
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
 
+import ca.pfv.spmf.algorithms.frequentpatterns.uphist.AlgoUPHist;
+
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-
-import ca.pfv.spmf.algorithms.frequentpatterns.uphist.AlgoUPHist;
 
 /**
  * Example of how to run the UPHist algorithm from the source code of SPMF

@@ -1,10 +1,10 @@
 package ca.pfv.spmf.test;
 
+import ca.pfv.spmf.algorithms.sequential_rules.rulegrowth.AlgoERMiner;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-
-import ca.pfv.spmf.algorithms.sequential_rules.rulegrowth.AlgoERMiner;
 
 /**
  * Example of how to use the ERMiner algorithm in source code.

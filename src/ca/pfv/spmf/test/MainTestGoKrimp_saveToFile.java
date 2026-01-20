@@ -1,11 +1,11 @@
 package ca.pfv.spmf.test;
 
+import ca.pfv.spmf.algorithms.sequentialpatterns.goKrimp.AlgoGoKrimp;
+import ca.pfv.spmf.algorithms.sequentialpatterns.goKrimp.DataReader;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-
-import ca.pfv.spmf.algorithms.sequentialpatterns.goKrimp.AlgoGoKrimp;
-import ca.pfv.spmf.algorithms.sequentialpatterns.goKrimp.DataReader;
 
 /**
  * Example of how to use the GoKrimp Algorithm in source code and save

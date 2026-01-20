@@ -1,10 +1,10 @@
 package ca.pfv.spmf.test;
 
+import ca.pfv.spmf.algorithms.frequentpatterns.apriori.AlgoAprioriTopK;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-
-import ca.pfv.spmf.algorithms.frequentpatterns.apriori.AlgoAprioriTopK;
 
 /**
  * Example of how to use APRIORI(top-k) algorithm from the source code.

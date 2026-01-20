@@ -1,8 +1,5 @@
 package ca.pfv.spmf.datastructures.collections.map;
 
-import ca.pfv.spmf.datastructures.collections.map.MapIntToInt.KeyIterator;
-import ca.pfv.spmf.datastructures.collections.map.MapIntToInt.ValueIterator;
-
 /*
  * Copyright (c) 2023 Philippe Fournier-Viger
  *

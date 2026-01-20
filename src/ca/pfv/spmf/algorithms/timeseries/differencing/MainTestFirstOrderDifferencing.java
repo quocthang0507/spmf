@@ -1,10 +1,10 @@
 package ca.pfv.spmf.algorithms.timeseries.differencing;
 
+import ca.pfv.spmf.algorithms.timeseries.TimeSeries;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-
-import ca.pfv.spmf.algorithms.timeseries.TimeSeries;
 
 /**
  * Example of how to calculate the first order differencing of a time series, using

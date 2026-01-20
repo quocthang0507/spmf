@@ -1,13 +1,13 @@
 package ca.pfv.spmf.test;
 
+import ca.pfv.spmf.algorithms.clustering.instancereader.AlgoInstanceFileReader;
+import ca.pfv.spmf.gui.viewers.instanceviewer.InstanceViewer;
+import ca.pfv.spmf.patterns.cluster.DoubleArray;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.util.List;
-
-import ca.pfv.spmf.algorithms.clustering.instancereader.AlgoInstanceFileReader;
-import ca.pfv.spmf.gui.viewers.instanceviewer.InstanceViewer;
-import ca.pfv.spmf.patterns.cluster.DoubleArray;
 
 /**
  * Example of how to view clusters from the source code of SPMF.

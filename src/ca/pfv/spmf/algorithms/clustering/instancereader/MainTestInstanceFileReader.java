@@ -1,11 +1,11 @@
 package ca.pfv.spmf.algorithms.clustering.instancereader;
 
+import ca.pfv.spmf.patterns.cluster.DoubleArray;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.util.List;
-
-import ca.pfv.spmf.patterns.cluster.DoubleArray;
 
 /**
  * Example of how to read instances from a file

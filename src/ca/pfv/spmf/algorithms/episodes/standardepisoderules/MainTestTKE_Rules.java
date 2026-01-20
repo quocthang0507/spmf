@@ -1,13 +1,13 @@
 package ca.pfv.spmf.algorithms.episodes.standardepisoderules;
 
+import ca.pfv.spmf.algorithms.episodes.emma.AlgoTKE;
+import ca.pfv.spmf.algorithms.episodes.emma.EpisodeEMMA;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.util.List;
 import java.util.PriorityQueue;
-
-import ca.pfv.spmf.algorithms.episodes.emma.AlgoTKE;
-import ca.pfv.spmf.algorithms.episodes.emma.EpisodeEMMA;
 
 /**
  * This file shows how to run the TKE algorithm on an input file.

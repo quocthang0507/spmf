@@ -1,9 +1,9 @@
 package ca.pfv.spmf.algorithms.sequentialpatterns.clasp_AGP.dataStructures.creators;
 
-import java.util.List;
-
 import ca.pfv.spmf.algorithms.sequentialpatterns.clasp_AGP.dataStructures.abstracciones.Abstraction_Generic;
 import ca.pfv.spmf.algorithms.sequentialpatterns.clasp_AGP.dataStructures.patterns.Pattern;
+
+import java.util.List;
 
 /**
  * Abstract class that is thought to make it possible the creation of any kind

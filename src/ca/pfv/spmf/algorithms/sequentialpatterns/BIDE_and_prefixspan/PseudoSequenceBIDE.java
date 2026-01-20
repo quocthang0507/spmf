@@ -1,9 +1,9 @@
 package ca.pfv.spmf.algorithms.sequentialpatterns.BIDE_and_prefixspan;
 
+import ca.pfv.spmf.input.sequence_database_list_integers.Sequence;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import ca.pfv.spmf.input.sequence_database_list_integers.Sequence;
 
 
 /**

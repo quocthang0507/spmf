@@ -1,7 +1,14 @@
 package ca.pfv.spmf.gui.workflow_editor;
 
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
+import ca.pfv.spmf.algorithmmanager.AlgorithmManager;
+import ca.pfv.spmf.algorithmmanager.DescriptionOfAlgorithm;
+import ca.pfv.spmf.algorithmmanager.DescriptionOfParameter;
+import ca.pfv.spmf.gui.DialogSelectAlgorithmParameter;
+import ca.pfv.spmf.gui.MainWindow;
+import ca.pfv.spmf.gui.parameterselectionpanel.ParameterSelectionPanel;
+
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -9,24 +16,6 @@ import java.awt.event.ItemListener;
 import java.io.IOException;
 import java.util.List;
 import java.util.Vector;
-
-import javax.swing.BorderFactory;
-import javax.swing.Box;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-
-import ca.pfv.spmf.algorithmmanager.AlgorithmManager;
-import ca.pfv.spmf.algorithmmanager.DescriptionOfAlgorithm;
-import ca.pfv.spmf.algorithmmanager.DescriptionOfParameter;
-import ca.pfv.spmf.gui.DialogSelectAlgorithmParameter;
-import ca.pfv.spmf.gui.MainWindow;
-import ca.pfv.spmf.gui.parameterselectionpanel.ParameterSelectionPanel;
 
 /*
  * Copyright (c) 2022 Philippe Fournier-Viger

@@ -1,15 +1,8 @@
 package ca.pfv.spmf.gui.workflow_editor;
 
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Font;
+import javax.swing.*;
+import java.awt.*;
 import java.util.BitSet;
-
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.JPanel;
-import javax.swing.ListCellRenderer;
 
 /*
  * Copyright (c) 2024 Philippe Fournier-Viger

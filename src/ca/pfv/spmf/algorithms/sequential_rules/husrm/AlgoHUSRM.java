@@ -16,20 +16,13 @@ package ca.pfv.spmf.algorithms.sequential_rules.husrm;
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
 
+import ca.pfv.spmf.tools.MemoryLogger;
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.BitSet;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.Map.Entry;
-
-import ca.pfv.spmf.tools.MemoryLogger;
 
 /**
  * This is the implementation of the HUSRM algorithm that we have submited at MLDM 2015.

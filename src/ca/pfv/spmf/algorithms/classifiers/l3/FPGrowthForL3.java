@@ -18,14 +18,14 @@
  */
 package ca.pfv.spmf.algorithms.classifiers.l3;
 
+import ca.pfv.spmf.algorithms.classifiers.cmar.FPGrowthForCMAR;
+import ca.pfv.spmf.algorithms.classifiers.data.Dataset;
+import ca.pfv.spmf.algorithms.classifiers.general.Rule;
+
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
-
-import ca.pfv.spmf.algorithms.classifiers.cmar.FPGrowthForCMAR;
-import ca.pfv.spmf.algorithms.classifiers.data.Dataset;
-import ca.pfv.spmf.algorithms.classifiers.general.Rule;
 
 /**
  * An adaptation of the L3 algorithm used by CMAR and L3 for class association

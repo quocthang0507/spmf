@@ -1,10 +1,10 @@
 package ca.pfv.spmf.test;
 
+import ca.pfv.spmf.algorithms.frequentpatterns.lhui.AlgoLHUIMiner;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-
-import ca.pfv.spmf.algorithms.frequentpatterns.lhui.AlgoLHUIMiner;
 
 /**
  * Example of how to use the LHUI-Miner algorithm from the source code

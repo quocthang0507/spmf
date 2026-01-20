@@ -1,11 +1,6 @@
 package ca.pfv.spmf.algorithms.frequentpatterns.HUIM_ACO;
 
-import java.util.ArrayList;
-import java.util.BitSet;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /*
  * Copyright (c) 2020 Wei Song, Jiakai Nan
@@ -68,7 +63,7 @@ public class AntColony {
      * a map of visited itemsets
      */
     private HashMap<BitSet, Integer> visitedItemset = new HashMap();
-//	/** The visited itemset utility */
+    //	/** The visited itemset utility */
 //	private Integer visitedItemsetUtility = 0;
     // reset parameter
     private int firstHuiSize = 0;
@@ -79,6 +74,7 @@ public class AntColony {
     private int initPheromoneTimes = -1;
     private boolean filterFlag = true;
     private boolean copyEliteAntFlag = false;
+
     public AntColony(int length) {
         antColony = new ArrayList<Ant>();
         globalPheromones = new double[length - 1][length];

@@ -1,21 +1,15 @@
 package ca.pfv.spmf.gui.workflow_editor;
 
-import java.awt.BasicStroke;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Stroke;
+import ca.pfv.spmf.gui.viewers.graphviewer.graphmodel.GEdge;
+import ca.pfv.spmf.gui.viewers.graphviewer.graphmodel.GNode;
+
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.swing.JPanel;
-
-import ca.pfv.spmf.gui.viewers.graphviewer.graphmodel.GEdge;
-import ca.pfv.spmf.gui.viewers.graphviewer.graphmodel.GNode;
 
 /*
  * Copyright (c) 2022 Philippe Fournier-Viger
@@ -342,10 +336,10 @@ class DrawPanel extends JPanel {
 //					
 //					// Update the position of the selected node to the mouse position
 //					selected.updatePosition(e.getX(), e.getY());
-////					
+////
 ////					for(Node node: selected.group.getNodes()) {
 ////						selected.updatePosition(node.getX()+diffX, node.getY()+diffY);
-////					}
+////                    }
 //
 //					// Repaint the panel to reflect the position change
 //					repaint();

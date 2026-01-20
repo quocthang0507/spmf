@@ -1,25 +1,17 @@
 package ca.pfv.spmf.algorithms.sequentialpatterns.qcsp;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.PriorityQueue;
-import java.util.Set;
-
 import ca.pfv.spmf.algorithms.sequentialpatterns.qcsp.util.CountMap;
 import ca.pfv.spmf.algorithms.sequentialpatterns.qcsp.util.Pair;
 import ca.pfv.spmf.algorithms.sequentialpatterns.qcsp.util.Timer;
 import ca.pfv.spmf.algorithms.sequentialpatterns.qcsp.util.Triple;
 import ca.pfv.spmf.tools.MemoryLogger;
+
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.*;
+import java.util.Map.Entry;
 
 /**
  * This is an implementation of the QCSP algorithm.

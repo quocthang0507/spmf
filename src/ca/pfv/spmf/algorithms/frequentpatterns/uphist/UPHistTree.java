@@ -16,13 +16,7 @@ package ca.pfv.spmf.algorithms.frequentpatterns.uphist;
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * A UP-Hist tree as used by the UPHist algorithm.

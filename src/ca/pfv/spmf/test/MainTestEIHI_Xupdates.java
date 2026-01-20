@@ -1,12 +1,12 @@
 package ca.pfv.spmf.test;
 
+import ca.pfv.spmf.algorithms.frequentpatterns.hui_miner.AlgoEIHI;
+
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.LineNumberReader;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-
-import ca.pfv.spmf.algorithms.frequentpatterns.hui_miner.AlgoEIHI;
 
 /**
  * Example of how to use the EIHI algorithm from the source code by processing a single file

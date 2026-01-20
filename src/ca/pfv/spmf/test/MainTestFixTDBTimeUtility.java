@@ -1,11 +1,11 @@
 package ca.pfv.spmf.test;
 
+import ca.pfv.spmf.algorithms.frequentpatterns.lhui.AlgoLHUIMiner;
+import ca.pfv.spmf.tools.other_dataset_tools.fix_tdb_utility_time.AlgoFixTDBTimeUtility;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-
-import ca.pfv.spmf.algorithms.frequentpatterns.lhui.AlgoLHUIMiner;
-import ca.pfv.spmf.tools.other_dataset_tools.fix_tdb_utility_time.AlgoFixTDBTimeUtility;
 
 /**
  * Example of how to fix a transaction database with utility and time information

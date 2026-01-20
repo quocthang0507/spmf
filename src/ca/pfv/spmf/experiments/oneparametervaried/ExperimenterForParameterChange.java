@@ -1,10 +1,8 @@
 package ca.pfv.spmf.experiments.oneparametervaried;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
+import ca.pfv.spmf.gui.preferences.PreferencesManager;
+
+import java.io.*;
 import java.lang.ProcessBuilder.Redirect;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -12,8 +10,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-
-import ca.pfv.spmf.gui.preferences.PreferencesManager;
 
 /* This file is copyright (c) 2021 Philippe Fournier-Viger
  *

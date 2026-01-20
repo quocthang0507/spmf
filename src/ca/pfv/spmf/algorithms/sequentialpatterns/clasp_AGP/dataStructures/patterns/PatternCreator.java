@@ -1,9 +1,9 @@
 package ca.pfv.spmf.algorithms.sequentialpatterns.clasp_AGP.dataStructures.patterns;
 
+import ca.pfv.spmf.algorithms.sequentialpatterns.clasp_AGP.dataStructures.abstracciones.ItemAbstractionPair;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import ca.pfv.spmf.algorithms.sequentialpatterns.clasp_AGP.dataStructures.abstracciones.ItemAbstractionPair;
 
 /**
  * This class is the implementation of a creator of patterns.

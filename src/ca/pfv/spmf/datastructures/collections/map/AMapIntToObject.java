@@ -1,9 +1,9 @@
 package ca.pfv.spmf.datastructures.collections.map;
 
+import ca.pfv.spmf.datastructures.collections.list.ArrayListObject;
+
 import java.util.Arrays;
 import java.util.NoSuchElementException;
-
-import ca.pfv.spmf.datastructures.collections.list.ArrayListObject;
 
 /*
  * Copyright (c) 2023 Philippe Fournier-Viger

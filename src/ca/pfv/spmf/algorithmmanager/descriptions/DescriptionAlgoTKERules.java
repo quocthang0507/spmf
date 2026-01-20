@@ -1,14 +1,14 @@
 package ca.pfv.spmf.algorithmmanager.descriptions;
 
-import java.io.IOException;
-import java.util.PriorityQueue;
-
 import ca.pfv.spmf.algorithmmanager.AlgorithmType;
 import ca.pfv.spmf.algorithmmanager.DescriptionOfAlgorithm;
 import ca.pfv.spmf.algorithmmanager.DescriptionOfParameter;
 import ca.pfv.spmf.algorithms.episodes.emma.AlgoTKE;
 import ca.pfv.spmf.algorithms.episodes.emma.EpisodeEMMA;
 import ca.pfv.spmf.algorithms.episodes.standardepisoderules.AlgoGenerateEpisodeRules;
+
+import java.io.IOException;
+import java.util.PriorityQueue;
 
 /**
  * This class describes the TKE algorithm parameters.

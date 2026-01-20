@@ -1,10 +1,10 @@
 package ca.pfv.spmf.algorithms.frequentpatterns.sfu_ce;
 
+import ca.pfv.spmf.algorithms.frequentpatterns.hui_miner.AlgoFHM;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-
-import ca.pfv.spmf.algorithms.frequentpatterns.hui_miner.AlgoFHM;
 
 /**
  * Example of how to use the FHM algorithm

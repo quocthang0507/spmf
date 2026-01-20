@@ -1,10 +1,10 @@
 package ca.pfv.spmf.test;
 
+import ca.pfv.spmf.tools.other_dataset_tools.FixItemIDsTransactionDatabaseTool;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-
-import ca.pfv.spmf.tools.other_dataset_tools.FixItemIDsTransactionDatabaseTool;
 
 /**
  * Example of how to use the tool to increase all items ids by a given value in a transaction database

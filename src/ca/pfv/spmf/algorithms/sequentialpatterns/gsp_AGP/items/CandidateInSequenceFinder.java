@@ -5,12 +5,12 @@
 package ca.pfv.spmf.algorithms.sequentialpatterns.gsp_AGP.items;
 
 
-import java.util.List;
-
 import ca.pfv.spmf.algorithms.sequentialpatterns.gsp_AGP.items.abstractions.Abstraction_Generic;
 import ca.pfv.spmf.algorithms.sequentialpatterns.gsp_AGP.items.abstractions.ItemAbstractionPair;
 import ca.pfv.spmf.algorithms.sequentialpatterns.gsp_AGP.items.creators.AbstractionCreator;
 import ca.pfv.spmf.algorithms.sequentialpatterns.gsp_AGP.items.patterns.Pattern;
+
+import java.util.List;
 
 /**
  * In this class a particular pattern is searched in a sequence. This class is a

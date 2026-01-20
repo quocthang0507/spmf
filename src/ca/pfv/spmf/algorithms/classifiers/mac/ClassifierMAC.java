@@ -18,20 +18,14 @@
  */
 package ca.pfv.spmf.algorithms.classifiers.mac;
 
-import java.util.Arrays;
-import java.util.BitSet;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-
 import ca.pfv.spmf.algorithms.ArraysAlgos;
 import ca.pfv.spmf.algorithms.classifiers.data.Dataset;
 import ca.pfv.spmf.algorithms.classifiers.data.Instance;
 import ca.pfv.spmf.algorithms.classifiers.general.Rule;
 import ca.pfv.spmf.algorithms.classifiers.general.RuleClassifier;
+
+import java.util.*;
+import java.util.Map.Entry;
 
 /**
  * Main class for the MAC classifier. It implements its own way of predicting

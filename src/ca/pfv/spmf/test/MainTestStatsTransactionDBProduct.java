@@ -1,9 +1,9 @@
 package ca.pfv.spmf.test;
 
+import ca.pfv.spmf.tools.dataset_stats.ProductTDBStats;
+
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-
-import ca.pfv.spmf.tools.dataset_stats.ProductTDBStats;
 
 /**
  * Example of how to calculate stats for a Product Transaction Database  from the

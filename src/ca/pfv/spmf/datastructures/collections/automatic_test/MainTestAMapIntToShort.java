@@ -1,18 +1,17 @@
 package ca.pfv.spmf.datastructures.collections.automatic_test;
 
+import ca.pfv.spmf.datastructures.collections.map.AMapIntToShort;
+import ca.pfv.spmf.datastructures.collections.map.LMapIntToShort;
+import ca.pfv.spmf.datastructures.collections.map.MapIntToShort;
+import ca.pfv.spmf.datastructures.collections.map.MapIntToShort.EntryIterator;
+import ca.pfv.spmf.datastructures.collections.map.MapIntToShort.KeyIterator;
+import ca.pfv.spmf.datastructures.collections.map.MapIntToShort.MapEntryIntToShort;
+import ca.pfv.spmf.datastructures.collections.map.MapIntToShort.ValueIterator;
+
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
-
-import ca.pfv.spmf.datastructures.collections.map.AMapIntToLong;
-import ca.pfv.spmf.datastructures.collections.map.AMapIntToShort;
-import ca.pfv.spmf.datastructures.collections.map.LMapIntToShort;
-import ca.pfv.spmf.datastructures.collections.map.MapIntToShort;
-import ca.pfv.spmf.datastructures.collections.map.MapIntToShort.MapEntryIntToShort;
-import ca.pfv.spmf.datastructures.collections.map.MapIntToShort.ValueIterator;
-import ca.pfv.spmf.datastructures.collections.map.MapIntToShort.EntryIterator;
-import ca.pfv.spmf.datastructures.collections.map.MapIntToShort.KeyIterator;
 
 /*
  * Copyright (c) 2023 Philippe Fournier-Viger

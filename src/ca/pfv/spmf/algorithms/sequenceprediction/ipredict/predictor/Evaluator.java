@@ -1,10 +1,5 @@
 package ca.pfv.spmf.algorithms.sequenceprediction.ipredict.predictor;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-
 import ca.pfv.spmf.algorithms.sequenceprediction.ipredict.database.DatabaseHelper;
 import ca.pfv.spmf.algorithms.sequenceprediction.ipredict.database.Item;
 import ca.pfv.spmf.algorithms.sequenceprediction.ipredict.database.Sequence;
@@ -13,6 +8,11 @@ import ca.pfv.spmf.algorithms.sequenceprediction.ipredict.helpers.MemoryLogger;
 import ca.pfv.spmf.algorithms.sequenceprediction.ipredict.helpers.StatsLogger;
 import ca.pfv.spmf.algorithms.sequenceprediction.ipredict.predictor.profile.Profile;
 import ca.pfv.spmf.algorithms.sequenceprediction.ipredict.predictor.profile.ProfileManager;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 /*
  * This file is copyright (c) Ted Gueniche
  * <ted.gueniche@gmail.com>

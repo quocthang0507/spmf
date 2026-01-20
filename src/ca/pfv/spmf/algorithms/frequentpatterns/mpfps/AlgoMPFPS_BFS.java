@@ -28,26 +28,14 @@ package ca.pfv.spmf.algorithms.frequentpatterns.mpfps;
  * @author Zhitian Li, Philippe Fournier-Viger
  **/
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-//import java.text.DecimalFormat;
-import java.util.Map;
-
 import ca.pfv.spmf.tools.MemoryLogger;
 
+import java.io.*;
+import java.util.*;
+
 /**
- * @see SeqTidList
  * @author Zhitian Li
+ * @see SeqTidList
  */
 public class AlgoMPFPS_BFS {
 
@@ -96,13 +84,19 @@ public class AlgoMPFPS_BFS {
      */
     Map<int[], Double> result = new HashMap<int[], Double>();
 
-    /** Time spent during the last execution of this algorithm */
+    /**
+     * Time spent during the last execution of this algorithm
+     */
     long totalTime;
 
-    /** Number of patterns */
+    /**
+     * Number of patterns
+     */
     int patternCount;
 
-    /** Constructor */
+    /**
+     * Constructor
+     */
     public AlgoMPFPS_BFS() {
 
     }
@@ -110,20 +104,13 @@ public class AlgoMPFPS_BFS {
     /**
      * Run the algorithm
      *
-     * @param maxStandardDeviation
-     *            maximum standard deviation
-     * @param minRA
-     *            minimum RA
-     * @param maxPeriodicity
-     *            maximum periodicity
-     * @param minimumSupport
-     *            minimum support
-     * @param outputFile
-     *            output file path
-     * @param inputFile
-     *            input file path
-     * @throws IOException
-     *             if error reading/writting to file
+     * @param maxStandardDeviation maximum standard deviation
+     * @param minRA                minimum RA
+     * @param maxPeriodicity       maximum periodicity
+     * @param minimumSupport       minimum support
+     * @param outputFile           output file path
+     * @param inputFile            input file path
+     * @throws IOException if error reading/writting to file
      */
     public void runAlgorithm(double maxStandardDeviation, double minRA,
                              int maxPeriodicity, int minimumSupport, String inputFile,
@@ -181,11 +168,9 @@ public class AlgoMPFPS_BFS {
      * is single, and are frequent and periodic in the database. Moreover, the
      * frequent patterns must be satisfied with the MIN_RA threshold.
      *
-     * @param fileName
-     *            the name of the file to be read.
+     * @param fileName the name of the file to be read.
      * @return singleItemTidList: an arrayList of SeqTidList objects
-     * @throws IOException
-     *             IO error.
+     * @throws IOException IO error.
      */
     public List<List<SeqTidList>> getSingleItemTidList(String fileName)
             throws IOException {
@@ -377,12 +362,10 @@ public class AlgoMPFPS_BFS {
     /**
      * Get all the frequent patterns that are periodic in this database.
      *
-     * @param fileName
-     *            the file to be read.
+     * @param fileName the file to be read.
      * @return periodicFrequent: all the frequent patterns which are periodic in
-     *         this database.
-     * @throws IOException
-     *             if IO error
+     * this database.
+     * @throws IOException if IO error
      */
     public List<SeqTidList> getFreqPeriodicPattern(String fileName)
             throws IOException {
@@ -446,9 +429,8 @@ public class AlgoMPFPS_BFS {
      *
      * @param tidlistOfTemp
      * @param minSup
-     * @param result
-     *            : result is a Map object to store all frequent patterns and
-     *            their corresponding supports
+     * @param result        : result is a Map object to store all frequent patterns and
+     *                      their corresponding supports
      * @return
      */
     public List<List<SeqTidList>> periodicFrequent(

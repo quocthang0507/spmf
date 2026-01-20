@@ -1,8 +1,11 @@
 package ca.pfv.spmf.gui.patternvizualizer;
 
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
+import ca.pfv.spmf.gui.patternvizualizer.filters.*;
+
+import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -10,26 +13,6 @@ import java.awt.event.ItemListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
-
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JDialog;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JTextField;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
-
-import ca.pfv.spmf.gui.patternvizualizer.filters.AbstractFilter;
-import ca.pfv.spmf.gui.patternvizualizer.filters.FilterEqualBoolean;
-import ca.pfv.spmf.gui.patternvizualizer.filters.FilterEqualDouble;
-import ca.pfv.spmf.gui.patternvizualizer.filters.FilterEqualInteger;
-import ca.pfv.spmf.gui.patternvizualizer.filters.FilterGreaterThanDouble;
-import ca.pfv.spmf.gui.patternvizualizer.filters.FilterGreaterThanInteger;
-import ca.pfv.spmf.gui.patternvizualizer.filters.FilterLessThanDouble;
-import ca.pfv.spmf.gui.patternvizualizer.filters.FilterLessThanInteger;
-import ca.pfv.spmf.gui.patternvizualizer.filters.FilterStringContains;
-import ca.pfv.spmf.gui.patternvizualizer.filters.FilterStringNotContains;
 
 /*
  * Copyright (c) 2008-2015 Philippe Fournier-Viger

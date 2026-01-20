@@ -1,10 +1,10 @@
 package ca.pfv.spmf.test;
 
+import ca.pfv.spmf.gui.viewers.timesequencedbviewer.TimeSequenceDatabaseViewer;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-
-import ca.pfv.spmf.gui.viewers.timesequencedbviewer.TimeSequenceDatabaseViewer;
 
 /**
  * Example of how to use the Multi-Dimensional Sequence Database viewer from the source code.

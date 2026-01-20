@@ -18,9 +18,9 @@
  */
 package ca.pfv.spmf.algorithms.classifiers.cmar;
 
-import java.io.Serializable;
-
 import ca.pfv.spmf.algorithms.classifiers.general.Rule;
+
+import java.io.Serializable;
 
 /**
  * Class representing a class association rules, as used by the CMAR algorithm.

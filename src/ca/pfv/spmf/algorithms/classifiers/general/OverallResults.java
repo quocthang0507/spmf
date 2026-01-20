@@ -1,15 +1,13 @@
 package ca.pfv.spmf.algorithms.classifiers.general;
 
+import ca.pfv.spmf.algorithms.classifiers.general.Evaluator.ClassificationResults;
+import ca.pfv.spmf.algorithms.classifiers.general.Evaluator.TrainingResults;
+
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
-import java.text.DecimalFormat;
-import java.text.Format;
 import java.util.ArrayList;
 import java.util.List;
-
-import ca.pfv.spmf.algorithms.classifiers.general.Evaluator.ClassificationResults;
-import ca.pfv.spmf.algorithms.classifiers.general.Evaluator.TrainingResults;
 
 public class OverallResults {
 
@@ -27,7 +25,7 @@ public class OverallResults {
     List<List<Short>> predictedClasseOnTesting = new ArrayList<List<Short>>();
     List<Long> runtimeOnTesting = new ArrayList<Long>();
 
-//	Format df = new DecimalFormat("#.####");
+    //	Format df = new DecimalFormat("#.####");
     List<Double> memoryUsageOnTesting = new ArrayList<Double>();
     List<String> names = new ArrayList<String>();
     int algorithmCount;

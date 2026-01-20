@@ -18,6 +18,7 @@ public class itemsetRec extends itemset implements Comparable<itemsetRec> {
     public float value;
     public double p;
     public boolean self_sufficient;
+
     public itemsetRec() {
         this.count = 0;
         this.value = 0.0F;

@@ -1,10 +1,10 @@
 package ca.pfv.spmf.welwindow;
 
+import ca.pfv.spmf.algorithmmanager.DescriptionOfParameter;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
-import ca.pfv.spmf.algorithmmanager.DescriptionOfParameter;
 
 /*
  * Copyright (c) 2008-2019 Philippe Fournier-Viger

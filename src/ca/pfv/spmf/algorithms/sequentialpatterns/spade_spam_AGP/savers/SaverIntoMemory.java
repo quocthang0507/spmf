@@ -1,9 +1,9 @@
 package ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP.savers;
 
-import java.util.Collection;
-
 import ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP.dataStructures.Sequences;
 import ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP.dataStructures.patterns.Pattern;
+
+import java.util.Collection;
 
 /**
  * This is an implementation of a class implementing the Saver interface. By

@@ -18,17 +18,17 @@ package ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP;
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-
 import ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP.dataStructures.database.SequenceDatabase;
 import ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP.dataStructures.patterns.Pattern;
 import ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP.savers.Saver;
 import ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP.savers.SaverIntoFile;
 import ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP.savers.SaverIntoMemory;
 import ca.pfv.spmf.tools.MemoryLogger;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 /**
  * This is an implementation of the SPAM algorithm. SPAM was proposed by Ayres

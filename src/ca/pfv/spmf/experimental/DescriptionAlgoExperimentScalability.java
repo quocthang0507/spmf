@@ -1,12 +1,12 @@
 package ca.pfv.spmf.experimental;
 
-import java.io.IOException;
-
 import ca.pfv.spmf.algorithmmanager.AlgorithmType;
 import ca.pfv.spmf.algorithmmanager.DescriptionOfAlgorithm;
 import ca.pfv.spmf.algorithmmanager.DescriptionOfParameter;
 import ca.pfv.spmf.experiments.oneparametervaried.ExperimenterForParameterChange;
 import ca.pfv.spmf.gui.experiments.ExperimenterScalabilityWindow;
+
+import java.io.IOException;
 /*
  * Copyright (c) 2008-2015 Philippe Fournier-Viger
  *

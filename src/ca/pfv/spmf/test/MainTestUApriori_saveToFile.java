@@ -1,11 +1,11 @@
 package ca.pfv.spmf.test;
 
+import ca.pfv.spmf.algorithms.frequentpatterns.uapriori.AlgoUApriori;
+import ca.pfv.spmf.algorithms.frequentpatterns.uapriori.UncertainTransactionDatabase;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-
-import ca.pfv.spmf.algorithms.frequentpatterns.uapriori.AlgoUApriori;
-import ca.pfv.spmf.algorithms.frequentpatterns.uapriori.UncertainTransactionDatabase;
 
 /**
  * Example of how to use the UApriori Algorithm in source code.

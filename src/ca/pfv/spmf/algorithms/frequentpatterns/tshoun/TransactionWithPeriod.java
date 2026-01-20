@@ -1,10 +1,10 @@
 package ca.pfv.spmf.algorithms.frequentpatterns.tshoun;
 
 
-import java.util.List;
-
 import ca.pfv.spmf.algorithms.frequentpatterns.two_phase.AlgoTwoPhase;
 import ca.pfv.spmf.input.utility_transaction_database.UtilityTransactionDatabaseTP;
+
+import java.util.List;
 
 
 /**

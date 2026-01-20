@@ -1,11 +1,11 @@
 package ca.pfv.spmf.test;
 
 
+import ca.pfv.spmf.algorithms.frequentpatterns.foshu.AlgoFOSHU;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-
-import ca.pfv.spmf.algorithms.frequentpatterns.foshu.AlgoFOSHU;
 
 /**
  * Example of how to use the FOSHU algorithm  from the source code, and save the output to a file.

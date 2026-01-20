@@ -1,10 +1,10 @@
 package ca.pfv.spmf.test;
 
+import ca.pfv.spmf.algorithms.episodes.huespan.AlgoHUESpan;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-
-import ca.pfv.spmf.algorithms.episodes.huespan.AlgoHUESpan;
 
 /**
  * This file shows how to run the HUE_Span algorithm on an input file.

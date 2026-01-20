@@ -22,12 +22,11 @@ package ca.pfv.spmf.algorithms.frequentpatterns.HUIM_ACO;
  *
  */
 
+import ca.pfv.spmf.test.MainTestHUIM_BPSO;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-
-import ca.pfv.spmf.algorithms.frequentpatterns.HUIM_BPSO.AlgoHUIM_BPSO;
-import ca.pfv.spmf.test.MainTestHUIM_BPSO;
 
 /**
  * Example of how to run the HUIM-ACO algorithm

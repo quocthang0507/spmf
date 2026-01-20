@@ -1,14 +1,7 @@
 package ca.pfv.spmf.gui;
 
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Font;
-
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.JPanel;
-import javax.swing.ListCellRenderer;
+import javax.swing.*;
+import java.awt.*;
 
 /*
  * Copyright (c) 2022 Philippe Fournier-Viger

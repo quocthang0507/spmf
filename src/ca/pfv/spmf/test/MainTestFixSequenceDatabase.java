@@ -1,10 +1,10 @@
 package ca.pfv.spmf.test;
 
+import ca.pfv.spmf.tools.other_dataset_tools.FixSequenceDatabaseTool;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-
-import ca.pfv.spmf.tools.other_dataset_tools.FixSequenceDatabaseTool;
 
 /**
  * Example of how to fix common problems for a sequence database

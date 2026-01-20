@@ -1,11 +1,11 @@
 package ca.pfv.spmf.algorithms.sequentialpatterns.prosecco;
 
+import ca.pfv.spmf.patterns.itemset_list_integers_without_support.Itemset;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
-
-import ca.pfv.spmf.patterns.itemset_list_integers_without_support.Itemset;
 
 /**
  * This class is used to for computing statistics on processed transactions. Used in ProSecCo

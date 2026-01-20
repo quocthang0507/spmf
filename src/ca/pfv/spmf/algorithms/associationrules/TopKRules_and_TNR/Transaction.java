@@ -17,7 +17,6 @@ package ca.pfv.spmf.algorithms.associationrules.TopKRules_and_TNR;
  */
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 /**

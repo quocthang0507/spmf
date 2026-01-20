@@ -1,10 +1,6 @@
 package ca.pfv.spmf.algorithms.graph_mining.aerminer;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 /* This file is copyright (c) 2020 by Ganghuan He
  *
  * This file is part of the SPMF DATA MINING SOFTWARE

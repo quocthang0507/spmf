@@ -1,10 +1,6 @@
 package ca.pfv.spmf.experimental.iolayer;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 
 public class SPMFTextFileReader extends AbstractSPMFReader {
     // We scan the database a first time to calculate the support of each item.

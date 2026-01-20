@@ -1,8 +1,5 @@
 package ca.pfv.spmf.test;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URL;
-
 import ca.pfv.spmf.algorithms.classifiers.acac.AlgoACAC;
 import ca.pfv.spmf.algorithms.classifiers.accf.AlgoACCF;
 import ca.pfv.spmf.algorithms.classifiers.acn.AlgoACN;
@@ -17,6 +14,9 @@ import ca.pfv.spmf.algorithms.classifiers.general.OverallResults;
 import ca.pfv.spmf.algorithms.classifiers.knn.AlgoKNN;
 import ca.pfv.spmf.algorithms.classifiers.l3.AlgoL3;
 import ca.pfv.spmf.algorithms.classifiers.mac.AlgoMAC;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URL;
 
 /**
  * Example of how to run the CBA algorithm

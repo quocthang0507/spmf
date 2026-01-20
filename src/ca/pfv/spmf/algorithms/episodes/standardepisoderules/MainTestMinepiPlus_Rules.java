@@ -1,11 +1,11 @@
 package ca.pfv.spmf.algorithms.episodes.standardepisoderules;
 
+import ca.pfv.spmf.algorithms.episodes.minepiplus.AlgoMINEPIPlus;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.util.List;
-
-import ca.pfv.spmf.algorithms.episodes.minepiplus.AlgoMINEPIPlus;
 
 /**
  * This file shows how to run the MINEPI algorithm on an input file to generate episode rules

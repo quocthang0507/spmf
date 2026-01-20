@@ -17,13 +17,8 @@ package ca.pfv.spmf.algorithms.sequentialpatterns.fournier2008_seqdim;
  */
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.Map.Entry;
-import java.util.Set;
 
 /**
  * This is an implementation of the BIDE+ algorithm by Wang et al. 2007 to be used

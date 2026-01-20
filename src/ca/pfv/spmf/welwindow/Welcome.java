@@ -1,24 +1,16 @@
 package ca.pfv.spmf.welwindow;
 
-import java.awt.BorderLayout;
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
-
 import ca.pfv.spmf.gui.AboutWindow;
 import ca.pfv.spmf.gui.Main;
 import ca.pfv.spmf.gui.MainWindow;
 import ca.pfv.spmf.gui.workflow_editor.WorkflowEditorWindow;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 /*
  * Copyright (c) 2008-2019 Philippe Fournier-Viger

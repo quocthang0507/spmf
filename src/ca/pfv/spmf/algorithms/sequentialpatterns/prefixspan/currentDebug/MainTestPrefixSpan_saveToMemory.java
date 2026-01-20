@@ -1,13 +1,13 @@
 package ca.pfv.spmf.algorithms.sequentialpatterns.prefixspan.currentDebug;
 
+import ca.pfv.spmf.algorithms.sequentialpatterns.prefixspan.AlgoPrefixSpan;
+import ca.pfv.spmf.algorithms.sequentialpatterns.prefixspan.SequentialPattern;
+import ca.pfv.spmf.algorithms.sequentialpatterns.prefixspan.SequentialPatterns;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.util.List;
-
-import ca.pfv.spmf.algorithms.sequentialpatterns.prefixspan.AlgoPrefixSpan;
-import ca.pfv.spmf.algorithms.sequentialpatterns.prefixspan.SequentialPattern;
-import ca.pfv.spmf.algorithms.sequentialpatterns.prefixspan.SequentialPatterns;
 
 
 /**

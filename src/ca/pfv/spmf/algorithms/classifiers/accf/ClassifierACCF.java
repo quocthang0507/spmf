@@ -19,14 +19,14 @@
  */
 package ca.pfv.spmf.algorithms.classifiers.accf;
 
+import ca.pfv.spmf.algorithms.classifiers.data.Instance;
+import ca.pfv.spmf.algorithms.classifiers.general.Rule;
+import ca.pfv.spmf.algorithms.classifiers.general.RuleClassifier;
+
 import java.io.Serializable;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-
-import ca.pfv.spmf.algorithms.classifiers.data.Instance;
-import ca.pfv.spmf.algorithms.classifiers.general.Rule;
-import ca.pfv.spmf.algorithms.classifiers.general.RuleClassifier;
 
 /**
  * Main class for the ACCF classifier. It implements its own way of predicting

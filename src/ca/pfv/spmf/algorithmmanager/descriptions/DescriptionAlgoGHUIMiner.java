@@ -1,15 +1,15 @@
 package ca.pfv.spmf.algorithmmanager.descriptions;
 
-import java.io.IOException;
-import java.util.List;
-import java.util.Set;
-
 import ca.pfv.spmf.algorithmmanager.AlgorithmType;
 import ca.pfv.spmf.algorithmmanager.DescriptionOfAlgorithm;
 import ca.pfv.spmf.algorithmmanager.DescriptionOfParameter;
 import ca.pfv.spmf.algorithms.frequentpatterns.hui_miner.AlgoCHUIMiner;
 import ca.pfv.spmf.algorithms.frequentpatterns.hui_miner.AlgoGHUIMINER;
 import ca.pfv.spmf.algorithms.frequentpatterns.hui_miner.Itemset;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.Set;
 /* This file is copyright (c) 2008-2016 Philippe Fournier-Viger
  *
  * This file is part of the SPMF DATA MINING SOFTWARE

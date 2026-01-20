@@ -20,18 +20,13 @@
  */
 package ca.pfv.spmf.algorithms.classifiers.acac;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-
 import ca.pfv.spmf.algorithms.classifiers.data.Dataset;
 import ca.pfv.spmf.algorithms.classifiers.data.Instance;
 import ca.pfv.spmf.algorithms.classifiers.general.Item;
 import ca.pfv.spmf.algorithms.classifiers.general.Rule;
+
+import java.util.*;
+import java.util.Map.Entry;
 
 /**
  * Adaptation of the Apriori algorithm for the ACAC algorithm. The Apriori

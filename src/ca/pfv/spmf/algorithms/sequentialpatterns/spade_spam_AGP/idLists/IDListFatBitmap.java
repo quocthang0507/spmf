@@ -1,10 +1,10 @@
 package ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP.idLists;
 
+import ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP.dataStructures.patterns.Pattern;
+
 import java.util.ArrayList;
 import java.util.BitSet;
 import java.util.List;
-
-import ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP.dataStructures.patterns.Pattern;
 
 /**
  * Inspired in SPMF. Implementation of a Idlist for SPADE and SPAM. This IdList

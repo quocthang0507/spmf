@@ -1,10 +1,10 @@
 package ca.pfv.spmf.algorithms.sequentialpatterns.clofast.model.tree;
 
-import java.util.LinkedList;
-import java.util.List;
-
 import ca.pfv.spmf.algorithms.sequentialpatterns.clofast.model.Sequence;
 import ca.pfv.spmf.algorithms.sequentialpatterns.clofast.model.VerticalIdList;
+
+import java.util.LinkedList;
+import java.util.List;
 /*
  * This file is part of the SPMF DATA MINING SOFTWARE
  * (http://www.philippe-fournier-viger.com/spmf).

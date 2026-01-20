@@ -1,11 +1,6 @@
 package ca.pfv.spmf.algorithms.frequentpatterns.upgrowth_ihup;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * This is an implementation of the IHUP-Tree used by IHUP algorithm.

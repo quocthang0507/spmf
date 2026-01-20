@@ -16,9 +16,9 @@ package ca.pfv.spmf.algorithms.sequentialpatterns.BIDE_and_prefixspan_with_strin
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import java.util.List;
-
 import ca.pfv.spmf.input.sequence_database_list_strings.Sequence;
+
+import java.util.List;
 
 /**
  * This represents a sequence from a projected database (as used in the PrefixSpan algorithm).

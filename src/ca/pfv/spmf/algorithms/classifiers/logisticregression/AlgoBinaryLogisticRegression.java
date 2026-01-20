@@ -1,9 +1,9 @@
 package ca.pfv.spmf.algorithms.classifiers.logisticregression;
 
+import ca.pfv.spmf.tools.MemoryLogger;
+
 import java.util.Arrays;
 import java.util.List;
-
-import ca.pfv.spmf.tools.MemoryLogger;
 
 /*
  *  Copyright (c) 2022 Philippe Fournier-Viger

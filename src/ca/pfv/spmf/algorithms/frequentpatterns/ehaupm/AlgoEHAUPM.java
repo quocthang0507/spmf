@@ -17,55 +17,60 @@ package ca.pfv.spmf.algorithms.frequentpatterns.ehaupm;
  * @author Shi-Feng Ren
  */
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.io.*;
+import java.util.*;
 import java.util.Map.Entry;
 
 
 /**
  * This is an implementation of the "EHAUPM" algorithm for High-Average-Utility Itemsets Mining
  * as described in the journal paper : <br/><br/>
- *
+ * <p>
  * Lin C W, Ren S, Fournier-Viger P, et al. EHAUPM: Efficient High Average-Utility Pattern Mining with Tighter Upper-Bounds[J]. IEEE Access, 2017, PP(99):1-1.
  *
+ * @author Shi-Feng Ren
  * @see MAUList
  * @see MAUEntry
- * @author Shi-Feng Ren
  */
 public class AlgoEHAUPM {
 
-    /** The time at which the algorithm started */
+    /**
+     * The time at which the algorithm started
+     */
     public long startTimestamp = 0;
 
-    /**  The time at which the algorithm ended */
+    /**
+     * The time at which the algorithm ended
+     */
     public long endTimestamp = 0;
 
-    /** The number of high average utility itemset */
+    /**
+     * The number of high average utility itemset
+     */
     public int nhauis = 0;
 
-    /** The number of candidate high-utility itemsets */
+    /**
+     * The number of candidate high-utility itemsets
+     */
     public long joinCount = 0;
 
-    /** Map to remember the AUUB of each item */
+    /**
+     * Map to remember the AUUB of each item
+     */
     Map<Integer, Long> items2auub;
 
-    /** The eaucs structure */
+    /**
+     * The eaucs structure
+     */
     Map<Integer, Map<Integer, Integer>> EAUCM;
 
-    /** Buffer for itemsets, initial buffer size is 200. */
+    /**
+     * Buffer for itemsets, initial buffer size is 200.
+     */
     int BUFFERS_SIZE = 200;
-    /** Write HAUIs in a specified file */
+    /**
+     * Write HAUIs in a specified file
+     */
     BufferedWriter writer = null;
     // Memory recoder: an thread is used to dynamically record peak-memory
     // And the peak-memory is used as the final memory usage.
@@ -81,9 +86,10 @@ public class AlgoEHAUPM {
 
     /**
      * Run the algorithm
-     * @param dbPath local address of the file records the quantities of each item.
+     *
+     * @param dbPath    local address of the file records the quantities of each item.
      * @param HAUIsFile the file which is used to store the discovered HAUIs.
-     * @param delta minimum high average utility threshold(a positive integer value).
+     * @param delta     minimum high average utility threshold(a positive integer value).
      * @throws Exception
      */
     public void runAlgorithm(String dbPath, String HAUIsFile, int delta) throws IOException {
@@ -299,6 +305,7 @@ public class AlgoEHAUPM {
 
     /**
      * Compare the auub value of two items, if equals, compare their Lexicographic order
+     *
      * @param item1
      * @param item2
      * @return return 0 if equals, -1 if item1>items or auub(item1)>auub(item2), 1 if item1<items or auub(item1)<auub(item2)
@@ -310,10 +317,10 @@ public class AlgoEHAUPM {
     }
 
     /**
-     * @param prefix  This is the current prefix. Initially, it is empty.
-     * @param ULOfPxy This is the Utility List of the prefix. Initially, it is empty.
-     * @param ULs The utility lists corresponding to each extension of the prefix.
-     * @param minUtility The minUtility threshold.
+     * @param prefix       This is the current prefix. Initially, it is empty.
+     * @param ULOfPxy      This is the Utility List of the prefix. Initially, it is empty.
+     * @param ULs          The utility lists corresponding to each extension of the prefix.
+     * @param minUtility   The minUtility threshold.
      * @param prefixLength The current prefix length
      * @throws IOException
      */
@@ -380,10 +387,11 @@ public class AlgoEHAUPM {
 
     /**
      * Construct procedure
-     * @param prefixLen the length of the prefix
-     * @param P the MAUList of prefix P
-     * @param Px the MAUList of Px
-     * @param Py the MAUList of Py
+     *
+     * @param prefixLen  the length of the prefix
+     * @param P          the MAUList of prefix P
+     * @param Px         the MAUList of Px
+     * @param Py         the MAUList of Py
      * @param minUtility the minimum utility threshold
      * @return the MAUList of Pxy
      */
@@ -483,8 +491,9 @@ public class AlgoEHAUPM {
 
     /**
      * Do a binary search to find the element with a given tid in a utility list
+     *
      * @param ulist the utility list
-     * @param tid  the tid
+     * @param tid   the tid
      * @return the element or null if none has the tid.
      */
     private MAUEntry findElementWithTID(MAUList ulist, int tid) {
@@ -510,9 +519,9 @@ public class AlgoEHAUPM {
     }
 
     /**
-     * @param prefix the prefix to be writent o the output file
-     * @param item an item to be appended to the prefix
-     * @param utility the utility of the prefix concatenated with the item
+     * @param prefix       the prefix to be writent o the output file
+     * @param item         an item to be appended to the prefix
+     * @param utility      the utility of the prefix concatenated with the item
      * @param prefixLength the prefix length
      */
     private void writeOut(int[] prefix, int prefixLength, int item, double utility) throws IOException {

@@ -1,10 +1,10 @@
 package ca.pfv.spmf.test;
 
+import ca.pfv.spmf.tools.other_dataset_tools.FixTransactionDatabaseTool;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-
-import ca.pfv.spmf.tools.other_dataset_tools.FixTransactionDatabaseTool;
 
 /**
  * Example of how to use the tool to fix common problem in a transaction database

@@ -1,17 +1,5 @@
 package ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
-import java.util.concurrent.TimeUnit;
-
 import ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP.candidatePatternsGeneration.CandidateGenerator;
 import ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP.dataStructures.creators.AbstractionCreator;
 import ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP.dataStructures.database.SequenceDatabase;
@@ -20,6 +8,10 @@ import ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP.savers.Saver;
 import ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP.savers.SaverIntoFile;
 import ca.pfv.spmf.algorithms.sequentialpatterns.spade_spam_AGP.savers.SaverIntoMemory;
 import ca.pfv.spmf.tools.MemoryLogger;
+
+import java.io.IOException;
+import java.util.*;
+import java.util.concurrent.*;
 
 /**
  * This is an implementation of the SPADE. SPADE was proposed by ZAKI in 2001.

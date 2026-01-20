@@ -17,16 +17,12 @@ package ca.pfv.spmf.algorithms.sequential_rules.cmrules;
  */
 
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
 import ca.pfv.spmf.datastructures.triangularmatrix.TriangularMatrix;
 import ca.pfv.spmf.input.transaction_database_list_integers.TransactionDatabase;
 import ca.pfv.spmf.patterns.itemset_array_integers_with_tids.Itemset;
 import ca.pfv.spmf.patterns.itemset_array_integers_with_tids.Itemsets;
+
+import java.util.*;
 
 /**
  * This is an implementation of the AprioriTID algorithm that is

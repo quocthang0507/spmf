@@ -16,7 +16,9 @@ package ca.pfv.spmf.algorithms.frequentpatterns.HMiner_CLosed;
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * This class represents a set of itemsets, where an itemset is an array of integers

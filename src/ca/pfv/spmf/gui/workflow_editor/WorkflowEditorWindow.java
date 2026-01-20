@@ -1,8 +1,13 @@
 package ca.pfv.spmf.gui.workflow_editor;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.Toolkit;
+import ca.pfv.spmf.gui.*;
+import ca.pfv.spmf.gui.algorithmexplorer.AlgorithmExplorer;
+import ca.pfv.spmf.gui.preferences.PreferencesManager;
+import ca.pfv.spmf.test.MainTestApriori_saveToFile;
+
+import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedWriter;
@@ -16,34 +21,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JCheckBoxMenuItem;
-import javax.swing.JFileChooser;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JProgressBar;
-import javax.swing.JScrollPane;
-import javax.swing.JSplitPane;
-import javax.swing.filechooser.FileNameExtensionFilter;
-
-import ca.pfv.spmf.gui.AboutWindow;
-import ca.pfv.spmf.gui.CommandProcessor;
-import ca.pfv.spmf.gui.ConsolePanel;
-import ca.pfv.spmf.gui.Main;
-import ca.pfv.spmf.gui.MainWindow;
-import ca.pfv.spmf.gui.MemoryViewer;
-import ca.pfv.spmf.gui.NotifyingThread;
-import ca.pfv.spmf.gui.ThreadCompleteListener;
-import ca.pfv.spmf.gui.algorithmexplorer.AlgorithmExplorer;
-import ca.pfv.spmf.gui.preferences.PreferencesManager;
-import ca.pfv.spmf.test.MainTestApriori_saveToFile;
 
 /*
  * Copyright (c) 2024 Philippe Fournier-Viger

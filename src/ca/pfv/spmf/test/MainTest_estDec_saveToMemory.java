@@ -1,13 +1,13 @@
 package ca.pfv.spmf.test;
 
+import ca.pfv.spmf.algorithms.frequentpatterns.estDec.Algo_estDec;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.util.Hashtable;
 import java.util.Map.Entry;
-
-import ca.pfv.spmf.algorithms.frequentpatterns.estDec.Algo_estDec;
 
 /**
  * Class to test the estDec algorithm and save the result to memory.

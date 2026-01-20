@@ -1,21 +1,11 @@
 package ca.pfv.spmf.algorithms.sequentialpatterns.prefixSpan_AGP.items;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.BitSet;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
 import ca.pfv.spmf.algorithms.sequentialpatterns.prefixSpan_AGP.items.abstractions.Abstraction_Generic;
 import ca.pfv.spmf.algorithms.sequentialpatterns.prefixSpan_AGP.items.creators.AbstractionCreator;
 import ca.pfv.spmf.algorithms.sequentialpatterns.prefixSpan_AGP.items.patterns.PatternCreator;
+
+import java.io.*;
+import java.util.*;
 
 /**
  * Inspired in SPMF. Implementation of a sequence database. Each sequence should

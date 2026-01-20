@@ -1,10 +1,10 @@
 package ca.pfv.spmf.algorithms.sequentialpatterns.prefixspan;
 
+import ca.pfv.spmf.patterns.itemset_list_integers_without_support.Itemset;
+
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
-
-import ca.pfv.spmf.patterns.itemset_list_integers_without_support.Itemset;
 
 /**
  * This class represents a sequential pattern.

@@ -17,10 +17,10 @@ package ca.pfv.spmf.algorithms.frequentpatterns.efim_closed;
  */
 
 
-import java.util.Arrays;
-
 import ca.pfv.spmf.datastructures.collections.list.ArrayListObject;
 import ca.pfv.spmf.datastructures.collections.list.ListObject;
+
+import java.util.Arrays;
 
 /**
  * This class represents a set of itemsets, where an itemset is an array of integers

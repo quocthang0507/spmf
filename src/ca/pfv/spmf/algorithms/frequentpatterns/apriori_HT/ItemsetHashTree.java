@@ -16,11 +16,11 @@ package ca.pfv.spmf.algorithms.frequentpatterns.apriori_HT;
  * SPMF. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import java.util.ArrayList;
-import java.util.List;
-
 import ca.pfv.spmf.algorithms.ArraysAlgos;
 import ca.pfv.spmf.patterns.itemset_array_integers_with_count.Itemset;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This class represents an itemset hash tree as used by the AprioriHT algorithm

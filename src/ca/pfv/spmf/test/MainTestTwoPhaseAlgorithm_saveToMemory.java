@@ -1,12 +1,12 @@
 package ca.pfv.spmf.test;
 
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.net.URL;
-
 import ca.pfv.spmf.algorithms.frequentpatterns.two_phase.AlgoTwoPhase;
 import ca.pfv.spmf.algorithms.frequentpatterns.two_phase.ItemsetsTP;
 import ca.pfv.spmf.input.utility_transaction_database.UtilityTransactionDatabaseTP;
+
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URL;
 
 /**
  * Example of how to use the TWOPhase Algorithm in source code.

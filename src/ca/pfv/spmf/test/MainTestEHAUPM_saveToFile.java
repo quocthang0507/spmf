@@ -16,10 +16,10 @@ package ca.pfv.spmf.test;
  * @author Ting Li
  */
 
+import ca.pfv.spmf.algorithms.frequentpatterns.ehaupm.AlgoEHAUPM;
+
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-
-import ca.pfv.spmf.algorithms.frequentpatterns.ehaupm.AlgoEHAUPM;
 
 /**
  * Example of how to use the HAUIMiner algorithm

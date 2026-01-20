@@ -1,9 +1,9 @@
 package ca.pfv.spmf.patterns.cluster;
 
+import ca.pfv.spmf.algorithms.clustering.dbscan.AlgoDBSCAN;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import ca.pfv.spmf.algorithms.clustering.dbscan.AlgoDBSCAN;
 /* This file is copyright (c) 2008-2012 Philippe Fournier-Viger
  *
  * This file is part of the SPMF DATA MINING SOFTWARE
