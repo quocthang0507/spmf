@@ -4,6 +4,7 @@ import ca.pfv.spmf.algorithmmanager.DescriptionOfAlgorithm;
 import ca.pfv.spmf.algorithmmanager.DescriptionOfParameter;
 
 import javax.swing.*;
+import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
 import java.awt.*;
 
@@ -82,6 +83,19 @@ public class ParameterSelectionPanel extends JPanel {
 
             // Create the table
             parameterTable = new JTable(tableModel) {
+                @Override
+                public TableCellEditor getCellEditor(int row, int column) {
+                    if (column == 1) {
+                        int modelRow = convertRowIndexToModel(row);
+                        DescriptionOfParameter parameter = tableModel.getParameterAt(modelRow);
+                        if (parameter.hasPredefinedValues()) {
+                            JComboBox<String> comboBox = new JComboBox<String>(parameter.getPredefinedValues());
+                            return new DefaultCellEditor(comboBox);
+                        }
+                    }
+                    return super.getCellEditor(row, column);
+                }
+
                 @Override
                 public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {
                     Component c = super.prepareRenderer(renderer, row, column);

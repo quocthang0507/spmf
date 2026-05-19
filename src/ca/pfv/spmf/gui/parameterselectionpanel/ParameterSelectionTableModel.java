@@ -60,6 +60,7 @@ public class ParameterSelectionTableModel extends AbstractTableModel {
             parameters = new DescriptionOfParameter[]{};
         }
         data = new String[parameters.length];
+        setDefaultValuesForPredefinedParameters();
     }
 
     @Override
@@ -153,6 +154,7 @@ public class ParameterSelectionTableModel extends AbstractTableModel {
         }
 
         this.parameters = parameters;
+        setDefaultValuesForPredefinedParameters();
         fireTableDataChanged(); // Notify table of data change
     }
 
@@ -187,6 +189,27 @@ public class ParameterSelectionTableModel extends AbstractTableModel {
         }
         for (int i = 0; i < data.length && i < parameterValues.length; i++) {
             data[i] = parameterValues[i];
+        }
+    }
+
+    /**
+     * Get a parameter description for a table row.
+     *
+     * @param row row index
+     * @return parameter description
+     */
+    public DescriptionOfParameter getParameterAt(int row) {
+        return parameters[row];
+    }
+
+    /**
+     * Initialize empty values for parameters displayed as combo boxes.
+     */
+    private void setDefaultValuesForPredefinedParameters() {
+        for (int i = 0; i < parameters.length; i++) {
+            if ((data[i] == null || data[i].isEmpty()) && parameters[i].hasPredefinedValues()) {
+                data[i] = parameters[i].getPredefinedValues()[0];
+            }
         }
     }
 
