@@ -1,0 +1,15 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Compile SPMF",
+      "type": "shell",
+      "command": "mkdir -p out/production/spmf && find src -name '*.java' > /tmp/spmf_sources.txt && javac -d out/production/spmf -cp src -sourcepath src @/tmp/spmf_sources.txt",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "group": "build",
+      "problemMatcher": "$javac"
+    }
+  ]
+}

@@ -6,6 +6,7 @@
       "name": "Run SPMF GUI",
       "request": "launch",
       "mainClass": "ca.pfv.spmf.gui.Main",
+      "preLaunchTask": "Compile SPMF",
       "cwd": "${workspaceFolder}",
       "classPaths": [
         "${workspaceFolder}/out/production/spmf",
