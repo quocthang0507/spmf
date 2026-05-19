@@ -1,0 +1,19 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Run SPMF GUI",
+      "request": "launch",
+      "mainClass": "ca.pfv.spmf.gui.Main",
+      "cwd": "${workspaceFolder}",
+      "classPaths": [
+        "${workspaceFolder}/src"
+      ],
+      "sourcePaths": [
+        "${workspaceFolder}/src"
+      ],
+      "vmArgs": "-Xmx2g -Dfile.encoding=UTF-8"
+    }
+  ]
+}
