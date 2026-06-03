@@ -30,7 +30,7 @@ import java.util.Set;
  * This version uses the standard SPMF utility transaction format:
  * items:transactionUtility:itemUtilities.
  *
- * @author OpenAI
+ * @author quocthang0507
  */
 public class AlgoHUOPM {
 

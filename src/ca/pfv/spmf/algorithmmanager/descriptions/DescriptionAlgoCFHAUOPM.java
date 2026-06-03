@@ -10,7 +10,7 @@ import ca.pfv.spmf.algorithms.frequentpatterns.cfhauopm.CFHAUOPMPruningStrategy;
  * This class describes the CFHAUOPM algorithm parameters for the graphical and
  * command line interfaces.
  *
- * @author OpenAI
+ * @author quocthang0507
  * @see AlgoCFHAUOPM
  */
 public class DescriptionAlgoCFHAUOPM extends DescriptionOfAlgorithm {
@@ -33,7 +33,7 @@ public class DescriptionAlgoCFHAUOPM extends DescriptionOfAlgorithm {
 
     @Override
     public String getURLOfDocumentation() {
-        return "http://www.philippe-fournier-viger.com/spmf/CFHAUOPM.php";
+        return "https://ieeexplore.ieee.org/document/11309390";
     }
 
     @Override
@@ -63,7 +63,7 @@ public class DescriptionAlgoCFHAUOPM extends DescriptionOfAlgorithm {
 
     @Override
     public String getImplementationAuthorNames() {
-        return "OpenAI";
+        return "quocthang0507";
     }
 
     @Override

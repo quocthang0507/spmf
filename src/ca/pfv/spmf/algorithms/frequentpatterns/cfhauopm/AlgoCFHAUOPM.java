@@ -29,7 +29,7 @@ import java.util.Set;
  * High Average Utility Occupancy Patterns". It uses SPMF utility transaction
  * files where each line has the form items:transactionUtility:itemUtilities.
  *
- * @author OpenAI
+ * @author quocthang0507
  */
 public class AlgoCFHAUOPM {
 

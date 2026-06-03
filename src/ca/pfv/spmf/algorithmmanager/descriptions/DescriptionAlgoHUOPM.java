@@ -10,7 +10,7 @@ import ca.pfv.spmf.algorithms.frequentpatterns.huopm.HUOPMPruningStrategy;
  * This class describes the HUOPM algorithm parameters for the graphical and
  * command line interfaces.
  *
- * @author OpenAI
+ * @author quocthang0507
  * @see AlgoHUOPM
  */
 public class DescriptionAlgoHUOPM extends DescriptionOfAlgorithm {
@@ -62,7 +62,7 @@ public class DescriptionAlgoHUOPM extends DescriptionOfAlgorithm {
 
     @Override
     public String getImplementationAuthorNames() {
-        return "OpenAI";
+        return "quocthang0507";
     }
 
     @Override
